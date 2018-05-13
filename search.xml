@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[Ubuntu自己创建桌面快捷方式]]></title>
+    <url>%2F2018%2F04%2F25%2Fubuntu_shortcut%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍如何在Ubuntu下创建自己的快捷方式 操作步聚： 新建空白文档 写入 1234567[Desktop Entry]Name = Studiocomment= android studioExec=可执行文件位置Icon=图标位置Terminal=falseType=Application 更改文件名为xxx.desktop 右键属性—权限—允许作为程序执行文件 创建完成]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu下安装Matlab 2018a]]></title>
+    <url>%2F2018%2F04%2F23%2Fubuntu_matlab%2F</url>
+    <content type="text"><![CDATA[在Ubuntu在安装Matlab用于学习、研究用途。Linux上可以使用开源免费的Octave代替 下载Matlab 2018a 安装包 matlab是收费软件，所以这篇笔记没有提供下载和破解资源，各位想把Matlab用做学习研究用途的童鞋可以到各大PT站取下载 ​ 进入安装包内，和Windows安装一样，里面会有三个文件，分别是破解用的证书文件，光盘镜像1，光盘镜像2 ​ 创建挂载点~/matlab挂载映像文件1 123$ cd ~$ mkdir matlab $ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd1.iso ~/matlab/ ​ 挂载之后，进入根目录开始安装(注意不能直接在挂载目录下启动install) 12$ cd /$ sudo ./home/phoenix/matlab/install ​ 安装中提示输入key的可以到破解文件Crack中的readme.txt中找 按照提示进行安装，安装到一半时会提示插入光盘2，这时候就要挂载映像文件2 1$ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd2.iso ~/matlab/ ​ 安装好后第一次启动 12$ cd /usr/local/MATLAB/R2018a/bin$ sudo ./matlab ​ 选择不要联网激活，导入Crack中的license_standalone.lic文件 ​ 复制文件 1sudo cp -f YOUR_DOWNLOAD_DIR/Matlab2018aLinux64Crack/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so /usr/local/MATLAB/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl 再次启动 1$ sudo ./matlab]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>matlab</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu下编译安装VLfeat]]></title>
+    <url>%2F2018%2F04%2F23%2Fubuntu_vlfeat%2F</url>
+    <content type="text"><![CDATA[The VLFeat open source library implements popular computer vision algorithms specializing in image understanding and local features extraction and matching. Algorithms include Fisher Vector, VLAD, SIFT, MSER, k-means, hierarchical k-means, agglomerative information bottleneck, SLIC superpixels, quick shift superpixels, large scale SVM training, and many others. It is written in C for efficiency and compatibility, with interfaces in MATLAB for ease of use, and detailed documentation throughout. It supports Windows, Mac OS X, and Linux. 下载源码 解压进入vlfeat的根目录vlfeat_ROOT 修改Makefile 解除注释或添加一行 1DISABLE_OPENMP=yes ​ 打开/etc/ld.so.conf添加一行 1vlfeat_ROOT/toolbox/mex/mexa64 ​ 刷新环境配置 1sudo ldconfig ​ 再次进入vlfeat_ROOT，输入命令 1make MEX=matlab_ROOT/bin/mex ​ 编译成功后进入matlab命令行输入 1run('vlfeat_ROOT/toolbox/vl_setup.m') 运行成功后查看版本，正常显示后完成安装 1vl_version ​ 在matlab起始位置下(我的是HOME目录下)添加一个startup.m文件写上 1run('vlfeat_ROOT/toolbox/vl_setup.m') 就可以每次启动时自动加载vlfeat ​]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>matlab</tag>
+        <tag>VLfeat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[马氏距离(Mahalanobis Distance)]]></title>
+    <url>%2F2018%2F04%2F18%2FMahalanobis%2F</url>
+    <content type="text"><![CDATA[马氏距离(Mahalanobis Distance)是度量学习中一种常用的距离指标，同欧氏距离、曼哈顿距离、汉明距离等一样被用作评定数据之间的相似度指标。但却可以应对高维线性分布的数据中各维度间非独立同分布的问题。 什么是马氏距离马氏距离(Mahalanobis Distance)是一种距离的度量，可以看作是欧氏距离的一种修正，修正了欧式距离中各个维度尺度不一致且相关的问题。 单个数据点的马氏距离 数据点x, y之间的马氏距离 其中Σ是多维随机变量的协方差矩阵，μ为样本均值，如果协方差矩阵是单位向量，也就是各维度独立同分布，马氏距离就变成了欧氏距离。 马氏距离实际意义那么马氏距离就能能干什么？它比欧氏距离好在哪里？举几个栗子 欧式距离近就一定相似？ 先举个比较常用的例子，身高和体重，这两个变量拥有不同的单位标准，也就是有不同的scale。比如身高用毫米计算，而体重用千克计算，显然差10mm的身高与差10kg的体重是完全不同的。但在普通的欧氏距离中，这将会算作相同的差距。 归一化后欧氏距离近就一定相似？ 当然我们可以先做归一化来消除这种维度间scale不同的问题，但是样本分布也会影响分类 举个一维的栗子，现在有两个类别，统一单位，第一个类别均值为0，方差为0.1，第二个类别均值为5，方差为5。那么一个值为2的点属于第一类的概率大还是第二类的概率大？距离上说应该是第一类，但是直觉上显然是第二类，因为第一类不太可能到达2这个位置。 所以，在一个方差较小的维度下很小的差别就有可能成为离群点。就像下图一样，A与B相对于原点的距离是相同的。但是由于样本总体沿着横轴分布，所以B点更有可能是这个样本中的点，而A则更有可能是离群点。 算上维度的方差就够了？ 还有一个问题——如果维度间不独立同分布，样本点一定与欧氏距离近的样本点同类的概率更大吗？ 可以看到样本基本服从f(x) = x的线性分布，A与B相对于原点的距离依旧相等，显然A更像是一个离群点 即使数据已经经过了标准化，也不会改变AB与原点间距离大小的相互关系。所以要本质上解决这个问题，就要针对主成分分析中的主成分来进行标准化。 马氏距离的几何意义上面搞懂了，马氏距离就好理解了，只需要将变量按照主成分进行旋转，让维度间相互独立，然后进行标准化，让维度同分布就OK了 由主成分分析可知，由于主成分就是特征向量方向，每个方向的方差就是对应的特征值，所以只需要按照特征向量旋转，然后缩放特征向量倍就可以了，可以得到以下的结果： 离群点就被成功分离，这时候的欧式距离就是马氏距离。 马氏距离的推导首先要对数据点进行旋转，旋转至主成分，维度间线性无关，假设新的坐标为 又变换后维度间线性无关且每个维度自己的方差为特征值，所以满足： 马氏距离是旋转变换缩放之后的欧式距离，所以马氏距离的计算公式为： 这就是之前提到的马氏距离的公式 马氏距离的问题 协方差矩阵必须满秩 里面有求逆矩阵的过程，不满秩不行，要求数据要有原维度个特征值，如果没有可以考虑先进行PCA，这种情况下PCA不会损失信息 不能处理非线性流形(manifold)上的问题 只对线性空间有效，如果要处理流形，只能在局部定义，可以用来建立KNN图]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Data Mining</tag>
+        <tag>Machine Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[word2vec词嵌入方法]]></title>
+    <url>%2F2018%2F04%2F10%2Fword2vec%2F</url>
+    <content type="text"><![CDATA[word2vec模型与应用由Mikolov等人在自然语言领域具有很高的影响，它在语言模型进行学习前先找寻到一种合适的编码方式，这种编码方式叫作词嵌入(Word Embedding); 本片笔记属于原理介绍，没有实现细节的代码讲解 One-hot编码嵌入前通常会使用 one-hot编码方式，这种编码方式每个词都会单独的占一位，该位为1则表示这个词出现，例如但前语料中一共有5个词，那么它们就分别表示为10000，01000，00100，00010，00001。 显然，这是一种极不高效的编码方式，既需要极大的空间用于存储，也不能从词向量中获得有用的词之间的语义关系，这也就是为什么需要词嵌入技术的原因。 Why word2vec?为什么Word2Vec方法受到如此多的注意，以至于对现在的自然语言处理产生了极大的影响？ 总结了一下Word2Vec的几个特点： 快，以往的词嵌入得到的词向量仅仅只是一个副产物，而w2v则针对词嵌入提出了各种模型以及相应的优化算法(后面会提到的) 语义上相近的词向量相似度上也比较接近 这点是最神奇的，虽然不知道为什么，w2v得到的词向量竟然满足语义上的加减法！！！比如Madrid-Spain+France=Paris; king-man+women=queen; (⊙ω⊙)! 此外w2v还拥有两种模式Skip-gram与CBOW，而每种模式下都有两种优化的实现方法Hierarchical Softmax, Negative Sampling Skip-gram第一种模式是Skip-gram模式，根据一个词推测出其最有可能的上下文(Context)，其结构图如下： 步骤 输入One-hot编码，每个词向量现在都是V维的，V就是语料中词汇的总数 乘上字典矩阵WV*N，变成一个N维向量。N就是嵌入后的词向量维数 乘上字典矩阵W’N*V，相当于求距离，然后再求一个Softmax，变成一个V维向量。每一位其实都代表改为one-hot编码的词出现的概率 CBOWCBOW(Continuous Bag-of-Words)，是另外一种Word2Vec的模式，用于根据上下文推测出空缺的词的方法，其结构示意图如下： 步骤 输入上下文C个词的One-hot编码 乘上字典矩阵WV*N，得到各自的N维编码 取它们的平均值 乘上字典矩阵W’N*V，相当于求与其他词之间的距离，然后取Softmax，变成一个V维向量，每位代表的还是这个位上one-hot编码的那个词的概率，选最大的那个 ​ Hierarchical Sotfmax上面说的就是Word2Vec的基本思想了，但是呢，当语料非常庞大的时候，求Softmax 开销就会变得异常的大，其中一种解决方法就是使用层次Softmax(Hierarchical Sotfmax)来将Softmax的概率转化为一个多次二分类问题。 层级Softmax函数使用的数据结构是以词频作为权重构造的霍夫曼树(Huffman Tree)，这样做的好处是词频大的词只需要更少的遍历就可以找到 叶子节点为V个语料中的词，而非叶子节点也有一个向量v，代表一次选择，即每走一步都需要确定下一步是要走到左孩子节点还是右孩子节点，原来的Softmax概率就被写成 σ(*)是Sigmoid函数，双竖线中括号表示若选择左孩子则为1，右孩子则为-1，在sigmoid中正好正负样例两者 相加等1。最后就是非叶子节点向量与词向量的内积。训练时同时考虑词的嵌入向量训练和霍夫曼树上非叶子节点的参数。 与CBOW配合，将叠加以后的嵌入向量作为霍夫曼树的输入，去寻找原中心词，并以此过程优化霍夫曼树与词向量; 与Skip-Gram配合，将目标词汇一个个作为霍夫曼树的输入 ，去寻找原中心词，并以此过程优化霍夫曼树与词向量; Negative Sampling苏北萨满判令在此前的LargeVis–LINE在高维数据降维与可视化上的运用中已经提到了Negative Sampling，实际上，在Word2Vec后，负采样技术在运用上比层级Softmax更加的广泛。 做法也与LargeVis相似，即使得正样本出现的概率最大，负样本出现的概率减小，那么如何取负样本呢？ 将所有的词按照词频的3/4次方为正比进行采样作为负样本，即满足概率： 按照这个概率取得负样本(若取到中心词本身则重新进行采样)用于替换中心词，与原中心词的Context组成一组负样本，只要取几个词就可已完成负采样。按照原文的话说，当数据集比较小的时候，5-20个负样本; 当数据集比较大的时候，只需要2-5个就可以了。 负采样的目标函数为： 高频词子采样语料中总是有很多类似于”a” “the” “in”这样的词，这些词被认为不会提供太多有用的信息，因为它们几乎会出现在所有的词的context中。所以对于这些词我们进行子采样(Subsampling)来进行过滤。Mikolov的原文中采用的下采样公式是 P是每个词被删除的概率，t是一个认为定的阈值，大约在10-5左右，f是词频。这样一来，稀有的词就能得到保留，而频繁出现的词却会被大面积的删除，但总体词频的顺序不变，达成下采样的目的。 Tensorflow实现负采样Skip-gram word2vec Tensorflow封装实现 作者源码 参考Distributed Representations of Words and Phrases and their Compositionality word2vec Parameter Learning Explained Word2Vec中的数学原理 Word2Vec原理 深度学习word2vec笔记之算法篇]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+        <tag>Deep Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Ubuntu下安装gsl科学计算库]]></title>
+    <url>%2F2018%2F04%2F03%2Fubuntu_gsl%2F</url>
+    <content type="text"><![CDATA[GSL是GNU的科学计算库(GNU Scientific Library)，是用于C++的开源科学计算库 下载最新版本GSL http://www.gnu.org/software/gsl/ 解压后进入目录下，然后执行命令 123./configuremakemake install ​ 将会自动将lib与头文件安装到/usr/local/lib和/usr/local/include 下面，过程中可能会出现权限上的问题，sudo就行。之后就可以使用GSL了;]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>GSL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[训练集(train set)验证集(validation set)测试集(test set)与交叉验证法(Cross Validation)]]></title>
+    <url>%2F2018%2F04%2F01%2Fcross_validation%2F</url>
+    <content type="text"><![CDATA[这三种数据集合非常容易弄混，特别是验证集和测试集，这篇笔记写下我对它们三个的理解以及在实践中是如何进行划分的。 训练集这个是最好理解的，用来训练模型内参数的数据集，Classfier直接根据训练集来调整自身获得更好的分类效果 验证集​ 用于在训练过程中检验模型的状态，收敛情况。验证集通常用于调整超参数，根据几组模型验证集上的表现决定哪组超参数拥有最好的性能。 ​ 同时验证集在训练过程中还可以用来监控模型是否发生过拟合，一般来说验证集表现稳定后，若继续训练，训练集表现还会继续上升，但是验证集会出现不升反降的情况，这样一般就发生了过拟合。所以验证集也用来判断何时停止训练 测试集测试集用来评价模型泛化能力，即之前模型使用验证集确定了超参数，使用训练集调整了参数，最后使用一个从没有见过的数据集来判断这个模型是否Work。 三者区别形象上来说训练集就像是学生的课本，学生 根据课本里的内容来掌握知识，验证集就像是作业，通过作业可以知道 不同学生学习情况、进步的速度快慢，而最终的测试集就像是考试，考的题是平常都没有见过，考察学生举一反三的能力。 为什么要测试集训练集直接参与了模型调慘的过程，显然不能用来反映模型真实的能力，这样一些 对课本死记硬背的学生(过拟合)将会拥有最好的成绩，显然不对。同理，由于验证集参与了人工调参(超参数)的过程，也不能用来最终评判一个模型，就像刷题库的学生也不能算是学习好的学生是吧。所以要通过最终的考试(测试集)来考察一个学(模)生(型)真正的能力。 但是仅凭一次考试就对模型的好坏进行评判显然是不合理的，所以接下来就要介绍交叉验证法 交叉验证法交叉验证法的作用就是尝试利用不同的训练集/测试集划分来对模型做多组不同的训练/测试，来应对单词测试结果过于片面以及训练数据不足的问题。 交叉验证的做法就是将数据集粗略地分为比较均等不相交的k份，即 然后取其中的一份进行测试，另外的k-1份进行训练，然后求得error的平均值作为最终的评价，具体算法流程西瓜书中的插图如下：]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Ubuntu下一些常用软件安装]]></title>
+    <url>%2F2018%2F03%2F28%2Fubuntu_env%2F</url>
+    <content type="text"><![CDATA[安装完Ubuntu后常用软件和环境的安装，之前写过一点，在这里做补充，Chrome，Typora，Anaconda，调节双系统时间，Sublime，nodejs等 1. Chrome1234567sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -sudo apt-get updatesudo apt-get install google-chrome-stable 2. Typora123456789# optional, but recommendedsudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE# add Typora's repositorysudo add-apt-repository 'deb https://typora.io ./linux/'sudo apt-get update# install typorasudo apt-get install typora 3. Anaconda到官网下载最新anaconda的安装包 下载后运行 1bash Anaconda... 按照提示一步步确定安装位置 4. 调节双系统时间12timedatectl set-local-rtc 1 --adjust-system-clocktimedatectl set-ntp 0 5. Sublime123sudo add-apt-repository ppa:webupd8team/sublime-text-3sudo apt-get updatesudo apt-get install sublime-text-installer 6. nodejs123sudo apt-get install nodejssudo apt install nodejs-legacysudo apt install npm 7. 其他https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LargeVis--LINE在高维数据降维与可视化上的运用]]></title>
+    <url>%2F2018%2F03%2F23%2Flargevis%2F</url>
+    <content type="text"><![CDATA[LargeVis是唐建在2016年提出的高维数据降维可视化算法，主要工作是大大降低了t-SNE算法的计算复杂度，使算法能够更高的效率处理更大规模的数据。主要使用的优化方法是改进的随机投影树KNN图构造方法以及、与Word2Vec类似的采样与负采样方法以及随机梯度下降算法；在距离的映射方面仍然采用了与t-SNE一样的高斯分布——T分布的策略 高效KNN图构造方法 构造精确的KNN图在计算复杂度上是非常高的，需要计算两两点之间的距离，这需要O(N2d)的复杂度。在t-SNE的后续工作中已经意识到了这个问题，于是Maaten提出了各种随机投影树的算法，详细的算法将在其他的笔记中详细的记录，大致上就是对空间上进行划分直到同一区间内的点少于一个阈值，最后被分在同一块区域中的数据点就被认为是NN。这样来确定近邻效率高了不少，但是为了保证KNN图的精确率，仍然需要创建许多的投影树，这样还是十分影响效率。于是LargeVis中运用了一种叫邻居搜索的方法，主要思想就是“邻居的邻居也是我的邻居”。 首先创建少量的随机投影树先粗略估计KNN，为每个节点维护一个最大堆，然后搜索图每个节点邻居的邻居，这些节点也有可能成为最近邻的候选，与原节点的最大堆比较，若比它小则push若是堆内的节点数超过K，就pop。我们可以多迭代几次来提升图的精确度，实践中只要少量的迭代就可以让精确度接近100%。下图展示了LargeVis构建KNN图的算法流程： ​ ​ 图可视化 在定义好KNN图后，LargeVis同样也需要像t-SNE那样的从高维到低维的映射。 LargeVis在映射的过程中仅保留了KNN边的权重，这些边被称作是正边，而不直接相邻的节点之间称作为负边。正边的边权同t-SNE中定义相同，使用高斯分布进行映射： 而在低维，则依靠观测的概率来决定低维的坐标： 其中f(.)是距离函数，可以使用t分布等距离越小数值越大的函数来做映射，就是高维当中越接近的点，低维当中也要更加的接近。所以最终的优化目标函数： 其中两个E是正边集与负边集。 优化 ​ 直接按照上述目标函数进行优化开销是很大的，因为负边的数量是非常大的，直接对所有负边进行训练又要造成复杂度的上升。所以这里就要采用负采样算法进行优化。 负采样算法根据对应节点的度来决定被采样到的概率，即度越大的节点被当作负边的另一个节点的概率越大，概率满足噪声分布 这样一来，目标函数就变成了： ​ 这样一来，目标函数就得到确定，但是，如果直接使用边的权重进行训练，权重直接乘到梯度中，不同边的权重不同，会对梯度造成很大的影响，权重较大的边受到的变动步长也较大，会影响训练过程。所以这里要用到LINE技术，将带权边看作wij条单位边，这样一来就可以直接对所有的正边进行采样，对目标函数也没有改变 ​ 此外就是异步随机梯度下降算法，因为构建的KNN图非常的稀疏，同时对几个点进行梯度下降，一般不会重叠产生冲突，这样就能大大提高训练效率 结果 LargeVis的结果还是很接近tsne的，而且处理速度能快不少(没有用官方给的MNIST数据集，所以和他们给的结果不大一样)。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Data Mining</tag>
+        <tag>Machine Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Spring Boot项目中Tomcat端口号的更改]]></title>
+    <url>%2F2018%2F03%2F20%2Fspring_boot_tomcat_port%2F</url>
+    <content type="text"><![CDATA[使用IntelliJ Idea开发Spring Boot项目时，Idea会使用内置的Tomcat服务器，默认情况下使用的端口号的8080，本篇笔记记录如何修改内置Tomcat服务器使用的端口号 在run选项下或者工具栏运行中选择Edit Configurations 在打开的界面中的Override parameters选项下加入如下的选项，假设要把端口号改成8888 如果是在Eclipse下配置，则可以加入一条-Dserver.port=8888]]></content>
+      <categories>
+        <category>JetBrains</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>JetBrains</tag>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用IDEA快速搭建Spring Boot应用]]></title>
+    <url>%2F2018%2F03%2F18%2Fspring_boot%2F</url>
+    <content type="text"><![CDATA[使用IntelliJ Idea创建Spring Boot项目并运行简单实例 新建项目File -&gt; New -&gt; Project 选择Maven项目(这篇笔记里不选Spring)，然后一路Next 在pom.xml里添加如下内容后，等待maven import的完成 1234567891011&lt;parent&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt; &lt;version&gt;2.0.0.RELEASE&lt;/version&gt;&lt;/parent&gt;&lt;dependencies&gt; &lt;dependency&gt; &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt; &lt;artifactId&gt;spring-boot-starter-web&lt;/artifactId&gt; &lt;/dependency&gt;&lt;/dependencies&gt; 版本可以根据Spring Boot主页里的引导来进行选择 在/src/main/java下新建Java Class，命名为MainController.java，写入如下内容 1234567891011121314151617181920import org.springframework.boot.*;import org.springframework.boot.autoconfigure.*;import org.springframework.stereotype.*;import org.springframework.web.bind.annotation.*;@Controller@EnableAutoConfigurationpublic class MainController &#123; @RequestMapping("/") @ResponseBody String home(String input) &#123; System.out.println(input); return input.toUpperCase(); &#125; public static void main(String[] args) throws Exception &#123; SpringApplication.run(MainController.class, args); &#125;&#125; 这段代码执行后，将会监听url后的/根目录，接到input变量然后转成大写字母进行返回 写好后运行MainControllerSpring Boot就可以启动了 打开浏览器，输入localhost:8080/?input=abc，(默认情况下Idea内置的端口占用的是8080端口，由于我别的程序需要使用，所以我改成了8888端口，后面也会有笔记说明如何更改) 上面使用了GET请求将参数input=abc发送给服务器，返回了字符串ABC 这只是最简单的Spring Boot应用的配置，去掉@ResponseBodyannotation，Spring Boot还可以直接返回一个html页面，具体的其他内容后面会有笔记。 这里有一个我使用Spring-Boot搭建的文档搜索引擎，使用Solr作为搜索内核，支持各种md、pdf、txt、xml文档的爬取。]]></content>
+      <categories>
+        <category>Sprint Boot</category>
+      </categories>
+      <tags>
+        <tag>JetBrains</tag>
+        <tag>Java</tag>
+        <tag>Sprint Boot</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[t-SNE高维数据降维与可视化]]></title>
+    <url>%2F2018%2F03%2F15%2Ftsne%2F</url>
+    <content type="text"><![CDATA[t-SNE(基于t分布的随机近邻嵌入，t-distributed stochastic neighbor embedding)，是Laurens van der Maaten大神在Geffory Hinton大神的SNE基础上加入t分布而形成的，是目前效果最好的可视化降维算法，可以将高维数据内部的特征放大，使得相似的数据在低维中能更加接近，不相似的数据在低维中距离更远。 一、SNE​ SNE由Hinton大神在2003年提出，它提出的目的就是为了改进MDS与ISOPMAP寻求距离完全按照原有维度内的问题，转而满足高低维之间满足分布上的统一。虽然这样会导致距离信息有了一定程度的丢失，但是这么做保留了距离的分布，获得更好的可视化效果。 ​ SNE需要通过训练使得高维与低维的距离的高斯分布尽量的接近，即： ​ 满足高维的点在p中的值与低维的q中的值能够尽量接近，cost函数采用KL散度： ​ 采用动量优化的方式进行训练 二、Symmetric SNE​ 传统的SNE的分布映射方法不具有对称性，即pi|j与pj|i不相等，所以可以将映射方式改成联合概率分布的方式： ​ 但是高维中的离群点的cost就会很低，因为它离所有点的距离都非常的远，p非常小，所以，可以把p改写成 ​ 这样cost的值就改写为： 三、t-SNE​ 之前所说的各种算法中，都会产生拥挤问题，所谓拥挤问题就是高维数据中的距离关系不能完整地在低维空间中得以保留，10维中可以有11个点相互等距，而二维空间中最多就只能有3个点组成等边三角形，这样的降维肯定不能够保证距离的保留。同时可以参考这篇博客中的实验，同样是均匀分布会发现高维空间中均匀分布的点中距离分布也是很不均匀的，随着维度的增大，距离越远的点的比重会越来越大。 所以，如果不设法减轻这种拥挤问题，那么就会出现高维空间中距离较远与较近的点，在低维中的距离相同的问题，使得类与类之间分不开。为解决拥挤问，T分布就能够一展神通。 T分布具有长尾的特性，即碰到有离群点时，不会因为离群点使整个分布脱离原有的大部分数据，同时，低维数据使用T分布映射而高维数据使用正态分布作为映射，如下图： 在高维空间中较近的点在低维空间中将会更近，而较远的点将会更远，这样就能有效缓解拥挤问题，tsne的公式为 tsne结果： tsne代码 参考 Maaten L, Hinton G. Visualizing data using t-SNE[J]. Journal of machine learning research, 2008, 9(Nov): 2579-2605. Hinton G E, Roweis S T. Stochastic neighbor embedding[C]//Advances in neural information processing systems. 2003: 857-864.]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Data Mining</tag>
+        <tag>Machine Learning</tag>
+        <tag>Visualization</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[等度量映射(ISOMAP)]]></title>
+    <url>%2F2018%2F03%2F11%2FIsomap%2F</url>
+    <content type="text"><![CDATA[等度量映射(Isomap)是最经典的非线性映射降维方法之一，它在MDS的基础上引入了“测地距离”的概念，直接解决了MDS使用欧氏距离无法应对非线性流形的问题。 测地距离(Geometric Distance)是高维流形中两点之间的最短距离，高维流形中，空间是不规则的，所以最短距离不一定是直线距离(欧氏距离)。就像蚂蚁从立方体的一面爬到另一面，不能直接横穿立方体一样。 上图最左边的图中两个点的最近距离应该是蓝色实线的距离，而不应该是虚线的距离。 真实的测地距离是非常难以求出的，Isomap基于流形局部近似于欧式空间的定义提出了一种近似的求解方式 求得原样本的KNN图，并依据定义保留其欧式距离 所有非KNN的点间的距离规定为无穷大 用dijkstra或floyd求出任意两点的最短路便可近似表示两点间的测地距离 最后Isomap将得到的测地距离矩阵输入MDS完成降维; 感受下效果]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Data Mining</tag>
+        <tag>Machine Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[多维缩放(MDS)]]></title>
+    <url>%2F2018%2F03%2F11%2FMDS%2F</url>
+    <content type="text"><![CDATA[多维缩放(multidimensional scaling ,MDS)，是另外一种线性降维方式，与主成分分析法和线性降维分析法都不同的是，多维缩放的目标不是保留数据的最大可分性，而是更加关注与高维数据内部的特征。多维缩放算法集中于保留高维空间中的“相似度”信息，而在一般的问题解决的过程中，这个“相似度”通常用欧式距离来定义。 假设D为m个样本在高维空间中的距离矩阵，distij为第i个样本与第j个样本的欧式距离 Z是样本在低维中映射的表示，那么，多维缩放的降维目标就是要保证： 令B=ZTZ，B为降维后样本的内积矩阵，bij=ziTzj 规定降维后的样本为中心化样本，因为只保留了距离信息，无论结果怎么旋转、平移都可以，即 那么 令 综合以上各式，得到 所以可以使用距离矩阵D来求得内积矩阵B， 为了完成降维，可以将B进行特征值分解 仅保留最大的前d’个特征值以及相应的特征向量，就可以得出降维后的结果]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Data Mining</tag>
+        <tag>Machine Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Jetbrain IDE插件开发入门]]></title>
+    <url>%2F2018%2F03%2F10%2Fjetbrain_plugin%2F</url>
+    <content type="text"><![CDATA[Jetbrain号称IDE界的Adobe，各个平台、各个环境下的IDE无论从易用性还是外观上都是十分优秀的，这份笔记将会记录如何在JetBrains中编写简单的插件。 一、创建项目 安装JetBrains IDEA 新建项目，选择IntelliJ Platform Plugin，这里我们选择开发IDEA的插件，所以Project SDK选择IDEA的安装目录 二、实现 创建好项目后，打开resources目录下的plugins.xml，在这里我们要注册我们的插件 加一条&lt;depends&gt;com.intellij.modules.platform&lt;/depends&gt;，后面打包的时候需要 在&lt;actions&gt;中注册自己的插件 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152&lt;idea-plugin&gt; &lt;id&gt;com.ph0en1x.Registration&lt;/id&gt; &lt;name&gt;Jetbrain Plugin&lt;/name&gt; &lt;version&gt;1.0&lt;/version&gt; &lt;vendor email="support@yourcompany.com" url="https://www.ph0en1x.space"&gt;Ph0en1x Notebook&lt;/vendor&gt; &lt;description&gt;&lt;![CDATA[ Jetbrain Plugin Demo ]]&gt;&lt;/description&gt; &lt;change-notes&gt;&lt;![CDATA[ Add change notes here.&lt;br&gt; &lt;em&gt;most HTML tags may be used&lt;/em&gt; ]]&gt; &lt;/change-notes&gt; &lt;!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description --&gt; &lt;idea-version since-build="173.0"/&gt; &lt;!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html on how to target different products --&gt; &lt;!-- uncomment to enable plugin in all products &lt;depends&gt;com.intellij.modules.lang&lt;/depends&gt; --&gt; &lt;depends&gt;com.intellij.modules.platform&lt;/depends&gt; &lt;!--&lt;application-components&gt;--&gt; &lt;!--&lt;component&gt;--&gt; &lt;!--&lt;implementation-class&gt;com.ph0en1x.Registration&lt;/implementation-class&gt;--&gt; &lt;!--&lt;/component&gt;--&gt; &lt;!--&lt;/application-components&gt;--&gt; &lt;extensions defaultExtensionNs="com.intellij"&gt; &lt;!-- Add your extensions here --&gt; &lt;/extensions&gt; &lt;actions&gt; &lt;!-- Add your actions here --&gt; &lt;group id="HelloWorld" text="Ph0en1x Menu"&gt; &lt;add-to-group group-id="MainMenu" anchor="last" /&gt; &lt;/group&gt; &lt;action class="com.ph0en1x.MenuAction" id="menuAction1" text="显示对话框"&gt; &lt;add-to-group group-id="HelloWorld" anchor="first" /&gt; &lt;/action&gt; &lt;action class="com.ph0en1x.MenuAction2" id="menuAction2" text="在Help里" description="A simple IDEA plugin."&gt; &lt;add-to-group group-id="HelpMenu" anchor="last"/&gt; &lt;/action&gt; &lt;/actions&gt;&lt;/idea-plugin&gt; 我这里注册了两个插件，第一个插件在一个新建的选项&lt;group&gt;下面，新建选项显示的文字是显示对话框 class：插件入口类 id：唯一标识插件 text：选项显示的文字 description：状态栏显示的文字 icon：显示的图标（这里我没加） add-to-group：表示要添加到哪个选项下面 anchor：插入选项的位置 实现Action 在src目录下创建与之前定义的相应的入口类，入口类要继承于com.intellij.openapi.actionSystem.AnAction com.ph0en1x.MenuAction 实现点击后显示一个对话框 123456789101112package com.ph0en1x;import com.intellij.openapi.actionSystem.AnAction;import com.intellij.openapi.actionSystem.AnActionEvent;import com.intellij.openapi.ui.Messages;public class MenuAction extends AnAction&#123; @Override public void actionPerformed(AnActionEvent anActionEvent) &#123; Messages.showInfoMessage("Show some message", "This is title"); &#125;&#125; com.ph0en1x.MenuAction2实现点击后显示一个对话框询问姓名，输入姓名后弹出欢迎界面 123456789101112131415package com.ph0en1x;import com.intellij.openapi.actionSystem.AnAction;import com.intellij.openapi.actionSystem.AnActionEvent;import com.intellij.openapi.project.Project;import com.intellij.openapi.ui.Messages;public class MenuAction2 extends AnAction&#123; @Override public void actionPerformed(AnActionEvent anActionEvent) &#123; Project project = anActionEvent.getProject(); String name = Messages.showInputDialog(project, "What's your name?", "This is title", Messages.getQuestionIcon()); Messages.showMessageDialog(project, "Hello " + name + "!", "This is title", Messages.getInformationIcon()); &#125;&#125; ​ 完成后点击run，会打开一个新的IDEA，打开一个项目后，新的IDEA里就会有我们刚刚编写的插件]]></content>
+      <categories>
+        <category>JetBrains</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>JetBrains</tag>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu下通过docker运行eclipse che]]></title>
+    <url>%2F2018%2F03%2F09%2Feclipse_che%2F</url>
+    <content type="text"><![CDATA[Docker是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。开发者在笔记本上编译测试通过的容器可以批量地在生产环境中部署。个人理解：通过沙箱隔离出一块区域，每块区域都有不同的应用运行环境。类似虚拟机是为了操作系统提供模拟的硬件环境，docker容器给应用提供了模拟的系统环境。 Eclipse Che是一个现代的、开放源代码的软件开发环境。它是一个通过提供结构化的工作区、项目输入、模块化扩展插件来支持Codenvy的引擎。Che可以用作桌面IDE，RESTful工作空间服务器，或作为一个创建新的工具SDK。我们将使用docker来运行Che Docker安装 删除旧版本 1$ sudo apt-get remove docker docker-engine docker.io 安装最新版本Docker CE 12345678910111213141516$ sudo apt-get update$ sudo apt-get install \ apt-transport-https \ ca-certificates \ curl \ software-properties-common$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -$ sudo apt-key fingerprint 0EBFCD88$ sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) \ stable"$ sudo apt-get update$ sudo apt-get install docker-ce Hello World 1$ sudo docker run hello-world 运行che 1sudo docker run -ti -v /var/run/docker.sock:/var/run/docker.sock -v ~/Documents/che-data1:/data eclipse/che start -v ~/Documents/che-data1:/data表示将数据存储在~/Documents/che-data1 根据上面的结果浏览器输入http://localhost:8080 之后就可以像正常的IDE那样使用了; 运行界面 还有一个记录REST API请求的界面，打开localhost:8080/swagger]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>docker</tag>
+        <tag>Eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu下Java安装]]></title>
+    <url>%2F2018%2F03%2F09%2Fubuntu_java%2F</url>
+    <content type="text"><![CDATA[介绍如何在Linux下安装Java 到Oracle官网下载安装包，选择tar.gz的版本，例如下载到/home/phoenix/Program_Files/ 解压 1sudo tar zxvf jdk-9.0.4_linux-x64_bin.tar.gz ​ 修改 /etc/environment 12345PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$JAVA_HOME/bin"export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/libexport JAVA_HOME=/home/phoenix/Program_Files/jdk-9.0.4 保存关闭后，刷新环境 1source /etc/enviroment ​ 验证环境 123456$ echo $JAVA_HOME/home/phoenix/Program_Files/jdk-9.0.4$ echo $CLASSPATH.:/lib:/jre/lib$ echo $PATH/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/bin ​ 修改/etc/profile 添加如下内容 1234JAVA_HOME=/home/phoenix/Program_Files/jdk-9.0.4export JRE_HOME=/home/phoenix/Program_Files/jdk-9.0.4/jreexport CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATHexport PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH ​ 重启系统验证 1java -version ​]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[线性判别分析(LDA)]]></title>
+    <url>%2F2018%2F03%2F07%2FLDA%2F</url>
+    <content type="text"><![CDATA[线性判别分析(Linear Discriminant Analysis, LDA)是另外一种线性降维方法。与主成分分析法不同，线性判别分析是一种有监督学习，也就意味着线性判别分析需要使用带标签的数据进行训练来完成降维。 主成分分析法笔记 的主要思想是找到一种线性映射至低维空间的方法，保证降维后带有不同标签的数据能够尽量分散，而带有相同标签的数据能够尽量相互集中，与PCA一样，分散这一评价指标仍然由方差来决定。 二分类情况 考虑当样本的类别只有两类(0和1)且从d维映射至一维的问题，如下图 LDA的优化目标 其中μi为第i类样本的中心点，∑i表示第i类样本的协方差矩阵，即(x-μi)(x-μi)T; w即需要找到的最佳映射方式 定义“类内散度矩阵”(within-class scatter matrix) 以及“类间散度矩阵”(between-class scatter matrix) 则优化目标可以写为 称为Sb和Sw的“广义瑞利商”(generalized Rayleigh quotient) 但是只有这个式子是不够的，因为当w乘以一个倍数的时候，答案J不会改变，就有无穷多解。要求唯一解，就要对w进行限制，限制之后的优化目标： 与PCA相同，通过拉格朗日乘子法，得到： 又 由于w的任何倍数不会影响结果，所以 我们只要求出Sw就可以出最优的w ​ 多分类情况 多分类情况下，需要定义“全局散度矩阵”： 类内散度与类间散度矩阵的规定不变 只要知道其中的两者利用广义瑞利商就可以算出最优解，例如按照二分类的方法得到 同样也能求出解;]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Data Mining</tag>
+        <tag>Machine Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[主成分分析法(PCA)]]></title>
+    <url>%2F2018%2F03%2F06%2FPCA%2F</url>
+    <content type="text"><![CDATA[主成分分析法(principal component analysis, PCA)是最常用的无监督高维数据降维方法之一，它旨在降维的过程中保留原数据中最重要的几个分量，从而达到最大化原数据方差的作用。几乎所有数据降维方面研究都要用来作为比较重要的方法。 主成分分析的基本思想就是在原有样本的n维空间内再建立一个d维线性空间，用n个标准正交基进行重新映射，然后选取其中的d’个正交基进行保留，而在这d’个坐标轴上的坐标值就是映射到低维后的坐标。而推导的目的就是为了确定如何确定这这d个标准正交基以及如何选取它们。就如下图一样，将二维空间内的点映射至一维空间，最终选择较长的那条向量进行投影映射。 首先，需要将手头需要降维的数据进行中心化，使样本中心点为原点 然后假定选择的新的坐标系为 其中W是标准正交基向量，即 (i != j) 选取其中的d’个向量让原样本向新坐标系中映射WTxi，即： W是经过选取后的d’个标准正交基，z是低维中的坐标 选取的目标是使降维后的点尽量的分散，也就是方差尽量的大： 优化问题被归纳为 根据拉格朗日乘子法，来决定哪d’个w可以留下，优化目标就成为了： ​ 代入优化目标 ​ 所以求解的过程就是寻找原样本协方差矩阵XXT的最大的d’个特征值，而相应的标准正交基就是相应特征值的特征向量;]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Data Mining</tag>
+        <tag>Machine Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用Requests和BeautifulSoup并行抓取今日头条图集]]></title>
+    <url>%2F2018%2F03%2F04%2Fbeautifulsoup2%2F</url>
+    <content type="text"><![CDATA[代码分块讲解。分析Ajax请求来爬取今日头条的图集，将结果存储在MongoDB中。使用了Python多进程(multiprocessing)并行进行抓取。针对一个实战的教程进行修改，以适应今日头条最新的网页请求方式 完整代码在这里 MongoDB笔记 Requests与BeautifulSoup笔记 首先，本次要爬取的页面外观如下 搜索后点击图集标签 点击进某一个详细页面后，得到： 其中所有照片不会一口气全部呈现在页面中，而是通过翻页来使用Ajax请求新的展示图 在搜索结果展示页，打开开发者工具-&gt;Network-&gt;XHR，然后刷新，我们可以获取请求的URL和请求的参数 编写获取页面的代码 1234567891011121314151617181920212223242526272829def get_page_index(offset, keyword): ''' :param offset: 页面offset，用于自动append新结果 :param keyword: 搜索关键字 :return: ''' #请求的参数 data = &#123; 'offset': offset, 'format': 'json', 'keyword': keyword, 'autoload':'true', 'count': '20', 'cur_tab': 3, 'from': 'gallery' &#125; #urlencode可以用来将参数的json串转换为url上的参数 url = 'https://www.toutiao.com/search_content/?' + urlencode(data) try: response = requests.get(url) #成功200 if response.status_code == 200: # print(response.text) return response.text return None except RequestException: print('请求索引页出错') return None 从开发者工具可以看到得到的响应串是 编写获取每个detail页面的url代码 123456789101112def parse_page_index(html): try: #转化为json对象 data = json.loads(html) # print(data) #有数据并且又‘data’标签 if data and 'data' in data.keys(): for item in data.get('data'): if 'article_url' in item.keys(): yield item.get('article_url') except JSONDecodeError: pass 获得每个detail页面的url后，与index页面类似，请求每个url 12345678910def get_page_detail(url): try: response = requests.get(url) # print(response.text) if response.status_code == 200: return response.text return None except RequestException: print('请求详情页出错', url) return None 在每个detail页面中打开开发者工具-&gt;Network-&gt;Doc，可以看到detail页面都预备要请求什么 可以发现在BASE_DATA.galleryInfo中gallery里记录了每个sub_img的信息，所以用正则表达式把它们提出来并尝试去请求图片 123456789101112131415161718192021222324252627def parse_page_detail(html, url): soup = BeautifulSoup(html, 'lxml') #获得页面title title = soup.select('title')[0].get_text() print(title) #匹配需要的串 image_pattern = re.compile('gallery: JSON.parse\("(.*?)"\),', re.S) result = re.search(image_pattern, html) if result: #group(1)只匹配括号里的，group()返回包括括号里的整个串 data = json.loads(result.group(1).replace('\\', '')) # print(data) if data and 'sub_images' in data.keys(): sub_imges = data['sub_images'] # 获得图片的url images = [item.get('url') for item in sub_imges] # 下载图片 for image in images: download_image(image) #返回预备要存入MongoDB的json串 return &#123; 'title' : title, 'images' : images, 'url' : url &#125; else: print("failed") 下载图片同请求网页类似 12345678910111213def download_image(url): print('downing', url, '...') try: response = requests.get(url, stream=True) if response.status_code == 200: # print(response.text) filename = url.split('/')[-1] #保存图片 save_image(response, filename) return None except RequestException: print('请求图片出错', url) return None 保存图片 12345678def save_image(response, filename): file_path = './jiepai/&#123;0&#125;.&#123;1&#125;'.format(filename, 'jpg') if not os.path.exists(file_path): with open(file_path, 'wb') as f: #按字节流保存 for chunk in response.iter_content(chunk_size=128): f.write(chunk) f.close() 主函数 123456789101112131415def main(offset): #请求index页面 html = get_page_index(offset, '街拍') #解析页面 for url in parse_page_index(html): #头条返回的url已经不能直接访问到网页，而是跳转到了新的页面，所以要自己转下格式 url = 'https://www.toutiao.com/a' + url.split('/')[-2] # 请求detail页面 html = get_page_detail(url) if html: #解析detail页面 result = parse_page_detail(html, url) #存入数据库 if result: save_to_mongo(result) 插入数据库的操作 123456789101112#连接数据库client = pymongo.MongoClient(MONGO_URL)#确定响应的databasedb = client[MONGO_DB]def save_to_mongo(result): #插入 if db[MONGO_TABLE].insert(result): print('存储到MongoDB成功', result) return True else: return False 其中 123456MONGO_URL = 'localhost'MONGO_DB = 'toutiao'MONGO_TABLE = 'toutiao'GROUP_START = 0GROUP_END = 20 并行地抓取不同offset的数据 123456789if __name__ == "__main__": if not os.path.exists('./jiepai'): os.mkdir('./jiepai') groups = [x*20 for x in range(GROUP_START, GROUP_END+1)] #创建进程池，默认为cpu核数 pool = Pool(processes=4) #开启进程，传入参数 pool.map(main, groups) Enjoy it !!!]]></content>
+      <categories>
+        <category>网络爬虫</category>
+      </categories>
+      <tags>
+        <tag>BeautifulSoup</tag>
+        <tag>网络爬虫</tag>
+        <tag>python</tag>
+        <tag>MongoDB</tag>
+        <tag>parallel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Ubuntu下安装MongoDB以及基本操作]]></title>
+    <url>%2F2018%2F03%2F03%2Fubuntu_mongodb%2F</url>
+    <content type="text"><![CDATA[MongoDB是著名的非关系型数据库，由于其存取十分灵活，在一些web应用上得到了比关系型数据库更广泛的运用 一、MongoDB安装 安装mongoDB 1sudo apt-get install mongodb 查看版本 1mongo -version 启动和关闭mongoDB服务 12service mongodb startservice mongodb stop 查看是否在运行 1pgrep mongo -l 卸载mongoDB 1sudo apt-get --purge remove mongodb mongodb-clients mongodb-server 二、MongoDB基本操作 启动MongoDB命令行工具 1mongo ​ 1234567show dbs #显示所有数据库show collections #显示当前数据库中的集合(collection类似mysql等关系数据库中的table)show users #显示所有用户use DBname #切换当前数据库至DBnamedb.help() #显示数据库操作命令db.yourCollection.help() #显示集合操作命令，yourCollection是集合名 exit #退出命令行工具 创建数据库 1use DBname #不需要事先定义，现用现创建 ​ 创建Collection 1db.createCollection('newCollection') 或直接向Collection中插入数据 ​ 插入数据 123db.collentionName.insert(&#123;_id:1, name: 'Ph0en1x', age: 20&#125;) # ordb.collectionName.save(&#123;_id:1, name: 'Ph0en1x', age: 22&#125;) _id不写会自动生成，当_id重复时，insert不会插入新的记录，而save会进行更新 ​ 查找数据 1db.youCollection.find(criteria, filterDisplay) criteria ：查询条件，可选 filterDisplay：筛选显示部分数据，如显示指定列数据，可选（当选择时，第一个参数不可省略，若查询条件为空，可用{}做占位符，如下例第三句） 例如 12345db.collectionName.find() #查询所有记录db.collectionName.find(&#123;name: 'Ph0en1x'&#125;) #查询name='Ph0en1x'的记录db.collectionName.find(&#123;&#125;,&#123;name:1, sge:1&#125;) #筛选出指定列name、age数据db.collectionName.find(&#123;name: 'Ph0en1x', age: 22&#125;) #and 与条件查询db.student.find(&#123;$or: [&#123;age: 22&#125;, &#123;age: 25&#125;]&#125;) #or 条件查询 ​ 修改数据 1db.youCollection.update(criteria, objNew, upsert, multi ) criteria： update的查询条件 objNew ：update的对象和一些更新的操作符 upsert ：如果不存在update的记录，是否插入objNew，true or false multi：false默认，只更新查询到的第一条，true更新全部 其中criteria和objNew是必选参数，upsert和multi可选参数 例如 1db.collectionName.update(&#123;name: 'Ph0en1x'&#125;, &#123;$set: &#123;sage: 13&#125;&#125;, false, true) ​ 删除数据 1db.collectionName.remove(&#123;name: 'Ph0en1x'&#125;) ​]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>MongoDB</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Python 多进程(multiprocessing)]]></title>
+    <url>%2F2018%2F03%2F02%2Fpython_multiprocessing%2F</url>
+    <content type="text"><![CDATA[Python多进程编程入门，基本使用，queue的使用，pool使用和共享变量的使用 完整代码点击这里 一、基本使用Python有多进程(multiprocessing)与多线程(multithreading)两种并行的方式，在python中导入库 12import multiprocessing as mpimport threading as td 我们编写一个代码来比较multiprocessing、multithreading和serial三种执行的效率 要使用并行，首先要先准备一个被调用的函数 1234567def job(q, a): res = 0 #两个进程/线程分别负责前半部分和后半部分 for i in range(50000*a, 50000*(a+1)): res += i**3 + i**2 + i #结果放入queue中 q.put(res) 多进程 123456789101112131415def multiprocess(): # 使用queue q = mp.Queue() #传入参数 p1 = mp.Process(target=job, args=(q, 0)) p2 = mp.Process(target=job, args=(q, 1)) p1.start() p2.start() p1.join() p2.join() res1 = q.get() res2 = q.get() print('multiprocess:',res1 + res2) 多线程 1234567891011121314def multithread(): # 使用queue q = mp.Queue() t1 = td.Thread(target=job, args=(q, 0)) t2 = td.Thread(target=job, args=(q, 1)) t1.start() t2.start() t1.join() t2.join() res1 = q.get() res2 = q.get() print('multithread:', res1 + res2) 串行执行 12345def serial(): res = 0 for i in range(100000): res += i**3 + i**2 + i print('serial:', res) 调用 123456789101112if __name__ == '__main__': import time st = time.time() serial() st1 = time.time() print('serial time:', st1 - st, "\n") multithread() st2 = time.time() print('multithread time:', st2 - st1, "\n") multiprocess() print('multiprocess time:', time.time() - st2, "\n") 输出 12345678serial: 24999833335833300000serial time: 0.07318806648254395 multithread: 24999833335833300000multithread time: 0.16390419006347656 multiprocess: 24999833335833300000multiprocess time: 0.057524681091308594 可以看出，multiprocessing比普通串行的执行要快一些，但是multithreading比串行要慢一些。multithreading要体现性能的提升必须在任务有大量的IO时，在计算密集型的程序内，multithreading无法体现优越性。事实上，当处理的事情越少时，调度多进程的代价大于多进程带来的性能提升，两种并行都要比串行要慢 二、使用pool来调用python多进程123456789101112131415161718import multiprocessing as mpdef job(x): return x**3def multiprocess(): #mp.Pool()进程数processes默认为cpu核数 pool = mp.Pool(processes=2) res = pool.map(job, range(10)) print(res) #使用apply_async()只能传一组参数 multi_res = [pool.apply_async(job, (i,)) for i in range(10)] print([res.get() for res in multi_res])if __name__ == "__main__": multiprocess() 输出 12[0, 1, 8, 27, 64, 125, 216, 343, 512, 729][0, 1, 8, 27, 64, 125, 216, 343, 512, 729] 三、共享变量与互斥锁1234567891011121314151617181920212223242526272829303132import multiprocessing as mpimport timedef job(v, num, l): #请求锁 l.acquire() for _ in range(10): time.sleep(0.1) v.value = v.value + num print(v.value) #释放锁 l.release()def multiprocess(): #共享变量 v = mp.Value('i', 0) #互斥锁 l = mp.Lock() p1 = mp.Process(target=job, args=(v, -1, l)) p2 = mp.Process(target=job, args=(v, 1, l)) p1.start() p2.start() p1.join() p2.join() print('final:', v.value)if __name__ == "__main__": multiprocess() 输出(不使用互斥锁) 123456789101112131415161718192021-10-10-10-10-111121023324final: 4 答案出现了错误，并且两个进程的执行顺序很随机，因为可能出现A进程读取变量到寄存器进行计算后时间片被用完挂起，B进程开始进行了读取之后挂起，当A将计算完的结果放回到内存挂起后B进程又将计算完的结果放回内存，A的计算就被覆盖，产生了错误。 输出(使用互斥锁) 123456789101112131415161718192021-1-2-3-4-5-6-7-8-9-10-9-8-7-6-5-4-3-2-10final: 0 可以看到进程1先抢到了互斥锁开始了自己的循环，直到执行完释放后进程2才开始执行。]]></content>
+      <categories>
+        <category>python</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>parallel</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[L2正则化解决过拟合问题]]></title>
+    <url>%2F2018%2F02%2F28%2Fl2_regularization%2F</url>
+    <content type="text"><![CDATA[过拟合(overfit)是深度学习乃至机器学习过程中的又一大问题，通常的解决方法为L2正则化、Dropout正则化等等 一、L2正则化L2正则化就是在原来的损失函数上，再加上一项参数的二范式 第二项又称作弗罗贝尼乌斯范数（Frobenius norm）的平方 将新的损失函数对参数求梯度得 使用梯度下降更新参数 其中α、λ是两个超参数，α是学习率，而λ负责调节L2正则化过程 λ=0时，表示不使用正则化 λ越大，在训练过程中则会压制参数的变大，使参数尽量变小 二、L2正则化为什么有效通俗的解释，产生过拟合问题的根本原因是模型试图记住的参数太多，导致其举一反三的能力减弱，而通过L2正则化，导致很多的参数会变得很小，对模型的影响力降低，相当于降低了模型的复杂程度，提高了泛化能力。 还有一种比较通俗的解释，来自Andrew Ng 我们的所常用的激活函数sigmoid、tanh是长这样的 如果控制参数较小，那么中间层输出的参数也会很小，就会集中在中间导数相对于稳定的位置，也就是限制了分类模型过分的扭曲。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+        <tag>Deep Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[过拟合与欠拟合问题]]></title>
+    <url>%2F2018%2F02%2F27%2Foverfit%2F</url>
+    <content type="text"><![CDATA[过拟合(overfit)是深度学习乃至机器学习过程中的又一大问题，通常的解决方法为L2正则化、Dropout正则化等等 要解释过拟合，需要借用一张Andrew Ng的课件： 三附图中的左图，模型过于简单，偏差较大，无法很好的拟合非线性的分类问题，出现欠拟合(underfit)问题，一般需要增加网络层数，增加隐藏层神经元个数来解决。这种问题一般表现为训练集与验证集损失函数值都较大; 右图，过于贴合训练集，方差较大，称作过拟合(overfit)问题，过拟合问题一般表现为训练集损失函数值较小，但是验证集的损失函数较大。即训练出的模型太过死板，而无法解决训练集以外的数据; 中间表示刚好的情况，一般训练集与验证集损失函数值都较小 要通俗且形象地解释过拟合现象就是——书呆子，将做过的题目全都背下，但缺乏举一反三的能力，碰到做过的题，那么他就会做，但是改个问法就傻了。 有个更加有意思的说法就是——考驾照，驾考时教练一般会让你看准许多的记号，然后机械地打方向盘，然而这样即使拿到的驾照，也无法立即上路。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+        <tag>Deep Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用Requests和BeautifulSoup编写简单的网络爬虫]]></title>
+    <url>%2F2018%2F02%2F26%2Fbeautifulsoup%2F</url>
+    <content type="text"><![CDATA[前段时间一个任务需要获得日本所有主要城市的经纬度坐标，手头没有现成的数据，只能写一个简单的爬虫来爬取某旅游公司的页面来获得我要的经纬度数据。。采用一个方便简单的爬虫框架Request与BeautifulSoup，由于项目时间很赶，只是一个很简单的脚本，并不考虑动态页面，也没有与数据库进行交互，这部分的笔记以后再补，我会就着这次的代码简单介绍它们的使用方法 一、Requests与BeautifulSoup简介 Requests Requests 是一个为人们制作的一个Python库，用于优雅且简单的HTTP BeautifulSoup Beautiful Soup提供一些简单的、python式的函数用来处理导航、搜索、修改分析树等功能。它是一个工具箱，通过解析文档为用户提供需要抓取的数据，因为简单，所以不需要多少代码就可以写出一个完整的应用程序。 Beautiful Soup自动将输入文档转换为Unicode编码，输出文档转换为utf-8编码。你不需要考虑编码方式，除非文档没有指定一个编码方式，这时，Beautiful Soup就不能自动识别编码方式了。然后，你仅仅需要说明一下原始编码方式就可以了。 Beautiful Soup已成为和lxml、html6lib一样出色的python解释器，为用户灵活地提供不同的解析策略或强劲的速度。 Requests 与 BeautifulSoup一个负责请求页面，获得页面，一个负责解析页面内容，取出需要的数据 官方文档 Requests官方文档 BeautifulSoup官方文档 二、安装Request与Beautiful如果已经安装pip，那么安装就很简单 12$ pip insatall requests$ pip install BeautifulSoup4 三、代码解析完整的代码在这里 首先需要找到一个合适的网页并分析它的网页结构，我找到的一个网站结构是这样的： 打开开发者工具，可以发现网页的分页的链接是从index~index44 所以可以先将要爬取的网页以模版的形式装入 1234567891011#抓取的网页地址模版，所有分页的目录listURL = 'http://www.cnair.com/city/Japan/index&#123;&#125;.htm'lists = [listURL.format('')]# lists = []for i in range(1, 45): lists.append(listURL.format(str(i)))#打开一个文件用于append抓到的信息f = open("gpsmap.json", "a")# print(lists)#存储爬取的数据dic = &#123;&#125; 对于每一页中的所有城市的电子地图，我们通过开发者工具可以发现它的结构是这样的： 所以请求相应的页面后，我们需要找到存着相应子页面链接标签，发现他们位于class=‘mainListTitle’的&lt;span&gt;标签下的&lt;a&gt;标签下，所以可以使用BeautifulSoup进行提取 12345678for item in lists: #使用Requests请求页面 res = requests.get(item) # print(res.text) #解析html文本 soup = BeautifulSoup(res.text, 'html.parser') #选取出页面中mainNewsTitle类下的&lt;a&gt;标签 urls = soup.select('.mainNewsTitle a') 访问相应的子页面，观察页面的结构 发现地名、经纬度等信息被放在了同一个class=’NewsContent’的&lt;div&gt;标签下，在同一个字符串中。所以我们需要从中提取出字符串，并以&lt;br&gt;作为分隔符，提取出他们。 123456789101112131415for u in urls: # print(u['href']) #取出每个&lt;a&gt;标签下的href属性并请求该页面 tmpres = requests.get(u['href']) #解析需要使用utf8编码 tmpres.encoding = 'utf_8' tmpsoup = BeautifulSoup(tmpres.text, 'html.parser') text = tmpsoup.select('.NewsContent') textarr = str(text[0]).split('&lt;br/&gt;') #取出城市名称 name = textarr[1].split(' : ')[1] #取出经度 lng = textarr[6].split(' : ')[1] #取出纬度 lat = textarr[5].split(' : ')[1] 单位转换并保存到python的字典中，并最后保存到json文件中。这里有个小trick，爬取每个子页面后，可以让程序休眠1秒，爬取一个大页面后，可以停止10秒。这样做的目的是防止过于频繁的访问，导致服务器的拒绝访问。 123456789101112131415 #存下刚刚抓取的信息 tmpdic = &#123;&#125; tmpdic['lng'] = lng tmpdic['lat'] = lat dic[name] = tmpdic print('&#123;&#125; &#123;&#125; &#123;&#125;'.format(name, lng, lat), file=f) print('&#123;&#125; : &#123;&#125;: &#123;&#125;: &#123;&#125;'.format(item, name, lng, lat)) #停顿1秒 time.sleep(1) time.sleep(10)#存储抓取的结构化信息jsonStr = json.dumps(dic)f = open("gpsmap.json", "w")print(jsonStr, file=f)f.close()]]></content>
+      <categories>
+        <category>网络爬虫</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>BeautifulSoup</tag>
+        <tag>网络爬虫</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LSTM(Long Short Term Memory)与GRU(Gated Recurrent Unit)]]></title>
+    <url>%2F2018%2F02%2F23%2FLSTM%2F</url>
+    <content type="text"><![CDATA[循环神经网络(RNN)是深度神经网络最重要的的形式之一，其被广泛运用于时序形数据的处理上、例如文字、音频、视频等等；而RNN在训练的过程中同样也会发生梯度不稳定的情况，同时还面临着新的数据不断加入循环而旧的数据不断被冲淡的情况，导致一个句子中开始的部分在最终结果的影响程度中较低，于是LSTM模型就诞生并用于改善这种情况 一、循环神经网络(Recurrent Neural Networks)人在阅读文章、观看视频时，理解当前看到的东西，不会仅仅依靠当前的内容就作出理解，还要对上文进行综合理解，比如翻译The NBA player Kevin Love，当翻译Love时，应当翻译为乐福而不是喜欢，这是因为前面提到了NBA、player这些词。所以当使用深度神经网络进行翻译的时候就需要网络拥有对前文的记忆，这就是RNN出现的原因； 这是RNN的结构 我们可以看到RNN是同一个单元的重复循环出现，每一次单元计算后都会产生一个记忆，传入下一个单元的计算，每一个单元都会接收当前的输入，并且考虑前面的记忆，作出当前的输出； 二、长短时记忆LSTM前面说到了普通的RNN单元会有Long-Term Dependencies的问题，就是每部所产生的记忆，可能只会对较近的几个输出产生影响，而随着网络加深，记忆将会消退，例如翻译“The NBA …(此处省略10000字)…Kevin Love”时，如果用普通的的RNN，那么Kevin Love依然有可能会被翻译为凯文喜欢，就如下图： 这时候就要请出我们今天的主角LSTM了，传统的RNN之所以不能够拥有很好的长时记忆是因为每个单元都是经过简单的线性变换加上tanh激活函数，如下图： 而LSTM则要复杂很多： LSTM的记忆干流就是Ct，上一个单元的输入作用于它，并且与它一起形成这个单元的输出： LSTM则包含了一个叫遗忘门的单元，用来判断上一单元传过来的记忆中哪些是可以忘记的，而哪些比较重要，需要记下 对本单元的输入信息进行提取 调整当前的记忆 完成本单元的输出 三、LSTM变体——GRULSTM还拥有许多的变体，其中最常用的就是GRU，它是LSTM的一种简化，将C与h合二为一，拥有更好的效率，在某些任务上也有更好的效果 四、参考Understanding LSTM Networks]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+        <tag>RNN</tag>
+        <tag>Deep Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Xavier方法用于神经网络参数初始化]]></title>
+    <url>%2F2018%2F02%2F22%2FXavier%2F</url>
+    <content type="text"><![CDATA[之前我们学习了使用RBM对深度置信网络进行逐层训练初始化，或用类似的方法对多层深度神经网络进行预训练(pretraining)，以求最终收敛的结果接近最优且加快收敛速度，同时还能避免梯度消失(gradient vanishing)和梯度爆炸(gradient explosion)的问题。今天介绍一个更加方便快速的初始化方法，来近似达到相同的目的。 一、梯度消失与梯度爆炸这是一个深度学习领域遇到的老问题了，即使是现在，任何一个新提出的模型，无论是MLP、CNN、还是RNN，随着深度的加深，这两个问题变得尤为严重。 梯度消失是指在深度学习训练的过程中，梯度随着链式求导逐层传递逐层减小，最后趋近于0，导致对某些层的训练失效； 梯度爆炸与梯度消失相反，梯度随着链式求导逐层传递逐层增大，最后趋于无穷，导致某些层无法收敛； 出现梯度消失和梯度爆炸的问题主要是因为参数初始化不当以及激活函数选择不当造成的，这在之后我会做相应的笔记来讨论batch normalization与激活函数 二、Xavier方法接下来的推导基于假设: 激活函数在0周围的导数接近1(比如tanh); 偏置项b初始化为0，期望为0 参数初始化期望均为0 显然，在初始化参数的时候不能全部初始化为0，这样无论是什么输入，输出都是0，无法训练，但也不能随意去初始值，否则就会造成梯度不稳定的问题。那么什么样的初始值才是合适的呢？ 答案就是使每层的分布都尽量相等，RBM就是为了这个目的而训练的，但是Xavier做了进一步的简化：保留均值(可以在下一层开始的时候再做调整)与方差 对于每一个输出的神经元 都要使 又 根据假设E(w)与E(x)均等0且所有w与x同分布，则： 要满足所以: 其中nin与nout分别是输入层与输出层的神经元个数 如果W服从正态分布，那么这就是所需要的参数，但如果假设W服从均匀分布，那么 但是之前有假设激活函数在0周围的导数接近1，所以忽略了激活函数的作用，不同激活函数在0周围的导数不同，需要给方差乘上导数的倒数 Activation Function Uniform Distribution sigmoid tanh ReLU 三、代码实现tensorflow的实现 1234def xavier_init(fan_in, fan_out, constant = 1): low = -constant * np.sqrt(6.0 / (fan_in + fan_out)) high = constant * np.sqrt(6.0 / (fan_in + fan_out)) return tf.random_uniform((fan_in, fan_out), minval=low, maxval=high, dtype=tf.float32) 完整代码里实现了一个使用Xavier方法初始化的单层自编码器]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+        <tag>Deep Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[受限制玻尔兹曼机(RBM)的能量函数及其梯度求解]]></title>
+    <url>%2F2018%2F02%2F21%2FRBM_energy%2F</url>
+    <content type="text"><![CDATA[在前面的一篇文章 受限制玻尔兹曼机(Restricted Bolzmann Machine)以及自编码器(Autoencoder)中我们提到了RBM的能量函数这一概念以及对比散度(CD)的快速采样的训练方法，但我一直纠结与为何Hinton大神能够从能量函数和Gibbs Sampling中获得CD-k采样算法，两个式子看似没有关联。于是我花了几天的时间，终于对RBM这个结构有了更深一步的了解。 一、能量函数与概率分布之前讲到受限制玻尔兹曼机时，我们提到，RBM是由一个可见层(visible, v)与隐藏层(hiddenm, h)组成，如下图，W在物理中表示系统内部能量转换，比如分子间碰撞产生的能量传递，同时有a, b两个偏置项，在物理中表示外来因素的影响，与外界的能量交换： 能量函数的定义是： 用矩阵来表示就是 能量函数具体的含义涉及物理领域，在本文不会具体介绍，具体请阅读Ising Model的相关文章，本文具体介绍如何从能量函数中推倒出Gibbs Sampling和CD-k v, h联合概率分布是 其中Z是所有[v, h]对对应的能量的总和，称为归一化因子或配分函数(Partition Function) v与h的边缘概率分布如下 条件分布 同理 由于RBM层内无连接，所以同一层内的变量还具有相互独立性，即 二、对数似然函数上面定义了那么多，然而要开始正式的梯度优化，我们还差一个优化目标，现在就要正式地定义损失函数： 之前曾经提到过，受限制玻尔兹曼机的训练目的是让原始数据的分布得到最大的保留，用最大似然估计来表示就是让P(v)最大。采用对数似然函数，则式子如下： 对参数求梯度： 所以只要能求得 就可以求出最终的梯度,RBM每层有W, a, b三个不同的参数，则需要分别对三个参数分别求导： W b与W的推导过程类似，结果为： a的推导更加的简单 把上面三个式子带回到梯度的公式中，就可以得到 这就是Gibbs采样和CD-k采样的来源，只是采用了不同的估计方法来确定概率分布。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+        <tag>Deep Learning</tag>
+        <tag>RBM</tag>
+        <tag>contrastive divergence</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[受限制玻尔兹曼机(Restricted Bolzmann Machine)以及自编码器(Autoencoder)]]></title>
+    <url>%2F2018%2F02%2F15%2FRBM%2F</url>
+    <content type="text"><![CDATA[受限制玻尔兹曼机(Restricted Bolzmann Machine, RBM)与自编码器(Autoencoder, AE)是神经网络的两种基本结构，两个结构都能起到降维的作用，都可以用来对神经网络进行预训练（pre-training），这种预训练都是无监督的。由于RBM与MLP及其相似，一直以来我就困惑于他们两者，终于花了几天时间来搞清楚他们的区别和训练方法，发现他们甚至不是并列的关系。。 一、知识脉络受限制玻尔兹曼机 -&gt; 深度信念网络(Deep Blief Network, DBN) 自编码器 -&gt; 堆叠自编码器(Stacked Autoencoderm, SAE) 二、自编码器自编码器的输入维度与输出维度相等，训练目的是使数据的特征得到最大的保留，去除冗余信息，一个单层的自编码器结构如下图 当然一个自编码器也可以有很多层： 简化来看就是输入层-&gt;隐藏层-&gt;输出层，自编码器的目的就是使重建(reconstruction)的输出层能尽量还原输入层，同时获得中间隐藏层(最窄的橙色那层)既是降维的结果。若输入层到隐藏层间的部分称为编码器(灰色)，记号为f(x)，隐藏层到输出层之间的部分称为解码器(黄色)，记号为g(x)，那么自编码器的数学训练目标就是 三、受限制玻尔兹曼机受限制玻尔兹曼机是一个双层结构，可见层(visible)与隐藏层(hidden)，图结构为一个二分图，即可见层只与隐藏层之间有连接，但是层内是无连接的，因此RBM的性质：当给定可见层神经元的状态时，各隐藏层神经元的激活条件独立；反之当给定隐藏层神经元的状态时，可见层神经元的激活也条件独立。基本结构如下 受限制玻尔兹曼机的训练目的是为了最大程度的保留概率分布，定义了一个能量函数的概念 用矩阵来表示就是 a与b分别是可视层与隐藏层的偏置项(bias) v, h联合概率分布是 其中Z是所有[v, h]对对应的能量的总和，v的边缘概率分布如下，h同理 由于受限玻尔兹曼机结构上的特点，所以各隐藏层之间的神经元条件概率独立，即 可见层v同理 能量函数的具体推导过程将会在后面的文章中详细解释 四、训练方法就像RBM是由物理模型转化过来一样，训练方法与传统的反向传播(BP)也不一样 RBM最早的训练方法有Gibbs sampling，通过不断地来回采样来训练，如下图 然而这样的方法太慢，所以Hinton大神又提出了CD-k(contrastive divergence)算法，即只需要来回重复k次就可以，以CD-1为例: 就可以完成一次迭代，这就像是两种不同温度的液体进行混合，如果两者的温度差距较大，在混合的过程中就会产生较大的梯度，而受限制玻尔兹曼机的训练目标就是使得两边的“温度”能够尽量的相近，而在数据中这个“温度”的体现就是数据分布。也就是说，使用RBM进行模型的初始化训练能够最大程度的保留数据分布，防止梯度爆炸和梯度消失问题的出现。 五、深度信念网络与逐层训练由多层受限制玻尔兹曼机堆叠起来的网络叫作深度信念网络(DBN)。深度信念网络在最后一层接入一个Softmax层用作分类，训练的时候采取逐层训练+微调的方式 逐层训练就是从输入层开始将网络的相邻两层当作一个受限制玻尔兹曼机进行无监督训练，训练方法见上一节，训练后将上一个RBM的隐藏层当作下一个RBM的可见层继续 逐层无监督训练完毕后，将进行反向传播训练对模型进行微调，从输入端输入数据，最后从输出端开始进行反向传播 自编码器虽然只是要保证输出端与输入端尽量接近，但是随着自编码器堆叠深度的加深，就会出现类似梯度弥散与梯度爆炸等问题，Hinton大神同样也使用了类似RBM的训练方法对深度自编码器进行逐层训练，使模型的得到了很好的初始化，加快了模型的解的最优性和收敛速度。 六、参考 受限玻尔兹曼机与深度置信网络 Hinton G E. A practical guide to training restricted Boltzmann machines[M]//Neural networks: Tricks of the trade. Springer, Berlin, Heidelberg, 2012: 599-619. Bengio Y, Lamblin P, Popovici D, et al. Greedy layer-wise training of deep networks[C]//Advances in neural information processing systems. 2007: 153-160. Hinton G E, Osindero S, Teh Y W. A fast learning algorithm for deep belief nets[J]. Neural computation, 2006, 18(7): 1527-1554. Hinton G E, Salakhutdinov R R. Reducing the dimensionality of data with neural networks[J]. science, 2006, 313(5786): 504-507.]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+        <tag>Deep Learning</tag>
+        <tag>Autoencoder</tag>
+        <tag>RBM</tag>
+        <tag>DBN</tag>
+        <tag>contrastive divergence</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Fcitx下全角中括号无法输入的问题]]></title>
+    <url>%2F2018%2F02%2F15%2Ffcitx%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍如何修复ubuntu下Fcitx输入法无法输入全角（中文）中括号【】并使用[]来切换候选字的方法 操作步聚： 打开fcitx字符映射文件 1sudo gedit /usr/share/fcitx/data/punc.mb.zh_CN ​ 修改 将 12[ ·] 「 」 修改为 12[ 【] 】 重启输入法完成修改]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Fcitx</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Ubuntu下安装Nvidia最新驱动]]></title>
+    <url>%2F2018%2F02%2F09%2Fubuntu_nvidia%2F</url>
+    <content type="text"><![CDATA[众所周知Nvidia和Ubuntu向来不对付，Nvidia不会将自己的驱动开源，而Ubuntu社区开发的nouveau开源驱动又极大的限制了Nvidia显卡驱动原有的性能，给基于深度学习的研究造成了不小的麻烦。而有的时候由于Windows的种种原因，深度学习的开发又不得不在Linux上完成。这篇笔记将会记录一种安装Nvidia最新驱动的简便方法(不过当然不是直接用系统给的那个选项直接改)，使用官方PPA源来安装最新驱动。 禁用nouveau驱动 打开黑名单文件blacklist.conf加入nouveau驱动 1sudo gedit /etc/modprobe.d/blacklist.conf 如果有权限问题请自行chmod调整权限 在文件末尾添加 12345blacklist vga16fbblacklist nouveaublacklist rivafbblacklist rivatvblacklist nvidiafb ​ 刷新内核 1sudo update-initramfs -u ​ 重启系统后检查是否禁用成功 1lsmod | grep nouveau ​ 添加Nvidia官方PPA 12sudo add-apt-repository ppa:graphics-drivers/ppasudo apt update 并查看可以使用的驱动版本号(到官网上查看也可以) 1ubuntu-drivers devices ​ ctrl + alt + F1进入tty并登录 关闭图形界面 1sudo service lightdm stop ​ apt安装驱动并重启 12sudo apt install nvidia-390sudo reboot 390是刚才查看到的版本号的第一个部分 ​ 重启后查看显卡是否安装成功 12sudo nvidia-smisudo nvidia-settings 按照上面说的方法安装完成，打开关于计算机界面，应该就能看到，显卡被改变成了你的Nvidia显卡型号。（原先是Intel显卡） 注意如果是双系统，需要关闭BIOS的安全启动(Secure Boot) 安装后使用Nvidia驱动不出意外应该显示的时候会出现画面撕裂、卡顿的情况。这我暂时没找到方法解决，只能不使用Nvidia显卡的时候切换成Intel显卡，这样还省电 还有一种方法是编译官方的二进制文件，这种方法应该是最好的，但是每次升级内核就要重新编译一次，本着不折腾的原则，还是选择了这种方法 自己编译源码的方法，只需要把第7步替换成运行从英伟达官网上下载的安装包，然后根据提示安装就可以了 ​]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>Nvidia</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Importance Sampling (重要性采样)]]></title>
+    <url>%2F2018%2F02%2F08%2Fimportance_sampling%2F</url>
+    <content type="text"><![CDATA[重要性采样是我在学习强化学习的过程中遇到的一种采样方法，是为了应对当要进行采样的样本分布难以获得时的问题。重要性采样使用另一个采样来代替当前的采样 什么是采样的常见问题 抛硬币问题，通过无限多次的抛硬币实验来估计硬币正面朝上的概率 面积问题，通过向特定区域撒豆子，通过计算豆子的数量和区域总面积，来计算某一个子区域的面积 蒙特卡罗法求积分 通过在[a, b]区间内按均匀分布来进行采样求得f(x)在[a, b]区间内的平均值，然后乘上b-a得到积分 蒙特卡洛法求期望期望就相当于在求积分的时候加入一个重要性的概念，即变量服从一个概率分布，则上述公式变为 按照p(x)的分布来产生随机数进行采样 这时，如果p(x)未知，那就无法针对p(x)进行采样来估计期望值，那怎么办呢？这时候就要借助这篇笔记的主角——重要性采样 重要性采样这时候需要引入一个新的已知的分布q(x)然后把原来的公式更改为 这样我们就可以针对q(x)来对p(x)/q(x)*f(x)来进行采样了 这就是重要性采样。]]></content>
+      <categories>
+        <category>机器学习</category>
+      </categories>
+      <tags>
+        <tag>Machine Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[在Linux发行版Firefox下安装最新版Flash]]></title>
+    <url>%2F2018%2F02%2F07%2Ffirefox_flash%2F</url>
+    <content type="text"><![CDATA[虽然在Windows上Chrome浏览器占据着霸主地位，但是在Linux上，明显面向开源社区的Firefox对各种发行版例如Ubuntu等优化得更棒。虽然Html5是趋势，但是Flash在日常浏览网页中依旧不能少。Ubuntu中的Firefox没有像Chrome一样内置Pepper Flash插件，而Adobe早已对Ubuntu停更。那么要如何为Ubuntu下的Firefox安装最新的Flash插件呢？ 进入 Download Adobe Flash Player 选择.tar.gz 适用于Linux下载 下载后解压flash_player_npapi_linux.x86_64.tar.gz，进入flash_player_npapi_linux.x86_64中复制libflashplayer.so 在~/.mozilla下新建文件夹plugins 把libflashplayer.so粘贴到plugins下 重启Firefox，完成最新Flash安装]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>Firefox</tag>
+        <tag>Flash</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Codeforce 920C Swap Adjacent Elements]]></title>
+    <url>%2F2018%2F02%2F07%2Fcodeforce920C%2F</url>
+    <content type="text"><![CDATA[You have an array a consisting of n integers. Each integer from 1 to n appears exactly once in this array. For some indices i (1 ≤ i ≤ n - 1) it is possible to swap i-th element with (i + 1)-th, for other indices it is not possible. You may perform any number of swapping operations any order. There is no limit on the number of times you swap i-th element with (i + 1)-th (if the position is not forbidden). Can you make this array sorted in ascending order performing some sequence of swapping operations? Input The first line contains one integer n (2 ≤ n ≤ 200000) — the number of elements in the array. The second line contains n integers a1, a2, …, a**n (1 ≤ a**i ≤ 200000) — the elements of the array. Each integer from 1 to n appears exactly once. The third line contains a string of n - 1 characters, each character is either 0 or 1. If i-th character is 1, then you can swap i-th element with (i + 1)-th any number of times, otherwise it is forbidden to swap i-th element with (i + 1)-th. Output If it is possible to sort the array in ascending order using any sequence of swaps you are allowed to make, print YES. Otherwise, print NO. Examples input 12361 2 5 3 4 601110 output 1YES input 12361 2 5 3 4 601010 output 1NO Note In the first example you may swap a3 and a4, and then swap a4 and a5. 每段连续的1以及最后一个1右边的位置的数都是可以相互交换的，但是和其他的部分之间不能互换，所以每段区间[l, r]不能出现超出区间[l+1, r+1]范围的数 剩余的部分就是不能进行交换的部分，即数必须等于下标+1 C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#define N 200001using namespace std;int arr[N];char str[N];int main()&#123; int num; bool flag = true; while(~scanf("%d", &amp;num)) &#123; flag = true; for(int i = 0; i &lt; num; i++) &#123; scanf("%d", &amp;arr[i]); &#125; scanf("%s", str); getchar(); for(int i = 0; i &lt; num; i++) &#123; int l = i; while(str[i] == '1' &amp;&amp; i &lt; num-1) i++; int r = i; if(l == r &amp;&amp; arr[l] != l+1) &#123;// cout &lt;&lt; "sdf: " &lt;&lt; l &lt;&lt; endl; flag = false; break; &#125; for(int j = l; j &lt;= r; j++) &#123; if(arr[j] &gt; r+1 || arr[j] &lt; l+1) &#123;// cout &lt;&lt; l &lt;&lt; ' ' &lt;&lt; r &lt;&lt; endl; flag = false; break; &#125; &#125; &#125; if(flag) printf("YES\n"); else printf("NO\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>codeforce</tag>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Codeforce 920A Water The Garden]]></title>
+    <url>%2F2018%2F02%2F06%2Fcodeforce920A%2F</url>
+    <content type="text"><![CDATA[It is winter now, and Max decided it’s about time he watered the garden. The garden can be represented as n consecutive garden beds, numbered from 1 to n. k beds contain water taps (i-th tap is located in the bed x**i), which, if turned on, start delivering water to neighbouring beds. If the tap on the bed x**i is turned on, then after one second has passed, the bed x**i will be watered; after two seconds have passed, the beds from the segment [x**i - 1, x**i + 1] will be watered (if they exist); after j seconds have passed (j is an integer number), the beds from the segment [x**i - (j - 1), x**i + (j - 1)] will be watered (if they exist). Nothing changes during the seconds, so, for example, we can’t say that the segment [x**i - 2.5, x**i + 2.5] will be watered after 2.5seconds have passed; only the segment [x**i - 2, x**i + 2] will be watered at that moment. The garden from test 1. White colour denotes a garden bed without a tap, red colour — a garden bed with a tap. The garden from test 1 after 2 seconds have passed after turning on the tap. White colour denotes an unwatered garden bed, blue colour — a watered bed. Max wants to turn on all the water taps at the same moment, and now he wonders, what is the minimum number of seconds that have to pass after he turns on some taps until the whole garden is watered. Help him to find the answer! Input The first line contains one integer t — the number of test cases to solve (1 ≤ t ≤ 200). Then t test cases follow. The first line of each test case contains two integers n and k(1 ≤ n ≤ 200, 1 ≤ k ≤ n) — the number of garden beds and water taps, respectively. Next line contains k integers x**i (1 ≤ x**i ≤ n) — the location of i-th water tap. It is guaranteed that for each condition x**i - 1 &lt; x**i holds. It is guaranteed that the sum of n over all test cases doesn’t exceed 200. Note that in hacks you have to set t = 1. Output For each test case print one integer — the minimum number of seconds that have to pass after Max turns on some of the water taps, until the whole garden is watered. Example input 123456735 133 31 2 34 11 output 123314 Note The first example consists of 3 tests: There are 5 garden beds, and a water tap in the bed 3. If we turn it on, then after 1second passes, only bed 3 will be watered; after 2 seconds pass, beds [1, 3] will be watered, and after 3 seconds pass, everything will be watered. There are 3 garden beds, and there is a water tap in each one. If we turn all of them on, then everything will be watered after 1 second passes. There are 4 garden beds, and only one tap in the bed 1. It will take 4 seconds to water, for example, bed 4. C++ Code 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int t, n, k, tmp = 0, pretmp; int mi = 0; while(~scanf("%d", &amp;t)) &#123; for(int i = 0; i &lt; t; i++) &#123; scanf("%d%d", &amp;n, &amp;k); for(int j = 0; j &lt; k; j++) &#123; pretmp = tmp; scanf("%d", &amp;tmp); if(j == 0) mi = tmp; if(j &gt; 0 &amp;&amp; j &lt; k-1) mi = max(mi, (tmp-pretmp+2)/2); if(j == k-1) &#123; mi = max(mi, (tmp-pretmp+2)/2); mi = max(mi, n-tmp+1); &#125; &#125; printf("%d\n", mi); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>codeforce</tag>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Codeforce 920B Tea Queue]]></title>
+    <url>%2F2018%2F02%2F06%2Fcodeforce920B%2F</url>
+    <content type="text"><![CDATA[Recently n students from city S moved to city P to attend a programming camp. They moved there by train. In the evening, all students in the train decided that they want to drink some tea. Of course, no two people can use the same teapot simultaneously, so the students had to form a queue to get their tea. i-th student comes to the end of the queue at the beginning of l**i-th second. If there are multiple students coming to the queue in the same moment, then the student with greater index comes after the student with lesser index. Students in the queue behave as follows: if there is nobody in the queue before the student, then he uses the teapot for exactly one second and leaves the queue with his tea; otherwise the student waits for the people before him to get their tea. If at the beginning of r**i-th second student i still cannot get his tea (there is someone before him in the queue), then he leaves the queue without getting any tea. For each student determine the second he will use the teapot and get his tea (if he actually gets it). Input The first line contains one integer t — the number of test cases to solve (1 ≤ t ≤ 1000). Then t test cases follow. The first line of each test case contains one integer n (1 ≤ n ≤ 1000) — the number of students. Then n lines follow. Each line contains two integer l**i, r**i (1 ≤ l**i ≤ r**i ≤ 5000) — the second i-th student comes to the end of the queue, and the second he leaves the queue if he still cannot get his tea. It is guaranteed that for every condition l**i - 1 ≤ l**i holds. The sum of n over all test cases doesn’t exceed 1000. Note that in hacks you have to set t = 1. Output For each test case print n integers. i-th of them must be equal to the second when i-th student gets his tea, or 0 if he leaves without tea. Example input 12345678221 31 431 51 12 3 output 121 2 1 0 2 Note The example contains 2 tests: During 1-st second, students 1 and 2 come to the queue, and student 1 gets his tea. Student 2 gets his tea during 2-nd second. During 1-st second, students 1 and 2 come to the queue, student 1 gets his tea, and student 2 leaves without tea. During 2-nd second, student 3 comes and gets his tea. C++ Code 12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int t; int cur = 0; int num; int l, r; int arr[1005]; scanf("%d", &amp;t); while(t--) &#123; scanf("%d", &amp;num); cur = 0; for(int i = 0; i &lt; num; i++) &#123; scanf("%d%d", &amp;l, &amp;r); if(l &lt;= cur) &#123; if(cur &gt;= r) arr[i] = 0; else &#123; arr[i] = ++cur; &#125; &#125; else &#123; cur = l; arr[i] = l; &#125; &#125; for(int i = 0; i &lt; num; i++) printf("%d ", arr[i]); printf("\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>codeforce</tag>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 30 Substring with Concatenation of All Words]]></title>
+    <url>%2F2018%2F02%2F05%2Fleetcode30%2F</url>
+    <content type="text"><![CDATA[You are given a string, s, and a list of words, words, that are all of the same length. Find all starting indices of substring(s) in s that is a concatenation of each word in words exactly once and without any intervening characters. For example, given: s: &quot;barfoothefoobarman&quot; words: [&quot;foo&quot;, &quot;bar&quot;] You should return the indices: [0,9]. (order does not matter). 利用滑动窗口搜索的方式 计算每个word在words中出现的次数 设置窗口，l为窗口左端点，r为窗口右端点，左闭右开，window记录窗口中每个单词的数量wordmap 从0~len(word)-1开始枚举左端点的起点 扩展窗口，r不断的右移一个len(word) 如果当前最右边的单词不在words中，则清理窗口 l = r 如果在，window[word] += 1 window[word] &lt; wordmap[word]继续扩展 window[word] == wordmap[word]检查是不是一个解，即r-l == len(word)*len(words) window[word] &gt; wordmap[word]进入步骤2 收缩窗口，l不断右移一个len(word)，window[l] -= 1，检查window[s[r-len:r]] == wordmap[s[r-len:r]] 123456789101112131415161718192021222324252627282930313233343536373839404142434445class Solution: def findSubstring(self, s, words): """ :type s: str :type words: List[str] :rtype: List[int] """ wordmap = &#123;&#125; res = [] if s == None or len(words) == 0: return res wordLen = len(words[0]) for word in words: if wordmap.__contains__(word): wordmap[word] += 1 else: wordmap[word] = 1 for i in range(wordLen): window = &#123;&#125; l = r = i while r &lt; len(s): while r &lt; len(s): word = s[r:r+wordLen] r += wordLen if word not in words: window = &#123;&#125; l = r else: if window.__contains__(word): window[word] += 1 else: window[word] = 1 if window[word] &gt;= wordmap[word]: break while l &lt; r: word = s[r-wordLen: r] if window[word] == wordmap[word]: break tmpWord = s[l : l+wordLen] window[tmpWord] -= 1 l += wordLen if r-l == wordLen*len(words): res.append(l) return res]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Git介绍以及基本命令]]></title>
+    <url>%2F2018%2F02%2F01%2Fgit%2F</url>
+    <content type="text"><![CDATA[介绍git的结构、作用以及基本常用命令 一、git简介git是目前最流行、最好用的分布式版本控制系统，主要的作用就是帮助进行版本控制以及分布式的分支管理。其基本结构如下 其中橙色的部分都在我们自己的计算机上，蓝色的是远程仓库，比如github、gitosc等等 图中几个部分的含义 Workspace：工作区，就是电脑里的一个目录，一般带有.git文件 Stage/Index：暂存区位于工作区目录里的一个.git隐藏目录中，里面存储这个项目的master分支和HEAD指针 Repository：本地仓库，用于与远程仓库同步 Remote：远程仓库 ​ 下面将会把主要的过程的命令一一展示，建议分支部分可以阅读官方文档进行学习 git中文文档 二、新建与配置123456789101112131415# 在当前目录新建一个Git代码库$ git init [project-name]# 克隆$ git clone [url]# 显示当前的Git配置$ git config --list# 编辑Git配置文件$ git config -e [--global]# 设置提交代码时的用户信息$ git config [--global] user.name "[name]"$ git config [--global] user.email "[email address]" 三、往暂存区add/rm/mv123456789101112131415# 添加所有/目录/文件到暂存区$ git add [.]/[dir]/[file1] [file2] ...# 添加每个变化前，都会要求确认# 对于同一个文件的多处变化，可以实现分次提交$ git add -p# 删除工作区文件，并且将这次删除放入暂存区$ git rm [file1] [file2] ...# 停止追踪指定文件，但该文件会保留在工作区$ git rm --cached [file]# 改名文件，并且将这个改名放入暂存区$ git mv [file-original] [file-renamed] 四、向本地仓库commit123456789101112131415# 提交暂存区到仓库区$ git commit -m [message]# 提交暂存区的指定文件到仓库区$ git commit [file1] [file2] ... -m [message]# 提交工作区自上次commit之后的变化，直接到仓库区(显示变动)$ git commit [-a|-v]# 使用一次新的commit，替代上一次提交# 如果代码没有任何新变化，则用来改写上一次commit的提交信息$ git commit --amend -m [message]# 重做上一次commit，并包括指定文件的新变化$ git commit --amend [file1] [file2] ... 五、向远程仓库push/pull/fetch/remote1234567891011121314151617181920212223# 下载远程仓库的所有变动$ git fetch [remote]# 显示所有远程仓库$ git remote -v# 显示某个远程仓库的信息$ git remote show [name]# 增加一个新的目标远程仓库，并命名为name$ git remote add [name] [url]# 取回远程仓库的变化，并与本地分支合并$ git pull [remote] [branch]# 上传本地指定分支到远程仓库，不指定默认master$ git push [remote] [branch]# 强行推送当前分支到远程仓库，即使有冲突$ git push [remote] --force# 推送所有分支到远程仓库$ git push [remote] --all 六、分支branch官方文档 123456789101112131415161718192021222324252627282930313233343536# 列出本地、远程、所有分支，带*号的是当前分支$ git branch [-r|-a]# 创建[并切换]到该分支$ git checkout [-b] [branch]# 新建一个分支(指向指定commit)$ git branch [branch] [commit]# 新建一个分支，与指定的远程分支建立追踪关系$ git branch --track [branch] [remote-branch]# 切换到指定分支，并更新工作区$ git checkout [branch]# 切换到上一个分支$ git checkout -# 建立追踪关系，在现有分支与指定的远程分支之间$ git branch --set-upstream [branch] [remote-branch]# 合并指定分支到当前分支$ git merge [branch]# 选择一个commit，合并进当前分支$ git cherry-pick [commit]# 删除分支$ git branch -d [branch-name]# push分支到远程仓库(默认是master)$ git push origin [branch]# 删除远程分支$ git push origin --delete [branch-name]$ git branch -dr [remote/branch] 七、标签1234567891011121314151617181920212223242526# 列出所有tag$ git tag# 新建一个tag在当前commit$ git tag [tag]# 新建一个tag在指定commit$ git tag [tag] [commit]# 删除本地tag$ git tag -d [tag]# 删除远程tag$ git push origin :refs/tags/[tagName]# 查看tag信息$ git show [tag]# 提交指定tag$ git push [remote] [tag]# 提交所有tag$ git push [remote] --tags# 新建一个分支，指向某个tag$ git checkout -b [branch] [tag] 八、查看信息123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960# 显示有变更的文件$ git status# 显示当前分支的版本历史$ git log# 显示commit历史，以及每次commit发生变更的文件$ git log --stat# 搜索提交历史，根据关键词$ git log -S [keyword]# 显示某个commit之后的所有变动，每个commit占据一行$ git log [tag] HEAD --pretty=format:%s# 显示某个commit之后的所有变动，其"提交说明"必须符合搜索条件$ git log [tag] HEAD --grep feature# 显示某个文件的版本历史，包括文件改名$ git log --follow [file]$ git whatchanged [file]# 显示指定文件相关的每一次diff$ git log -p [file]# 显示过去5次提交$ git log -5 --pretty --oneline# 显示所有提交过的用户，按提交次数排序$ git shortlog -sn# 显示指定文件是什么人在什么时间修改过$ git blame [file]# 显示暂存区和工作区的差异$ git diff# 显示暂存区和上一个commit的差异$ git diff --cached [file]# 显示工作区与当前分支最新commit之间的差异$ git diff HEAD# 显示两次提交之间的差异$ git diff [first-branch]...[second-branch]# 显示今天你写了多少行代码$ git diff --shortstat "@&#123;0 day ago&#125;"# 显示某次提交的元数据和内容变化$ git show [commit]# 显示某次提交发生变化的文件$ git show --name-only [commit]# 显示某次提交时，某个文件的内容$ git show [commit]:[filename]# 显示当前分支的最近几次提交$ git reflog 九、撤销12345678910111213141516171819202122232425262728293031# 恢复暂存区的指定文件到工作区$ git checkout [file]# 恢复某个commit的指定文件到暂存区和工作区$ git checkout [commit] [file]# 恢复暂存区的所有文件到工作区$ git checkout .# 重置暂存区的指定文件，与上一次commit保持一致，但工作区不变$ git reset [file]# 重置暂存区与工作区，与上一次commit保持一致$ git reset --hard# 重置当前分支的指针为指定commit，同时重置暂存区，但工作区不变$ git reset [commit]# 重置当前分支的HEAD为指定commit，同时重置暂存区和工作区，与指定commit一致$ git reset --hard [commit]# 重置当前HEAD为指定commit，但保持暂存区和工作区不变$ git reset --keep [commit]# 新建一个commit，用来撤销指定commit# 后者的所有变化都将被前者抵消，并且应用到当前分支$ git revert [commit]# 暂时将未提交的变化移除，稍后再移入$ git stash$ git stash pop 参考：git中文文档 阮一峰的网络日志廖雪峰的git教程]]></content>
+      <categories>
+        <category>实战技能</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Markdown常用语法总结]]></title>
+    <url>%2F2018%2F01%2F27%2Fmarkdown_conclusion%2F</url>
+    <content type="text"><![CDATA[Markdown 是一种轻量级标记语言，创始人为约翰·格鲁伯（英语：John Gruber）。它允许人们“使用易读易写的纯文本格式编写文档，然后转换成有效的XHTML(或者HTML)文档”。[4]这种语言吸收了很多在电子邮件中已有的纯文本标记的特性。 个人使用markdown编写博客的编辑器是Typora，它不像传统编辑器那样并排展示，而是一个即时渲染的编辑器，所见即所得，让习惯word编辑的人编辑markdown更加的方便。至于好不好用就见仁见智了。毕竟有的人喜欢Jetbrain，而有的人以用Vim为荣。 换行在行尾添加两个空格加回车表示换行： 如果使用Typora则不用担心此问题，换行时会自动加两个空格 标题1、用#标记 在 标题开头 #，加几个就代表是几级标题 123456# 一级标题## 二级标题### 三级标题#### 四级标题##### 五级标题###### 六级标题 2、用=和-标记 在 标题底下 加上任意个=代表一级标题，-代表二级标题 12345一级标题======二级标题------ 效果： 一级标题二级标题三级标题四级标题五级标题六级标题 ###### 列表无序列表 *后面加一个空格： 123* 无序列表项目* 无序列表项目* 无序列表项目 效果（-和+是一样的）： 无序列表项目 无序列表项目 无序列表项目 有序列表则 数字加英文句点.： 1231. 有序列表项12. 有序列表项23. 有序列表项3 效果如下： 有序列表项1 有序列表项2 有序列表项3 代码代码分为行内代码和代码块。 行内代码使用 一个`符号标识 ，可嵌入文字中 代码块使用```标识（还有一种4个空格的不推荐，会和缩进弄混） ```这里是代码``` 代码语法高亮在 ```后面加上 空格和语言名称即可 ``` 语言这里是代码``` 例如： `这是一段高亮代码` ``` c++ long long multi(long long a, long long b, long long mod){ long long ret = 1;while(b &gt; 0){​ if(b &amp; 1)​ ret = (reta)%mod;​ a = (a a) % mod;​ b /= 2;}return ret; }//pow(a, b) mod m ``` 效果: 这是一段高亮代码 123456789101112long long multi(long long a, long long b, long long mod)&#123; long long ret = 1; while(b &gt; 0) &#123; if(b &amp; 1) ret = (ret*a)%mod; a = (a * a) % mod; b /= 2; &#125; return ret;&#125;//pow(a, b) mod m 分隔线在一行中用三个以上的*、-、_来建立一个分隔线，行内不能有其他东西。也可以在符号间插入空格。 12345***---___* * * 效果均为一条分割线： 引用引用以&gt;加空格来表示，引用中支持多级引用，引用中的常用语法不会受到影响。 常见的引用写法： 12345&gt; 这是一段引用&gt; 一级引用&gt; &gt; 二级引用&gt; &gt; &gt; 三级引用 效果： 这是一段引用 一级引用 二级引用 三级引用 强调两个*或-代表加粗，一个*或-代表斜体，~~已删除的横线。 12345**加粗** or __加粗__*斜体* or _斜体_~~横线~~ 效果： 加粗 or 加粗 斜体 or _斜体_ 横线 图片&amp;链接图片有一个 ! 号，链接没有，而在Typora中可以直接插入图片： 12图片：![image description](url) 链接：[link description](url) 链接以及图片又分为行内式、参考式和 自动链接 上面的格式就是行内式。一般我使用行内式，使用参考室只是方便更新图片： 123456链接行内式：[Ph0en1x Notebook](https://ph0en1xgseek.github.io/)。自动链接：&lt;https://ph0en1xgseek.github.io/&gt;图片参考式：![typora][1][1]: https://typora.io/img/new/lists.png 效果如下： 链接行内式：Ph0en1x Notebook。 自动链接：https://ph0en1xgseek.github.io/ 图片参考式：![typora][1][1]: https://typora.io/img/new/lists.png 表格表格对齐格式，Typora中也可以直接插入表格 左对齐：:---- 中线对齐：:----:或----- 右对齐：----: 例子： 123456|标题|标题|标题||:---|:---:|---:||左对齐|中线对齐|右对齐||左对齐|中线对齐|右对齐||左对齐|中线对齐|右对齐||左对齐|中线对齐|右对齐| 效果： 标题 标题 标题 左对齐 中线对齐 右对齐 左对齐 中线对齐 右对齐 左对齐 中线对齐 右对齐 左对齐 中线对齐 右对齐 脚注[^]来定义脚注： 123Ph0en1x Notebook[^1][^1]: https://ph0en1xgseek.github.io/ 效果： Ph0en1x Notebook^1]]></content>
+      <categories>
+        <category>实战技能</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Codeforce 915C Permute Digits]]></title>
+    <url>%2F2018%2F01%2F26%2Fcodeforce915C%2F</url>
+    <content type="text"><![CDATA[You are given two positive integer numbers a and b. Permute (change order) of the digits of a to construct maximal number not exceeding b. No number in input and/or output can start with the digit 0. It is allowed to leave a as it is. Input The first line contains integer a (1 ≤ a ≤ 1018). The second line contains integer b (1 ≤ b ≤ 1018). Numbers don’t have leading zeroes. It is guaranteed that answer exists. Output Print the maximum possible number that is a permutation of digits of a and is not greater than b. The answer can’t have any leading zeroes. It is guaranteed that the answer exists. Examples input 12123222 output 1213 input 12392110000 output 19321 input 1249405000 output 14940 b一定不短于a 如果b比a长，直接降序排列a 如果一样长 先统计a中数字的个数 对于每一位b，都找不比b大的匹配，一旦有一位匹配后小于b的那位，之后就可以从最大的开始降序匹配 如果有一位无法匹配小于等于b的那位，那么就回退一位，匹配小于b的，这样后面就可以不受约束 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;iomanip&gt;using namespace std;bool cmp(char a, char b)&#123; return a &gt; b;&#125;int main()&#123; char str1[20]; char str2[20]; char tmp; int arr[15]; while(~scanf("%s", str1)) &#123; memset(arr, 0, sizeof(arr)); getchar(); scanf("%s", str2); getchar(); int len1 = strlen(str1); int len2 = strlen(str2); if(len2 &gt; len1) &#123; sort(str1, str1+len1, cmp); &#125; else &#123; bool flag = false; for(int i = 0; i &lt; len1; i++) &#123; arr[str1[i] - '0']++; str1[i] = str2[i]; &#125; for(int i = 0; i &lt; len2; i++) &#123; int j; if(flag == false) j = str1[i] - '0'; else j = 9; for(; j &gt;= 0; j--) &#123; if(arr[j] &gt; 0) &#123; arr[j]--; str1[i] = j+'0'; if(j &lt; str2[i] - '0') flag = true; break; &#125; &#125; if(j == -1 &amp;&amp; flag == false) &#123; i--; arr[str1[i]-'0']++; str1[i]--; i--; &#125; &#125; &#125; printf("%s\n", str1); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>codeforce</tag>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Codeforce 915A Garden]]></title>
+    <url>%2F2018%2F01%2F26%2Fcodeforce915A%2F</url>
+    <content type="text"><![CDATA[Luba thinks about watering her garden. The garden can be represented as a segment of length k. Luba has got n buckets, the i-th bucket allows her to water some continuous subsegment of garden of length exactly a**i each hour. Luba can’t water any parts of the garden that were already watered, also she can’t water the ground outside the garden. Luba has to choose one of the buckets in order to water the garden as fast as possible (as mentioned above, each hour she will water some continuous subsegment of length a**i if she chooses the i-th bucket). Help her to determine the minimum number of hours she has to spend watering the garden. It is guaranteed that Luba can always choose a bucket so it is possible water the garden. See the examples for better understanding. Input The first line of input contains two integer numbers n and k (1 ≤ n, k ≤ 100) — the number of buckets and the length of the garden, respectively. The second line of input contains n integer numbers a**i (1 ≤ a**i ≤ 100) — the length of the segment that can be watered by the i-th bucket in one hour. It is guaranteed that there is at least one bucket such that it is possible to water the garden in integer number of hours using only this bucket. Output Print one integer number — the minimum number of hours required to water the garden. Examples input 123 62 3 5 output 12 input 126 71 2 3 4 5 6 output 17 Note In the first test the best option is to choose the bucket that allows to water the segment of length 3. We can’t choose the bucket that allows to water the segment of length 5 because then we can’t water the whole garden. In the second test we can choose only the bucket that allows us to water the segment of length 1. C++ Code 123456789101112131415161718192021222324252627#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, k; int tmp; int mi; while(~scanf("%d%d", &amp;n, &amp;k)) &#123; mi = 1000; for(int i = 0; i &lt; n; i++) &#123; scanf("%d", &amp;tmp); if(k % tmp == 0) &#123; mi = min(k / tmp, mi); &#125; &#125; printf("%d\n", mi); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>codeforce</tag>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Codeforce 915B Browser]]></title>
+    <url>%2F2018%2F01%2F26%2Fcodeforce915B%2F</url>
+    <content type="text"><![CDATA[Luba is surfing the Internet. She currently has n opened tabs in her browser, indexed from 1 to n from left to right. The mouse cursor is currently located at the pos-th tab. Luba needs to use the tabs with indices from l to r (inclusive) for her studies, and she wants to close all the tabs that don’t belong to this segment as fast as possible. Each second Luba can either try moving the cursor to the left or to the right (if the cursor is currently at the tab i, then she can move it to the tab max(i - 1, a) or to the tab min(i + 1, b)) or try closing all the tabs to the left or to the right of the cursor (if the cursor is currently at the tab i, she can close all the tabs with indices from segment [a, i - 1] or from segment [i + 1, b]). In the aforementioned expressions a and b denote the minimum and maximum index of an unclosed tab, respectively. For example, if there were 7 tabs initially and tabs 1, 2and 7 are closed, then a = 3, b = 6. What is the minimum number of seconds Luba has to spend in order to leave only the tabs with initial indices from l to r inclusiveopened? Input The only line of input contains four integer numbers n, pos, l, r (1 ≤ n ≤ 100, 1 ≤ pos ≤ n, 1 ≤ l ≤ r ≤ n) — the number of the tabs, the cursor position and the segment which Luba needs to leave opened. Output Print one integer equal to the minimum number of seconds required to close all the tabs outside the segment [l, r]. Examples input 16 3 2 4 output 15 input 16 3 1 3 output 11 input 15 2 1 5 output 10 Note In the first test Luba can do the following operations: shift the mouse cursor to the tab 2, close all the tabs to the left of it, shift the mouse cursor to the tab 3, then to the tab 4, and then close all the tabs to the right of it. In the second test she only needs to close all the tabs to the right of the current position of the cursor. In the third test Luba doesn’t need to do anything. 不要漏考虑情况 左右贴边 左贴边 pos在r右边 pos在r左边 右贴边 pos在l右边 pos在l左边 都不贴边 pos在l左边 pos在r右边 pos在l和r中间 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, pos, l, r; while(~scanf("%d%d%d%d", &amp;n, &amp;pos, &amp;l, &amp;r)) &#123; if(l == 1 &amp;&amp; r == n) &#123; printf("0\n"); &#125; else if(l == 1) &#123; if(pos &gt; r) &#123; printf("%d\n", pos-r+1); &#125; else &#123; printf("%d\n", r-pos+1); &#125; &#125; else if(r == n) &#123; if(pos &lt; l) &#123; printf("%d\n", l-pos+1); &#125; else &#123; printf("%d\n", pos-l+1); &#125; &#125; else &#123; if(pos &gt; r) &#123; printf("%d\n", pos-l+2); &#125; else if(pos &lt; l) &#123; printf("%d\n", r-pos+2); &#125; else &#123; printf("%d\n", (r-l) + 2 + min(r-pos, pos-l)); &#125; &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>codeforce</tag>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 25 Reverse Nodes in k-Group]]></title>
+    <url>%2F2018%2F01%2F25%2Fleetcode25%2F</url>
+    <content type="text"><![CDATA[Given a linked list, reverse the nodes of a linked list k at a time and return its modified list. k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is. You may not alter the values in the nodes, only nodes itself may be changed. Only constant memory is allowed. For example,Given this linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5 For k = 2, you should return: 2-&gt;1-&gt;4-&gt;3-&gt;5 For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5 Leetcode 24的扩展版，k个一组进行翻转，最后不到k个的不翻转 没轮一共翻转k-1次，每次都将后一个node连到已经连好的链的最前面，已经连好的链首节点之前的一个节点和尾节点两个节点标记为root、head Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def reverseKGroup(self, head, k): """ :type head: ListNode :type k: int :rtype: ListNode """ res = root = ListNode(-1) root.next = head tmp = head cnt = 0 while(tmp != None): tmp = tmp.next cnt += 1 while(cnt &gt;= k): for i in range(k-1): node = root.next root.next = head.next head.next = root.next.next root.next.next = node root = head head = head.next cnt -= k return res.next]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 29 Divide Two Integers]]></title>
+    <url>%2F2018%2F01%2F25%2Fleetcode29%2F</url>
+    <content type="text"><![CDATA[Divide two integers without using multiplication, division and mod operator. If it is overflow, return MAX_INT. overflow特殊情况：-2147483648 / (-1) = MAX_INT = 2147483647 12345678910111213141516171819202122232425class Solution: def divide(self, dividend, divisor): """ :type dividend: int :type divisor: int :rtype: int """ if dividend == -2147483648 and divisor == -1: return 2147483647 a = abs(dividend) b = abs(divisor) arr = [] while(b &lt;= a): arr.append(b) b &lt;&lt;= 1 sum = 0 ret = 0 for i in range(len(arr)-1, -1, -1): if sum + arr[i] &lt;= a: sum += arr[i] ret += (1&lt;&lt;i) if(((dividend &gt; 0) and (divisor &lt; 0)) or ((dividend &lt; 0) and (divisor &gt; 0))): return -ret else: return ret]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux下配置Git免密码]]></title>
+    <url>%2F2018%2F01%2F24%2Fgit_password%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍如何在Linux下配置使Git在push/pull时免密码 操作步聚： 进入当前用户目录下； 创建并打开.git-credentials 按照以下格式输入内容： 1 https://&#123;username&#125;：&#123;password&#125;@github.com 其中username，password，github.com 都替换成你自己的内容 保存退出后执行 1git config --global credential.helper store 执行完后 /home/用户名/.gitconfig 会新增一项 helper = store 这时再执行git push/pull的时候就不会在要求你输入密码了。]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 23 Merge k Sorted Lists]]></title>
+    <url>%2F2018%2F01%2F24%2Fleetcode23%2F</url>
+    <content type="text"><![CDATA[Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. 12345678910111213141516171819202122232425262728# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeKLists(self, lists): """ :type lists: List[ListNode] :rtype: ListNode """ heap = [] i = 0 for node in lists: if node != None: heap.append((node.val, i, node)) i += 1 heapq.heapify(heap) cur = head = ListNode(0) while heap: pop = heapq.heappop(heap) cur.next = ListNode(pop[0]) cur = cur.next if pop[2].next != None: heapq.heappush(heap, (pop[2].next.val, i, pop[2].next)) i += 1 return head.next]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux提升物理内存的使用率]]></title>
+    <url>%2F2018%2F01%2F24%2Fubuntu_improve%2F</url>
+    <content type="text"><![CDATA[介绍如何在Linux下调整交换分区swap的使用条件 在UBUNTU系统里面，并不是你的物理内存全部耗尽之后，系统才使用swap分区！系统的swappiness设定值，对如何使用swap分区是有着很大的联系。 swappiness=0 的时候表示最大限度使用物理内存，然后才是 swap空间swappiness＝100的时候表示积极的使用swap分区，并且把内存上的数据及时的搬运到swap空间里面 上面2个设置是极端设置，对于UBUNTU系统的默热值来说，这个值=60，如果想最佳化，可以修改为10-20左右！ 在ubuntu17以后移除了交换分区这一概念，改为交换文件 打开终端，输入查看 swappiness 的当前参数（默认应该看到的是60） 1cat /proc/sys/vm/swappiness 输入下面内容，修改这个参数为10（执行这一步只是临时修改，如果重启又会恢复60） 1sudo sysctl vm.swappiness=10 若要持久化配置，可以打开/etc/sysctl.conf文件 1sudo gedit /etc/sysctl.conf 添加一行 1vm.swappiness=10 ​]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 10 Regular Expression Matching]]></title>
+    <url>%2F2018%2F01%2F23%2Fleetcode10%2F</url>
+    <content type="text"><![CDATA[动态规划 Implement regular expression matching with support for &#39;.&#39; and &#39;*&#39;. 123456789101112131415161718&gt; &apos;.&apos; Matches any single character.&gt; &apos;*&apos; Matches zero or more of the preceding element.&gt;&gt; The matching should cover the entire input string (not partial).&gt;&gt; The function prototype should be:&gt; bool isMatch(const char *s, const char *p)&gt;&gt; Some examples:&gt; isMatch(&quot;aa&quot;,&quot;a&quot;) → false&gt; isMatch(&quot;aa&quot;,&quot;aa&quot;) → true&gt; isMatch(&quot;aaa&quot;,&quot;aa&quot;) → false&gt; isMatch(&quot;aa&quot;, &quot;a*&quot;) → true&gt; isMatch(&quot;aa&quot;, &quot;.*&quot;) → true&gt; isMatch(&quot;ab&quot;, &quot;.*&quot;) → true&gt; isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true&gt;&gt; 动态规划问题dp[i][j]代表s[i]之前（不算i）与p[j]之前的字符串是否能够匹配 初始化： dp[0][0] = true dp[i][0] = false when i &gt;= 1 dp[0][j] = j &gt; 1 &amp;&amp; p[j-1] == &#39;*&#39; &amp;&amp; dp[0][j-2] 即只有都可以用*来代替掉的情况才能是true 两种更新情况： p[j-1] == &#39;*&#39; dp[i][j] = dp[i][j - 2] // i与j-2可以匹配的情况下，这个*代表0次 dp[i][j] = (s[i - 1] == p[j - 2] || p[j - 2] == &#39;.&#39;) &amp;&amp; dp[i - 1][j] // 在i-1 与 j可以匹配的情况下 这个*代表一次或多次 p[j-1] != &#39;*&#39; dp[i][j] = (p[j - 1] == &#39;.&#39; || s[i - 1] == p[j - 1]) &amp;&amp; dp[i - 1][j - 1] //在i-1与j-1可以匹配的情况下 i 与 j 能够匹配 由于这题Python直接就有函数可以解决，所以改用C++来练习 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344class Solution &#123;public: bool isMatch(string s, string p) &#123; int lens = s.length(); int lenp = p.length(); bool **dp = new bool *[lens+1]; for(int i = 0; i &lt;= lens; i++) dp[i] = new bool [lenp+1]; bool res = false; dp[0][0] = true; for(int i = 1; i &lt;= lens; i++) &#123; dp[i][0] = false; &#125; for(int j = 1; j &lt;= lenp; j++) &#123; if(j &gt; 1 &amp;&amp; p[j-1] == '*' &amp;&amp; dp[0][j-2]) dp[0][j] = true; else dp[0][j] = false; &#125; for(int i = 1; i &lt;= lens; i++) &#123; for(int j = 1; j &lt;= lenp; j++) &#123; if(p[j-1] == '*') &#123; dp[i][j] = dp[i][j-2] || ((s[i-1] == p[j-2] || p[j-2] == '.') &amp;&amp; dp[i-1][j]); &#125; else &#123; dp[i][j] = dp[i-1][j-1] &amp;&amp; (s[i-1] == p[j-1] || p[j-1] == '.'); &#125; &#125; &#125; res = dp[lens][lenp]; for(int i = 0; i &lt;= lens; i++) delete [] dp[i]; delete [] dp; return res; &#125;&#125;;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 15 3Sum]]></title>
+    <url>%2F2018%2F01%2F20%2Fleetcode15%2F</url>
+    <content type="text"><![CDATA[T Sum问题的O(n)解决方法； N Sum类的问题的一般解决方法； Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not contain duplicate triplets. 123456789&gt; For example, given array S = [-1, 0, 1, 2, -1, -4],&gt;&gt; A solution set is:&gt; [&gt; [-1, 0, 1],&gt; [-1, -1, 2]&gt; ]&gt;&gt; Two sum类问题，找两个数的和为一个定值的问题，如果直接使用二分查找，排序+查找或者在有序数组中直接查找的复杂度都是O(nlogn)，有的题卡复杂度的就过不去 Two Sum问题的一般做法对无序数组进行排序后（若数组已经是有序的化则不需要排序），设置两个指针left、right指向数组的首尾，target是要查找的目标 如果arr[left] + arr[right] == target，查找到了 如果arr[left] + arr[right] &lt; target，按照遍历的方式right往左移，right -= 1 如果arr[left] + arr[right] &gt; target，很显然right不需要再往左移动了，直接进入下一轮迭代，即left += 1，right不动 right不用像遍历一样回到最右边吗？不用。因为现在的arr[left]与right右边的数相加都是大于target的（不然right不会向左移），那么left再向右移动arr[left]只会更大，right也就不用再回到右边了 最后注意下重复数字答案重复的问题 Two Sum问题的这种解决方法排序+查找复杂度依然是O(nlogn)，但是主要是因为排序的消耗。如果题目已经给了有序的数列，那么复杂度将会降为O(n) N Sum 问题 对前几位进行遍历，对最后两维做Two Sum Python Code 1234567891011121314151617181920212223242526272829303132class Solution(object): def threeSum(self, nums): """ :type nums: List[int] :rtype: List[List[int]] """ ans = [] if len(nums) &lt; 3: return [] nums.sort() for i in range(len(nums) - 2): if nums[i] &gt; 0: break if i &gt; 0 and nums[i] == nums[i-1]: continue l = i+1 r = len(nums)-1 while l &lt; r: if nums[i] + nums[l] + nums[r] &gt; 0: r -= 1 elif nums[i] + nums[l] + nums[r] &lt; 0: l += 1 else: ans.append([nums[i], nums[l], nums[r]]) l += 1 while l &lt; r and nums[l] == nums[l-1]: l += 1 r -= 1 while l &lt; r and nums[r] == nums[r+1]: r -= 1 return ans]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 24 Swap Nodes in Pairs]]></title>
+    <url>%2F2018%2F01%2F20%2Fleetcode24%2F</url>
+    <content type="text"><![CDATA[Given a linked list, swap every two adjacent nodes and return its head. For example,Given 1-&gt;2-&gt;3-&gt;4, you should return the list as 2-&gt;1-&gt;4-&gt;3. Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed. Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def swapPairs(self, head): """ :type head: ListNode :rtype: ListNode """ if head == None or head.next == None: return head ret = head.next i = head j = head.next pre = None while j != None: i.next = j.next j.next = i if pre != None: pre.next = j if i.next != None: pre = i i = i.next j = i.next else: break return ret]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Tensorflow 共享变量理解]]></title>
+    <url>%2F2018%2F01%2F19%2Ftensorflow_variable%2F</url>
+    <content type="text"><![CDATA[本文主要通过一些例子介绍tensorflow中两种变量的声明方式和两种scope 参考概述: https://www.tensorflow.org/programmers_guide/variables tf.Variable(): https://www.tensorflow.org/api_docs/python/tf/Variable tf.get_variable(): https://www.tensorflow.org/api_docs/python/tf/get_variable tf.variable_scope(): https://www.tensorflow.org/api_docs/python/tf/variable_scope tf.name_scope(): https://www.tensorflow.org/api_docs/python/tf/name_scope 简介本文主要通过一些例子介绍tensorflow中两种变量的声明方式 tf.Variable() tf.get_variable() 以及两种scope: tf.name_scope() tf.variable_scope() tf.name_scope() 和 tf.variable_scope() 例子1 1234567891011import tensorflow as tfwith tf.name_scope("Ph0en1x_name_scope"): initializer = tf.constant_initializer(value=1) var1 = tf.get_variable(name='var1', shape=[1], dtype=tf.float32, initializer=initializer) var2 = tf.Variable(name='var2', initial_value=[2], dtype=tf.float32) var3 = var2*2 with tf.Session() as sess: sess.run(tf.initialize_all_variables()) print(var1.name) print(var2.name) 输出1 123var1:0Ph0en1x_name_scope/var2:0Ph0en1x_name_scope/mul 可以看出使用tf.Variable()创建的变量和算子op受到name_scope的控制，而使用tf.get_variable()的则不会 ​ 例子2 1234567891011import tensorflow as tfwith tf.variable_scope("Ph0en1x_variable_scope"): initializer = tf.constant_initializer(value=1) var1 = tf.get_variable(name='var1', shape=[1], dtype=tf.float32, initializer=initializer) var2 = tf.Variable(name='var2', initial_value=[2], dtype=tf.float32) var3 = var2*2 with tf.Session() as sess: sess.run(tf.initialize_all_variables()) print(var1.name) print(var2.name) 输出2 123Ph0en1x_variable_scope/var1:0Ph0en1x_variable_scope/var2:0Ph0en1x_variable_scope/mul:0 如果使用variable_scope 则都会受到控制 tf.Variable() 和 tf.get_variable() 例子3 12345678910import tensorflow as tfwith tf.variable_scope("Ph0en1x_variable_scope"): initializer = tf.constant_initializer(value=1) var1 = tf.Variable(name='var1', initial_value=[2], dtype=tf.float32) var1_1 = tf.Variable(name='var1', initial_value=[2], dtype=tf.float32) with tf.Session() as sess: sess.run(tf.initialize_all_variables()) print(var1.name) print(var1_1.name) 输出3 12Ph0en1x_variable_scope/var1:0Ph0en1x_variable_scope/var1_1:0 当在同一个scope中使用tf.Variable()声明同名的变量时，tensorflow会自动将其重命名，但是， 例子4 1234567891011import tensorflow as tfwith tf.variable_scope("Ph0en1x_variable_scope"): initializer = tf.constant_initializer(value=1) var2 = tf.get_variable(name='var2', shape=[1], dtype=tf.float32, initializer=initializer) var2_2 = tf.get_variable(name='var2', shape=[1], dtype=tf.float32, initializer=initializer) with tf.Session() as sess: sess.run(tf.initialize_all_variables()) print(var2.name) print(var2_2.name) 结果4 1ValueError: Variable Ph0en1x_variable_scope/var2 already exists, disallowed. Did you mean to set reuse=True or reuse=tf.AUTO_REUSE in VarScope? Originally defined at: 使用tf.get_variable()时则没有自动重命名，而是直接抛出异常，询问是否想要把reuse值设为True reuse参数通过tf.get_variable() tf.variable_scope() 以及reuse参数的配合使用，就可以使用共享变量。 为什么要用共享变量？​ 举一个栗子，当我们搭建对抗生成网络进行判别器的训练的时候，对判别器是有真实图像和生成图像两组输入的，即 判别器定义 12345678910def get_discriminator(img, n_units, reuse=False, alpha=0.01): with tf.variable_scope('discriminator', reuse=reuse): hidden1 = tf.layers.dense(img, n_units) hidden1 = tf.maximum(alpha*hidden1, hidden1) logits = tf.layers.dense(hidden1, 1) outputs = tf.sigmoid(logits) return logits, outputs 判别器实例 12d_logits_real, d_outputs_real = get_discriminator(real_img, d_units)d_logits_fake, d_outputs_fake = get_discriminator(g_outputs, d_units, reuse=True) 两组图像使用的都是同一组判别器的变量，但是他们分两次调用get_discriminator()时，如果不将reuse设置成为True,显然就会产生上面出现的异常。 例子5 123456import tensorflow as tfwith tf.variable_scope("foo"): v = tf.get_variable("var", [1])with tf.variable_scope("foo", reuse=True): v1 = tf.get_variable("var", [1])print(v1 is v) 或 12345with tf.variable_scope("foo"): v = tf.get_variable("var", [1]) tf.get_variable_scope().reuse_variables() v1 = tf.get_variable("var", [1])print(v1 is v) 结果5 1True 但是一旦设置为True，就无法再次修改回去]]></content>
+      <categories>
+        <category>tensorflow</category>
+      </categories>
+      <tags>
+        <tag>tensorflow</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU 5754 Life Winner Bo]]></title>
+    <url>%2F2018%2F01%2F14%2Fhdu5754%2F</url>
+    <content type="text"><![CDATA[Problem Description Bo is a “Life Winner”.He likes playing chessboard games with his girlfriend G.The size of the chessboard is N×M.The top left corner is numbered(1,1) and the lower right corner is numberd (N,M).For each game,Bo and G take turns moving a chesspiece(Bo first).At first,the chesspiece is located at (1,1).And the winner is the person who first moves the chesspiece to (N,M).At one point,if the chess can’t be moved and it isn’t located at (N,M),they end in a draw.In general,the chesspiece can only be moved right or down.Formally,suppose it is located at (x,y),it can be moved to the next point (x′,y′) only if x′≥x and y′≥y.Also it can’t be moved to the outside of chessboard.Besides,There are four kinds of chess(They have movement rules respectively).1.king.2.rook(castle).3.knight.4.queen.(The movement rule is as same as the chess.)For each type of chess,you should find out that who will win the game if they both play in an optimal strategy.Print the winner’s name(“B” or “G”) or “D” if nobody wins the game. Input In the first line,there is a number T as a case number.In the next T lines,there are three numbers type,N and M.“type” means the kind of the chess.T≤1000,2≤N,M≤1000,1≤type≤4 Output For each question,print the answer. Sample Input 1234541 5 52 5 53 5 54 5 5 Sample Output 1234GGDB Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cmath&gt;using namespace std;int dp1[1005][1005];int dp3[1005][1005];int dp4[1005][1005];void init()&#123; for(int i = 0; i &lt;= 1000; i++) &#123; dp1[i][1001] = dp1[1001][i] = 1; dp3[i][1000] = dp3[1000][i] = 3; dp3[i][1001] = dp3[1001][i] = 1; dp4[i][i] = dp4[i][1000] = dp4[1000][i] = 1; dp4[i][1001] = dp4[1001][i] = 1; &#125; dp3[1000][1000] = 0; dp3[999][999] = 3; dp1[1000][1000] = dp4[1000][1000] = 0; dp1[1001][1001] = dp4[1001][1001] = 1; for(int i = 1000; i &gt;= 0; i--) &#123; for(int j = 1000; j &gt;= 0; j--) &#123; if(dp1[i+1][j] == 1 &amp;&amp; (dp1[i][j+1] == 1 &amp;&amp; dp1[i+1][j+1] == 1)) dp1[i][j] = 0; else dp1[i][j] = 1; &#125; &#125; for(int i = 999; i &gt;= 0; i--) &#123; for(int j = 999; j &gt;= 0; j--) &#123; if(i == 999 &amp;&amp; j == 999)&#123;&#125; else if((i == 999 || dp3[i+2][j+1] == 1) &amp;&amp; (j == 999 || dp3[i+1][j+2] == 1)) dp3[i][j] = 0; else if(dp3[i+2][j+1] == 0 || dp3[i+1][j+2] == 0) dp3[i][j] = 1; else dp3[i][j] = 3; if(dp4[i][j]) continue; if(!dp4[i][j]) &#123; for(int ii = i - 1; ii &gt;= 0; ii--) dp4[ii][j] = 1; for(int ii = j - 1; ii &gt;= 0; ii--) dp4[i][ii] = 1; for(int ii = 1; i-ii &gt;= 0 &amp;&amp; j-ii &gt;= 0; ii++) dp4[i-ii][j-ii] = 1; &#125; &#125; &#125;&#125;int main()&#123; int ca; int t, n, m; memset(dp1, 0, sizeof(dp1)); memset(dp3, 0, sizeof(dp3)); memset(dp4, 0, sizeof(dp4)); init(); scanf("%d", &amp;ca); while(ca--) &#123; scanf("%d%d%d", &amp;t, &amp;n, &amp;m); if(t == 1) &#123; if(dp1[1000-n+1][1000-m+1]) printf("B\n"); else printf("G\n"); &#125; else if(t == 2) &#123; if((n-1) ^ (m-1)) printf("B\n"); else printf("G\n"); &#125; else if(t == 3) &#123; if(dp3[1000-n+1][1000-m+1] == 1) printf("B\n"); else if(dp3[1000-n+1][1000-m+1] == 0) printf("G\n"); else if(dp3[1000-n+1][1000-m+1] == 3) printf("D\n"); &#125; else &#123; if(dp4[1000-n+1][1000-m+1] == 1) printf("B\n"); else printf("G\n"); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>hdu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[HDU 5802 Windows 10]]></title>
+    <url>%2F2018%2F01%2F14%2Fhdu5802%2F</url>
+    <content type="text"><![CDATA[Problem Description Long long ago, there was an old monk living on the top of a mountain. Recently, our old monk found the operating system of his computer was updating to windows 10 automatically and he even can’t just stop it !!With a peaceful heart, the old monk gradually accepted this reality because his favorite comic LoveLive doesn’t depend on the OS. Today, like the past day, he opens bilibili and wants to watch it again. But he observes that the voice of his computer can be represented as dB and always be integer.Because he is old, he always needs 1 second to press a button. He found that if he wants to take up the voice, he only can add 1 dB in each second by pressing the up button. But when he wants to take down the voice, he can press the down button, and if the last second he presses the down button and the voice decrease x dB, then in this second, it will decrease 2 * x dB. But if the last second he chooses to have a rest or press the up button, in this second he can only decrease the voice by 1 dB.Now, he wonders the minimal seconds he should take to adjust the voice from p dB to q dB. Please be careful, because of some strange reasons, the voice of his computer can larger than any dB but can’t be less than 0 dB. Input First line contains a number T (1≤T≤300000),cases number.Next T line,each line contains two numbers p and q (0≤p,q≤109) Output The minimal seconds he should take Sample Input 12321 57 3 Sample Output 1244 Code 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;string.h&gt;#include &lt;algorithm&gt;using namespace std;int p, q;int dfs(int cur, int step, int stop)///现在位置，已走步数，停顿次数&#123; int cnt = 0; while(cur - (1&lt;&lt;cnt) + 1 &gt; q) cnt++; step += cnt; if(cur - (1&lt;&lt;cnt) + 1 == q) return step; int up = q - max(0, cur - (1&lt;&lt;cnt) + 1);///需要往回走多少步 int tmp = step + max(up-stop, 0);///通过把之前的停顿换成向上一步来减少之后向上的步数 return min(tmp, dfs(cur - (1&lt;&lt;(cnt-1))+1, step, stop + 1));&#125;int main()&#123; int ca; int ans; scanf("%d", &amp;ca); while(ca--) &#123; scanf("%d%d", &amp;p, &amp;q); if(p &lt;= q) ans = q - p; else ans = dfs(p, 0, 0); printf("%d\n", ans); &#125; return 0;&#125; ​]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>hdu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Eclipse中Junit与Eclemma插件安装与使用]]></title>
+    <url>%2F2018%2F01%2F03%2Fjunit%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍Eclipse中Junit与Eclemma插件安装与使用 完整代码 1.Install Junit and Eclemma 1.1. Install Junit Download necessary JARs packages Click right key on the project – Properties – Java Build Path – Libraries – Add External JARs Add Junit and harmcrest-all-* 1.2. Install Eclemma Help –- Install New Software –Add Input the name eclemma and the Location with http://update.eclemma.org. Select the eclemma and complete click Next Reboot the eclipse to complete the installation 2.Using Junit and eclemma Under src folder, create com.Triangle package Write Triangle.java 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081package com.Triangle;public class Triangle &#123; int a, b, c; public Triangle(int x, int y, int z)&#123; a = x; b = y; c = z; &#125; public String isPositive()&#123; String msg = ""; if(a &gt; 0 &amp;&amp; b &gt; 0 &amp;&amp; c &gt; 0)&#123; msg = "positive"; &#125;else&#123; if(a &lt;= 0) msg += "a is negative"; if(b &lt;= 0) msg += "b is negative"; if(c &lt;= 0) msg += "c is negative"; &#125; //System.out.println(msg); return msg; &#125; public String isTriangle()&#123; String msg = ""; if(a+b &gt; c &amp;&amp; a+c &gt; b &amp;&amp; b+c &gt; a)&#123; msg = "triangle"; &#125;else&#123; msg = "not a triangle"; &#125; //System.out.println(msg); return msg; &#125; public String isIsosceles()&#123; String msg = ""; if(a == b || b == c || c == a)&#123; msg = "isosceles"; &#125;else&#123; msg = "not isosceles"; &#125; //System.out.println(msg); return msg; &#125; public String isEquilateral()&#123; String msg = ""; if(a == b &amp; b == c)&#123; msg = "equilateral"; &#125;else&#123; msg = "not equilateral"; &#125; //System.out.println(msg); return msg; &#125; public String judge()&#123; String msg = ""; msg = this.isPositive(); if(msg.equals("positive"))&#123; msg = this.isTriangle(); if(msg.equals("triangle"))&#123; msg = this.isIsosceles(); if(msg.equals("isosceles"))&#123; msg = this.isEquilateral(); if(!msg.equals("equilateral"))&#123; return "isosceles"; &#125; &#125;else&#123; return "triangle"; &#125; &#125; &#125; return msg; &#125;&#125; Create new source folder test and create com.Triangle package similarly Write several classes for test 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061package com.Triangle;import static org.junit.Assert.*; import java.util.Arrays;import java.util.Collection;import org.junit.After;import org.junit.Before;import org.junit.Test;import org.junit.runner.RunWith;import org.junit.runners.Parameterized;import org.junit.runners.Parameterized.Parameters; import com.Triangle.Triangle;@RunWith(Parameterized.class)public class JudgeTest &#123; private int a; private int b; private int c; private String expected; private Triangle triangle; public JudgeTest(int a, int b, int c, String expected)&#123; this.a = a; this.b = b; this.c = c; this.expected = expected; &#125; @Before public void setUp()&#123; System.out.println("Before Judge Test"); this.triangle = new Triangle(this.a, this.b, this.c); &#125; @After public void tearDown()&#123; System.out.println("After Judge Test"); &#125; @Parameters public static Collection&lt;Object[]&gt; getData()&#123; return Arrays.asList(new Object[][]&#123; &#123;3,3,3,"equilateral"&#125;, &#123;3,4,3, "isosceles"&#125;, &#123;2,3,4, "triangle"&#125;, &#123;1,2,3, "not a triangle"&#125;, &#123;-1,1,2, "a is negative"&#125;, &#123;1,-2,1, "b is negative"&#125;, &#123;1,1,-2, "c is negative"&#125; &#125;); &#125; @Test public void testAdd()&#123; assertEquals(this.expected, triangle.judge()); &#125;&#125; In order to practice @Runwith(Suite.class), I also write some other test classes 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354package com.Triangle;import static org.junit.Assert.*; import java.util.Arrays;import java.util.Collection;import org.junit.After;import org.junit.Before;import org.junit.Test;import org.junit.runner.RunWith;import org.junit.runners.Parameterized;import org.junit.runners.Parameterized.Parameters; import com.Triangle.Triangle;@RunWith(Parameterized.class)public class PositiveTest &#123; private int a; private int b; private int c; private String expected; private Triangle triangle; public PositiveTest(int a, int b, int c, String expected)&#123; this.a = a; this.b = b; this.c = c; this.expected = expected; &#125; @Before public void setUp()&#123; System.out.println("Before Positive Test"); this.triangle = new Triangle(this.a, this.b, this.c); &#125; @After public void tearDown()&#123; System.out.println("After Positive Test"); &#125; @Parameters public static Collection&lt;Object[]&gt; getData()&#123; return Arrays.asList(new Object[][]&#123; &#123;3,3,3,"positive"&#125; &#125;); &#125; @Test public void testAdd()&#123; assertEquals(this.expected, triangle.isPositive()); &#125;&#125; 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354package com.Triangle;import static org.junit.Assert.*; import java.util.Arrays;import java.util.Collection; import org.junit.Before;import org.junit.After;import org.junit.Test;import org.junit.runner.RunWith;import org.junit.runners.Parameterized;import org.junit.runners.Parameterized.Parameters; import com.Triangle.Triangle;@RunWith(Parameterized.class)public class TriangleTest &#123; private int a; private int b; private int c; private String expected; private Triangle triangle; public TriangleTest(int a, int b, int c, String expected)&#123; this.a = a; this.b = b; this.c = c; this.expected = expected; &#125; @Before public void setUp()&#123; System.out.println("Before Triangle Test"); this.triangle = new Triangle(this.a, this.b, this.c); &#125; @After public void tearDown()&#123; System.out.println("After Triangle Test"); &#125; @Parameters public static Collection&lt;Object[]&gt; getData()&#123; return Arrays.asList(new Object[][]&#123; &#123;3,3,3,"triangle"&#125; &#125;); &#125; @Test public void testAdd()&#123; assertEquals(this.expected, triangle.isTriangle()); &#125;&#125; 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354package com.Triangle;import static org.junit.Assert.*; import java.util.Arrays;import java.util.Collection;import org.junit.After;import org.junit.Before;import org.junit.Test;import org.junit.runner.RunWith;import org.junit.runners.Parameterized;import org.junit.runners.Parameterized.Parameters; import com.Triangle.Triangle;@RunWith(Parameterized.class)public class IsoscelesTest &#123; private int a; private int b; private int c; private String expected; private Triangle triangle; public IsoscelesTest(int a, int b, int c, String expected)&#123; this.a = a; this.b = b; this.c = c; this.expected = expected; &#125; @Before public void setUp()&#123; System.out.println("Before Isosceles Test"); this.triangle = new Triangle(this.a, this.b, this.c); &#125; @After public void tearDown()&#123; System.out.println("After Isosceles Test"); &#125; @Parameters public static Collection&lt;Object[]&gt; getData()&#123; return Arrays.asList(new Object[][]&#123; &#123;3,3,3,"isosceles"&#125; &#125;); &#125; @Test public void testAdd()&#123; assertEquals(this.expected, triangle.isIsosceles()); &#125;&#125; 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455package com.Triangle;import static org.junit.Assert.*; import java.util.Arrays;import java.util.Collection;import org.junit.After;import org.junit.Before;import org.junit.Test;import org.junit.runner.RunWith;import org.junit.runners.Parameterized;import org.junit.runners.Parameterized.Parameters; import com.Triangle.Triangle;@RunWith(Parameterized.class)public class EquilateralTest &#123; private int a; private int b; private int c; private String expected; private Triangle triangle; public EquilateralTest(int a, int b, int c, String expected)&#123; this.a = a; this.b = b; this.c = c; this.expected = expected; &#125; @Before public void setUp()&#123; System.out.println("Before Equilateral Test"); this.triangle = new Triangle(this.a, this.b, this.c); &#125; @After public void tearDown()&#123; System.out.println("After Equilateral Test"); &#125; @Parameters public static Collection&lt;Object[]&gt; getData()&#123; return Arrays.asList(new Object[][]&#123; &#123;3,3,3,"equilateral"&#125; &#125;); &#125; @Test public void testAdd()&#123; assertEquals(this.expected, triangle.isEquilateral()); &#125;&#125; SuiteTest.java 1234567891011package com.Triangle;import org.junit.runner.RunWith;import org.junit.runners.Suite;import org.junit.runners.Suite.SuiteClasses;@RunWith(Suite.class)@SuiteClasses(&#123; PositiveTest.class, TriangleTest.class , IsoscelesTest.class, EquilateralTest.class, JudgeTest.class&#125;)public class SuiteTest &#123;&#125; Result Click right key on SuiteTest.java -&gt; Coverage as -&gt; JUnit Test Except SuiteTest.java itself hasn’t been covered, other classes have been covered already. If run PositiveTest.java individually, there will be more paths that won’t be covered Green: All Covered Red: All Missed Yellow: Some Branches Missed]]></content>
+      <categories>
+        <category>软件测试</category>
+      </categories>
+      <tags>
+        <tag>Eclipse</tag>
+        <tag>软件测试</tag>
+        <tag>Junit</tag>
+        <tag>Eclemma</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Selenium脚本的录制和导出]]></title>
+    <url>%2F2018%2F01%2F02%2Fselenium%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍Eclipse中Junit与Eclemma插件安装与使用 完整代码 一、打开Selenium IDE附加组件 选择较老版本的Firefox浏览器到应用商店下载Selenium IDE，安装后打开如图所示： 配置Selenium WebDriver环境 向工程内导入如下的jar包（可以准备一个javacsv来辅助后面的实验） 录制脚本 使用Selenium IDE录制脚本后可以很方便的导出，可以直接在导出的代码上进行修改。 打开Selenium IDE 点击右上角的红点开始录制 进入网页输入账号密码登陆，其他网站类似 点击登录跳转后，选择页面内的github地址，右键选择assertText 再次点击红点完成录制 导出脚本 点击Optinons-&gt;Options，勾选Enable experimental features 通过Options–&gt;Format选择要导出成的相应格式。 选择Java / JUnit 4/ WebDriver 得到生成的Java文件，复制到工程中完成脚本导出 编写完整代码 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110package com.WebDriveTest;import java.util.regex.Pattern;import java.io.IOException;import java.nio.charset.Charset;import java.util.Arrays;import java.util.Collection;import java.util.concurrent.TimeUnit;import org.junit.*;import org.junit.runner.RunWith;import org.junit.runners.Parameterized;import org.junit.runners.Parameterized.Parameters;import static org.junit.Assert.*;import static org.hamcrest.CoreMatchers.*;import org.openqa.selenium.*;import org.openqa.selenium.firefox.FirefoxDriver;import org.openqa.selenium.support.ui.Select;import com.csvreader.CsvReader;@RunWith(Parameterized.class)public class WebDriveTest &#123; private WebDriver driver; private String baseUrl; private boolean acceptNextAlert = true; private StringBuffer verificationErrors = new StringBuffer(); private String id, pwd,address; public WebDriveTest(String id, String address) &#123; this.id = id; this.pwd = id.substring(4); this.address = address; &#125; @Before public void setUp() throws Exception &#123; driver = new FirefoxDriver(); baseUrl = "http://121.193.130.195:8080"; driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); &#125; @Parameters public static Collection&lt;Object[]&gt; getData() throws IOException &#123; Object[][] obj = new Object[118][]; CsvReader r = new CsvReader("D:\\CIA\\大三下\\软测\\inputgit.csv", ',', Charset.forName("GBK")); int count = 0; r.readHeaders(); while(r.readRecord())&#123; obj[count] = new Object[]&#123;r.get(0), r.get(2)&#125;; count++; &#125; return Arrays.asList(obj); &#125; @Test public void testUntitled2() throws Exception &#123; driver.get(baseUrl + "/"); driver.findElement(By.id("name")).clear(); driver.findElement(By.id("name")).sendKeys(this.id); driver.findElement(By.id("pwd")).clear(); driver.findElement(By.id("pwd")).sendKeys(this.pwd); driver.findElement(By.id("submit")).click(); assertEquals(this.address, driver.findElement(By.xpath("//tbody[@id='table-main']/tr[3]/td[2]")).getText()); &#125; @After public void tearDown() throws Exception &#123; driver.quit(); String verificationErrorString = verificationErrors.toString(); if (!"".equals(verificationErrorString)) &#123; fail(verificationErrorString); &#125; &#125; private boolean isElementPresent(By by) &#123; try &#123; driver.findElement(by); return true; &#125; catch (NoSuchElementException e) &#123; return false; &#125; &#125; private boolean isAlertPresent() &#123; try &#123; driver.switchTo().alert(); return true; &#125; catch (NoAlertPresentException e) &#123; return false; &#125; &#125; private String closeAlertAndGetItsText() &#123; try &#123; Alert alert = driver.switchTo().alert(); String alertText = alert.getText(); if (acceptNextAlert) &#123; alert.accept(); &#125; else &#123; alert.dismiss(); &#125; return alertText; &#125; finally &#123; acceptNextAlert = true; &#125; &#125;&#125; 实验结果]]></content>
+      <categories>
+        <category>软件测试</category>
+      </categories>
+      <tags>
+        <tag>软件测试</tag>
+        <tag>Selenium</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[使用Hexo快速搭建自己的博客]]></title>
+    <url>%2F2018%2F01%2F01%2Fhexo%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍如何使用hexo来搭建静态页面博客，并套用目前最多人使用的NexT模版 一、需要准备的工具 Node.js Hexo使用node.js进行静态页面的生成，到https://nodejs.org/zh-cn/下载当前最新的node.js进行安装 hexo hexo官网：https://hexo.io/ 上面有非常完整的文档 安装node.js完成后在控制台应该就能够直接使用npm，如果不能使用，可以在环境变量中系统变量中的Path添加npm 安装hexo的命令如下： 1234$ npm install hexo-cli -g$ hexo init blog$ cd blog$ npm install 分别为安装hexo、创建博客的根目录、进入博客根目录、初始化目录 二、配置博客打开博客根目录下的_config.yml文件进行修改，这里先讲几个最主要的修改，在之后的配置过程中会进一步对这个文件进行修改 123456title: 博客名subtitle: 博客子标题description: 博客的一段描述author: 作者language: zh-CNtimezone: Asia/Shanghai 这里要注意一点，每项设置冒号: 后面一定要留一个空格 如果使用git pages来作为博客的托管，并且已经创建好githubname.github.io的仓库的话，按下面这么改 1234deploy: type: git repo: https://github.com/YourName/YourName.github.io.git branch: master 然后 1npm install --save hexo-deployer-git 三、编写并部署博客 创建博客 在博客根目录，控制台中输入 1$ hexo new "new" 在/source/_post下创建名为new的新博客 清除缓存 每次重新生成博客之前最好要进行这一步操作 1$ hexo clean 生成博客 123$ hexo generateor$ hexo g 开启服务器 123$ hexo serveror$ hexo s 默认会打开在http://localhost:4000/ 部署博客 123$ hexo deployor$ hexo d hexo将会将生成的博客push到之前配置文件中定义好的repo中 四、套用模版hexo有非常多的模版，其中最常见的模版之一就是nexT模版，也是文档相对完善的一套主题 官网：http://theme-next.iissnan.com/ 到官网上下载，或者到作者的github上下载相应主题文件后，在/themes下创建一个文件夹next并将下载的子文件拷贝到其下 然后修改博客的配置文件_config.yml（注意：下载的主题文件中也有同名的配置文件，以后会以主题的配置文件加以区分） 重新清理–&gt;生成–&gt;查看–&gt;部署，然后登录自己博客的主页看看效果吧！ 五、SEO 安装sitemap 进入根目录，输入 12npm install hexo-generator-sitemap --savenpm install hexo-generator-baidu-sitemap --save 在站点配置文件 _condig.yml中添加 12345##自动生成sitemapsitemap:path: sitemap.xmlbaidusitemap:path: baidusitemap.xml 在站点配置文件 _condig.yml中修改url为首页地址 重新生成并部署 提交sitemap 在百度站长工具中链接提交中选择sitemap提交方式，输入 1https://yoursite.com/baidusitemap.xml 谷歌也可以以类似的方式 1https://yoursite.com/sitemap.xml 如果是新网站，可能需要验证网站所有权，谷歌可以使用Google Analyze直接验证，或者百度和谷歌都可以提交HTML标签来验证。 将提供的&lt;meta&gt;标签加入\themes\next\layout\_partials下的head.swig中最上方重新生成上传，然后在百度谷歌中点验证就可以了 六、Fancybox开启图片放大缩小 安装与更新 123$ rm -rf themes/next/source/lib/fancybox$ cd themes/next$ git clone https://github.com/theme-next/theme-next-fancybox3 source/lib/fancybox 七、添加分享功能主题配置文件 12345678910111213141516needmoreshare2: enable: true postbottom: enable: false options: iconStyle: box boxForm: horizontal position: bottomCenter networks: Weibo,Wechat,Douban,QQZone float: enable: true options: iconStyle: box boxForm: vertical position: middleRight networks: Weibo,Wechat,Douban,QQZone see more 在站点配置文件 _config.yml中修改 1fancybox: true]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+</search>
