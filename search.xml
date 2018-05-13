@@ -13,18 +13,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Ubuntu下安装Matlab 2018a]]></title>
-    <url>%2F2018%2F04%2F23%2Fubuntu_matlab%2F</url>
-    <content type="text"><![CDATA[在Ubuntu在安装Matlab用于学习、研究用途。Linux上可以使用开源免费的Octave代替 下载Matlab 2018a 安装包 matlab是收费软件，所以这篇笔记没有提供下载和破解资源，各位想把Matlab用做学习研究用途的童鞋可以到各大PT站取下载 ​ 进入安装包内，和Windows安装一样，里面会有三个文件，分别是破解用的证书文件，光盘镜像1，光盘镜像2 ​ 创建挂载点~/matlab挂载映像文件1 123$ cd ~$ mkdir matlab $ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd1.iso ~/matlab/ ​ 挂载之后，进入根目录开始安装(注意不能直接在挂载目录下启动install) 12$ cd /$ sudo ./home/phoenix/matlab/install ​ 安装中提示输入key的可以到破解文件Crack中的readme.txt中找 按照提示进行安装，安装到一半时会提示插入光盘2，这时候就要挂载映像文件2 1$ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd2.iso ~/matlab/ ​ 安装好后第一次启动 12$ cd /usr/local/MATLAB/R2018a/bin$ sudo ./matlab ​ 选择不要联网激活，导入Crack中的license_standalone.lic文件 ​ 复制文件 1sudo cp -f YOUR_DOWNLOAD_DIR/Matlab2018aLinux64Crack/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so /usr/local/MATLAB/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl 再次启动 1$ sudo ./matlab]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>matlab</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Ubuntu下编译安装VLfeat]]></title>
     <url>%2F2018%2F04%2F23%2Fubuntu_vlfeat%2F</url>
     <content type="text"><![CDATA[The VLFeat open source library implements popular computer vision algorithms specializing in image understanding and local features extraction and matching. Algorithms include Fisher Vector, VLAD, SIFT, MSER, k-means, hierarchical k-means, agglomerative information bottleneck, SLIC superpixels, quick shift superpixels, large scale SVM training, and many others. It is written in C for efficiency and compatibility, with interfaces in MATLAB for ease of use, and detailed documentation throughout. It supports Windows, Mac OS X, and Linux. 下载源码 解压进入vlfeat的根目录vlfeat_ROOT 修改Makefile 解除注释或添加一行 1DISABLE_OPENMP=yes ​ 打开/etc/ld.so.conf添加一行 1vlfeat_ROOT/toolbox/mex/mexa64 ​ 刷新环境配置 1sudo ldconfig ​ 再次进入vlfeat_ROOT，输入命令 1make MEX=matlab_ROOT/bin/mex ​ 编译成功后进入matlab命令行输入 1run('vlfeat_ROOT/toolbox/vl_setup.m') 运行成功后查看版本，正常显示后完成安装 1vl_version ​ 在matlab起始位置下(我的是HOME目录下)添加一个startup.m文件写上 1run('vlfeat_ROOT/toolbox/vl_setup.m') 就可以每次启动时自动加载vlfeat ​]]></content>
@@ -35,6 +23,18 @@
         <tag>Ubuntu</tag>
         <tag>matlab</tag>
         <tag>VLfeat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu下安装Matlab 2018a]]></title>
+    <url>%2F2018%2F04%2F23%2Fubuntu_matlab%2F</url>
+    <content type="text"><![CDATA[在Ubuntu在安装Matlab用于学习、研究用途。Linux上可以使用开源免费的Octave代替 下载Matlab 2018a 安装包 matlab是收费软件，所以这篇笔记没有提供下载和破解资源，各位想把Matlab用做学习研究用途的童鞋可以到各大PT站取下载 ​ 进入安装包内，和Windows安装一样，里面会有三个文件，分别是破解用的证书文件，光盘镜像1，光盘镜像2 ​ 创建挂载点~/matlab挂载映像文件1 123$ cd ~$ mkdir matlab $ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd1.iso ~/matlab/ ​ 挂载之后，进入根目录开始安装(注意不能直接在挂载目录下启动install) 12$ cd /$ sudo ./home/phoenix/matlab/install ​ 安装中提示输入key的可以到破解文件Crack中的readme.txt中找 按照提示进行安装，安装到一半时会提示插入光盘2，这时候就要挂载映像文件2 1$ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd2.iso ~/matlab/ ​ 安装好后第一次启动 12$ cd /usr/local/MATLAB/R2018a/bin$ sudo ./matlab ​ 选择不要联网激活，导入Crack中的license_standalone.lic文件 ​ 复制文件 1sudo cp -f YOUR_DOWNLOAD_DIR/Matlab2018aLinux64Crack/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so /usr/local/MATLAB/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl 再次启动 1$ sudo ./matlab]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>matlab</tag>
       </tags>
   </entry>
   <entry>
@@ -147,9 +147,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[等度量映射(ISOMAP)]]></title>
-    <url>%2F2018%2F03%2F11%2FIsomap%2F</url>
-    <content type="text"><![CDATA[等度量映射(Isomap)是最经典的非线性映射降维方法之一，它在MDS的基础上引入了“测地距离”的概念，直接解决了MDS使用欧氏距离无法应对非线性流形的问题。 测地距离(Geometric Distance)是高维流形中两点之间的最短距离，高维流形中，空间是不规则的，所以最短距离不一定是直线距离(欧氏距离)。就像蚂蚁从立方体的一面爬到另一面，不能直接横穿立方体一样。 上图最左边的图中两个点的最近距离应该是蓝色实线的距离，而不应该是虚线的距离。 真实的测地距离是非常难以求出的，Isomap基于流形局部近似于欧式空间的定义提出了一种近似的求解方式 求得原样本的KNN图，并依据定义保留其欧式距离 所有非KNN的点间的距离规定为无穷大 用dijkstra或floyd求出任意两点的最短路便可近似表示两点间的测地距离 最后Isomap将得到的测地距离矩阵输入MDS完成降维; 感受下效果]]></content>
+    <title><![CDATA[多维缩放(MDS)]]></title>
+    <url>%2F2018%2F03%2F11%2FMDS%2F</url>
+    <content type="text"><![CDATA[多维缩放(multidimensional scaling ,MDS)，是另外一种线性降维方式，与主成分分析法和线性降维分析法都不同的是，多维缩放的目标不是保留数据的最大可分性，而是更加关注与高维数据内部的特征。多维缩放算法集中于保留高维空间中的“相似度”信息，而在一般的问题解决的过程中，这个“相似度”通常用欧式距离来定义。 假设D为m个样本在高维空间中的距离矩阵，distij为第i个样本与第j个样本的欧式距离 Z是样本在低维中映射的表示，那么，多维缩放的降维目标就是要保证： 令B=ZTZ，B为降维后样本的内积矩阵，bij=ziTzj 规定降维后的样本为中心化样本，因为只保留了距离信息，无论结果怎么旋转、平移都可以，即 那么 令 综合以上各式，得到 所以可以使用距离矩阵D来求得内积矩阵B， 为了完成降维，可以将B进行特征值分解 仅保留最大的前d’个特征值以及相应的特征向量，就可以得出降维后的结果]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -159,9 +159,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[多维缩放(MDS)]]></title>
-    <url>%2F2018%2F03%2F11%2FMDS%2F</url>
-    <content type="text"><![CDATA[多维缩放(multidimensional scaling ,MDS)，是另外一种线性降维方式，与主成分分析法和线性降维分析法都不同的是，多维缩放的目标不是保留数据的最大可分性，而是更加关注与高维数据内部的特征。多维缩放算法集中于保留高维空间中的“相似度”信息，而在一般的问题解决的过程中，这个“相似度”通常用欧式距离来定义。 假设D为m个样本在高维空间中的距离矩阵，distij为第i个样本与第j个样本的欧式距离 Z是样本在低维中映射的表示，那么，多维缩放的降维目标就是要保证： 令B=ZTZ，B为降维后样本的内积矩阵，bij=ziTzj 规定降维后的样本为中心化样本，因为只保留了距离信息，无论结果怎么旋转、平移都可以，即 那么 令 综合以上各式，得到 所以可以使用距离矩阵D来求得内积矩阵B， 为了完成降维，可以将B进行特征值分解 仅保留最大的前d’个特征值以及相应的特征向量，就可以得出降维后的结果]]></content>
+    <title><![CDATA[等度量映射(ISOMAP)]]></title>
+    <url>%2F2018%2F03%2F11%2FIsomap%2F</url>
+    <content type="text"><![CDATA[等度量映射(Isomap)是最经典的非线性映射降维方法之一，它在MDS的基础上引入了“测地距离”的概念，直接解决了MDS使用欧氏距离无法应对非线性流形的问题。 测地距离(Geometric Distance)是高维流形中两点之间的最短距离，高维流形中，空间是不规则的，所以最短距离不一定是直线距离(欧氏距离)。就像蚂蚁从立方体的一面爬到另一面，不能直接横穿立方体一样。 上图最左边的图中两个点的最近距离应该是蓝色实线的距离，而不应该是虚线的距离。 真实的测地距离是非常难以求出的，Isomap基于流形局部近似于欧式空间的定义提出了一种近似的求解方式 求得原样本的KNN图，并依据定义保留其欧式距离 所有非KNN的点间的距离规定为无穷大 用dijkstra或floyd求出任意两点的最短路便可近似表示两点间的测地距离 最后Isomap将得到的测地距离矩阵输入MDS完成降维; 感受下效果]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -430,9 +430,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Codeforce 920A Water The Garden]]></title>
-    <url>%2F2018%2F02%2F06%2Fcodeforce920A%2F</url>
-    <content type="text"><![CDATA[It is winter now, and Max decided it’s about time he watered the garden. The garden can be represented as n consecutive garden beds, numbered from 1 to n. k beds contain water taps (i-th tap is located in the bed x**i), which, if turned on, start delivering water to neighbouring beds. If the tap on the bed x**i is turned on, then after one second has passed, the bed x**i will be watered; after two seconds have passed, the beds from the segment [x**i - 1, x**i + 1] will be watered (if they exist); after j seconds have passed (j is an integer number), the beds from the segment [x**i - (j - 1), x**i + (j - 1)] will be watered (if they exist). Nothing changes during the seconds, so, for example, we can’t say that the segment [x**i - 2.5, x**i + 2.5] will be watered after 2.5seconds have passed; only the segment [x**i - 2, x**i + 2] will be watered at that moment. The garden from test 1. White colour denotes a garden bed without a tap, red colour — a garden bed with a tap. The garden from test 1 after 2 seconds have passed after turning on the tap. White colour denotes an unwatered garden bed, blue colour — a watered bed. Max wants to turn on all the water taps at the same moment, and now he wonders, what is the minimum number of seconds that have to pass after he turns on some taps until the whole garden is watered. Help him to find the answer! Input The first line contains one integer t — the number of test cases to solve (1 ≤ t ≤ 200). Then t test cases follow. The first line of each test case contains two integers n and k(1 ≤ n ≤ 200, 1 ≤ k ≤ n) — the number of garden beds and water taps, respectively. Next line contains k integers x**i (1 ≤ x**i ≤ n) — the location of i-th water tap. It is guaranteed that for each condition x**i - 1 &lt; x**i holds. It is guaranteed that the sum of n over all test cases doesn’t exceed 200. Note that in hacks you have to set t = 1. Output For each test case print one integer — the minimum number of seconds that have to pass after Max turns on some of the water taps, until the whole garden is watered. Example input 123456735 133 31 2 34 11 output 123314 Note The first example consists of 3 tests: There are 5 garden beds, and a water tap in the bed 3. If we turn it on, then after 1second passes, only bed 3 will be watered; after 2 seconds pass, beds [1, 3] will be watered, and after 3 seconds pass, everything will be watered. There are 3 garden beds, and there is a water tap in each one. If we turn all of them on, then everything will be watered after 1 second passes. There are 4 garden beds, and only one tap in the bed 1. It will take 4 seconds to water, for example, bed 4. C++ Code 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int t, n, k, tmp = 0, pretmp; int mi = 0; while(~scanf("%d", &amp;t)) &#123; for(int i = 0; i &lt; t; i++) &#123; scanf("%d%d", &amp;n, &amp;k); for(int j = 0; j &lt; k; j++) &#123; pretmp = tmp; scanf("%d", &amp;tmp); if(j == 0) mi = tmp; if(j &gt; 0 &amp;&amp; j &lt; k-1) mi = max(mi, (tmp-pretmp+2)/2); if(j == k-1) &#123; mi = max(mi, (tmp-pretmp+2)/2); mi = max(mi, n-tmp+1); &#125; &#125; printf("%d\n", mi); &#125; &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Codeforce 920B Tea Queue]]></title>
+    <url>%2F2018%2F02%2F06%2Fcodeforce920B%2F</url>
+    <content type="text"><![CDATA[Recently n students from city S moved to city P to attend a programming camp. They moved there by train. In the evening, all students in the train decided that they want to drink some tea. Of course, no two people can use the same teapot simultaneously, so the students had to form a queue to get their tea. i-th student comes to the end of the queue at the beginning of l**i-th second. If there are multiple students coming to the queue in the same moment, then the student with greater index comes after the student with lesser index. Students in the queue behave as follows: if there is nobody in the queue before the student, then he uses the teapot for exactly one second and leaves the queue with his tea; otherwise the student waits for the people before him to get their tea. If at the beginning of r**i-th second student i still cannot get his tea (there is someone before him in the queue), then he leaves the queue without getting any tea. For each student determine the second he will use the teapot and get his tea (if he actually gets it). Input The first line contains one integer t — the number of test cases to solve (1 ≤ t ≤ 1000). Then t test cases follow. The first line of each test case contains one integer n (1 ≤ n ≤ 1000) — the number of students. Then n lines follow. Each line contains two integer l**i, r**i (1 ≤ l**i ≤ r**i ≤ 5000) — the second i-th student comes to the end of the queue, and the second he leaves the queue if he still cannot get his tea. It is guaranteed that for every condition l**i - 1 ≤ l**i holds. The sum of n over all test cases doesn’t exceed 1000. Note that in hacks you have to set t = 1. Output For each test case print n integers. i-th of them must be equal to the second when i-th student gets his tea, or 0 if he leaves without tea. Example input 12345678221 31 431 51 12 3 output 121 2 1 0 2 Note The example contains 2 tests: During 1-st second, students 1 and 2 come to the queue, and student 1 gets his tea. Student 2 gets his tea during 2-nd second. During 1-st second, students 1 and 2 come to the queue, student 1 gets his tea, and student 2 leaves without tea. During 2-nd second, student 3 comes and gets his tea. C++ Code 12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int t; int cur = 0; int num; int l, r; int arr[1005]; scanf("%d", &amp;t); while(t--) &#123; scanf("%d", &amp;num); cur = 0; for(int i = 0; i &lt; num; i++) &#123; scanf("%d%d", &amp;l, &amp;r); if(l &lt;= cur) &#123; if(cur &gt;= r) arr[i] = 0; else &#123; arr[i] = ++cur; &#125; &#125; else &#123; cur = l; arr[i] = l; &#125; &#125; for(int i = 0; i &lt; num; i++) printf("%d ", arr[i]); printf("\n"); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -442,9 +442,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Codeforce 920B Tea Queue]]></title>
-    <url>%2F2018%2F02%2F06%2Fcodeforce920B%2F</url>
-    <content type="text"><![CDATA[Recently n students from city S moved to city P to attend a programming camp. They moved there by train. In the evening, all students in the train decided that they want to drink some tea. Of course, no two people can use the same teapot simultaneously, so the students had to form a queue to get their tea. i-th student comes to the end of the queue at the beginning of l**i-th second. If there are multiple students coming to the queue in the same moment, then the student with greater index comes after the student with lesser index. Students in the queue behave as follows: if there is nobody in the queue before the student, then he uses the teapot for exactly one second and leaves the queue with his tea; otherwise the student waits for the people before him to get their tea. If at the beginning of r**i-th second student i still cannot get his tea (there is someone before him in the queue), then he leaves the queue without getting any tea. For each student determine the second he will use the teapot and get his tea (if he actually gets it). Input The first line contains one integer t — the number of test cases to solve (1 ≤ t ≤ 1000). Then t test cases follow. The first line of each test case contains one integer n (1 ≤ n ≤ 1000) — the number of students. Then n lines follow. Each line contains two integer l**i, r**i (1 ≤ l**i ≤ r**i ≤ 5000) — the second i-th student comes to the end of the queue, and the second he leaves the queue if he still cannot get his tea. It is guaranteed that for every condition l**i - 1 ≤ l**i holds. The sum of n over all test cases doesn’t exceed 1000. Note that in hacks you have to set t = 1. Output For each test case print n integers. i-th of them must be equal to the second when i-th student gets his tea, or 0 if he leaves without tea. Example input 12345678221 31 431 51 12 3 output 121 2 1 0 2 Note The example contains 2 tests: During 1-st second, students 1 and 2 come to the queue, and student 1 gets his tea. Student 2 gets his tea during 2-nd second. During 1-st second, students 1 and 2 come to the queue, student 1 gets his tea, and student 2 leaves without tea. During 2-nd second, student 3 comes and gets his tea. C++ Code 12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int t; int cur = 0; int num; int l, r; int arr[1005]; scanf("%d", &amp;t); while(t--) &#123; scanf("%d", &amp;num); cur = 0; for(int i = 0; i &lt; num; i++) &#123; scanf("%d%d", &amp;l, &amp;r); if(l &lt;= cur) &#123; if(cur &gt;= r) arr[i] = 0; else &#123; arr[i] = ++cur; &#125; &#125; else &#123; cur = l; arr[i] = l; &#125; &#125; for(int i = 0; i &lt; num; i++) printf("%d ", arr[i]); printf("\n"); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Codeforce 920A Water The Garden]]></title>
+    <url>%2F2018%2F02%2F06%2Fcodeforce920A%2F</url>
+    <content type="text"><![CDATA[It is winter now, and Max decided it’s about time he watered the garden. The garden can be represented as n consecutive garden beds, numbered from 1 to n. k beds contain water taps (i-th tap is located in the bed x**i), which, if turned on, start delivering water to neighbouring beds. If the tap on the bed x**i is turned on, then after one second has passed, the bed x**i will be watered; after two seconds have passed, the beds from the segment [x**i - 1, x**i + 1] will be watered (if they exist); after j seconds have passed (j is an integer number), the beds from the segment [x**i - (j - 1), x**i + (j - 1)] will be watered (if they exist). Nothing changes during the seconds, so, for example, we can’t say that the segment [x**i - 2.5, x**i + 2.5] will be watered after 2.5seconds have passed; only the segment [x**i - 2, x**i + 2] will be watered at that moment. The garden from test 1. White colour denotes a garden bed without a tap, red colour — a garden bed with a tap. The garden from test 1 after 2 seconds have passed after turning on the tap. White colour denotes an unwatered garden bed, blue colour — a watered bed. Max wants to turn on all the water taps at the same moment, and now he wonders, what is the minimum number of seconds that have to pass after he turns on some taps until the whole garden is watered. Help him to find the answer! Input The first line contains one integer t — the number of test cases to solve (1 ≤ t ≤ 200). Then t test cases follow. The first line of each test case contains two integers n and k(1 ≤ n ≤ 200, 1 ≤ k ≤ n) — the number of garden beds and water taps, respectively. Next line contains k integers x**i (1 ≤ x**i ≤ n) — the location of i-th water tap. It is guaranteed that for each condition x**i - 1 &lt; x**i holds. It is guaranteed that the sum of n over all test cases doesn’t exceed 200. Note that in hacks you have to set t = 1. Output For each test case print one integer — the minimum number of seconds that have to pass after Max turns on some of the water taps, until the whole garden is watered. Example input 123456735 133 31 2 34 11 output 123314 Note The first example consists of 3 tests: There are 5 garden beds, and a water tap in the bed 3. If we turn it on, then after 1second passes, only bed 3 will be watered; after 2 seconds pass, beds [1, 3] will be watered, and after 3 seconds pass, everything will be watered. There are 3 garden beds, and there is a water tap in each one. If we turn all of them on, then everything will be watered after 1 second passes. There are 4 garden beds, and only one tap in the bed 1. It will take 4 seconds to water, for example, bed 4. C++ Code 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int t, n, k, tmp = 0, pretmp; int mi = 0; while(~scanf("%d", &amp;t)) &#123; for(int i = 0; i &lt; t; i++) &#123; scanf("%d%d", &amp;n, &amp;k); for(int j = 0; j &lt; k; j++) &#123; pretmp = tmp; scanf("%d", &amp;tmp); if(j == 0) mi = tmp; if(j &gt; 0 &amp;&amp; j &lt; k-1) mi = max(mi, (tmp-pretmp+2)/2); if(j == k-1) &#123; mi = max(mi, (tmp-pretmp+2)/2); mi = max(mi, n-tmp+1); &#125; &#125; printf("%d\n", mi); &#125; &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -525,6 +525,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[LeetCode 29 Divide Two Integers]]></title>
+    <url>%2F2018%2F01%2F25%2Fleetcode29%2F</url>
+    <content type="text"><![CDATA[Divide two integers without using multiplication, division and mod operator. If it is overflow, return MAX_INT. overflow特殊情况：-2147483648 / (-1) = MAX_INT = 2147483647 12345678910111213141516171819202122232425class Solution: def divide(self, dividend, divisor): """ :type dividend: int :type divisor: int :rtype: int """ if dividend == -2147483648 and divisor == -1: return 2147483647 a = abs(dividend) b = abs(divisor) arr = [] while(b &lt;= a): arr.append(b) b &lt;&lt;= 1 sum = 0 ret = 0 for i in range(len(arr)-1, -1, -1): if sum + arr[i] &lt;= a: sum += arr[i] ret += (1&lt;&lt;i) if(((dividend &gt; 0) and (divisor &lt; 0)) or ((dividend &lt; 0) and (divisor &gt; 0))): return -ret else: return ret]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 25 Reverse Nodes in k-Group]]></title>
     <url>%2F2018%2F01%2F25%2Fleetcode25%2F</url>
     <content type="text"><![CDATA[Given a linked list, reverse the nodes of a linked list k at a time and return its modified list. k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is. You may not alter the values in the nodes, only nodes itself may be changed. Only constant memory is allowed. For example,Given this linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5 For k = 2, you should return: 2-&gt;1-&gt;4-&gt;3-&gt;5 For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5 Leetcode 24的扩展版，k个一组进行翻转，最后不到k个的不翻转 没轮一共翻转k-1次，每次都将后一个node连到已经连好的链的最前面，已经连好的链首节点之前的一个节点和尾节点两个节点标记为root、head Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def reverseKGroup(self, head, k): """ :type head: ListNode :type k: int :rtype: ListNode """ res = root = ListNode(-1) root.next = head tmp = head cnt = 0 while(tmp != None): tmp = tmp.next cnt += 1 while(cnt &gt;= k): for i in range(k-1): node = root.next root.next = head.next head.next = root.next.next root.next.next = node root = head head = head.next cnt -= k return res.next]]></content>
@@ -537,15 +549,16 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 29 Divide Two Integers]]></title>
-    <url>%2F2018%2F01%2F25%2Fleetcode29%2F</url>
-    <content type="text"><![CDATA[Divide two integers without using multiplication, division and mod operator. If it is overflow, return MAX_INT. overflow特殊情况：-2147483648 / (-1) = MAX_INT = 2147483647 12345678910111213141516171819202122232425class Solution: def divide(self, dividend, divisor): """ :type dividend: int :type divisor: int :rtype: int """ if dividend == -2147483648 and divisor == -1: return 2147483647 a = abs(dividend) b = abs(divisor) arr = [] while(b &lt;= a): arr.append(b) b &lt;&lt;= 1 sum = 0 ret = 0 for i in range(len(arr)-1, -1, -1): if sum + arr[i] &lt;= a: sum += arr[i] ret += (1&lt;&lt;i) if(((dividend &gt; 0) and (divisor &lt; 0)) or ((dividend &lt; 0) and (divisor &gt; 0))): return -ret else: return ret]]></content>
+    <title><![CDATA[Linux提升物理内存的使用率]]></title>
+    <url>%2F2018%2F01%2F24%2Fubuntu_improve%2F</url>
+    <content type="text"><![CDATA[介绍如何在Linux下调整交换分区swap的使用条件 在UBUNTU系统里面，并不是你的物理内存全部耗尽之后，系统才使用swap分区！系统的swappiness设定值，对如何使用swap分区是有着很大的联系。 swappiness=0 的时候表示最大限度使用物理内存，然后才是 swap空间swappiness＝100的时候表示积极的使用swap分区，并且把内存上的数据及时的搬运到swap空间里面 上面2个设置是极端设置，对于UBUNTU系统的默热值来说，这个值=60，如果想最佳化，可以修改为10-20左右！ 在ubuntu17以后移除了交换分区这一概念，改为交换文件 打开终端，输入查看 swappiness 的当前参数（默认应该看到的是60） 1cat /proc/sys/vm/swappiness 输入下面内容，修改这个参数为10（执行这一步只是临时修改，如果重启又会恢复60） 1sudo sysctl vm.swappiness=10 若要持久化配置，可以打开/etc/sysctl.conf文件 1sudo gedit /etc/sysctl.conf 添加一行 1vm.swappiness=10 ​]]></content>
       <categories>
-        <category>ACM</category>
+        <category>环境搭建</category>
       </categories>
       <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
+        <tag>环境搭建</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -572,19 +585,6 @@
       <tags>
         <tag>python</tag>
         <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux提升物理内存的使用率]]></title>
-    <url>%2F2018%2F01%2F24%2Fubuntu_improve%2F</url>
-    <content type="text"><![CDATA[介绍如何在Linux下调整交换分区swap的使用条件 在UBUNTU系统里面，并不是你的物理内存全部耗尽之后，系统才使用swap分区！系统的swappiness设定值，对如何使用swap分区是有着很大的联系。 swappiness=0 的时候表示最大限度使用物理内存，然后才是 swap空间swappiness＝100的时候表示积极的使用swap分区，并且把内存上的数据及时的搬运到swap空间里面 上面2个设置是极端设置，对于UBUNTU系统的默热值来说，这个值=60，如果想最佳化，可以修改为10-20左右！ 在ubuntu17以后移除了交换分区这一概念，改为交换文件 打开终端，输入查看 swappiness 的当前参数（默认应该看到的是60） 1cat /proc/sys/vm/swappiness 输入下面内容，修改这个参数为10（执行这一步只是临时修改，如果重启又会恢复60） 1sudo sysctl vm.swappiness=10 若要持久化配置，可以打开/etc/sysctl.conf文件 1sudo gedit /etc/sysctl.conf 添加一行 1vm.swappiness=10 ​]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>环境搭建</tag>
-        <tag>Linux</tag>
-        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
