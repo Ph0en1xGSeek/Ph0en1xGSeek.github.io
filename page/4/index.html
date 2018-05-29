@@ -98,14 +98,14 @@
 
 <meta name="description" content="从搭建环境到机器学习，从算法数据结构到工程项目，从C++到Python，记录每个脚印">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Tags">
-<meta property="og:url" content="https://www.ph0en1x.space/tags/index.html">
+<meta property="og:title" content="Categories">
+<meta property="og:url" content="https://www.ph0en1x.space/categories/index.html">
 <meta property="og:site_name" content="Ph0en1x Notebook">
 <meta property="og:description" content="从搭建环境到机器学习，从算法数据结构到工程项目，从C++到Python，记录每个脚印">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-22T10:40:05.695Z">
+<meta property="og:updated_time" content="2018-02-22T10:39:54.048Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tags">
+<meta name="twitter:title" content="Categories">
 <meta name="twitter:description" content="从搭建环境到机器学习，从算法数据结构到工程项目，从C++到Python，记录每个脚印">
 
 
@@ -134,7 +134,7 @@
 
 
 
-  <link rel="canonical" href="https://www.ph0en1x.space/tags/"/>
+  <link rel="canonical" href="https://www.ph0en1x.space/categories/"/>
 
 
 
@@ -306,7 +306,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/02/15/RBM/">
+    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/02/21/RBM_energy/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ph0en1x">
@@ -325,7 +325,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/15/RBM/" itemprop="url">受限制玻尔兹曼机(Restricted Bolzmann Machine)以及自编码器(Autoencoder)</a></h2>
+                <a class="post-title-link" href="/2018/02/21/RBM_energy/" itemprop="url">受限制玻尔兹曼机(RBM)的能量函数及其梯度求解</a></h2>
         
 
         <div class="post-meta">
@@ -337,7 +337,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-15T00:00:00+08:00">2018-02-15</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-21T00:00:00+08:00">2018-02-21</time>
             
 
             
@@ -397,11 +397,11 @@
       
         
           <blockquote>
-<p> 受限制玻尔兹曼机(Restricted Bolzmann Machine, RBM)与自编码器(Autoencoder, AE)是神经网络的两种基本结构，两个结构都能起到降维的作用，都可以用来对神经网络进行预训练（pre-training），这种预训练都是无监督的。由于RBM与MLP及其相似，一直以来我就困惑于他们两者，终于花了几天时间来搞清楚他们的区别和训练方法，发现他们甚至不是并列的关系。。</p>
+<p> 在前面的一篇文章 <a href="https://www.ph0en1x.space/2018/02/15/RBM/">受限制玻尔兹曼机(Restricted Bolzmann Machine)以及自编码器(Autoencoder)</a>中我们提到了RBM的能量函数这一概念以及对比散度(CD)的快速采样的训练方法，但我一直纠结与为何Hinton大神能够从能量函数和Gibbs Sampling中获得CD-k采样算法，两个式子看似没有关联。于是我花了几天的时间，终于对RBM这个结构有了更深一步的了解。</p>
 </blockquote>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/02/15/RBM/#more" rel="contents">
+            <a class="btn" href="/2018/02/21/RBM_energy/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -550,6 +550,154 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/02/15/fcitx/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/02/15/RBM/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ph0en1x">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ph0en1x Notebook">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/15/RBM/" itemprop="url">受限制玻尔兹曼机(Restricted Bolzmann Machine)以及自编码器(Autoencoder)</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-15T00:00:00+08:00">2018-02-15</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p> 受限制玻尔兹曼机(Restricted Bolzmann Machine, RBM)与自编码器(Autoencoder, AE)是神经网络的两种基本结构，两个结构都能起到降维的作用，都可以用来对神经网络进行预训练（pre-training），这种预训练都是无监督的。由于RBM与MLP及其相似，一直以来我就困惑于他们两者，终于花了几天时间来搞清楚他们的区别和训练方法，发现他们甚至不是并列的关系。。</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/15/RBM/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1636,154 +1784,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/02/01/git/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ph0en1x">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ph0en1x Notebook">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/01/git/" itemprop="url">Git介绍以及基本命令</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-01T00:00:00+08:00">2018-02-01</time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/实战技能/" itemprop="url" rel="index">
-                    <span itemprop="name">实战技能</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p> 介绍git的结构、作用以及基本常用命令</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/02/01/git/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1835,7 +1835,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-count">59</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>

@@ -140,7 +140,7 @@
 
 
 
-  <title>Codeforce 920B Tea Queue | Ph0en1x Notebook</title>
+  <title>机器学习实战--Apriori算法挖掘关联规则 | Ph0en1x Notebook</title>
   
 
 
@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/02/06/codeforce920B/">
+    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/05/29/Apriori2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ph0en1x">
@@ -322,7 +322,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Codeforce 920B Tea Queue</h2>
+          <h2 class="post-title" itemprop="name headline">机器学习实战--Apriori算法挖掘关联规则</h2>
         
 
         <div class="post-meta">
@@ -334,7 +334,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-06T00:00:00+08:00">2018-02-06</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-29T00:00:00+08:00">2018-05-29</time>
             
 
             
@@ -355,8 +355,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ACM/" itemprop="url" rel="index">
-                    <span itemprop="name">ACM</span>
+                  <a href="/categories/数据挖掘/" itemprop="url" rel="index">
+                    <span itemprop="name">数据挖掘</span>
                   </a>
                 </span>
 
@@ -398,40 +398,28 @@
 
       
         <blockquote>
-<p>Recently <em>n</em> students from city S moved to city P to attend a programming camp.</p>
-<p>They moved there by train. In the evening, all students in the train decided that they want to drink some tea. Of course, no two people can use the same teapot simultaneously, so the students had to form a queue to get their tea.</p>
-<p><em>i</em>-th student comes to the end of the queue at the beginning of <em>l**i</em>-th second. If there are multiple students coming to the queue in the same moment, then the student with greater index comes after the student with lesser index. Students in the queue behave as follows: if there is nobody in the queue before the student, then he uses the teapot for exactly one second and leaves the queue with his tea; otherwise the student waits for the people before him to get their tea. If at the beginning of <em>r**i</em>-th second student <em>i</em> still cannot get his tea (there is someone before him in the queue), then he leaves the queue without getting any tea.</p>
-<p>For each student determine the second he will use the teapot and get his tea (if he actually gets it).</p>
+<p> Apriori算法是最著名的关联规则的挖掘方法，可以使用它挖掘频繁项集发现数据中的规律。著名的“啤酒与尿布”案例就是在分析大量超市的事务之后发现了“啤酒”与“尿布”这一频繁项集。这篇笔记主要是记录Apriori的Python3代码实现的，会就算法来讲解Apriori挖掘频繁项集的步骤，算法的详细内容在《数据挖掘-概念与技术》一书中有非常详细的讲解，这里不再赘述</p>
 </blockquote>
 <a id="more"></a>
-<p>Input</p>
-<blockquote>
-<p>The first line contains one integer <em>t</em> — the number of test cases to solve (1 ≤ <em>t</em> ≤ 1000).</p>
-<p>Then <em>t</em> test cases follow. The first line of each test case contains one integer <em>n</em> (1 ≤ <em>n</em> ≤ 1000) — the number of students.</p>
-<p>Then <em>n</em> lines follow. Each line contains two integer <em>l**i</em>, <em>r**i</em> (1 ≤ <em>l**i</em> ≤ <em>r**i</em> ≤ 5000) — the second <em>i</em>-th student comes to the end of the queue, and the second he leaves the queue if he still cannot get his tea.</p>
-<p>It is guaranteed that for every <img src="http://codeforces.com/predownloaded/bf/e6/bfe66dbacb0b1fa8546d91f0a9af8825c8ff379e.png" alt="img"> condition <em>l**i</em> - 1 ≤ <em>l**i</em> holds.</p>
-<p>The sum of <em>n</em> over all test cases doesn’t exceed 1000.</p>
-<p>Note that in hacks you have to set <em>t</em> = 1.</p>
-</blockquote>
-<p>Output</p>
-<blockquote>
-<p>For each test case print <em>n</em> integers. <em>i</em>-th of them must be equal to the second when <em>i</em>-th student gets his tea, or 0 if he leaves without tea.</p>
-</blockquote>
-<p>Example</p>
-<p>input</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2</span><br><span class="line">2</span><br><span class="line">1 3</span><br><span class="line">1 4</span><br><span class="line">3</span><br><span class="line">1 5</span><br><span class="line">1 1</span><br><span class="line">2 3</span><br></pre></td></tr></table></figure>
-<p>output</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 2 </span><br><span class="line">1 0 2</span><br></pre></td></tr></table></figure>
-<p>Note</p>
-<blockquote>
-<p>The example contains 2 tests:</p>
+<p><a href="https://github.com/Ph0en1xGSeek/Data_Mining/blob/master/Homework/DM_assignment2/Apriori.py" target="_blank" rel="noopener">完整代码</a>在这里</p>
+<p>前面文章<a href="机器学习实战--Apriori算法频繁项集">https://www.ph0en1x.space/2018/05/13/Apriori/</a>介绍了如何利用Apriori算法挖掘频繁项集，这篇文章将继续介绍如何找到关联规则</p>
 <ol>
-<li>During 1-st second, students 1 and 2 come to the queue, and student 1 gets his tea. Student 2 gets his tea during 2-nd second.</li>
-<li>During 1-st second, students 1 and 2 come to the queue, student 1 gets his tea, and student 2 leaves without tea. During 2-nd second, student 3 comes and gets his tea.</li>
+<li><p>生成关联规则的入口函数，从先减少一个项集开始，然后交由rulesFromConseq进行递归</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generateRules</span><span class="params">(L, supportData, minConf=<span class="number">0.7</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    L: itemsets</span></span><br><span class="line"><span class="string">    supportData: map of the item to the number</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    bigRuleList = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, len(L)):</span><br><span class="line">        <span class="keyword">for</span> freqSet <span class="keyword">in</span> L[i]:</span><br><span class="line">            Hl = [frozenset([item]) <span class="keyword">for</span> item <span class="keyword">in</span> freqSet]</span><br><span class="line">            <span class="keyword">if</span> i &gt; <span class="number">1</span>:</span><br><span class="line">                rulesFromConseq(freqSet, Hl, supportData, bigRuleList,</span><br><span class="line">                minConf)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                calcConf(freqSet, Hl, supportData, bigRuleList, minConf)</span><br><span class="line">    <span class="keyword">return</span> bigRuleList</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>计算置信度是否超过阈值</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">calcConf</span><span class="params">(freqSet, H, supportData, brl, minConf=<span class="number">0.7</span>)</span>:</span></span><br><span class="line">    prunedH=[]</span><br><span class="line">    <span class="keyword">for</span> conseq <span class="keyword">in</span> H:</span><br><span class="line">        conf = supportData[freqSet] / supportData[freqSet-conseq]</span><br><span class="line">        <span class="keyword">if</span> conf &gt;= minConf:</span><br><span class="line">            <span class="keyword">print</span> (freqSet-conseq, <span class="string">'---&gt;'</span>, conseq, <span class="string">'conf:'</span>, conf)</span><br><span class="line">            brl.append((freqSet-conseq, conseq, conf))</span><br><span class="line">            <span class="comment"># 剪枝，如果置信度已经低于阈值，就不用继续加了</span></span><br><span class="line">            prunedH.append(conseq)</span><br><span class="line">    <span class="keyword">return</span> prunedH</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
+<li><p>递归增加分子中的item数量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">rulesFromConseq</span><span class="params">(freqSet, H, supportData, brl, minConf=<span class="number">0.7</span>)</span>:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    递归扫描关联关系</span></span><br><span class="line"><span class="string">    少1个 少2个...</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    m = len(H[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">if</span> len(freqSet) &gt; (m+<span class="number">1</span>):</span><br><span class="line">        Hmp1 = aprioriGen(H, m+<span class="number">1</span>)</span><br><span class="line">        Hmp1 = calcConf(freqSet, Hmp1, supportData, brl, minConf)</span><br><span class="line">        <span class="keyword">if</span> len(Hmp1) &gt; <span class="number">1</span>:</span><br><span class="line">            rulesFromConseq(freqSet, Hmp1, supportData, brl, minConf)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在main函数中添加关联关系的调用</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment"># dataSet, dataMap = loadDataSet()</span></span><br><span class="line">    dataSet = loadDataSet()</span><br><span class="line">    start = time.time()</span><br><span class="line">    L, suppData = apriori(dataSet, minSupport=<span class="number">100</span>)</span><br><span class="line">    end = time.time()</span><br><span class="line">    cnt = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> L:</span><br><span class="line">        print(cnt, i)</span><br><span class="line">        cnt += <span class="number">1</span></span><br><span class="line">    print(<span class="string">'Apriori total time:'</span>, end-start, <span class="string">'s'</span>)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"Generate Rule Begin:"</span>)</span><br><span class="line">    <span class="comment"># 生成关联关系</span></span><br><span class="line">    generateRules(L, suppData, minConf=<span class="number">0.3</span>)</span><br></pre></td></tr></table></figure>
+<p>​</p>
+</li>
 </ol>
-</blockquote>
-<p><strong>C++ Code</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t;</span><br><span class="line">    <span class="keyword">int</span> cur = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> num;</span><br><span class="line">    <span class="keyword">int</span> l, r;</span><br><span class="line">    <span class="keyword">int</span> arr[<span class="number">1005</span>];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;t);</span><br><span class="line">    <span class="keyword">while</span>(t--)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;num);</span><br><span class="line">        cur = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;l, &amp;r);</span><br><span class="line">            <span class="keyword">if</span>(l &lt;= cur)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(cur &gt;= r)</span><br><span class="line">                    arr[i] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    arr[i] = ++cur;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">                cur = l;</span><br><span class="line">                arr[i] = l;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; num; i++)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d "</span>, arr[i]);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -449,9 +437,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/codeforce/" rel="tag"># codeforce</a>
+            <a href="/tags/Data-Mining/" rel="tag"># Data Mining</a>
           
-            <a href="/tags/c/" rel="tag"># c++</a>
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
           
         </div>
       
@@ -479,8 +467,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/06/codeforce920A/" rel="next" title="Codeforce 920A Water The Garden">
-                <i class="fa fa-chevron-left"></i> Codeforce 920A Water The Garden
+              <a href="/2018/05/13/Apriori/" rel="next" title="机器学习实战--Apriori算法挖掘频繁项集">
+                <i class="fa fa-chevron-left"></i> 机器学习实战--Apriori算法挖掘频繁项集
               </a>
             
           </div>
@@ -488,10 +476,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/07/firefox_flash/" rel="prev" title="在Linux发行版Firefox下安装最新版Flash">
-                在Linux发行版Firefox下安装最新版Flash <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
