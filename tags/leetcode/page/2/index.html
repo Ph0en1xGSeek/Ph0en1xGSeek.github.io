@@ -140,7 +140,7 @@
 
 
 
-  <title>在Ubuntu下一些常用软件安装 | Ph0en1x Notebook</title>
+  <title>Tag: leetcode | Ph0en1x Notebook</title>
   
 
 
@@ -178,7 +178,7 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-right ">
     <div class="headband"></div>
 
     
@@ -289,215 +289,62 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  
+  
+  
+  <div class="post-block tag">
 
-  
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h2>leetcode<small>Tag</small>
+        </h2>
+      </div>
 
-  
-  
-  
-
-  
+      
+        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/03/28/ubuntu_env/">
+    <header class="post-header">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ph0en1x">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ph0en1x Notebook">
-    </span>
-
-    
-      <header class="post-header">
-
+      <h3 class="post-title">
         
-        
-          <h2 class="post-title" itemprop="name headline">在Ubuntu下一些常用软件安装</h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
+            <a class="post-title-link" href="/2018/01/20/leetcode24/" itemprop="url">
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span itemprop="name">LeetCode 24 Swap Nodes in Pairs</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-28T00:00:00+08:00">2018-03-28</time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/环境搭建/" itemprop="url" rel="index">
-                    <span itemprop="name">环境搭建</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-            <span class="post-meta-divider">|</span>
-            <span class="page-pv">阅读
-            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
-            </span>
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <blockquote>
-<p>安装完Ubuntu后常用软件和环境的安装，之前写过一点，在这里做补充，Chrome，Typora，Anaconda，调节双系统时间，Sublime，nodejs等</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="1-Chrome"><a href="#1-Chrome" class="headerlink" title="1. Chrome"></a>1. Chrome</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">sudo wget http://www.linuxidc.com/files/repo/google-chrome.list -P /etc/apt/sources.list.d/</span><br><span class="line"></span><br><span class="line">wget -q -O - https://dl.google.com/linux/linux_signing_key.pub  | sudo apt-key add -</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install google-chrome-stable</span><br></pre></td></tr></table></figure>
-<h2 id="2-Typora"><a href="#2-Typora" class="headerlink" title="2. Typora"></a>2. Typora</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># optional, but recommended</span></span><br><span class="line">sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys BA300B7755AFCFAE</span><br><span class="line"></span><br><span class="line"><span class="comment"># add Typora's repository</span></span><br><span class="line">sudo add-apt-repository <span class="string">'deb https://typora.io ./linux/'</span></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line"><span class="comment"># install typora</span></span><br><span class="line">sudo apt-get install typora</span><br></pre></td></tr></table></figure>
-<h2 id="3-Anaconda"><a href="#3-Anaconda" class="headerlink" title="3. Anaconda"></a>3. Anaconda</h2><p>到<a href="https://www.anaconda.com/download/#linux" target="_blank" rel="noopener">官网</a>下载最新anaconda的安装包</p>
-<p>下载后运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash Anaconda...</span><br></pre></td></tr></table></figure>
-<p>按照提示一步步确定安装位置</p>
-<h2 id="4-调节双系统时间"><a href="#4-调节双系统时间" class="headerlink" title="4. 调节双系统时间"></a>4. 调节双系统时间</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">timedatectl <span class="built_in">set</span>-local-rtc 1 --adjust-system-clock</span><br><span class="line">timedatectl <span class="built_in">set</span>-ntp 0</span><br></pre></td></tr></table></figure>
-<h2 id="5-Sublime"><a href="#5-Sublime" class="headerlink" title="5. Sublime"></a>5. Sublime</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:webupd8team/sublime-text-3</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install sublime-text-installer</span><br></pre></td></tr></table></figure>
-<h2 id="6-nodejs"><a href="#6-nodejs" class="headerlink" title="6. nodejs"></a>6. nodejs</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs</span><br><span class="line">sudo apt install nodejs-legacy</span><br><span class="line">sudo apt install npm</span><br></pre></td></tr></table></figure>
-<h2 id="7-Mysql"><a href="#7-Mysql" class="headerlink" title="7. Mysql"></a>7. Mysql</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mysql-server</span><br><span class="line">sudo apt install mysql-client</span><br><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
-<h2 id="8-其他"><a href="#8-其他" class="headerlink" title="8. 其他"></a>8. 其他</h2><p><a href="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/">https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/</a></p>
-
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
-          
-        </div>
-      
-
-      
-      
-        <div class="post-widgets">
+            </a>
         
+      </h3>
 
-        
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2018-01-20T00:00:00+08:00"
+              content="2018-01-20" >
+          01-20
+        </time>
+      </div>
 
-        
-          
-          <div id="needsharebutton-postbottom">
-            <span class="btn">
-              <i class="fa fa-share-alt" aria-hidden="true"></i>
-            </span>
-          </div>
-        
-        </div>
-      
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/03/23/largevis/" rel="next" title="LargeVis--LINE在高维数据降维与可视化上的运用">
-                <i class="fa fa-chevron-left"></i> LargeVis--LINE在高维数据降维与可视化上的运用
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/01/cross_validation/" rel="prev" title="训练集(train set)验证集(validation set)测试集(test set)与交叉验证法(Cross Validation)">
-                训练集(train set)验证集(validation set)测试集(test set)与交叉验证法(Cross Validation) <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
-  </div>
-  
-  
-  
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
       
     </div>
+
   </div>
+  
+  
+  
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/tags/leetcode/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/tags/leetcode/">1</a><span class="page-number current">2</span>
+  </nav>
+
 
 
           </div>
           
-
-  
-
-
 
         </div>
         
@@ -518,17 +365,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -614,22 +452,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Chrome"><span class="nav-number">1.</span> <span class="nav-text">1. Chrome</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Typora"><span class="nav-number">2.</span> <span class="nav-text">2. Typora</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Anaconda"><span class="nav-number">3.</span> <span class="nav-text">3. Anaconda</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-调节双系统时间"><span class="nav-number">4.</span> <span class="nav-text">4. 调节双系统时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-Sublime"><span class="nav-number">5.</span> <span class="nav-text">5. Sublime</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-nodejs"><span class="nav-number">6.</span> <span class="nav-text">6. nodejs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-Mysql"><span class="nav-number">7.</span> <span class="nav-text">7. Mysql</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-其他"><span class="nav-number">8.</span> <span class="nav-text">8. 其他</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -789,10 +611,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=6.0.1"></script>
-
-
 
   
 
