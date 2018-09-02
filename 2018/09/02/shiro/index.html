@@ -140,7 +140,7 @@
 
 
 
-  <title>在Ubuntu下安装gsl科学计算库 | Ph0en1x Notebook</title>
+  <title>Shiro安全框架入门 | Ph0en1x Notebook</title>
   
 
 
@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/04/03/ubuntu_gsl/">
+    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/09/02/shiro/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ph0en1x">
@@ -322,7 +322,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">在Ubuntu下安装gsl科学计算库</h2>
+          <h2 class="post-title" itemprop="name headline">Shiro安全框架入门</h2>
         
 
         <div class="post-meta">
@@ -334,7 +334,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-04-03T00:00:00+08:00">2018-04-03</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-02T00:00:00+08:00">2018-09-02</time>
             
 
             
@@ -398,19 +398,59 @@
 
       
         <blockquote>
-<p>GSL是GNU的科学计算库(GNU Scientific Library)，是用于C++的开源科学计算库</p>
+<p>对Shiro安全框架的各种操作进行简单的入门，为Shiro框架嵌入Web应用进行基础练习讲解</p>
 </blockquote>
 <a id="more"></a>
-<ol>
-<li><p>下载最新版本GSL</p>
-<p><a href="http://www.gnu.org/software/gsl/" target="_blank" rel="noopener">http://www.gnu.org/software/gsl/</a></p>
+<h1 id="Shiro"><a href="#Shiro" class="headerlink" title="Shiro"></a>Shiro</h1><p>Apache Shiro是一个简单强大的Java安全框架，提供了用户身份验证、权限授权、加密和会话管理等功能，通过Shiro可以简单快速地帮助各种应用确保安全</p>
+<ul>
+<li><p>Authentication（身份验证）</p>
+<p>通过数据库或其他地方存储的用户信息进行比较，确认用户是否登录登录</p>
 </li>
-<li><p>解压后进入目录下，然后执行命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure>
+<li><p>Authorization（授权）</p>
+<p>通过数据库内存储的用户<code>角色</code>信息确认用户权限</p>
+</li>
+<li><p>Cryptography（加密）</p>
+<p>对信息，如密码，进行加密操作</p>
+</li>
+<li><p>Session Management（会话管理）</p>
+<p>进行用户会话管理，保持登录状态</p>
+</li>
+</ul>
+<h1 id="Demo"><a href="#Demo" class="headerlink" title="Demo"></a>Demo</h1><ol>
+<li><p>maven依赖</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.shiro<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>shiro-core<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.4.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>​</p>
 </li>
-<li><p>将会自动将lib与头文件安装到<code>/usr/local/lib</code>和<code>/usr/local/include</code> 下面，过程中可能会出现权限上的问题，sudo就行。之后就可以使用GSL了;</p>
+<li><p>Authentication简单测试，使用Junit进行单元测试</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.phoenix.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.SecurityUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authc.UsernamePasswordToken;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.mgt.DefaultSecurityManager;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.realm.SimpleAccountRealm;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.subject.Subject;</span><br><span class="line"><span class="keyword">import</span> org.junit.Before;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AutenticationTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    SimpleAccountRealm simpleAccountRealm = <span class="keyword">new</span> SimpleAccountRealm();</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">        simpleAccountRealm.addAccount(<span class="string">"Ph0en1x"</span>, <span class="string">"1234"</span>, <span class="string">"admin"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAutentication</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构建SecurityManager环境</span></span><br><span class="line">        DefaultSecurityManager defaultSecurityManager = <span class="keyword">new</span> DefaultSecurityManager();</span><br><span class="line">        defaultSecurityManager.setRealm(simpleAccountRealm);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 主体提交认证请求</span></span><br><span class="line">        SecurityUtils.setSecurityManager(defaultSecurityManager);</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();</span><br><span class="line"></span><br><span class="line">        UsernamePasswordToken token = <span class="keyword">new</span> UsernamePasswordToken(<span class="string">"Ph0en1x"</span>, <span class="string">"1234"</span>);</span><br><span class="line">        subject.login(token);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"isAutenticated: "</span> + subject.isAuthenticated());</span><br><span class="line"></span><br><span class="line">        subject.checkRole(<span class="string">"admin"</span>);</span><br><span class="line"></span><br><span class="line">        subject.logout();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"isAutenticated: "</span> + subject.isAuthenticated());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是Shiro安全模块最简单结构的构建，首先需要构建SecurityManager环境。而构建SecurityManager环境需要一个叫作Realm的组件，Realm里面将会进行用户身份认证以及授权等一系列操作。这里我只创建了简单的，只能进行预先加入到内存中的用户的身份验证和授权的SimpleRealm。</p>
+<p>在Junit的<code>@Before</code>标签中我们就预先加入了一个用户用于测试</p>
+<p>这之后需要将刚刚完成Realm配置的SecurityManager配置到环境中，并生成一个主体（Subject），后面将由主体来发送认证请求给Realm</p>
+<p>身份认证请求被包含在一个UsernamePasswordToken中，然后由主体发送login请求，同时进行admin权限验证</p>
+<p>上述代码将会得到以下输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">isAutenticated: true</span><br><span class="line">isAutenticated: false</span><br></pre></td></tr></table></figure>
+<p>当主体发送logout请求后再进行身份验证就会返回false</p>
 </li>
+</ol>
+<p>   当UsernamePasswordToken中的用户密码不正确时，会抛出异常</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.apache.shiro.authc.IncorrectCredentialsException: Submitted credentials for token [org.apache.shiro.authc.UsernamePasswordToken - Ph0en1x, rememberMe=false] did not match the expected credentials.</span><br></pre></td></tr></table></figure>
+<p>   当验证用户不具有相应身份或权限时，会抛出异常</p>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.apache.shiro.authz.UnauthorizedException: Subject does not have role [admin]</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p>CustomRealm自定义Realm</p>
+<p>Realm是Shiro进行身份验证和授权的最核心组件，所以也一定能开放给用户进行自定义，例如想根据某个数据库或者文件中的信息来进行相应的验证，密码加密验证等等操作。我这里也写了一个简单的从数据库中查询用户密码来验证登录用户身份的CustomRealm</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.phoenix.shiro.realm;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authc.AuthenticationException;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authc.AuthenticationInfo;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authc.AuthenticationToken;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authc.SimpleAuthenticationInfo;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authz.AuthorizationInfo;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.crypto.hash.Md5Hash;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.realm.AuthorizingRealm;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.subject.PrincipalCollection;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.util.ByteSource;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomerRealm</span> <span class="keyword">extends</span> <span class="title">AuthorizingRealm</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> AuthorizationInfo <span class="title">doGetAuthorizationInfo</span><span class="params">(PrincipalCollection principalCollection)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//角色授权</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> AuthenticationInfo <span class="title">doGetAuthenticationInfo</span><span class="params">(AuthenticationToken authenticationToken)</span> <span class="keyword">throws</span> AuthenticationException </span>&#123;</span><br><span class="line">        <span class="comment">//认证用户</span></span><br><span class="line"></span><br><span class="line">        String username = (String)authenticationToken.getPrincipal();</span><br><span class="line">        String password = getPasswordByUserName(username);</span><br><span class="line">        <span class="keyword">if</span>(password == <span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        SimpleAuthenticationInfo authenticationInfo = <span class="keyword">new</span> SimpleAuthenticationInfo(</span><br><span class="line">                <span class="string">"Ph0en1x"</span>, password, <span class="string">"customRealm"</span></span><br><span class="line">        );</span><br><span class="line">        <span class="comment">// 传回的时候也要带盐</span></span><br><span class="line">        authenticationInfo.setCredentialsSalt(ByteSource.Util.bytes(username));</span><br><span class="line">        <span class="keyword">return</span> authenticationInfo;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> String <span class="title">getPasswordByUserName</span><span class="params">(String username)</span> </span>&#123;</span><br><span class="line">        String url = <span class="string">"jdbc:mysql://127.0.0.1/test"</span>;</span><br><span class="line">        String name = <span class="string">"root"</span>;</span><br><span class="line">        String password = <span class="string">"1234"</span>;</span><br><span class="line">        String result = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            Connection con = DriverManager.getConnection(url, name, password);</span><br><span class="line">            String sql = String.format(<span class="string">"select password from user where username = \'%s\'"</span>, username);</span><br><span class="line">            Statement statement = con.createStatement();</span><br><span class="line">            ResultSet rs = statement.executeQuery(sql);</span><br><span class="line">            rs.next();</span><br><span class="line">            <span class="comment">// md5加盐操作</span></span><br><span class="line">            result = (<span class="keyword">new</span> Md5Hash(rs.getString(<span class="string">"password"</span>), username)).toString();</span><br><span class="line">            System.out.println(result);</span><br><span class="line">        &#125;<span class="keyword">catch</span>(SQLException e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>CustomerRealm都继承于AuthorizingRealm，而AuthorizingRealm继承于AuthenticatingRealm</p>
+<p>而完成CustomerRealm，需要实现两个abstract方法<code>doGetAuthorizationInfo</code>和<code>doGetAuthenticationInfo</code>分别用于授权和身份验证请求的处理。</p>
+<p>还有就是密码的<strong>加盐</strong>操作，数据并不会明文存在数据库中。通常会通过一些加密操作，例如MD5码，在加密的过程中为了加大破译的难度，往往还会带上一些别的信息，叫作“盐”（salt）。例如上面我获取密码的方法<code>getPasswordByUserName</code>就在获得密码后进行了加盐加密的操作（用来模拟存储加密后的密码，实际使用中是加盐加密后再存入数据库中），并且通过<code>setCredentialsSalt</code>方法告诉验证信息加入的<strong>盐</strong>是什么。</p>
+</li>
+</ol>
+<p>   相应的，在Shiro的配置中也要加入相应的加密方法和<strong>盐</strong>的配置</p>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.phoenix.test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.phoenix.shiro.realm.CustomerRealm;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.SecurityUtils;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authc.UsernamePasswordToken;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.authc.credential.HashedCredentialsMatcher;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.mgt.DefaultSecurityManager;</span><br><span class="line"><span class="keyword">import</span> org.apache.shiro.subject.Subject;</span><br><span class="line"><span class="keyword">import</span> org.junit.Test;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomRealmTest</span> </span>&#123;</span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testAutentication</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        CustomerRealm customerRealm = <span class="keyword">new</span> CustomerRealm();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 构建SecurityManager环境</span></span><br><span class="line">        DefaultSecurityManager defaultSecurityManager = <span class="keyword">new</span> DefaultSecurityManager();</span><br><span class="line">        defaultSecurityManager.setRealm(customerRealm);</span><br><span class="line">		<span class="comment">//加密设置</span></span><br><span class="line">        HashedCredentialsMatcher matcher = <span class="keyword">new</span> HashedCredentialsMatcher();</span><br><span class="line">        matcher.setHashAlgorithmName(<span class="string">"md5"</span>);</span><br><span class="line">        matcher.setHashIterations(<span class="number">1</span>);</span><br><span class="line">        customerRealm.setCredentialsMatcher(matcher);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 主体提交认证请求</span></span><br><span class="line">        SecurityUtils.setSecurityManager(defaultSecurityManager);</span><br><span class="line">        Subject subject = SecurityUtils.getSubject();</span><br><span class="line"></span><br><span class="line">        UsernamePasswordToken token = <span class="keyword">new</span> UsernamePasswordToken(<span class="string">"Ph0en1x"</span>, <span class="string">"1234"</span>);</span><br><span class="line">        subject.login(token);</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"isAutenticated: "</span> + subject.isAuthenticated());</span><br><span class="line"></span><br><span class="line"><span class="comment">//        subject.checkRole("admin");</span></span><br><span class="line"><span class="comment">//        subject.checkPermission("user:delete");</span></span><br><span class="line">        subject.logout();</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">"isAutenticated: "</span> + subject.isAuthenticated());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>   加密设置就是告诉Shiro我的密码是用了一次迭代的md5加密的，再配合<code>setCredentialsSalt</code>里的<strong>盐</strong>信息，就可以完成身份验证</p>
+<p>   ​</p>
+<ol start="4">
+<li>这里还有其他的一些关于<a href="https://github.com/Ph0en1xGSeek/Shiro/tree/master/shiroHello" target="_blank" rel="noopener">Shiro的简单代码</a></li>
 </ol>
 
       
@@ -429,9 +469,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Ubuntu/" rel="tag"># Ubuntu</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/GSL/" rel="tag"># GSL</a>
+            <a href="/tags/Shiro/" rel="tag"># Shiro</a>
           
         </div>
       
@@ -459,8 +499,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/04/01/cross_validation/" rel="next" title="训练集(train set)验证集(validation set)测试集(test set)与交叉验证法(Cross Validation)">
-                <i class="fa fa-chevron-left"></i> 训练集(train set)验证集(validation set)测试集(test set)与交叉验证法(Cross Validation)
+              <a href="/2018/09/01/angular/" rel="next" title="搭建第一个Angular Web应用">
+                <i class="fa fa-chevron-left"></i> 搭建第一个Angular Web应用
               </a>
             
           </div>
@@ -468,10 +508,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/04/10/word2vec/" rel="prev" title="word2vec词嵌入方法">
-                word2vec词嵌入方法 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -520,8 +556,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -607,6 +652,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Shiro"><span class="nav-number">1.</span> <span class="nav-text">Shiro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Demo"><span class="nav-number">2.</span> <span class="nav-text">Demo</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
