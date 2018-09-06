@@ -140,7 +140,7 @@
 
 
 
-  <title>Codeforce 920A Water The Garden | Ph0en1x Notebook</title>
+  <title>Ubuntu 18.04中安装MySQL以及普通用户无法登录问题 | Ph0en1x Notebook</title>
   
 
 
@@ -305,7 +305,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/02/06/codeforce920A/">
+    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/09/06/ubuntu_mysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ph0en1x">
@@ -322,7 +322,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">Codeforce 920A Water The Garden</h2>
+          <h2 class="post-title" itemprop="name headline">Ubuntu 18.04中安装MySQL以及普通用户无法登录问题</h2>
         
 
         <div class="post-meta">
@@ -334,7 +334,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-06T00:00:00+08:00">2018-02-06</time>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-06T00:00:00+08:00">2018-09-06</time>
             
 
             
@@ -355,8 +355,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/ACM/" itemprop="url" rel="index">
-                    <span itemprop="name">ACM</span>
+                  <a href="/categories/环境搭建/" itemprop="url" rel="index">
+                    <span itemprop="name">环境搭建</span>
                   </a>
                 </span>
 
@@ -398,43 +398,26 @@
 
       
         <blockquote>
-<p>It is winter now, and Max decided it’s about time he watered the garden.</p>
-<p>The garden can be represented as <em>n</em> consecutive garden beds, numbered from 1 to <em>n</em>. <em>k</em> beds contain water taps (<em>i</em>-th tap is located in the bed <em>x**i</em>), which, if turned on, start delivering water to neighbouring beds. If the tap on the bed <em>x**i</em> is turned on, then after one second has passed, the bed <em>x**i</em> will be watered; after two seconds have passed, the beds from the segment [<em>x**i</em> - 1, <em>x**i</em> + 1] will be watered (if they exist); after <em>j</em> seconds have passed (<em>j</em> is an integer number), the beds from the segment [<em>x**i</em> - (<em>j</em> - 1), <em>x**i</em> + (<em>j</em> - 1)] will be watered (if they exist). Nothing changes during the seconds, so, for example, we can’t say that the segment [<em>x**i</em> - 2.5, <em>x**i</em> + 2.5] will be watered after 2.5seconds have passed; only the segment [<em>x**i</em> - 2, <em>x**i</em> + 2] will be watered at that moment.</p>
-<p><img src="http://codeforces.com/predownloaded/7d/8b/7d8b9f95922d20106beb22a5fa750fd59af973a3.png" alt="img"></p>
-<p>The garden from test 1. White colour denotes a garden bed without a tap, red colour — a garden bed with a tap.</p>
-<p><img src="http://codeforces.com/predownloaded/55/94/5594fb9263dcb304cad0e8feb7cc1757bd4bb8b8.png" alt="img"></p>
-<p>The garden from test 1 after 2 seconds have passed after turning on the tap. White colour denotes an unwatered garden bed, blue colour — a watered bed.</p>
-<p>Max wants to turn on all the water taps at the same moment, and now he wonders, what is the minimum number of seconds that have to pass after he turns on some taps until the whole garden is watered. Help him to find the answer!</p>
+<p> 在ubuntu 18.04下安装/升级MySQL数据库并解决安装后普通用户无法登录MySQL，必须使用sudo才能够登录的问题。</p>
 </blockquote>
 <a id="more"></a>
-<p>Input</p>
-<blockquote>
-<p>The first line contains one integer <em>t</em> — the number of test cases to solve (1 ≤ <em>t</em> ≤ 200).</p>
-<p>Then <em>t</em> test cases follow. The first line of each test case contains two integers <em>n</em> and <em>k</em>(1 ≤ <em>n</em> ≤ 200, 1 ≤ <em>k</em> ≤ <em>n</em>) — the number of garden beds and water taps, respectively.</p>
-<p>Next line contains <em>k</em> integers <em>x**i</em> (1 ≤ <em>x**i</em> ≤ <em>n</em>) — the location of <em>i</em>-th water tap. It is guaranteed that for each <img src="http://codeforces.com/predownloaded/de/55/de55008ae108af17ee7130913a93e15d18d401e2.png" alt="img"> condition <em>x**i</em> - 1 &lt; <em>x**i</em> holds.</p>
-<p>It is guaranteed that the sum of <em>n</em> over all test cases doesn’t exceed 200.</p>
-<p>Note that in hacks you have to set <em>t</em> = 1.</p>
-</blockquote>
-<p>Output</p>
-<blockquote>
-<p>For each test case print one integer — the minimum number of seconds that have to pass after Max turns on some of the water taps, until the whole garden is watered.</p>
-</blockquote>
-<p>Example</p>
-<p>input</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">5 1</span><br><span class="line">3</span><br><span class="line">3 3</span><br><span class="line">1 2 3</span><br><span class="line">4 1</span><br><span class="line">1</span><br></pre></td></tr></table></figure>
-<p>output</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">3</span><br><span class="line">1</span><br><span class="line">4</span><br></pre></td></tr></table></figure>
-<p>Note</p>
-<blockquote>
-<p>The first example consists of 3 tests:</p>
-<ol>
-<li>There are 5 garden beds, and a water tap in the bed 3. If we turn it on, then after 1second passes, only bed 3 will be watered; after 2 seconds pass, beds [1, 3] will be watered, and after 3 seconds pass, everything will be watered.</li>
-<li>There are 3 garden beds, and there is a water tap in each one. If we turn all of them on, then everything will be watered after 1 second passes.</li>
-<li>There are 4 garden beds, and only one tap in the bed 1. It will take 4 seconds to water, for example, bed 4.</li>
-</ol>
-</blockquote>
-<p><strong>C++ Code</strong></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t, n, k, tmp = <span class="number">0</span>, pretmp;</span><br><span class="line">    <span class="keyword">int</span> mi = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;t))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; t; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;k);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; k; j++)</span><br><span class="line">            &#123;</span><br><span class="line">                pretmp = tmp;</span><br><span class="line">                <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;tmp);</span><br><span class="line">                <span class="keyword">if</span>(j == <span class="number">0</span>)</span><br><span class="line">                    mi = tmp;</span><br><span class="line">                <span class="keyword">if</span>(j &gt; <span class="number">0</span> &amp;&amp; j &lt; k<span class="number">-1</span>)</span><br><span class="line">                    mi = max(mi, (tmp-pretmp+<span class="number">2</span>)/<span class="number">2</span>);</span><br><span class="line">                <span class="keyword">if</span>(j == k<span class="number">-1</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    mi = max(mi, (tmp-pretmp+<span class="number">2</span>)/<span class="number">2</span>);</span><br><span class="line">                    mi = max(mi, n-tmp+<span class="number">1</span>);</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, mi);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>删除旧版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt --purge remove mysql-server mysql-common mysql-client</span><br></pre></td></tr></table></figure>
+<p>安装新版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mysql-server mysql-common mysql-client</span><br></pre></td></tr></table></figure>
+<p>这时候登录mysql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>输入密码后无法登录，出现Error，但是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>却能够正常登录的话，那么就按照下面的步骤修改root密码</p>
+<h2 id="修改root密码"><a href="#修改root密码" class="headerlink" title="修改root密码"></a>修改root密码</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -u root</span><br><span class="line">mysql&gt; use mysql;</span><br><span class="line">mysql&gt; select User, plugin from user;</span><br></pre></td></tr></table></figure>
+<p>发现root用户的plugin不太一样，重建一个root</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; drop user <span class="string">'root'</span>@<span class="string">'localhost'</span>;</span><br><span class="line">Query OK, 0 rows affected (0,00 sec)</span><br><span class="line">mysql&gt; create user <span class="string">'root'</span>@<span class="string">'localhost'</span> identified by <span class="string">'new_password'</span></span><br><span class="line">Query OK, 0 rows affected (0,00 sec)</span><br></pre></td></tr></table></figure>
+<p>刷新权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; grant all privileges on *.* to <span class="string">'root'</span>@<span class="string">'localhost'</span> with grant option;</span><br><span class="line">Query OK, 0 rows affected (0,00 sec)</span><br><span class="line">mysql&gt; flush privileges;</span><br><span class="line">Query OK, 0 rows affected (0,00 sec)</span><br></pre></td></tr></table></figure>
+<p>再次输入命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure>
+<p>应该就可以正常登录了</p>
 
       
     </div>
@@ -452,9 +435,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/codeforce/" rel="tag"># codeforce</a>
-          
-            <a href="/tags/c/" rel="tag"># c++</a>
+            <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
           
         </div>
       
@@ -482,8 +463,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/05/leetcode30/" rel="next" title="LeetCode 30 Substring with Concatenation of All Words">
-                <i class="fa fa-chevron-left"></i> LeetCode 30 Substring with Concatenation of All Words
+              <a href="/2018/09/03/springboot_mybatis/" rel="next" title="在Spring Boot框架内使用Mybatis">
+                <i class="fa fa-chevron-left"></i> 在Spring Boot框架内使用Mybatis
               </a>
             
           </div>
@@ -491,10 +472,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/06/codeforce920B/" rel="prev" title="Codeforce 920B Tea Queue">
-                Codeforce 920B Tea Queue <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -543,8 +520,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -630,6 +616,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改root密码"><span class="nav-number">2.</span> <span class="nav-text">修改root密码</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
