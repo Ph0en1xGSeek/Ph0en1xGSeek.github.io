@@ -1,0 +1,1577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/09/09/springboot_shiro/</loc>
+    <lastmod>2018-09-08T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>在Spring Boot框架内使用Shiro与Mybatis完成用户登录</title>
+        <pubTime>2018-09-08T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>Shiro</tag>
+         
+        <tag>Spring Boot</tag>
+         
+        <tag>Mybatis</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/09/06/ubuntu_mysql/</loc>
+    <lastmod>2018-09-05T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu 18.04中安装MySQL以及普通用户无法登录问题</title>
+        <pubTime>2018-09-05T16:00:00.000Z</pubTime>
+        
+        <tag>ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/09/03/springboot_mybatis/</loc>
+    <lastmod>2018-09-02T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>在Spring Boot框架内使用Mybatis</title>
+        <pubTime>2018-09-02T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>Spring Boot</tag>
+         
+        <tag>Mybatis</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/09/02/shiro/</loc>
+    <lastmod>2018-09-01T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Shiro安全框架入门</title>
+        <pubTime>2018-09-01T16:00:00.000Z</pubTime>
+        
+        <tag>Java</tag>
+         
+        <tag>Shiro</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/09/01/angular/</loc>
+    <lastmod>2018-08-31T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>搭建第一个Angular Web应用</title>
+        <pubTime>2018-08-31T16:00:00.000Z</pubTime>
+        
+        <tag>Angular</tag>
+         
+         
+           
+             
+              <breadCrumb title="Angular" url="https://www.ph0en1x.space/categories/Angular/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/08/24/leetcode42/</loc>
+    <lastmod>2018-08-23T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode 42 Trapping Rain Water</title>
+        <pubTime>2018-08-23T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/08/23/leetcode11/</loc>
+    <lastmod>2018-08-22T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode 11 Container With Most Water</title>
+        <pubTime>2018-08-22T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/08/23/leetcode41/</loc>
+    <lastmod>2018-08-22T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode 41 First Missing Positive</title>
+        <pubTime>2018-08-22T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/07/16/jsoup/</loc>
+    <lastmod>2018-07-15T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用Jsoup编写网络爬虫</title>
+        <pubTime>2018-07-15T16:00:00.000Z</pubTime>
+        
+        <tag>网络爬虫</tag>
+         
+        <tag>Java</tag>
+         
+        <tag>Jsoup</tag>
+         
+         
+           
+             
+              <breadCrumb title="网络爬虫" url="https://www.ph0en1x.space/categories/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/06/03/leetcode34/</loc>
+    <lastmod>2018-06-02T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode 34 Search for a Range</title>
+        <pubTime>2018-06-02T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/05/29/Apriori2/</loc>
+    <lastmod>2018-05-28T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习实战--Apriori算法挖掘关联规则</title>
+        <pubTime>2018-05-28T16:00:00.000Z</pubTime>
+        
+        <tag>Data Mining</tag>
+         
+        <tag>Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据挖掘" url="https://www.ph0en1x.space/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/05/13/FPgrowth/</loc>
+    <lastmod>2018-05-12T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习实战--FP-growth算法挖掘频繁项集</title>
+        <pubTime>2018-05-12T16:00:00.000Z</pubTime>
+        
+        <tag>Data Mining</tag>
+         
+        <tag>Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据挖掘" url="https://www.ph0en1x.space/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/05/13/Apriori/</loc>
+    <lastmod>2018-05-12T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>机器学习实战--Apriori算法挖掘频繁项集</title>
+        <pubTime>2018-05-12T16:00:00.000Z</pubTime>
+        
+        <tag>Data Mining</tag>
+         
+        <tag>Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据挖掘" url="https://www.ph0en1x.space/categories/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/04/25/ubuntu_shortcut/</loc>
+    <lastmod>2018-04-24T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu自己创建桌面快捷方式</title>
+        <pubTime>2018-04-24T16:00:00.000Z</pubTime>
+        
+        <tag>环境搭建</tag>
+         
+        <tag>Ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/04/23/ubuntu_matlab/</loc>
+    <lastmod>2018-04-22T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu下安装Matlab 2018a</title>
+        <pubTime>2018-04-22T16:00:00.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+        <tag>matlab</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/04/23/ubuntu_vlfeat/</loc>
+    <lastmod>2018-04-22T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu下编译安装VLfeat</title>
+        <pubTime>2018-04-22T16:00:00.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+        <tag>matlab</tag>
+         
+        <tag>VLfeat</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/04/18/Mahalanobis/</loc>
+    <lastmod>2018-04-17T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>马氏距离(Mahalanobis Distance)</title>
+        <pubTime>2018-04-17T16:00:00.000Z</pubTime>
+        
+        <tag>Data Mining</tag>
+         
+        <tag>Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/04/10/word2vec/</loc>
+    <lastmod>2018-04-09T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>word2vec词嵌入方法</title>
+        <pubTime>2018-04-09T16:00:00.000Z</pubTime>
+        
+        <tag>Machine Learning</tag>
+         
+        <tag>Deep Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/04/03/ubuntu_gsl/</loc>
+    <lastmod>2018-04-02T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>在Ubuntu下安装gsl科学计算库</title>
+        <pubTime>2018-04-02T16:00:00.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+        <tag>GSL</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/04/01/cross_validation/</loc>
+    <lastmod>2018-03-31T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>训练集(train set)验证集(validation set)测试集(test set)与交叉验证法(Cross Validation)</title>
+        <pubTime>2018-03-31T16:00:00.000Z</pubTime>
+        
+        <tag>Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/28/ubuntu_env/</loc>
+    <lastmod>2018-03-27T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>在Ubuntu下一些常用软件安装</title>
+        <pubTime>2018-03-27T16:00:00.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/23/largevis/</loc>
+    <lastmod>2018-03-22T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LargeVis--LINE在高维数据降维与可视化上的运用</title>
+        <pubTime>2018-03-22T16:00:00.000Z</pubTime>
+        
+        <tag>Data Mining</tag>
+         
+        <tag>Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/20/spring_boot_tomcat_port/</loc>
+    <lastmod>2018-03-19T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Spring Boot项目中Tomcat端口号的更改</title>
+        <pubTime>2018-03-19T16:00:00.000Z</pubTime>
+        
+        <tag>环境搭建</tag>
+         
+        <tag>JetBrains</tag>
+         
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="JetBrains" url="https://www.ph0en1x.space/categories/JetBrains/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/18/spring_boot/</loc>
+    <lastmod>2018-03-17T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用IDEA快速搭建Spring Boot应用</title>
+        <pubTime>2018-03-17T16:00:00.000Z</pubTime>
+        
+        <tag>JetBrains</tag>
+         
+        <tag>Java</tag>
+         
+        <tag>Spring Boot</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/15/tsne/</loc>
+    <lastmod>2018-03-14T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>t-SNE高维数据降维与可视化</title>
+        <pubTime>2018-03-14T16:00:00.000Z</pubTime>
+        
+        <tag>Data Mining</tag>
+         
+        <tag>Machine Learning</tag>
+         
+        <tag>Visualization</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/11/Isomap/</loc>
+    <lastmod>2018-03-10T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>等度量映射(ISOMAP)</title>
+        <pubTime>2018-03-10T16:00:00.000Z</pubTime>
+        
+        <tag>Data Mining</tag>
+         
+        <tag>Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/11/MDS/</loc>
+    <lastmod>2018-03-10T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>多维缩放(MDS)</title>
+        <pubTime>2018-03-10T16:00:00.000Z</pubTime>
+        
+        <tag>Data Mining</tag>
+         
+        <tag>Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/10/jetbrain_plugin/</loc>
+    <lastmod>2018-03-09T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Jetbrain IDE插件开发入门</title>
+        <pubTime>2018-03-09T16:00:00.000Z</pubTime>
+        
+        <tag>环境搭建</tag>
+         
+        <tag>JetBrains</tag>
+         
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="JetBrains" url="https://www.ph0en1x.space/categories/JetBrains/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/09/eclipse_che/</loc>
+    <lastmod>2018-03-08T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu下通过docker运行eclipse che</title>
+        <pubTime>2018-03-08T16:00:00.000Z</pubTime>
+        
+        <tag>环境搭建</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Ubuntu</tag>
+         
+        <tag>docker</tag>
+         
+        <tag>Eclipse</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/09/ubuntu_java/</loc>
+    <lastmod>2018-03-08T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Ubuntu下Java安装</title>
+        <pubTime>2018-03-08T16:00:00.000Z</pubTime>
+        
+        <tag>环境搭建</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Ubuntu</tag>
+         
+        <tag>Java</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/07/LDA/</loc>
+    <lastmod>2018-03-06T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>线性判别分析(LDA)</title>
+        <pubTime>2018-03-06T16:00:00.000Z</pubTime>
+        
+        <tag>Data Mining</tag>
+         
+        <tag>Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/06/PCA/</loc>
+    <lastmod>2018-03-05T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>主成分分析法(PCA)</title>
+        <pubTime>2018-03-05T16:00:00.000Z</pubTime>
+        
+        <tag>Data Mining</tag>
+         
+        <tag>Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/04/beautifulsoup2/</loc>
+    <lastmod>2018-03-03T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用Requests和BeautifulSoup并行抓取今日头条图集</title>
+        <pubTime>2018-03-03T16:00:00.000Z</pubTime>
+        
+        <tag>BeautifulSoup</tag>
+         
+        <tag>网络爬虫</tag>
+         
+        <tag>python</tag>
+         
+        <tag>MongoDB</tag>
+         
+        <tag>parallel</tag>
+         
+         
+           
+             
+              <breadCrumb title="网络爬虫" url="https://www.ph0en1x.space/categories/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/03/ubuntu_mongodb/</loc>
+    <lastmod>2018-03-02T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>在Ubuntu下安装MongoDB以及基本操作</title>
+        <pubTime>2018-03-02T16:00:00.000Z</pubTime>
+        
+        <tag>MongoDB</tag>
+         
+        <tag>Ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="数据库" url="https://www.ph0en1x.space/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/03/02/python_multiprocessing/</loc>
+    <lastmod>2018-03-01T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Python 多进程(multiprocessing)</title>
+        <pubTime>2018-03-01T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>parallel</tag>
+         
+         
+           
+             
+              <breadCrumb title="python" url="https://www.ph0en1x.space/categories/python/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/28/l2_regularization/</loc>
+    <lastmod>2018-02-27T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>L2正则化解决过拟合问题</title>
+        <pubTime>2018-02-27T16:00:00.000Z</pubTime>
+        
+        <tag>Machine Learning</tag>
+         
+        <tag>Deep Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/27/overfit/</loc>
+    <lastmod>2018-02-26T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>过拟合与欠拟合问题</title>
+        <pubTime>2018-02-26T16:00:00.000Z</pubTime>
+        
+        <tag>Machine Learning</tag>
+         
+        <tag>Deep Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/26/beautifulsoup/</loc>
+    <lastmod>2018-02-25T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用Requests和BeautifulSoup编写简单的网络爬虫</title>
+        <pubTime>2018-02-25T16:00:00.000Z</pubTime>
+        
+        <tag>BeautifulSoup</tag>
+         
+        <tag>网络爬虫</tag>
+         
+        <tag>python</tag>
+         
+        <tag>环境搭建</tag>
+         
+         
+           
+             
+              <breadCrumb title="网络爬虫" url="https://www.ph0en1x.space/categories/%E7%BD%91%E7%BB%9C%E7%88%AC%E8%99%AB/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/23/LSTM/</loc>
+    <lastmod>2018-02-22T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LSTM(Long Short Term Memory)与GRU(Gated Recurrent Unit)</title>
+        <pubTime>2018-02-22T16:00:00.000Z</pubTime>
+        
+        <tag>Machine Learning</tag>
+         
+        <tag>RNN</tag>
+         
+        <tag>Deep Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+    
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/22/Xavier/</loc>
+    <lastmod>2018-02-21T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Xavier方法用于神经网络参数初始化</title>
+        <pubTime>2018-02-21T16:00:00.000Z</pubTime>
+        
+        <tag>Machine Learning</tag>
+         
+        <tag>Deep Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/21/RBM_energy/</loc>
+    <lastmod>2018-02-20T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>受限制玻尔兹曼机(RBM)的能量函数及其梯度求解</title>
+        <pubTime>2018-02-20T16:00:00.000Z</pubTime>
+        
+        <tag>Machine Learning</tag>
+         
+        <tag>Deep Learning</tag>
+         
+        <tag>RBM</tag>
+         
+        <tag>contrastive divergence</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/15/fcitx/</loc>
+    <lastmod>2018-02-14T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Fcitx下全角中括号无法输入的问题</title>
+        <pubTime>2018-02-14T16:00:00.000Z</pubTime>
+        
+        <tag>环境搭建</tag>
+         
+        <tag>Fcitx</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/15/RBM/</loc>
+    <lastmod>2018-02-14T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>受限制玻尔兹曼机(Restricted Bolzmann Machine)以及自编码器(Autoencoder)</title>
+        <pubTime>2018-02-14T16:00:00.000Z</pubTime>
+        
+        <tag>Machine Learning</tag>
+         
+        <tag>Deep Learning</tag>
+         
+        <tag>Autoencoder</tag>
+         
+        <tag>RBM</tag>
+         
+        <tag>DBN</tag>
+         
+        <tag>contrastive divergence</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/09/ubuntu_nvidia/</loc>
+    <lastmod>2018-02-08T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>在Ubuntu下安装Nvidia最新驱动</title>
+        <pubTime>2018-02-08T16:00:00.000Z</pubTime>
+        
+        <tag>Ubuntu</tag>
+         
+        <tag>Nvidia</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/08/importance_sampling/</loc>
+    <lastmod>2018-02-07T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Importance Sampling (重要性采样)</title>
+        <pubTime>2018-02-07T16:00:00.000Z</pubTime>
+        
+        <tag>Machine Learning</tag>
+         
+         
+           
+             
+              <breadCrumb title="机器学习" url="https://www.ph0en1x.space/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/07/firefox_flash/</loc>
+    <lastmod>2018-02-06T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>在Linux发行版Firefox下安装最新版Flash</title>
+        <pubTime>2018-02-06T16:00:00.000Z</pubTime>
+        
+        <tag>Linux</tag>
+         
+        <tag>Ubuntu</tag>
+         
+        <tag>Firefox</tag>
+         
+        <tag>Flash</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/07/codeforce920C/</loc>
+    <lastmod>2018-02-06T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Codeforce 920C Swap Adjacent Elements</title>
+        <pubTime>2018-02-06T16:00:00.000Z</pubTime>
+        
+        <tag>codeforce</tag>
+         
+        <tag>c++</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/06/codeforce920B/</loc>
+    <lastmod>2018-02-05T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Codeforce 920B Tea Queue</title>
+        <pubTime>2018-02-05T16:00:00.000Z</pubTime>
+        
+        <tag>codeforce</tag>
+         
+        <tag>c++</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/06/codeforce920A/</loc>
+    <lastmod>2018-02-05T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Codeforce 920A Water The Garden</title>
+        <pubTime>2018-02-05T16:00:00.000Z</pubTime>
+        
+        <tag>codeforce</tag>
+         
+        <tag>c++</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/05/leetcode30/</loc>
+    <lastmod>2018-02-04T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode 30 Substring with Concatenation of All Words</title>
+        <pubTime>2018-02-04T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/02/01/git/</loc>
+    <lastmod>2018-02-04T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Git介绍以及基本命令</title>
+        <pubTime>2018-01-31T16:00:00.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="实战技能" url="https://www.ph0en1x.space/categories/%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/01/hexo/</loc>
+    <lastmod>2018-01-26T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>使用Hexo快速搭建自己的博客</title>
+        <pubTime>2017-12-31T16:00:00.000Z</pubTime>
+        
+        <tag>环境搭建</tag>
+         
+        <tag>hexo</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/27/markdown_conclusion/</loc>
+    <lastmod>2018-01-26T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Markdown常用语法总结</title>
+        <pubTime>2018-01-26T16:00:00.000Z</pubTime>
+        
+        <tag>git</tag>
+         
+        <tag>markdown</tag>
+         
+         
+           
+             
+              <breadCrumb title="实战技能" url="https://www.ph0en1x.space/categories/%E5%AE%9E%E6%88%98%E6%8A%80%E8%83%BD/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/26/codeforce915A/</loc>
+    <lastmod>2018-01-25T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Codeforce 915A Garden</title>
+        <pubTime>2018-01-25T16:00:00.000Z</pubTime>
+        
+        <tag>codeforce</tag>
+         
+        <tag>c++</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/26/codeforce915C/</loc>
+    <lastmod>2018-01-25T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Codeforce 915C Permute Digits</title>
+        <pubTime>2018-01-25T16:00:00.000Z</pubTime>
+        
+        <tag>codeforce</tag>
+         
+        <tag>c++</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/26/codeforce915B/</loc>
+    <lastmod>2018-01-25T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Codeforce 915B Browser</title>
+        <pubTime>2018-01-25T16:00:00.000Z</pubTime>
+        
+        <tag>codeforce</tag>
+         
+        <tag>c++</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/25/leetcode29/</loc>
+    <lastmod>2018-01-24T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode 29 Divide Two Integers</title>
+        <pubTime>2018-01-24T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/25/leetcode25/</loc>
+    <lastmod>2018-01-24T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode 25 Reverse Nodes in k-Group</title>
+        <pubTime>2018-01-24T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/24/ubuntu_improve/</loc>
+    <lastmod>2018-01-23T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux提升物理内存的使用率</title>
+        <pubTime>2018-01-23T16:00:00.000Z</pubTime>
+        
+        <tag>环境搭建</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/24/leetcode23/</loc>
+    <lastmod>2018-01-23T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode 23 Merge k Sorted Lists</title>
+        <pubTime>2018-01-23T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/24/git_password/</loc>
+    <lastmod>2018-01-23T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux下配置Git免密码</title>
+        <pubTime>2018-01-23T16:00:00.000Z</pubTime>
+        
+        <tag>环境搭建</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Ubuntu</tag>
+         
+        <tag>git</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/23/leetcode10/</loc>
+    <lastmod>2018-01-22T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode 10 Regular Expression Matching</title>
+        <pubTime>2018-01-22T16:00:00.000Z</pubTime>
+        
+        <tag>c++</tag>
+         
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/20/leetcode24/</loc>
+    <lastmod>2018-01-19T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode 24 Swap Nodes in Pairs</title>
+        <pubTime>2018-01-19T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/20/leetcode15/</loc>
+    <lastmod>2018-01-19T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>LeetCode 15 3Sum</title>
+        <pubTime>2018-01-19T16:00:00.000Z</pubTime>
+        
+        <tag>python</tag>
+         
+        <tag>leetcode</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/19/tensorflow_variable/</loc>
+    <lastmod>2018-01-18T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Tensorflow 共享变量理解</title>
+        <pubTime>2018-01-18T16:00:00.000Z</pubTime>
+        
+        <tag>tensorflow</tag>
+         
+         
+           
+             
+              <breadCrumb title="tensorflow" url="https://www.ph0en1x.space/categories/tensorflow/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/14/hdu5754/</loc>
+    <lastmod>2018-01-13T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>HDU 5754 Life Winner Bo</title>
+        <pubTime>2018-01-13T16:00:00.000Z</pubTime>
+        
+        <tag>c++</tag>
+         
+        <tag>hdu</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/14/hdu5802/</loc>
+    <lastmod>2018-01-13T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>HDU 5802 Windows 10</title>
+        <pubTime>2018-01-13T16:00:00.000Z</pubTime>
+        
+        <tag>c++</tag>
+         
+        <tag>hdu</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/03/junit/</loc>
+    <lastmod>2018-01-02T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Eclipse中Junit与Eclemma插件安装与使用</title>
+        <pubTime>2018-01-02T16:00:00.000Z</pubTime>
+        
+        <tag>Eclipse</tag>
+         
+        <tag>软件测试</tag>
+         
+        <tag>Junit</tag>
+         
+        <tag>Eclemma</tag>
+         
+         
+           
+             
+              <breadCrumb title="软件测试" url="https://www.ph0en1x.space/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/02/selenium/</loc>
+    <lastmod>2018-01-01T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Selenium脚本的录制和导出</title>
+        <pubTime>2018-01-01T16:00:00.000Z</pubTime>
+        
+        <tag>软件测试</tag>
+         
+        <tag>Selenium</tag>
+         
+         
+           
+             
+              <breadCrumb title="软件测试" url="https://www.ph0en1x.space/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+</urlset>
