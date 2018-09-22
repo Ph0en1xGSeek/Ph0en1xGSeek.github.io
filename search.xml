@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[POJ 3295 Tautology]]></title>
+    <url>%2F2018%2F09%2F15%2Fpoj3295%2F</url>
+    <content type="text"><![CDATA[链接 求一个式子是否是重言式，符号在前，直接构造一个栈来枚举并求出式子是否都为真 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;bool valid(char* wff, int num)&#123; bool st[101]; int top = 0; int len = strlen(wff); for(int i = len-1; i &gt;= 0; i--)&#123; if(wff[i] == 'p')&#123; st[top++] = ((1&amp;num) == 1); &#125;else if(wff[i] == 'q')&#123; st[top++] = (((1&lt;&lt;1)&amp;num) == (1&lt;&lt;1)); &#125;else if(wff[i] == 'r')&#123; st[top++] = (((1&lt;&lt;2)&amp;num) == (1&lt;&lt;2)); &#125;else if(wff[i] == 's')&#123; st[top++] = (((1&lt;&lt;3)&amp;num) == (1&lt;&lt;3)); &#125;else if(wff[i] == 't')&#123; st[top++] = (((1&lt;&lt;4)&amp;num) == (1&lt;&lt;4)); &#125;else if(wff[i] == 'K')&#123; st[top-2] = (st[top-1] &amp;&amp; st[top-2]); top--; &#125;else if(wff[i] == 'A')&#123; st[top-2] = (st[top-1] || st[top-2]); top--; &#125;else if(wff[i] == 'C')&#123; st[top-2] = ((!st[top-2]) || st[top-1]); top--; &#125;else if(wff[i] == 'E')&#123; st[top-2] = (st[top-1] == st[top-2]); top--; &#125;else if(wff[i] == 'N')&#123; st[top-1] = !st[top-1]; &#125; &#125; return st[0];&#125;int main()&#123; char wff[101]; bool flag; while(scanf("%s", wff) &amp;&amp; strcmp(wff, "0") != 0)&#123; flag = true; for(int i = 0; i &lt; (1&lt;&lt;5); i++)&#123; if(valid(wff, i) == false)&#123; flag = false; break; &#125; &#125; if(flag) printf("tautology\n"); else printf("not\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>构造法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ 2586 Y2K Accounting Bug]]></title>
+    <url>%2F2018%2F09%2F14%2Fpoj2586%2F</url>
+    <content type="text"><![CDATA[链接 给出盈利和亏损的固定值，任意连续五个月都是亏损的，问最大能够盈利多少。 先求出5个月中能够最小化亏损的组合然后依次循环，排列中应尽量将盈利月排在前面，这样最后两个月才能最大化盈利。 C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263#include &lt;iostream&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;stdio.h&gt;using namespace std;int main()&#123; int s, d; while(~scanf("%d%d", &amp;s, &amp;d)) &#123; if(s*4 &lt; d) &#123; if(10*s &gt; 2*d) &#123; printf("%d\n", 10*s - 2*d); &#125; else &#123; printf("Deficit\n"); &#125; &#125; else if(s*3 &lt; d*2) &#123; if(8*s &gt; 4*d) &#123; printf("%d\n", 8*s - 4*d); &#125; else &#123; printf("Deficit\n"); &#125; &#125; else if(s*2 &lt; d*3) &#123; if(6*s &gt; 6*d) &#123; printf("%d\n", 6*s - 6*d); &#125; else &#123; printf("Deficit\n"); &#125; &#125; else if(s &lt; d*4) &#123; if(3*s &gt; 9*d) &#123; printf("%d\n", 3*s - 9*d); &#125; else &#123; printf("Deficit\n"); &#125; &#125; else &#123; printf("Deficit\n"); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ 2109 Power of Cryptography]]></title>
+    <url>%2F2018%2F09%2F13%2Fpoj2109%2F</url>
+    <content type="text"><![CDATA[链接 给两个数n, p，求k使得k的n次方等于p。理论上应该使用大数来保证精度，但是这题用C++编译器的情况下直接pow也是可以的。大数的代码今后有时间调试好后补上。 C++ Code 123456789101112131415/*Only C++ compiler can Accepted*/#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;math.h&gt;using namespace std;int main()&#123; double n, p; while(~scanf("%lf%lf", &amp;n, &amp;p))&#123; printf("%.0lf\n", pow(p, 1/n)); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>贪心</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[POJ 1328 Radar Installation]]></title>
     <url>%2F2018%2F09%2F12%2Fpoj1328%2F</url>
     <content type="text"><![CDATA[链接 预处理出每个岛所能容许的雷达范围，按照右端点排序，每次都新放置一个在新线段的右边，然后往后找哪个的左端点够不着了，再放在这个线段的右端点，以此类推 C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;math.h&gt;using namespace std;struct land&#123; double l; double r; int y; bool operator&lt;(const land&amp; b) const&#123; if(r == b.r)&#123; return l &lt; b.l; &#125; return r &lt; b.r; &#125;&#125;lands[1000];int main()&#123; int n, d; int cas = 1; bool flag = true; int cnt = 1; while(~scanf("%d%d", &amp;n, &amp;d) &amp;&amp; n != 0)&#123; flag = true; cnt = 1; int x; for(int i = 0; i &lt; n; i++)&#123; scanf("%d%d", &amp;x, &amp;lands[i].y); if(lands[i].y &gt; d || lands[i].y &lt; 0) flag = false; lands[i].l = x - sqrt(d*d - lands[i].y*lands[i].y); lands[i].r = x + sqrt(d*d - lands[i].y*lands[i].y); &#125; if(flag == false)&#123; printf("Case %d: %d\n", cas++, -1); continue; &#125; sort(lands, lands+n); double cur = lands[0].r; for(int i = 1; i &lt; n; i++)&#123; if(lands[i].l &gt; cur)&#123; cur = lands[i].r; cnt++; &#125; &#125; printf("Case %d: %d\n", cas++, cnt); &#125; return 0;&#125;]]></content>
@@ -31,7 +73,7 @@
   <entry>
     <title><![CDATA[POJ 1753 Flip Game]]></title>
     <url>%2F2018%2F09%2F10%2Fpoj1753%2F</url>
-    <content type="text"><![CDATA[链接 七灯问题变形，一共有16个开关，递归枚举变动的个数 C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;bool isSame(int* pan)&#123; for(int i = 1; i &lt; 16; i++)&#123; if(pan[i] != pan[i-1]) return false; &#125; return true;&#125;void flip(int* pan, int pos)&#123; int x = pos / 4; int y = pos % 4; pan[pos] = !(pan[pos]); if(y &lt; 3)&#123; pan[pos+1] = !(pan[pos+1]); &#125; if(y &gt; 0)&#123; pan[pos-1] = !(pan[pos-1]); &#125; if(x &lt; 3)&#123; pan[pos + 4] = !(pan[pos + 4]); &#125; if(x &gt; 0)&#123; pan[pos - 4] = !(pan[pos - 4]); &#125;&#125;bool dfs(int* pan, int cur, int len, int curPos)&#123; if(cur == len) if(isSame(pan))&#123; return true; &#125; else return false; if(16 - curPos &lt; len - cur) return false; int* new_pan = new int[16]; for(int i = curPos; i &lt; 16; i++)&#123; for(int j = 0; j &lt; 16; j++)&#123; new_pan[j] = pan[j]; &#125; flip(new_pan, i); if(dfs(new_pan, cur+1, len, i+1))&#123; return true; &#125; &#125; return false;&#125;int main()&#123; int pan[16]; char row[5]; int pos = 0; for(int i = 0; i &lt; 4; i++)&#123; scanf("%s", row); getchar(); for(int j = 0; j &lt; 4; j++)&#123; if(row[j] == 'b') pan[pos++] = 0; else pan[pos++] = 1; &#125; &#125; if(isSame(pan))&#123; printf("0\n"); &#125;else&#123; int ans; int i; for(i = 1; i &lt;= 16; i++)&#123; /*number of flipped*/ if(dfs(pan, 0, i, 0))&#123; printf("%d\n", i); break; &#125; &#125; if(i == 17) printf("Impossible\n"); &#125; return 0;&#125;]]></content>
+    <content type="text"><![CDATA[太久不练实在是手生啊，干脆从POJ的分类题目开始重新训练。虽然研究僧时间还是蛮紧的，但是还是要抽点时间出来啊！！！😂 链接 七灯问题变形，一共有16个开关，递归枚举变动的个数 C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;bool isSame(int* pan)&#123; for(int i = 1; i &lt; 16; i++)&#123; if(pan[i] != pan[i-1]) return false; &#125; return true;&#125;void flip(int* pan, int pos)&#123; int x = pos / 4; int y = pos % 4; pan[pos] = !(pan[pos]); if(y &lt; 3)&#123; pan[pos+1] = !(pan[pos+1]); &#125; if(y &gt; 0)&#123; pan[pos-1] = !(pan[pos-1]); &#125; if(x &lt; 3)&#123; pan[pos + 4] = !(pan[pos + 4]); &#125; if(x &gt; 0)&#123; pan[pos - 4] = !(pan[pos - 4]); &#125;&#125;bool dfs(int* pan, int cur, int len, int curPos)&#123; if(cur == len) if(isSame(pan))&#123; return true; &#125; else return false; if(16 - curPos &lt; len - cur) return false; int* new_pan = new int[16]; for(int i = curPos; i &lt; 16; i++)&#123; for(int j = 0; j &lt; 16; j++)&#123; new_pan[j] = pan[j]; &#125; flip(new_pan, i); if(dfs(new_pan, cur+1, len, i+1))&#123; return true; &#125; &#125; return false;&#125;int main()&#123; int pan[16]; char row[5]; int pos = 0; for(int i = 0; i &lt; 4; i++)&#123; scanf("%s", row); getchar(); for(int j = 0; j &lt; 4; j++)&#123; if(row[j] == 'b') pan[pos++] = 0; else pan[pos++] = 1; &#125; &#125; if(isSame(pan))&#123; printf("0\n"); &#125;else&#123; int ans; int i; for(i = 1; i &lt;= 16; i++)&#123; /*number of flipped*/ if(dfs(pan, 0, i, 0))&#123; printf("%d\n", i); break; &#125; &#125; if(i == 17) printf("Impossible\n"); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -116,9 +158,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 11 Container With Most Water]]></title>
-    <url>%2F2018%2F08%2F23%2Fleetcode11%2F</url>
-    <content type="text"><![CDATA[2-SUM 同类型题目 Given n non-negative integers a1, a2, …, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water. Note: You may not slant the container and n is at least 2. The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49. 算法： 刚开始设置最左边和最右边两个板，记录当前面积，然后把短的那边的指针向中心移动一个位置，比较面积，以此类推； 证明： 以左边指针为例，如果左边较短，那么右边的指针无论怎么向左移动都不可能得到更大的面积了，所以可以看作直接跳过大层循环，即左边指针向右一位。右边指针同理； 左边向右一位后，右边的指针不需要回到最右边，因为右边指针的右边不可能有比左边指针移动前更大的（相当于双方打擂台，守擂的一定比对方之前打擂失败的都要强），所以左指针移动后不可能通过右指针右边的数得到更好的答案。 Python Code 1234567891011121314151617class Solution(object): def maxArea(self, height): """ :type height: List[int] :rtype: int """ mx = 0 i = 0 j = len(height) - 1 while i &lt; j: v = min(height[i], height[j]) * (j-i) mx = max(mx, v) if height[i] &lt; height[j]: i += 1 else: j -= 1 return mx]]></content>
+    <title><![CDATA[LeetCode 41 First Missing Positive]]></title>
+    <url>%2F2018%2F08%2F23%2Fleetcode41%2F</url>
+    <content type="text"><![CDATA[桶排序思想，一种理想情况下接近O(n)的排序算法 Given an unsorted integer array, find the smallest missing positive integer. Example 1: 123&gt; Input: [1,2,0]&gt; Output: 3&gt; Example 2: 123&gt; Input: [3,4,-1,1]&gt; Output: 2&gt; Example 3: 123&gt; Input: [7,8,9,11,12]&gt; Output: 1&gt; Note: Your algorithm should run in O(n) time and uses constant extra space. 假设这n个数就是1-n进行排序，即i应该放在nums[i-1]上 扫描一遍数组，只要当前位置上的数不是在1-n之间并且没有正确摆放，就与正确位置上的数进行一次交换 所有的数都会被扫描到一遍，每一次交换都会使得一个数到达它应该在的位置上，所以最多交换n次，扫描过后所有在1-n区间内的数都会被换到它应该在的位置上 再从头扫描一遍数组，第一个放置错误的位置就是第一个缺失的数，如果都正确了，那么就是n+1缺失 Python Code 12345678910111213141516171819class Solution: def firstMissingPositive(self, nums): """ :type nums: List[int] :rtype: int """ length = len(nums) if length == 0: return 1 for i in range(length): while nums[i] &gt; 0 and nums[i] &lt;= length and nums[i] != i+1 and nums[i] != nums[nums[i]-1]: tmp = nums[nums[i]-1] nums[nums[i]-1] = nums[i] nums[i] = tmp for i in range(length): if nums[i] != i+1: return i+1 return length+1]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -128,9 +170,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 41 First Missing Positive]]></title>
-    <url>%2F2018%2F08%2F23%2Fleetcode41%2F</url>
-    <content type="text"><![CDATA[桶排序思想，一种理想情况下接近O(n)的排序算法 Given an unsorted integer array, find the smallest missing positive integer. Example 1: 123&gt; Input: [1,2,0]&gt; Output: 3&gt; Example 2: 123&gt; Input: [3,4,-1,1]&gt; Output: 2&gt; Example 3: 123&gt; Input: [7,8,9,11,12]&gt; Output: 1&gt; Note: Your algorithm should run in O(n) time and uses constant extra space. 假设这n个数就是1-n进行排序，即i应该放在nums[i-1]上 扫描一遍数组，只要当前位置上的数不是在1-n之间并且没有正确摆放，就与正确位置上的数进行一次交换 所有的数都会被扫描到一遍，每一次交换都会使得一个数到达它应该在的位置上，所以最多交换n次，扫描过后所有在1-n区间内的数都会被换到它应该在的位置上 再从头扫描一遍数组，第一个放置错误的位置就是第一个缺失的数，如果都正确了，那么就是n+1缺失 Python Code 12345678910111213141516171819class Solution: def firstMissingPositive(self, nums): """ :type nums: List[int] :rtype: int """ length = len(nums) if length == 0: return 1 for i in range(length): while nums[i] &gt; 0 and nums[i] &lt;= length and nums[i] != i+1 and nums[i] != nums[nums[i]-1]: tmp = nums[nums[i]-1] nums[nums[i]-1] = nums[i] nums[i] = tmp for i in range(length): if nums[i] != i+1: return i+1 return length+1]]></content>
+    <title><![CDATA[LeetCode 11 Container With Most Water]]></title>
+    <url>%2F2018%2F08%2F23%2Fleetcode11%2F</url>
+    <content type="text"><![CDATA[2-SUM 同类型题目 Given n non-negative integers a1, a2, …, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water. Note: You may not slant the container and n is at least 2. The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49. 算法： 刚开始设置最左边和最右边两个板，记录当前面积，然后把短的那边的指针向中心移动一个位置，比较面积，以此类推； 证明： 以左边指针为例，如果左边较短，那么右边的指针无论怎么向左移动都不可能得到更大的面积了，所以可以看作直接跳过大层循环，即左边指针向右一位。右边指针同理； 左边向右一位后，右边的指针不需要回到最右边，因为右边指针的右边不可能有比左边指针移动前更大的（相当于双方打擂台，守擂的一定比对方之前打擂失败的都要强），所以左指针移动后不可能通过右指针右边的数得到更好的答案。 Python Code 1234567891011121314151617class Solution(object): def maxArea(self, height): """ :type height: List[int] :rtype: int """ mx = 0 i = 0 j = len(height) - 1 while i &lt; j: v = min(height[i], height[j]) * (j-i) mx = max(mx, v) if height[i] &lt; height[j]: i += 1 else: j -= 1 return mx]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -213,6 +255,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Ubuntu下安装Matlab 2018a]]></title>
+    <url>%2F2018%2F04%2F23%2Fubuntu_matlab%2F</url>
+    <content type="text"><![CDATA[在Ubuntu在安装Matlab用于学习、研究用途。Linux上可以使用开源免费的Octave代替 下载Matlab 2018a 安装包 matlab是收费软件，所以这篇笔记没有提供下载和破解资源，各位想把Matlab用做学习研究用途的童鞋可以到各大PT站取下载 ​ 进入安装包内，和Windows安装一样，里面会有三个文件，分别是破解用的证书文件，光盘镜像1，光盘镜像2 ​ 创建挂载点~/matlab挂载映像文件1 123$ cd ~$ mkdir matlab $ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd1.iso ~/matlab/ ​ 挂载之后，进入根目录开始安装(注意不能直接在挂载目录下启动install) 12$ cd /$ sudo ./home/phoenix/matlab/install ​ 安装中提示输入key的可以到破解文件Crack中的readme.txt中找 按照提示进行安装，安装到一半时会提示插入光盘2，这时候就要挂载映像文件2 1$ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd2.iso ~/matlab/ ​ 安装好后第一次启动 12$ cd /usr/local/MATLAB/R2018a/bin$ sudo ./matlab ​ 选择不要联网激活，导入Crack中的license_standalone.lic文件 ​ 复制文件 1sudo cp -f YOUR_DOWNLOAD_DIR/Matlab2018aLinux64Crack/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so /usr/local/MATLAB/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl 再次启动 1$ sudo ./matlab]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>matlab</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Ubuntu下编译安装VLfeat]]></title>
     <url>%2F2018%2F04%2F23%2Fubuntu_vlfeat%2F</url>
     <content type="text"><![CDATA[The VLFeat open source library implements popular computer vision algorithms specializing in image understanding and local features extraction and matching. Algorithms include Fisher Vector, VLAD, SIFT, MSER, k-means, hierarchical k-means, agglomerative information bottleneck, SLIC superpixels, quick shift superpixels, large scale SVM training, and many others. It is written in C for efficiency and compatibility, with interfaces in MATLAB for ease of use, and detailed documentation throughout. It supports Windows, Mac OS X, and Linux. 下载源码 解压进入vlfeat的根目录vlfeat_ROOT 修改Makefile 解除注释或添加一行 1DISABLE_OPENMP=yes ​ 打开/etc/ld.so.conf添加一行 1vlfeat_ROOT/toolbox/mex/mexa64 ​ 刷新环境配置 1sudo ldconfig ​ 再次进入vlfeat_ROOT，输入命令 1make MEX=matlab_ROOT/bin/mex ​ 编译成功后进入matlab命令行输入 1run('vlfeat_ROOT/toolbox/vl_setup.m') 运行成功后查看版本，正常显示后完成安装 1vl_version ​ 在matlab起始位置下(我的是HOME目录下)添加一个startup.m文件写上 1run('vlfeat_ROOT/toolbox/vl_setup.m') 就可以每次启动时自动加载vlfeat ​]]></content>
@@ -223,18 +277,6 @@
         <tag>Ubuntu</tag>
         <tag>matlab</tag>
         <tag>VLfeat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Ubuntu下安装Matlab 2018a]]></title>
-    <url>%2F2018%2F04%2F23%2Fubuntu_matlab%2F</url>
-    <content type="text"><![CDATA[在Ubuntu在安装Matlab用于学习、研究用途。Linux上可以使用开源免费的Octave代替 下载Matlab 2018a 安装包 matlab是收费软件，所以这篇笔记没有提供下载和破解资源，各位想把Matlab用做学习研究用途的童鞋可以到各大PT站取下载 ​ 进入安装包内，和Windows安装一样，里面会有三个文件，分别是破解用的证书文件，光盘镜像1，光盘镜像2 ​ 创建挂载点~/matlab挂载映像文件1 123$ cd ~$ mkdir matlab $ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd1.iso ~/matlab/ ​ 挂载之后，进入根目录开始安装(注意不能直接在挂载目录下启动install) 12$ cd /$ sudo ./home/phoenix/matlab/install ​ 安装中提示输入key的可以到破解文件Crack中的readme.txt中找 按照提示进行安装，安装到一半时会提示插入光盘2，这时候就要挂载映像文件2 1$ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd2.iso ~/matlab/ ​ 安装好后第一次启动 12$ cd /usr/local/MATLAB/R2018a/bin$ sudo ./matlab ​ 选择不要联网激活，导入Crack中的license_standalone.lic文件 ​ 复制文件 1sudo cp -f YOUR_DOWNLOAD_DIR/Matlab2018aLinux64Crack/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so /usr/local/MATLAB/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl 再次启动 1$ sudo ./matlab]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>matlab</tag>
       </tags>
   </entry>
   <entry>
@@ -347,9 +389,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[多维缩放(MDS)]]></title>
-    <url>%2F2018%2F03%2F11%2FMDS%2F</url>
-    <content type="text"><![CDATA[多维缩放(multidimensional scaling ,MDS)，是另外一种线性降维方式，与主成分分析法和线性降维分析法都不同的是，多维缩放的目标不是保留数据的最大可分性，而是更加关注与高维数据内部的特征。多维缩放算法集中于保留高维空间中的“相似度”信息，而在一般的问题解决的过程中，这个“相似度”通常用欧式距离来定义。 假设D为m个样本在高维空间中的距离矩阵，distij为第i个样本与第j个样本的欧式距离 Z是样本在低维中映射的表示，那么，多维缩放的降维目标就是要保证： 令B=ZTZ，B为降维后样本的内积矩阵，bij=ziTzj 规定降维后的样本为中心化样本，因为只保留了距离信息，无论结果怎么旋转、平移都可以，即 那么 令 综合以上各式，得到 所以可以使用距离矩阵D来求得内积矩阵B， 为了完成降维，可以将B进行特征值分解 仅保留最大的前d’个特征值以及相应的特征向量，就可以得出降维后的结果]]></content>
+    <title><![CDATA[等度量映射(ISOMAP)]]></title>
+    <url>%2F2018%2F03%2F11%2FIsomap%2F</url>
+    <content type="text"><![CDATA[等度量映射(Isomap)是最经典的非线性映射降维方法之一，它在MDS的基础上引入了“测地距离”的概念，直接解决了MDS使用欧氏距离无法应对非线性流形的问题。 测地距离(Geometric Distance)是高维流形中两点之间的最短距离，高维流形中，空间是不规则的，所以最短距离不一定是直线距离(欧氏距离)。就像蚂蚁从立方体的一面爬到另一面，不能直接横穿立方体一样。 上图最左边的图中两个点的最近距离应该是蓝色实线的距离，而不应该是虚线的距离。 真实的测地距离是非常难以求出的，Isomap基于流形局部近似于欧式空间的定义提出了一种近似的求解方式 求得原样本的KNN图，并依据定义保留其欧式距离 所有非KNN的点间的距离规定为无穷大 用dijkstra或floyd求出任意两点的最短路便可近似表示两点间的测地距离 最后Isomap将得到的测地距离矩阵输入MDS完成降维; 感受下效果]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -359,9 +401,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[等度量映射(ISOMAP)]]></title>
-    <url>%2F2018%2F03%2F11%2FIsomap%2F</url>
-    <content type="text"><![CDATA[等度量映射(Isomap)是最经典的非线性映射降维方法之一，它在MDS的基础上引入了“测地距离”的概念，直接解决了MDS使用欧氏距离无法应对非线性流形的问题。 测地距离(Geometric Distance)是高维流形中两点之间的最短距离，高维流形中，空间是不规则的，所以最短距离不一定是直线距离(欧氏距离)。就像蚂蚁从立方体的一面爬到另一面，不能直接横穿立方体一样。 上图最左边的图中两个点的最近距离应该是蓝色实线的距离，而不应该是虚线的距离。 真实的测地距离是非常难以求出的，Isomap基于流形局部近似于欧式空间的定义提出了一种近似的求解方式 求得原样本的KNN图，并依据定义保留其欧式距离 所有非KNN的点间的距离规定为无穷大 用dijkstra或floyd求出任意两点的最短路便可近似表示两点间的测地距离 最后Isomap将得到的测地距离矩阵输入MDS完成降维; 感受下效果]]></content>
+    <title><![CDATA[多维缩放(MDS)]]></title>
+    <url>%2F2018%2F03%2F11%2FMDS%2F</url>
+    <content type="text"><![CDATA[多维缩放(multidimensional scaling ,MDS)，是另外一种线性降维方式，与主成分分析法和线性降维分析法都不同的是，多维缩放的目标不是保留数据的最大可分性，而是更加关注与高维数据内部的特征。多维缩放算法集中于保留高维空间中的“相似度”信息，而在一般的问题解决的过程中，这个“相似度”通常用欧式距离来定义。 假设D为m个样本在高维空间中的距离矩阵，distij为第i个样本与第j个样本的欧式距离 Z是样本在低维中映射的表示，那么，多维缩放的降维目标就是要保证： 令B=ZTZ，B为降维后样本的内积矩阵，bij=ziTzj 规定降维后的样本为中心化样本，因为只保留了距离信息，无论结果怎么旋转、平移都可以，即 那么 令 综合以上各式，得到 所以可以使用距离矩阵D来求得内积矩阵B， 为了完成降维，可以将B进行特征值分解 仅保留最大的前d’个特征值以及相应的特征向量，就可以得出降维后的结果]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -392,8 +434,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Linux</tag>
         <tag>Ubuntu</tag>
+        <tag>Linux</tag>
         <tag>Java</tag>
       </tags>
   </entry>
@@ -406,8 +448,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Linux</tag>
         <tag>Ubuntu</tag>
+        <tag>Linux</tag>
         <tag>docker</tag>
         <tag>Eclipse</tag>
       </tags>
@@ -553,18 +595,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Fcitx下全角中括号无法输入的问题]]></title>
-    <url>%2F2018%2F02%2F15%2Ffcitx%2F</url>
-    <content type="text"><![CDATA[本篇文章将会介绍如何修复ubuntu下Fcitx输入法无法输入全角（中文）中括号【】并使用[]来切换候选字的方法 操作步聚： 打开fcitx字符映射文件 1sudo gedit /usr/share/fcitx/data/punc.mb.zh_CN ​ 修改 将 12[ ·] 「 」 修改为 12[ 【] 】 重启输入法完成修改]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>环境搭建</tag>
-        <tag>Fcitx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[受限制玻尔兹曼机(Restricted Bolzmann Machine)以及自编码器(Autoencoder)]]></title>
     <url>%2F2018%2F02%2F15%2FRBM%2F</url>
     <content type="text"><![CDATA[受限制玻尔兹曼机(Restricted Bolzmann Machine, RBM)与自编码器(Autoencoder, AE)是神经网络的两种基本结构，两个结构都能起到降维的作用，都可以用来对神经网络进行预训练（pre-training），这种预训练都是无监督的。由于RBM与MLP及其相似，一直以来我就困惑于他们两者，终于花了几天时间来搞清楚他们的区别和训练方法，发现他们甚至不是并列的关系。。 一、知识脉络受限制玻尔兹曼机 -&gt; 深度信念网络(Deep Blief Network, DBN) 自编码器 -&gt; 堆叠自编码器(Stacked Autoencoderm, SAE) 二、自编码器自编码器的输入维度与输出维度相等，训练目的是使数据的特征得到最大的保留，去除冗余信息，一个单层的自编码器结构如下图 当然一个自编码器也可以有很多层： 简化来看就是输入层-&gt;隐藏层-&gt;输出层，自编码器的目的就是使重建(reconstruction)的输出层能尽量还原输入层，同时获得中间隐藏层(最窄的橙色那层)既是降维的结果。若输入层到隐藏层间的部分称为编码器(灰色)，记号为f(x)，隐藏层到输出层之间的部分称为解码器(黄色)，记号为g(x)，那么自编码器的数学训练目标就是 三、受限制玻尔兹曼机受限制玻尔兹曼机是一个双层结构，可见层(visible)与隐藏层(hidden)，图结构为一个二分图，即可见层只与隐藏层之间有连接，但是层内是无连接的，因此RBM的性质：当给定可见层神经元的状态时，各隐藏层神经元的激活条件独立；反之当给定隐藏层神经元的状态时，可见层神经元的激活也条件独立。基本结构如下 受限制玻尔兹曼机的训练目的是为了最大程度的保留概率分布，定义了一个能量函数的概念 用矩阵来表示就是 a与b分别是可视层与隐藏层的偏置项(bias) v, h联合概率分布是 其中Z是所有[v, h]对对应的能量的总和，v的边缘概率分布如下，h同理 由于受限玻尔兹曼机结构上的特点，所以各隐藏层之间的神经元条件概率独立，即 可见层v同理 能量函数的具体推导过程将会在后面的文章中详细解释 四、训练方法就像RBM是由物理模型转化过来一样，训练方法与传统的反向传播(BP)也不一样 RBM最早的训练方法有Gibbs sampling，通过不断地来回采样来训练，如下图 然而这样的方法太慢，所以Hinton大神又提出了CD-k(contrastive divergence)算法，即只需要来回重复k次就可以，以CD-1为例: 就可以完成一次迭代，这就像是两种不同温度的液体进行混合，如果两者的温度差距较大，在混合的过程中就会产生较大的梯度，而受限制玻尔兹曼机的训练目标就是使得两边的“温度”能够尽量的相近，而在数据中这个“温度”的体现就是数据分布。也就是说，使用RBM进行模型的初始化训练能够最大程度的保留数据分布，防止梯度爆炸和梯度消失问题的出现。 五、深度信念网络与逐层训练由多层受限制玻尔兹曼机堆叠起来的网络叫作深度信念网络(DBN)。深度信念网络在最后一层接入一个Softmax层用作分类，训练的时候采取逐层训练+微调的方式 逐层训练就是从输入层开始将网络的相邻两层当作一个受限制玻尔兹曼机进行无监督训练，训练方法见上一节，训练后将上一个RBM的隐藏层当作下一个RBM的可见层继续 逐层无监督训练完毕后，将进行反向传播训练对模型进行微调，从输入端输入数据，最后从输出端开始进行反向传播 自编码器虽然只是要保证输出端与输入端尽量接近，但是随着自编码器堆叠深度的加深，就会出现类似梯度弥散与梯度爆炸等问题，Hinton大神同样也使用了类似RBM的训练方法对深度自编码器进行逐层训练，使模型的得到了很好的初始化，加快了模型的解的最优性和收敛速度。 六、参考 受限玻尔兹曼机与深度置信网络 Hinton G E. A practical guide to training restricted Boltzmann machines[M]//Neural networks: Tricks of the trade. Springer, Berlin, Heidelberg, 2012: 599-619. Bengio Y, Lamblin P, Popovici D, et al. Greedy layer-wise training of deep networks[C]//Advances in neural information processing systems. 2007: 153-160. Hinton G E, Osindero S, Teh Y W. A fast learning algorithm for deep belief nets[J]. Neural computation, 2006, 18(7): 1527-1554. Hinton G E, Salakhutdinov R R. Reducing the dimensionality of data with neural networks[J]. science, 2006, 313(5786): 504-507.]]></content>
@@ -578,6 +608,18 @@
         <tag>contrastive divergence</tag>
         <tag>Autoencoder</tag>
         <tag>DBN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Fcitx下全角中括号无法输入的问题]]></title>
+    <url>%2F2018%2F02%2F15%2Ffcitx%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍如何修复ubuntu下Fcitx输入法无法输入全角（中文）中括号【】并使用[]来切换候选字的方法 操作步聚： 打开fcitx字符映射文件 1sudo gedit /usr/share/fcitx/data/punc.mb.zh_CN ​ 修改 将 12[ ·] 「 」 修改为 12[ 【] 】 重启输入法完成修改]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Fcitx</tag>
       </tags>
   </entry>
   <entry>
@@ -611,9 +653,9 @@
         <category>环境搭建</category>
       </categories>
       <tags>
+        <tag>Ubuntu</tag>
         <tag>Linux</tag>
         <tag>Firefox</tag>
-        <tag>Ubuntu</tag>
         <tag>Flash</tag>
       </tags>
   </entry>
@@ -689,9 +731,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Codeforce 915A Garden]]></title>
-    <url>%2F2018%2F01%2F26%2Fcodeforce915A%2F</url>
-    <content type="text"><![CDATA[Luba thinks about watering her garden. The garden can be represented as a segment of length k. Luba has got n buckets, the i-th bucket allows her to water some continuous subsegment of garden of length exactly a**i each hour. Luba can’t water any parts of the garden that were already watered, also she can’t water the ground outside the garden. Luba has to choose one of the buckets in order to water the garden as fast as possible (as mentioned above, each hour she will water some continuous subsegment of length a**i if she chooses the i-th bucket). Help her to determine the minimum number of hours she has to spend watering the garden. It is guaranteed that Luba can always choose a bucket so it is possible water the garden. See the examples for better understanding. Input The first line of input contains two integer numbers n and k (1 ≤ n, k ≤ 100) — the number of buckets and the length of the garden, respectively. The second line of input contains n integer numbers a**i (1 ≤ a**i ≤ 100) — the length of the segment that can be watered by the i-th bucket in one hour. It is guaranteed that there is at least one bucket such that it is possible to water the garden in integer number of hours using only this bucket. Output Print one integer number — the minimum number of hours required to water the garden. Examples input 123 62 3 5 output 12 input 126 71 2 3 4 5 6 output 17 Note In the first test the best option is to choose the bucket that allows to water the segment of length 3. We can’t choose the bucket that allows to water the segment of length 5 because then we can’t water the whole garden. In the second test we can choose only the bucket that allows us to water the segment of length 1. C++ Code 123456789101112131415161718192021222324252627#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, k; int tmp; int mi; while(~scanf("%d%d", &amp;n, &amp;k)) &#123; mi = 1000; for(int i = 0; i &lt; n; i++) &#123; scanf("%d", &amp;tmp); if(k % tmp == 0) &#123; mi = min(k / tmp, mi); &#125; &#125; printf("%d\n", mi); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Codeforce 915C Permute Digits]]></title>
+    <url>%2F2018%2F01%2F26%2Fcodeforce915C%2F</url>
+    <content type="text"><![CDATA[You are given two positive integer numbers a and b. Permute (change order) of the digits of a to construct maximal number not exceeding b. No number in input and/or output can start with the digit 0. It is allowed to leave a as it is. Input The first line contains integer a (1 ≤ a ≤ 1018). The second line contains integer b (1 ≤ b ≤ 1018). Numbers don’t have leading zeroes. It is guaranteed that answer exists. Output Print the maximum possible number that is a permutation of digits of a and is not greater than b. The answer can’t have any leading zeroes. It is guaranteed that the answer exists. Examples input 12123222 output 1213 input 12392110000 output 19321 input 1249405000 output 14940 b一定不短于a 如果b比a长，直接降序排列a 如果一样长 先统计a中数字的个数 对于每一位b，都找不比b大的匹配，一旦有一位匹配后小于b的那位，之后就可以从最大的开始降序匹配 如果有一位无法匹配小于等于b的那位，那么就回退一位，匹配小于b的，这样后面就可以不受约束 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;iomanip&gt;using namespace std;bool cmp(char a, char b)&#123; return a &gt; b;&#125;int main()&#123; char str1[20]; char str2[20]; char tmp; int arr[15]; while(~scanf("%s", str1)) &#123; memset(arr, 0, sizeof(arr)); getchar(); scanf("%s", str2); getchar(); int len1 = strlen(str1); int len2 = strlen(str2); if(len2 &gt; len1) &#123; sort(str1, str1+len1, cmp); &#125; else &#123; bool flag = false; for(int i = 0; i &lt; len1; i++) &#123; arr[str1[i] - '0']++; str1[i] = str2[i]; &#125; for(int i = 0; i &lt; len2; i++) &#123; int j; if(flag == false) j = str1[i] - '0'; else j = 9; for(; j &gt;= 0; j--) &#123; if(arr[j] &gt; 0) &#123; arr[j]--; str1[i] = j+'0'; if(j &lt; str2[i] - '0') flag = true; break; &#125; &#125; if(j == -1 &amp;&amp; flag == false) &#123; i--; arr[str1[i]-'0']++; str1[i]--; i--; &#125; &#125; &#125; printf("%s\n", str1); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -713,9 +755,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Codeforce 915C Permute Digits]]></title>
-    <url>%2F2018%2F01%2F26%2Fcodeforce915C%2F</url>
-    <content type="text"><![CDATA[You are given two positive integer numbers a and b. Permute (change order) of the digits of a to construct maximal number not exceeding b. No number in input and/or output can start with the digit 0. It is allowed to leave a as it is. Input The first line contains integer a (1 ≤ a ≤ 1018). The second line contains integer b (1 ≤ b ≤ 1018). Numbers don’t have leading zeroes. It is guaranteed that answer exists. Output Print the maximum possible number that is a permutation of digits of a and is not greater than b. The answer can’t have any leading zeroes. It is guaranteed that the answer exists. Examples input 12123222 output 1213 input 12392110000 output 19321 input 1249405000 output 14940 b一定不短于a 如果b比a长，直接降序排列a 如果一样长 先统计a中数字的个数 对于每一位b，都找不比b大的匹配，一旦有一位匹配后小于b的那位，之后就可以从最大的开始降序匹配 如果有一位无法匹配小于等于b的那位，那么就回退一位，匹配小于b的，这样后面就可以不受约束 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;iomanip&gt;using namespace std;bool cmp(char a, char b)&#123; return a &gt; b;&#125;int main()&#123; char str1[20]; char str2[20]; char tmp; int arr[15]; while(~scanf("%s", str1)) &#123; memset(arr, 0, sizeof(arr)); getchar(); scanf("%s", str2); getchar(); int len1 = strlen(str1); int len2 = strlen(str2); if(len2 &gt; len1) &#123; sort(str1, str1+len1, cmp); &#125; else &#123; bool flag = false; for(int i = 0; i &lt; len1; i++) &#123; arr[str1[i] - '0']++; str1[i] = str2[i]; &#125; for(int i = 0; i &lt; len2; i++) &#123; int j; if(flag == false) j = str1[i] - '0'; else j = 9; for(; j &gt;= 0; j--) &#123; if(arr[j] &gt; 0) &#123; arr[j]--; str1[i] = j+'0'; if(j &lt; str2[i] - '0') flag = true; break; &#125; &#125; if(j == -1 &amp;&amp; flag == false) &#123; i--; arr[str1[i]-'0']++; str1[i]--; i--; &#125; &#125; &#125; printf("%s\n", str1); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Codeforce 915A Garden]]></title>
+    <url>%2F2018%2F01%2F26%2Fcodeforce915A%2F</url>
+    <content type="text"><![CDATA[Luba thinks about watering her garden. The garden can be represented as a segment of length k. Luba has got n buckets, the i-th bucket allows her to water some continuous subsegment of garden of length exactly a**i each hour. Luba can’t water any parts of the garden that were already watered, also she can’t water the ground outside the garden. Luba has to choose one of the buckets in order to water the garden as fast as possible (as mentioned above, each hour she will water some continuous subsegment of length a**i if she chooses the i-th bucket). Help her to determine the minimum number of hours she has to spend watering the garden. It is guaranteed that Luba can always choose a bucket so it is possible water the garden. See the examples for better understanding. Input The first line of input contains two integer numbers n and k (1 ≤ n, k ≤ 100) — the number of buckets and the length of the garden, respectively. The second line of input contains n integer numbers a**i (1 ≤ a**i ≤ 100) — the length of the segment that can be watered by the i-th bucket in one hour. It is guaranteed that there is at least one bucket such that it is possible to water the garden in integer number of hours using only this bucket. Output Print one integer number — the minimum number of hours required to water the garden. Examples input 123 62 3 5 output 12 input 126 71 2 3 4 5 6 output 17 Note In the first test the best option is to choose the bucket that allows to water the segment of length 3. We can’t choose the bucket that allows to water the segment of length 5 because then we can’t water the whole garden. In the second test we can choose only the bucket that allows us to water the segment of length 1. C++ Code 123456789101112131415161718192021222324252627#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, k; int tmp; int mi; while(~scanf("%d%d", &amp;n, &amp;k)) &#123; mi = 1000; for(int i = 0; i &lt; n; i++) &#123; scanf("%d", &amp;tmp); if(k % tmp == 0) &#123; mi = min(k / tmp, mi); &#125; &#125; printf("%d\n", mi); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -749,6 +791,20 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Linux下配置Git免密码]]></title>
+    <url>%2F2018%2F01%2F24%2Fgit_password%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍如何在Linux下配置使Git在push/pull时免密码 操作步聚： 进入当前用户目录下； 创建并打开.git-credentials 按照以下格式输入内容： 1 https://&#123;username&#125;：&#123;password&#125;@github.com 其中username，password，github.com 都替换成你自己的内容 保存退出后执行 1git config --global credential.helper store 执行完后 /home/用户名/.gitconfig 会新增一项 helper = store 这时再执行git push/pull的时候就不会在要求你输入密码了。]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>git</tag>
+        <tag>Ubuntu</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Linux提升物理内存的使用率]]></title>
     <url>%2F2018%2F01%2F24%2Fubuntu_improve%2F</url>
     <content type="text"><![CDATA[介绍如何在Linux下调整交换分区swap的使用条件 在UBUNTU系统里面，并不是你的物理内存全部耗尽之后，系统才使用swap分区！系统的swappiness设定值，对如何使用swap分区是有着很大的联系。 swappiness=0 的时候表示最大限度使用物理内存，然后才是 swap空间swappiness＝100的时候表示积极的使用swap分区，并且把内存上的数据及时的搬运到swap空间里面 上面2个设置是极端设置，对于UBUNTU系统的默热值来说，这个值=60，如果想最佳化，可以修改为10-20左右！ 在ubuntu17以后移除了交换分区这一概念，改为交换文件 打开终端，输入查看 swappiness 的当前参数（默认应该看到的是60） 1cat /proc/sys/vm/swappiness 输入下面内容，修改这个参数为10（执行这一步只是临时修改，如果重启又会恢复60） 1sudo sysctl vm.swappiness=10 若要持久化配置，可以打开/etc/sysctl.conf文件 1sudo gedit /etc/sysctl.conf 添加一行 1vm.swappiness=10 ​]]></content>
@@ -757,8 +813,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Linux</tag>
         <tag>Ubuntu</tag>
+        <tag>Linux</tag>
       </tags>
   </entry>
   <entry>
@@ -771,20 +827,6 @@
       <tags>
         <tag>python</tag>
         <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux下配置Git免密码]]></title>
-    <url>%2F2018%2F01%2F24%2Fgit_password%2F</url>
-    <content type="text"><![CDATA[本篇文章将会介绍如何在Linux下配置使Git在push/pull时免密码 操作步聚： 进入当前用户目录下； 创建并打开.git-credentials 按照以下格式输入内容： 1 https://&#123;username&#125;：&#123;password&#125;@github.com 其中username，password，github.com 都替换成你自己的内容 保存退出后执行 1git config --global credential.helper store 执行完后 /home/用户名/.gitconfig 会新增一项 helper = store 这时再执行git push/pull的时候就不会在要求你输入密码了。]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>环境搭建</tag>
-        <tag>Linux</tag>
-        <tag>Ubuntu</tag>
-        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -835,9 +877,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[HDU 5754 Life Winner Bo]]></title>
-    <url>%2F2018%2F01%2F14%2Fhdu5754%2F</url>
-    <content type="text"><![CDATA[Problem Description Bo is a “Life Winner”.He likes playing chessboard games with his girlfriend G.The size of the chessboard is N×M.The top left corner is numbered(1,1) and the lower right corner is numberd (N,M).For each game,Bo and G take turns moving a chesspiece(Bo first).At first,the chesspiece is located at (1,1).And the winner is the person who first moves the chesspiece to (N,M).At one point,if the chess can’t be moved and it isn’t located at (N,M),they end in a draw.In general,the chesspiece can only be moved right or down.Formally,suppose it is located at (x,y),it can be moved to the next point (x′,y′) only if x′≥x and y′≥y.Also it can’t be moved to the outside of chessboard.Besides,There are four kinds of chess(They have movement rules respectively).1.king.2.rook(castle).3.knight.4.queen.(The movement rule is as same as the chess.)For each type of chess,you should find out that who will win the game if they both play in an optimal strategy.Print the winner’s name(“B” or “G”) or “D” if nobody wins the game. Input In the first line,there is a number T as a case number.In the next T lines,there are three numbers type,N and M.“type” means the kind of the chess.T≤1000,2≤N,M≤1000,1≤type≤4 Output For each question,print the answer. Sample Input 1234541 5 52 5 53 5 54 5 5 Sample Output 1234GGDB Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cmath&gt;using namespace std;int dp1[1005][1005];int dp3[1005][1005];int dp4[1005][1005];void init()&#123; for(int i = 0; i &lt;= 1000; i++) &#123; dp1[i][1001] = dp1[1001][i] = 1; dp3[i][1000] = dp3[1000][i] = 3; dp3[i][1001] = dp3[1001][i] = 1; dp4[i][i] = dp4[i][1000] = dp4[1000][i] = 1; dp4[i][1001] = dp4[1001][i] = 1; &#125; dp3[1000][1000] = 0; dp3[999][999] = 3; dp1[1000][1000] = dp4[1000][1000] = 0; dp1[1001][1001] = dp4[1001][1001] = 1; for(int i = 1000; i &gt;= 0; i--) &#123; for(int j = 1000; j &gt;= 0; j--) &#123; if(dp1[i+1][j] == 1 &amp;&amp; (dp1[i][j+1] == 1 &amp;&amp; dp1[i+1][j+1] == 1)) dp1[i][j] = 0; else dp1[i][j] = 1; &#125; &#125; for(int i = 999; i &gt;= 0; i--) &#123; for(int j = 999; j &gt;= 0; j--) &#123; if(i == 999 &amp;&amp; j == 999)&#123;&#125; else if((i == 999 || dp3[i+2][j+1] == 1) &amp;&amp; (j == 999 || dp3[i+1][j+2] == 1)) dp3[i][j] = 0; else if(dp3[i+2][j+1] == 0 || dp3[i+1][j+2] == 0) dp3[i][j] = 1; else dp3[i][j] = 3; if(dp4[i][j]) continue; if(!dp4[i][j]) &#123; for(int ii = i - 1; ii &gt;= 0; ii--) dp4[ii][j] = 1; for(int ii = j - 1; ii &gt;= 0; ii--) dp4[i][ii] = 1; for(int ii = 1; i-ii &gt;= 0 &amp;&amp; j-ii &gt;= 0; ii++) dp4[i-ii][j-ii] = 1; &#125; &#125; &#125;&#125;int main()&#123; int ca; int t, n, m; memset(dp1, 0, sizeof(dp1)); memset(dp3, 0, sizeof(dp3)); memset(dp4, 0, sizeof(dp4)); init(); scanf("%d", &amp;ca); while(ca--) &#123; scanf("%d%d%d", &amp;t, &amp;n, &amp;m); if(t == 1) &#123; if(dp1[1000-n+1][1000-m+1]) printf("B\n"); else printf("G\n"); &#125; else if(t == 2) &#123; if((n-1) ^ (m-1)) printf("B\n"); else printf("G\n"); &#125; else if(t == 3) &#123; if(dp3[1000-n+1][1000-m+1] == 1) printf("B\n"); else if(dp3[1000-n+1][1000-m+1] == 0) printf("G\n"); else if(dp3[1000-n+1][1000-m+1] == 3) printf("D\n"); &#125; else &#123; if(dp4[1000-n+1][1000-m+1] == 1) printf("B\n"); else printf("G\n"); &#125; &#125; return 0;&#125;]]></content>
+    <title><![CDATA[HDU 5802 Windows 10]]></title>
+    <url>%2F2018%2F01%2F14%2Fhdu5802%2F</url>
+    <content type="text"><![CDATA[Problem Description Long long ago, there was an old monk living on the top of a mountain. Recently, our old monk found the operating system of his computer was updating to windows 10 automatically and he even can’t just stop it !!With a peaceful heart, the old monk gradually accepted this reality because his favorite comic LoveLive doesn’t depend on the OS. Today, like the past day, he opens bilibili and wants to watch it again. But he observes that the voice of his computer can be represented as dB and always be integer.Because he is old, he always needs 1 second to press a button. He found that if he wants to take up the voice, he only can add 1 dB in each second by pressing the up button. But when he wants to take down the voice, he can press the down button, and if the last second he presses the down button and the voice decrease x dB, then in this second, it will decrease 2 * x dB. But if the last second he chooses to have a rest or press the up button, in this second he can only decrease the voice by 1 dB.Now, he wonders the minimal seconds he should take to adjust the voice from p dB to q dB. Please be careful, because of some strange reasons, the voice of his computer can larger than any dB but can’t be less than 0 dB. Input First line contains a number T (1≤T≤300000),cases number.Next T line,each line contains two numbers p and q (0≤p,q≤109) Output The minimal seconds he should take Sample Input 12321 57 3 Sample Output 1244 Code 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;string.h&gt;#include &lt;algorithm&gt;using namespace std;int p, q;int dfs(int cur, int step, int stop)///现在位置，已走步数，停顿次数&#123; int cnt = 0; while(cur - (1&lt;&lt;cnt) + 1 &gt; q) cnt++; step += cnt; if(cur - (1&lt;&lt;cnt) + 1 == q) return step; int up = q - max(0, cur - (1&lt;&lt;cnt) + 1);///需要往回走多少步 int tmp = step + max(up-stop, 0);///通过把之前的停顿换成向上一步来减少之后向上的步数 return min(tmp, dfs(cur - (1&lt;&lt;(cnt-1))+1, step, stop + 1));&#125;int main()&#123; int ca; int ans; scanf("%d", &amp;ca); while(ca--) &#123; scanf("%d%d", &amp;p, &amp;q); if(p &lt;= q) ans = q - p; else ans = dfs(p, 0, 0); printf("%d\n", ans); &#125; return 0;&#125; ​]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -847,9 +889,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[HDU 5802 Windows 10]]></title>
-    <url>%2F2018%2F01%2F14%2Fhdu5802%2F</url>
-    <content type="text"><![CDATA[Problem Description Long long ago, there was an old monk living on the top of a mountain. Recently, our old monk found the operating system of his computer was updating to windows 10 automatically and he even can’t just stop it !!With a peaceful heart, the old monk gradually accepted this reality because his favorite comic LoveLive doesn’t depend on the OS. Today, like the past day, he opens bilibili and wants to watch it again. But he observes that the voice of his computer can be represented as dB and always be integer.Because he is old, he always needs 1 second to press a button. He found that if he wants to take up the voice, he only can add 1 dB in each second by pressing the up button. But when he wants to take down the voice, he can press the down button, and if the last second he presses the down button and the voice decrease x dB, then in this second, it will decrease 2 * x dB. But if the last second he chooses to have a rest or press the up button, in this second he can only decrease the voice by 1 dB.Now, he wonders the minimal seconds he should take to adjust the voice from p dB to q dB. Please be careful, because of some strange reasons, the voice of his computer can larger than any dB but can’t be less than 0 dB. Input First line contains a number T (1≤T≤300000),cases number.Next T line,each line contains two numbers p and q (0≤p,q≤109) Output The minimal seconds he should take Sample Input 12321 57 3 Sample Output 1244 Code 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;string.h&gt;#include &lt;algorithm&gt;using namespace std;int p, q;int dfs(int cur, int step, int stop)///现在位置，已走步数，停顿次数&#123; int cnt = 0; while(cur - (1&lt;&lt;cnt) + 1 &gt; q) cnt++; step += cnt; if(cur - (1&lt;&lt;cnt) + 1 == q) return step; int up = q - max(0, cur - (1&lt;&lt;cnt) + 1);///需要往回走多少步 int tmp = step + max(up-stop, 0);///通过把之前的停顿换成向上一步来减少之后向上的步数 return min(tmp, dfs(cur - (1&lt;&lt;(cnt-1))+1, step, stop + 1));&#125;int main()&#123; int ca; int ans; scanf("%d", &amp;ca); while(ca--) &#123; scanf("%d%d", &amp;p, &amp;q); if(p &lt;= q) ans = q - p; else ans = dfs(p, 0, 0); printf("%d\n", ans); &#125; return 0;&#125; ​]]></content>
+    <title><![CDATA[HDU 5754 Life Winner Bo]]></title>
+    <url>%2F2018%2F01%2F14%2Fhdu5754%2F</url>
+    <content type="text"><![CDATA[Problem Description Bo is a “Life Winner”.He likes playing chessboard games with his girlfriend G.The size of the chessboard is N×M.The top left corner is numbered(1,1) and the lower right corner is numberd (N,M).For each game,Bo and G take turns moving a chesspiece(Bo first).At first,the chesspiece is located at (1,1).And the winner is the person who first moves the chesspiece to (N,M).At one point,if the chess can’t be moved and it isn’t located at (N,M),they end in a draw.In general,the chesspiece can only be moved right or down.Formally,suppose it is located at (x,y),it can be moved to the next point (x′,y′) only if x′≥x and y′≥y.Also it can’t be moved to the outside of chessboard.Besides,There are four kinds of chess(They have movement rules respectively).1.king.2.rook(castle).3.knight.4.queen.(The movement rule is as same as the chess.)For each type of chess,you should find out that who will win the game if they both play in an optimal strategy.Print the winner’s name(“B” or “G”) or “D” if nobody wins the game. Input In the first line,there is a number T as a case number.In the next T lines,there are three numbers type,N and M.“type” means the kind of the chess.T≤1000,2≤N,M≤1000,1≤type≤4 Output For each question,print the answer. Sample Input 1234541 5 52 5 53 5 54 5 5 Sample Output 1234GGDB Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cmath&gt;using namespace std;int dp1[1005][1005];int dp3[1005][1005];int dp4[1005][1005];void init()&#123; for(int i = 0; i &lt;= 1000; i++) &#123; dp1[i][1001] = dp1[1001][i] = 1; dp3[i][1000] = dp3[1000][i] = 3; dp3[i][1001] = dp3[1001][i] = 1; dp4[i][i] = dp4[i][1000] = dp4[1000][i] = 1; dp4[i][1001] = dp4[1001][i] = 1; &#125; dp3[1000][1000] = 0; dp3[999][999] = 3; dp1[1000][1000] = dp4[1000][1000] = 0; dp1[1001][1001] = dp4[1001][1001] = 1; for(int i = 1000; i &gt;= 0; i--) &#123; for(int j = 1000; j &gt;= 0; j--) &#123; if(dp1[i+1][j] == 1 &amp;&amp; (dp1[i][j+1] == 1 &amp;&amp; dp1[i+1][j+1] == 1)) dp1[i][j] = 0; else dp1[i][j] = 1; &#125; &#125; for(int i = 999; i &gt;= 0; i--) &#123; for(int j = 999; j &gt;= 0; j--) &#123; if(i == 999 &amp;&amp; j == 999)&#123;&#125; else if((i == 999 || dp3[i+2][j+1] == 1) &amp;&amp; (j == 999 || dp3[i+1][j+2] == 1)) dp3[i][j] = 0; else if(dp3[i+2][j+1] == 0 || dp3[i+1][j+2] == 0) dp3[i][j] = 1; else dp3[i][j] = 3; if(dp4[i][j]) continue; if(!dp4[i][j]) &#123; for(int ii = i - 1; ii &gt;= 0; ii--) dp4[ii][j] = 1; for(int ii = j - 1; ii &gt;= 0; ii--) dp4[i][ii] = 1; for(int ii = 1; i-ii &gt;= 0 &amp;&amp; j-ii &gt;= 0; ii++) dp4[i-ii][j-ii] = 1; &#125; &#125; &#125;&#125;int main()&#123; int ca; int t, n, m; memset(dp1, 0, sizeof(dp1)); memset(dp3, 0, sizeof(dp3)); memset(dp4, 0, sizeof(dp4)); init(); scanf("%d", &amp;ca); while(ca--) &#123; scanf("%d%d%d", &amp;t, &amp;n, &amp;m); if(t == 1) &#123; if(dp1[1000-n+1][1000-m+1]) printf("B\n"); else printf("G\n"); &#125; else if(t == 2) &#123; if((n-1) ^ (m-1)) printf("B\n"); else printf("G\n"); &#125; else if(t == 3) &#123; if(dp3[1000-n+1][1000-m+1] == 1) printf("B\n"); else if(dp3[1000-n+1][1000-m+1] == 0) printf("G\n"); else if(dp3[1000-n+1][1000-m+1] == 3) printf("D\n"); &#125; else &#123; if(dp4[1000-n+1][1000-m+1] == 1) printf("B\n"); else printf("G\n"); &#125; &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
