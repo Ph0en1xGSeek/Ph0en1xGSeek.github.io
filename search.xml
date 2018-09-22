@@ -426,6 +426,20 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Ubuntu下Java安装]]></title>
+    <url>%2F2018%2F03%2F09%2Fubuntu_java%2F</url>
+    <content type="text"><![CDATA[介绍如何在Linux下安装Java 到Oracle官网下载安装包，选择tar.gz的版本，例如下载到/home/phoenix/Program_Files/ 解压 1sudo tar zxvf jdk-9.0.4_linux-x64_bin.tar.gz ​ 修改 /etc/environment 12345PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$JAVA_HOME/bin"export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/libexport JAVA_HOME=/home/phoenix/Program_Files/jdk-9.0.4 保存关闭后，刷新环境 1source /etc/enviroment ​ 验证环境 123456$ echo $JAVA_HOME/home/phoenix/Program_Files/jdk-9.0.4$ echo $CLASSPATH.:/lib:/jre/lib$ echo $PATH/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/bin ​ 修改/etc/profile 添加如下内容 1234JAVA_HOME=/home/phoenix/Program_Files/jdk-9.0.4export JRE_HOME=/home/phoenix/Program_Files/jdk-9.0.4/jreexport CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATHexport PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH ​ 重启系统验证 1java -version ​]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Ubuntu下通过docker运行eclipse che]]></title>
     <url>%2F2018%2F03%2F09%2Feclipse_che%2F</url>
     <content type="text"><![CDATA[Docker是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。开发者在笔记本上编译测试通过的容器可以批量地在生产环境中部署。个人理解：通过沙箱隔离出一块区域，每块区域都有不同的应用运行环境。类似虚拟机是为了操作系统提供模拟的硬件环境，docker容器给应用提供了模拟的系统环境。 Eclipse Che是一个现代的、开放源代码的软件开发环境。它是一个通过提供结构化的工作区、项目输入、模块化扩展插件来支持Codenvy的引擎。Che可以用作桌面IDE，RESTful工作空间服务器，或作为一个创建新的工具SDK。我们将使用docker来运行Che Docker安装 删除旧版本 1$ sudo apt-get remove docker docker-engine docker.io 安装最新版本Docker CE 12345678910111213141516$ sudo apt-get update$ sudo apt-get install \ apt-transport-https \ ca-certificates \ curl \ software-properties-common$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -$ sudo apt-key fingerprint 0EBFCD88$ sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) \ stable"$ sudo apt-get update$ sudo apt-get install docker-ce Hello World 1$ sudo docker run hello-world 运行che 1sudo docker run -ti -v /var/run/docker.sock:/var/run/docker.sock -v ~/Documents/che-data1:/data eclipse/che start -v ~/Documents/che-data1:/data表示将数据存储在~/Documents/che-data1 根据上面的结果浏览器输入http://localhost:8080 之后就可以像正常的IDE那样使用了; 运行界面 还有一个记录REST API请求的界面，打开localhost:8080/swagger]]></content>
@@ -438,20 +452,6 @@
         <tag>Ubuntu</tag>
         <tag>docker</tag>
         <tag>Eclipse</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Ubuntu下Java安装]]></title>
-    <url>%2F2018%2F03%2F09%2Fubuntu_java%2F</url>
-    <content type="text"><![CDATA[介绍如何在Linux下安装Java 到Oracle官网下载安装包，选择tar.gz的版本，例如下载到/home/phoenix/Program_Files/ 解压 1sudo tar zxvf jdk-9.0.4_linux-x64_bin.tar.gz ​ 修改 /etc/environment 12345PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$JAVA_HOME/bin"export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/libexport JAVA_HOME=/home/phoenix/Program_Files/jdk-9.0.4 保存关闭后，刷新环境 1source /etc/enviroment ​ 验证环境 123456$ echo $JAVA_HOME/home/phoenix/Program_Files/jdk-9.0.4$ echo $CLASSPATH.:/lib:/jre/lib$ echo $PATH/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/bin ​ 修改/etc/profile 添加如下内容 1234JAVA_HOME=/home/phoenix/Program_Files/jdk-9.0.4export JRE_HOME=/home/phoenix/Program_Files/jdk-9.0.4/jreexport CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATHexport PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH ​ 重启系统验证 1java -version ​]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>环境搭建</tag>
-        <tag>Linux</tag>
-        <tag>Ubuntu</tag>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -616,10 +616,10 @@
       <tags>
         <tag>Machine Learning</tag>
         <tag>Deep Learning</tag>
-        <tag>RBM</tag>
-        <tag>contrastive divergence</tag>
         <tag>Autoencoder</tag>
+        <tag>RBM</tag>
         <tag>DBN</tag>
+        <tag>contrastive divergence</tag>
       </tags>
   </entry>
   <entry>
@@ -731,9 +731,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Codeforce 915A Garden]]></title>
-    <url>%2F2018%2F01%2F26%2Fcodeforce915A%2F</url>
-    <content type="text"><![CDATA[Luba thinks about watering her garden. The garden can be represented as a segment of length k. Luba has got n buckets, the i-th bucket allows her to water some continuous subsegment of garden of length exactly a**i each hour. Luba can’t water any parts of the garden that were already watered, also she can’t water the ground outside the garden. Luba has to choose one of the buckets in order to water the garden as fast as possible (as mentioned above, each hour she will water some continuous subsegment of length a**i if she chooses the i-th bucket). Help her to determine the minimum number of hours she has to spend watering the garden. It is guaranteed that Luba can always choose a bucket so it is possible water the garden. See the examples for better understanding. Input The first line of input contains two integer numbers n and k (1 ≤ n, k ≤ 100) — the number of buckets and the length of the garden, respectively. The second line of input contains n integer numbers a**i (1 ≤ a**i ≤ 100) — the length of the segment that can be watered by the i-th bucket in one hour. It is guaranteed that there is at least one bucket such that it is possible to water the garden in integer number of hours using only this bucket. Output Print one integer number — the minimum number of hours required to water the garden. Examples input 123 62 3 5 output 12 input 126 71 2 3 4 5 6 output 17 Note In the first test the best option is to choose the bucket that allows to water the segment of length 3. We can’t choose the bucket that allows to water the segment of length 5 because then we can’t water the whole garden. In the second test we can choose only the bucket that allows us to water the segment of length 1. C++ Code 123456789101112131415161718192021222324252627#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, k; int tmp; int mi; while(~scanf("%d%d", &amp;n, &amp;k)) &#123; mi = 1000; for(int i = 0; i &lt; n; i++) &#123; scanf("%d", &amp;tmp); if(k % tmp == 0) &#123; mi = min(k / tmp, mi); &#125; &#125; printf("%d\n", mi); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Codeforce 915C Permute Digits]]></title>
+    <url>%2F2018%2F01%2F26%2Fcodeforce915C%2F</url>
+    <content type="text"><![CDATA[You are given two positive integer numbers a and b. Permute (change order) of the digits of a to construct maximal number not exceeding b. No number in input and/or output can start with the digit 0. It is allowed to leave a as it is. Input The first line contains integer a (1 ≤ a ≤ 1018). The second line contains integer b (1 ≤ b ≤ 1018). Numbers don’t have leading zeroes. It is guaranteed that answer exists. Output Print the maximum possible number that is a permutation of digits of a and is not greater than b. The answer can’t have any leading zeroes. It is guaranteed that the answer exists. Examples input 12123222 output 1213 input 12392110000 output 19321 input 1249405000 output 14940 b一定不短于a 如果b比a长，直接降序排列a 如果一样长 先统计a中数字的个数 对于每一位b，都找不比b大的匹配，一旦有一位匹配后小于b的那位，之后就可以从最大的开始降序匹配 如果有一位无法匹配小于等于b的那位，那么就回退一位，匹配小于b的，这样后面就可以不受约束 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;iomanip&gt;using namespace std;bool cmp(char a, char b)&#123; return a &gt; b;&#125;int main()&#123; char str1[20]; char str2[20]; char tmp; int arr[15]; while(~scanf("%s", str1)) &#123; memset(arr, 0, sizeof(arr)); getchar(); scanf("%s", str2); getchar(); int len1 = strlen(str1); int len2 = strlen(str2); if(len2 &gt; len1) &#123; sort(str1, str1+len1, cmp); &#125; else &#123; bool flag = false; for(int i = 0; i &lt; len1; i++) &#123; arr[str1[i] - '0']++; str1[i] = str2[i]; &#125; for(int i = 0; i &lt; len2; i++) &#123; int j; if(flag == false) j = str1[i] - '0'; else j = 9; for(; j &gt;= 0; j--) &#123; if(arr[j] &gt; 0) &#123; arr[j]--; str1[i] = j+'0'; if(j &lt; str2[i] - '0') flag = true; break; &#125; &#125; if(j == -1 &amp;&amp; flag == false) &#123; i--; arr[str1[i]-'0']++; str1[i]--; i--; &#125; &#125; &#125; printf("%s\n", str1); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -755,9 +755,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Codeforce 915C Permute Digits]]></title>
-    <url>%2F2018%2F01%2F26%2Fcodeforce915C%2F</url>
-    <content type="text"><![CDATA[You are given two positive integer numbers a and b. Permute (change order) of the digits of a to construct maximal number not exceeding b. No number in input and/or output can start with the digit 0. It is allowed to leave a as it is. Input The first line contains integer a (1 ≤ a ≤ 1018). The second line contains integer b (1 ≤ b ≤ 1018). Numbers don’t have leading zeroes. It is guaranteed that answer exists. Output Print the maximum possible number that is a permutation of digits of a and is not greater than b. The answer can’t have any leading zeroes. It is guaranteed that the answer exists. Examples input 12123222 output 1213 input 12392110000 output 19321 input 1249405000 output 14940 b一定不短于a 如果b比a长，直接降序排列a 如果一样长 先统计a中数字的个数 对于每一位b，都找不比b大的匹配，一旦有一位匹配后小于b的那位，之后就可以从最大的开始降序匹配 如果有一位无法匹配小于等于b的那位，那么就回退一位，匹配小于b的，这样后面就可以不受约束 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;iomanip&gt;using namespace std;bool cmp(char a, char b)&#123; return a &gt; b;&#125;int main()&#123; char str1[20]; char str2[20]; char tmp; int arr[15]; while(~scanf("%s", str1)) &#123; memset(arr, 0, sizeof(arr)); getchar(); scanf("%s", str2); getchar(); int len1 = strlen(str1); int len2 = strlen(str2); if(len2 &gt; len1) &#123; sort(str1, str1+len1, cmp); &#125; else &#123; bool flag = false; for(int i = 0; i &lt; len1; i++) &#123; arr[str1[i] - '0']++; str1[i] = str2[i]; &#125; for(int i = 0; i &lt; len2; i++) &#123; int j; if(flag == false) j = str1[i] - '0'; else j = 9; for(; j &gt;= 0; j--) &#123; if(arr[j] &gt; 0) &#123; arr[j]--; str1[i] = j+'0'; if(j &lt; str2[i] - '0') flag = true; break; &#125; &#125; if(j == -1 &amp;&amp; flag == false) &#123; i--; arr[str1[i]-'0']++; str1[i]--; i--; &#125; &#125; &#125; printf("%s\n", str1); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Codeforce 915A Garden]]></title>
+    <url>%2F2018%2F01%2F26%2Fcodeforce915A%2F</url>
+    <content type="text"><![CDATA[Luba thinks about watering her garden. The garden can be represented as a segment of length k. Luba has got n buckets, the i-th bucket allows her to water some continuous subsegment of garden of length exactly a**i each hour. Luba can’t water any parts of the garden that were already watered, also she can’t water the ground outside the garden. Luba has to choose one of the buckets in order to water the garden as fast as possible (as mentioned above, each hour she will water some continuous subsegment of length a**i if she chooses the i-th bucket). Help her to determine the minimum number of hours she has to spend watering the garden. It is guaranteed that Luba can always choose a bucket so it is possible water the garden. See the examples for better understanding. Input The first line of input contains two integer numbers n and k (1 ≤ n, k ≤ 100) — the number of buckets and the length of the garden, respectively. The second line of input contains n integer numbers a**i (1 ≤ a**i ≤ 100) — the length of the segment that can be watered by the i-th bucket in one hour. It is guaranteed that there is at least one bucket such that it is possible to water the garden in integer number of hours using only this bucket. Output Print one integer number — the minimum number of hours required to water the garden. Examples input 123 62 3 5 output 12 input 126 71 2 3 4 5 6 output 17 Note In the first test the best option is to choose the bucket that allows to water the segment of length 3. We can’t choose the bucket that allows to water the segment of length 5 because then we can’t water the whole garden. In the second test we can choose only the bucket that allows us to water the segment of length 1. C++ Code 123456789101112131415161718192021222324252627#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, k; int tmp; int mi; while(~scanf("%d%d", &amp;n, &amp;k)) &#123; mi = 1000; for(int i = 0; i &lt; n; i++) &#123; scanf("%d", &amp;tmp); if(k % tmp == 0) &#123; mi = min(k / tmp, mi); &#125; &#125; printf("%d\n", mi); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -782,6 +782,18 @@
     <title><![CDATA[LeetCode 25 Reverse Nodes in k-Group]]></title>
     <url>%2F2018%2F01%2F25%2Fleetcode25%2F</url>
     <content type="text"><![CDATA[Given a linked list, reverse the nodes of a linked list k at a time and return its modified list. k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is. You may not alter the values in the nodes, only nodes itself may be changed. Only constant memory is allowed. For example,Given this linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5 For k = 2, you should return: 2-&gt;1-&gt;4-&gt;3-&gt;5 For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5 Leetcode 24的扩展版，k个一组进行翻转，最后不到k个的不翻转 没轮一共翻转k-1次，每次都将后一个node连到已经连好的链的最前面，已经连好的链首节点之前的一个节点和尾节点两个节点标记为root、head Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def reverseKGroup(self, head, k): """ :type head: ListNode :type k: int :rtype: ListNode """ res = root = ListNode(-1) root.next = head tmp = head cnt = 0 while(tmp != None): tmp = tmp.next cnt += 1 while(cnt &gt;= k): for i in range(k-1): node = root.next root.next = head.next head.next = root.next.next root.next.next = node root = head head = head.next cnt -= k return res.next]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 23 Merge k Sorted Lists]]></title>
+    <url>%2F2018%2F01%2F24%2Fleetcode23%2F</url>
+    <content type="text"><![CDATA[Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. 12345678910111213141516171819202122232425262728# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeKLists(self, lists): """ :type lists: List[ListNode] :rtype: ListNode """ heap = [] i = 0 for node in lists: if node != None: heap.append((node.val, i, node)) i += 1 heapq.heapify(heap) cur = head = ListNode(0) while heap: pop = heapq.heappop(heap) cur.next = ListNode(pop[0]) cur = cur.next if pop[2].next != None: heapq.heappush(heap, (pop[2].next.val, i, pop[2].next)) i += 1 return head.next]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -818,18 +830,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 23 Merge k Sorted Lists]]></title>
-    <url>%2F2018%2F01%2F24%2Fleetcode23%2F</url>
-    <content type="text"><![CDATA[Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. 12345678910111213141516171819202122232425262728# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeKLists(self, lists): """ :type lists: List[ListNode] :rtype: ListNode """ heap = [] i = 0 for node in lists: if node != None: heap.append((node.val, i, node)) i += 1 heapq.heapify(heap) cur = head = ListNode(0) while heap: pop = heapq.heappop(heap) cur.next = ListNode(pop[0]) cur = cur.next if pop[2].next != None: heapq.heappush(heap, (pop[2].next.val, i, pop[2].next)) i += 1 return head.next]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[LeetCode 10 Regular Expression Matching]]></title>
     <url>%2F2018%2F01%2F23%2Fleetcode10%2F</url>
     <content type="text"><![CDATA[动态规划 Implement regular expression matching with support for &#39;.&#39; and &#39;*&#39;. 123456789101112131415161718&gt; &apos;.&apos; Matches any single character.&gt; &apos;*&apos; Matches zero or more of the preceding element.&gt;&gt; The matching should cover the entire input string (not partial).&gt;&gt; The function prototype should be:&gt; bool isMatch(const char *s, const char *p)&gt;&gt; Some examples:&gt; isMatch(&quot;aa&quot;,&quot;a&quot;) → false&gt; isMatch(&quot;aa&quot;,&quot;aa&quot;) → true&gt; isMatch(&quot;aaa&quot;,&quot;aa&quot;) → false&gt; isMatch(&quot;aa&quot;, &quot;a*&quot;) → true&gt; isMatch(&quot;aa&quot;, &quot;.*&quot;) → true&gt; isMatch(&quot;ab&quot;, &quot;.*&quot;) → true&gt; isMatch(&quot;aab&quot;, &quot;c*a*b&quot;) → true&gt;&gt; 动态规划问题dp[i][j]代表s[i]之前（不算i）与p[j]之前的字符串是否能够匹配 初始化： dp[0][0] = true dp[i][0] = false when i &gt;= 1 dp[0][j] = j &gt; 1 &amp;&amp; p[j-1] == &#39;*&#39; &amp;&amp; dp[0][j-2] 即只有都可以用*来代替掉的情况才能是true 两种更新情况： p[j-1] == &#39;*&#39; dp[i][j] = dp[i][j - 2] // i与j-2可以匹配的情况下，这个*代表0次 dp[i][j] = (s[i - 1] == p[j - 2] || p[j - 2] == &#39;.&#39;) &amp;&amp; dp[i - 1][j] // 在i-1 与 j可以匹配的情况下 这个*代表一次或多次 p[j-1] != &#39;*&#39; dp[i][j] = (p[j - 1] == &#39;.&#39; || s[i - 1] == p[j - 1]) &amp;&amp; dp[i - 1][j - 1] //在i-1与j-1可以匹配的情况下 i 与 j 能够匹配 由于这题Python直接就有函数可以解决，所以改用C++来练习 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344class Solution &#123;public: bool isMatch(string s, string p) &#123; int lens = s.length(); int lenp = p.length(); bool **dp = new bool *[lens+1]; for(int i = 0; i &lt;= lens; i++) dp[i] = new bool [lenp+1]; bool res = false; dp[0][0] = true; for(int i = 1; i &lt;= lens; i++) &#123; dp[i][0] = false; &#125; for(int j = 1; j &lt;= lenp; j++) &#123; if(j &gt; 1 &amp;&amp; p[j-1] == '*' &amp;&amp; dp[0][j-2]) dp[0][j] = true; else dp[0][j] = false; &#125; for(int i = 1; i &lt;= lens; i++) &#123; for(int j = 1; j &lt;= lenp; j++) &#123; if(p[j-1] == '*') &#123; dp[i][j] = dp[i][j-2] || ((s[i-1] == p[j-2] || p[j-2] == '.') &amp;&amp; dp[i-1][j]); &#125; else &#123; dp[i][j] = dp[i-1][j-1] &amp;&amp; (s[i-1] == p[j-1] || p[j-1] == '.'); &#125; &#125; &#125; res = dp[lens][lenp]; for(int i = 0; i &lt;= lens; i++) delete [] dp[i]; delete [] dp; return res; &#125;&#125;;]]></content>
@@ -842,9 +842,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 15 3Sum]]></title>
-    <url>%2F2018%2F01%2F20%2Fleetcode15%2F</url>
-    <content type="text"><![CDATA[T Sum问题的O(n)解决方法； N Sum类的问题的一般解决方法； Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not contain duplicate triplets. 123456789&gt; For example, given array S = [-1, 0, 1, 2, -1, -4],&gt;&gt; A solution set is:&gt; [&gt; [-1, 0, 1],&gt; [-1, -1, 2]&gt; ]&gt;&gt; Two sum类问题，找两个数的和为一个定值的问题，如果直接使用二分查找，排序+查找或者在有序数组中直接查找的复杂度都是O(nlogn)，有的题卡复杂度的就过不去 Two Sum问题的一般做法对无序数组进行排序后（若数组已经是有序的化则不需要排序），设置两个指针left、right指向数组的首尾，target是要查找的目标 如果arr[left] + arr[right] == target，查找到了 如果arr[left] + arr[right] &lt; target，按照遍历的方式right往左移，right -= 1 如果arr[left] + arr[right] &gt; target，很显然right不需要再往左移动了，直接进入下一轮迭代，即left += 1，right不动 right不用像遍历一样回到最右边吗？不用。因为现在的arr[left]与right右边的数相加都是大于target的（不然right不会向左移），那么left再向右移动arr[left]只会更大，right也就不用再回到右边了 最后注意下重复数字答案重复的问题 Two Sum问题的这种解决方法排序+查找复杂度依然是O(nlogn)，但是主要是因为排序的消耗。如果题目已经给了有序的数列，那么复杂度将会降为O(n) N Sum 问题 对前几位进行遍历，对最后两维做Two Sum Python Code 1234567891011121314151617181920212223242526272829303132class Solution(object): def threeSum(self, nums): """ :type nums: List[int] :rtype: List[List[int]] """ ans = [] if len(nums) &lt; 3: return [] nums.sort() for i in range(len(nums) - 2): if nums[i] &gt; 0: break if i &gt; 0 and nums[i] == nums[i-1]: continue l = i+1 r = len(nums)-1 while l &lt; r: if nums[i] + nums[l] + nums[r] &gt; 0: r -= 1 elif nums[i] + nums[l] + nums[r] &lt; 0: l += 1 else: ans.append([nums[i], nums[l], nums[r]]) l += 1 while l &lt; r and nums[l] == nums[l-1]: l += 1 r -= 1 while l &lt; r and nums[r] == nums[r+1]: r -= 1 return ans]]></content>
+    <title><![CDATA[LeetCode 24 Swap Nodes in Pairs]]></title>
+    <url>%2F2018%2F01%2F20%2Fleetcode24%2F</url>
+    <content type="text"><![CDATA[Given a linked list, swap every two adjacent nodes and return its head. For example,Given 1-&gt;2-&gt;3-&gt;4, you should return the list as 2-&gt;1-&gt;4-&gt;3. Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed. Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def swapPairs(self, head): """ :type head: ListNode :rtype: ListNode """ if head == None or head.next == None: return head ret = head.next i = head j = head.next pre = None while j != None: i.next = j.next j.next = i if pre != None: pre.next = j if i.next != None: pre = i i = i.next j = i.next else: break return ret]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -854,9 +854,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 24 Swap Nodes in Pairs]]></title>
-    <url>%2F2018%2F01%2F20%2Fleetcode24%2F</url>
-    <content type="text"><![CDATA[Given a linked list, swap every two adjacent nodes and return its head. For example,Given 1-&gt;2-&gt;3-&gt;4, you should return the list as 2-&gt;1-&gt;4-&gt;3. Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed. Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def swapPairs(self, head): """ :type head: ListNode :rtype: ListNode """ if head == None or head.next == None: return head ret = head.next i = head j = head.next pre = None while j != None: i.next = j.next j.next = i if pre != None: pre.next = j if i.next != None: pre = i i = i.next j = i.next else: break return ret]]></content>
+    <title><![CDATA[LeetCode 15 3Sum]]></title>
+    <url>%2F2018%2F01%2F20%2Fleetcode15%2F</url>
+    <content type="text"><![CDATA[T Sum问题的O(n)解决方法； N Sum类的问题的一般解决方法； Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not contain duplicate triplets. 123456789&gt; For example, given array S = [-1, 0, 1, 2, -1, -4],&gt;&gt; A solution set is:&gt; [&gt; [-1, 0, 1],&gt; [-1, -1, 2]&gt; ]&gt;&gt; Two sum类问题，找两个数的和为一个定值的问题，如果直接使用二分查找，排序+查找或者在有序数组中直接查找的复杂度都是O(nlogn)，有的题卡复杂度的就过不去 Two Sum问题的一般做法对无序数组进行排序后（若数组已经是有序的化则不需要排序），设置两个指针left、right指向数组的首尾，target是要查找的目标 如果arr[left] + arr[right] == target，查找到了 如果arr[left] + arr[right] &lt; target，按照遍历的方式right往左移，right -= 1 如果arr[left] + arr[right] &gt; target，很显然right不需要再往左移动了，直接进入下一轮迭代，即left += 1，right不动 right不用像遍历一样回到最右边吗？不用。因为现在的arr[left]与right右边的数相加都是大于target的（不然right不会向左移），那么left再向右移动arr[left]只会更大，right也就不用再回到右边了 最后注意下重复数字答案重复的问题 Two Sum问题的这种解决方法排序+查找复杂度依然是O(nlogn)，但是主要是因为排序的消耗。如果题目已经给了有序的数列，那么复杂度将会降为O(n) N Sum 问题 对前几位进行遍历，对最后两维做Two Sum Python Code 1234567891011121314151617181920212223242526272829303132class Solution(object): def threeSum(self, nums): """ :type nums: List[int] :rtype: List[List[int]] """ ans = [] if len(nums) &lt; 3: return [] nums.sort() for i in range(len(nums) - 2): if nums[i] &gt; 0: break if i &gt; 0 and nums[i] == nums[i-1]: continue l = i+1 r = len(nums)-1 while l &lt; r: if nums[i] + nums[l] + nums[r] &gt; 0: r -= 1 elif nums[i] + nums[l] + nums[r] &lt; 0: l += 1 else: ans.append([nums[i], nums[l], nums[r]]) l += 1 while l &lt; r and nums[l] == nums[l-1]: l += 1 r -= 1 while l &lt; r and nums[r] == nums[r+1]: r -= 1 return ans]]></content>
       <categories>
         <category>ACM</category>
       </categories>
