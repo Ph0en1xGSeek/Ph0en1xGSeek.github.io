@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[POJ 2632 Crashing Robots]]></title>
+    <url>%2F2018%2F09%2F16%2Fpoj2632%2F</url>
+    <content type="text"><![CDATA[链接 模拟机器人走的序列，用一个数组标记当前每个位置是否有机器人以及机器人的编号就行 C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116117118119120121122123124125126127128129130131132#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;struct robot&#123; int x; int y; int dir;&#125;robots[101];int main()&#123; int ca; int num, step; int A, B, N, M; char tmp; int arr[101][101]; bool flag; scanf("%d", &amp;ca); while(ca--)&#123; flag = true; memset(arr, 0, sizeof(arr)); scanf("%d%d%d%d", &amp;A, &amp;B, &amp;N, &amp;M); for(int i = 1; i &lt;= N; i++)&#123; scanf("%d%d", &amp;robots[i].x, &amp;robots[i].y); arr[robots[i].x][robots[i].y] = i; getchar(); scanf("%c", &amp;tmp); if(tmp == 'W') robots[i].dir = 0; else if(tmp == 'N') robots[i].dir = 1; else if(tmp == 'E') robots[i].dir = 2; else if(tmp == 'S') robots[i].dir = 3; &#125; for(int i = 0; i &lt; M; i++)&#123; scanf("%d", &amp;num); getchar(); scanf("%c", &amp;tmp); scanf("%d", &amp;step); if(flag == false) continue; if(tmp == 'F')&#123; if(robots[num].dir == 0)&#123; for(int j = 1; j &lt;= step &amp;&amp; robots[num].x-j &gt; 0; j++)&#123; if(arr[robots[num].x - j][robots[num].y] != 0)&#123; printf("Robot %d crashes into robot %d\n", num, arr[robots[num].x-j][robots[num].y]); flag = false; break; &#125; &#125; if(flag == false) continue; if(robots[num].x-step &gt; 0)&#123; arr[robots[num].x][robots[num].y] = 0; robots[num].x -= step; arr[robots[num].x][robots[num].y] = num; &#125;else&#123; printf("Robot %d crashes into the wall\n", num); flag = false; &#125; &#125;else if(robots[num].dir == 1)&#123; for(int j = 1; j &lt;= step &amp;&amp; robots[num].y+j &lt;= B; j++)&#123; if(arr[robots[num].x][robots[num].y+j] != 0)&#123; printf("Robot %d crashes into robot %d\n", num, arr[robots[num].x][robots[num].y+j]); flag = false; break; &#125; &#125; if(flag == false) continue; if(robots[num].y+step &lt;= B)&#123; arr[robots[num].x][robots[num].y] = 0; robots[num].y += step; arr[robots[num].x][robots[num].y] = num; &#125;else&#123; printf("Robot %d crashes into the wall\n", num); flag = false; &#125; &#125;else if(robots[num].dir == 2)&#123; for(int j = 1; j &lt;= step &amp;&amp; robots[num].x+j &lt;= A; j++)&#123; if(arr[robots[num].x + j][robots[num].y] != 0)&#123; printf("Robot %d crashes into robot %d\n", num, arr[robots[num].x+j][robots[num].y]); flag = false; break; &#125; &#125; if(flag == false) continue; if(robots[num].x+step &lt;= A)&#123; arr[robots[num].x][robots[num].y] = 0; robots[num].x += step; arr[robots[num].x][robots[num].y] = num; &#125;else&#123; printf("Robot %d crashes into the wall\n", num); flag = false; &#125; &#125;else if(robots[num].dir == 3)&#123; for(int j = 1; j &lt;= step &amp;&amp; robots[num].y-j &gt; 0; j++)&#123; if(arr[robots[num].x][robots[num].y-j] != 0)&#123; printf("Robot %d crashes into robot %d\n", num, arr[robots[num].x][robots[num].y-j]); flag = false; break; &#125; &#125; if(flag == false) continue; if(robots[num].y-step &gt; 0)&#123; arr[robots[num].x][robots[num].y] = 0; robots[num].y -= step; arr[robots[num].x][robots[num].y] = num; &#125;else&#123; printf("Robot %d crashes into the wall\n", num); flag = false; &#125; &#125; &#125;else if(tmp == 'L')&#123; robots[num].dir = (robots[num].dir - (step%4) + 4) % 4; &#125;else if(tmp == 'R')&#123; robots[num].dir = (robots[num].dir + (step%4) + 4) % 4; &#125; &#125; if(flag == true) printf("OK\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>模拟法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ 1068 Parencodings]]></title>
+    <url>%2F2018%2F09%2F15%2Fpoj1068%2F</url>
+    <content type="text"><![CDATA[链接 给定括号串的两种编码，第一种是显示每个右括号左边有多少个左括号，第二种显示每个右括号与其匹配的左括号间有多少个右括号（包括自己），给出第一种编码，求第二种编码 可以直接模拟，算出原括号串然后去数出第二种编码，也可以定位与右括号匹配的左括号在哪个右括号分割出的区间内，即给出的第一种编码两个数之间是两个相邻右括号之间的左括号数，找的时候就从左边相邻的右括号开始枚举，每次加一个右括号数num_right同时加上中间相应的左括号数num_left直到num_left &gt; num_right为止 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int ca; int num; int diff[25]; int arr[25]; arr[0] = 0; scanf("%d", &amp;ca); while(ca--)&#123; memset(diff, 0, sizeof(diff)); scanf("%d", &amp;num); for(int i = 1; i &lt;= num; i++)&#123; scanf("%d", &amp;arr[i]); diff[i] = arr[i] - arr[i-1]; &#125; for(int i = 1; i &lt;= num; i++)&#123; int j = i; /*number of right parentheses between (j-1)th and (i)th right parentheses, including (i)th*/ int num_right = 1; /*number of left parentheses between (j-1)th and (i)th right parentheses*/ int num_left = diff[j]; while(num_right &gt; num_left)&#123; num_right += 1; j--; num_left += diff[j]; &#125; printf("%d ", num_right); &#125; printf("\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>模拟法</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[POJ 3295 Tautology]]></title>
     <url>%2F2018%2F09%2F15%2Fpoj3295%2F</url>
     <content type="text"><![CDATA[链接 求一个式子是否是重言式，符号在前，直接构造一个栈来枚举并求出式子是否都为真 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;bool valid(char* wff, int num)&#123; bool st[101]; int top = 0; int len = strlen(wff); for(int i = len-1; i &gt;= 0; i--)&#123; if(wff[i] == 'p')&#123; st[top++] = ((1&amp;num) == 1); &#125;else if(wff[i] == 'q')&#123; st[top++] = (((1&lt;&lt;1)&amp;num) == (1&lt;&lt;1)); &#125;else if(wff[i] == 'r')&#123; st[top++] = (((1&lt;&lt;2)&amp;num) == (1&lt;&lt;2)); &#125;else if(wff[i] == 's')&#123; st[top++] = (((1&lt;&lt;3)&amp;num) == (1&lt;&lt;3)); &#125;else if(wff[i] == 't')&#123; st[top++] = (((1&lt;&lt;4)&amp;num) == (1&lt;&lt;4)); &#125;else if(wff[i] == 'K')&#123; st[top-2] = (st[top-1] &amp;&amp; st[top-2]); top--; &#125;else if(wff[i] == 'A')&#123; st[top-2] = (st[top-1] || st[top-2]); top--; &#125;else if(wff[i] == 'C')&#123; st[top-2] = ((!st[top-2]) || st[top-1]); top--; &#125;else if(wff[i] == 'E')&#123; st[top-2] = (st[top-1] == st[top-2]); top--; &#125;else if(wff[i] == 'N')&#123; st[top-1] = !st[top-1]; &#125; &#125; return st[0];&#125;int main()&#123; char wff[101]; bool flag; while(scanf("%s", wff) &amp;&amp; strcmp(wff, "0") != 0)&#123; flag = true; for(int i = 0; i &lt; (1&lt;&lt;5); i++)&#123; if(valid(wff, i) == false)&#123; flag = false; break; &#125; &#125; if(flag) printf("tautology\n"); else printf("not\n"); &#125; return 0;&#125;]]></content>
@@ -358,8 +386,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>JetBrains</tag>
         <tag>Java</tag>
+        <tag>JetBrains</tag>
       </tags>
   </entry>
   <entry>
@@ -370,8 +398,8 @@
         <category>环境搭建</category>
       </categories>
       <tags>
-        <tag>JetBrains</tag>
         <tag>Java</tag>
+        <tag>JetBrains</tag>
         <tag>Spring Boot</tag>
       </tags>
   </entry>
@@ -421,22 +449,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
+        <tag>Java</tag>
         <tag>JetBrains</tag>
-        <tag>Java</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Ubuntu下Java安装]]></title>
-    <url>%2F2018%2F03%2F09%2Fubuntu_java%2F</url>
-    <content type="text"><![CDATA[介绍如何在Linux下安装Java 到Oracle官网下载安装包，选择tar.gz的版本，例如下载到/home/phoenix/Program_Files/ 解压 1sudo tar zxvf jdk-9.0.4_linux-x64_bin.tar.gz ​ 修改 /etc/environment 12345PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$JAVA_HOME/bin"export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/libexport JAVA_HOME=/home/phoenix/Program_Files/jdk-9.0.4 保存关闭后，刷新环境 1source /etc/enviroment ​ 验证环境 123456$ echo $JAVA_HOME/home/phoenix/Program_Files/jdk-9.0.4$ echo $CLASSPATH.:/lib:/jre/lib$ echo $PATH/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/bin ​ 修改/etc/profile 添加如下内容 1234JAVA_HOME=/home/phoenix/Program_Files/jdk-9.0.4export JRE_HOME=/home/phoenix/Program_Files/jdk-9.0.4/jreexport CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATHexport PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH ​ 重启系统验证 1java -version ​]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>环境搭建</tag>
-        <tag>Linux</tag>
-        <tag>Ubuntu</tag>
-        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -452,6 +466,20 @@
         <tag>Ubuntu</tag>
         <tag>docker</tag>
         <tag>Eclipse</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu下Java安装]]></title>
+    <url>%2F2018%2F03%2F09%2Fubuntu_java%2F</url>
+    <content type="text"><![CDATA[介绍如何在Linux下安装Java 到Oracle官网下载安装包，选择tar.gz的版本，例如下载到/home/phoenix/Program_Files/ 解压 1sudo tar zxvf jdk-9.0.4_linux-x64_bin.tar.gz ​ 修改 /etc/environment 12345PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$JAVA_HOME/bin"export CLASSPATH=.:$JAVA_HOME/lib:$JAVA_HOME/jre/libexport JAVA_HOME=/home/phoenix/Program_Files/jdk-9.0.4 保存关闭后，刷新环境 1source /etc/enviroment ​ 验证环境 123456$ echo $JAVA_HOME/home/phoenix/Program_Files/jdk-9.0.4$ echo $CLASSPATH.:/lib:/jre/lib$ echo $PATH/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/bin ​ 修改/etc/profile 添加如下内容 1234JAVA_HOME=/home/phoenix/Program_Files/jdk-9.0.4export JRE_HOME=/home/phoenix/Program_Files/jdk-9.0.4/jreexport CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATHexport PATH=$JAVA_HOME/bin:$JRE_HOME/bin:$PATH ​ 重启系统验证 1java -version ​]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -616,10 +644,10 @@
       <tags>
         <tag>Machine Learning</tag>
         <tag>Deep Learning</tag>
-        <tag>Autoencoder</tag>
         <tag>RBM</tag>
-        <tag>DBN</tag>
         <tag>contrastive divergence</tag>
+        <tag>Autoencoder</tag>
+        <tag>DBN</tag>
       </tags>
   </entry>
   <entry>
@@ -646,6 +674,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Codeforce 920C Swap Adjacent Elements]]></title>
+    <url>%2F2018%2F02%2F07%2Fcodeforce920C%2F</url>
+    <content type="text"><![CDATA[You have an array a consisting of n integers. Each integer from 1 to n appears exactly once in this array. For some indices i (1 ≤ i ≤ n - 1) it is possible to swap i-th element with (i + 1)-th, for other indices it is not possible. You may perform any number of swapping operations any order. There is no limit on the number of times you swap i-th element with (i + 1)-th (if the position is not forbidden). Can you make this array sorted in ascending order performing some sequence of swapping operations? Input The first line contains one integer n (2 ≤ n ≤ 200000) — the number of elements in the array. The second line contains n integers a1, a2, …, a**n (1 ≤ a**i ≤ 200000) — the elements of the array. Each integer from 1 to n appears exactly once. The third line contains a string of n - 1 characters, each character is either 0 or 1. If i-th character is 1, then you can swap i-th element with (i + 1)-th any number of times, otherwise it is forbidden to swap i-th element with (i + 1)-th. Output If it is possible to sort the array in ascending order using any sequence of swaps you are allowed to make, print YES. Otherwise, print NO. Examples input 12361 2 5 3 4 601110 output 1YES input 12361 2 5 3 4 601010 output 1NO Note In the first example you may swap a3 and a4, and then swap a4 and a5. 每段连续的1以及最后一个1右边的位置的数都是可以相互交换的，但是和其他的部分之间不能互换，所以每段区间[l, r]不能出现超出区间[l+1, r+1]范围的数 剩余的部分就是不能进行交换的部分，即数必须等于下标+1 C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#define N 200001using namespace std;int arr[N];char str[N];int main()&#123; int num; bool flag = true; while(~scanf("%d", &amp;num)) &#123; flag = true; for(int i = 0; i &lt; num; i++) &#123; scanf("%d", &amp;arr[i]); &#125; scanf("%s", str); getchar(); for(int i = 0; i &lt; num; i++) &#123; int l = i; while(str[i] == '1' &amp;&amp; i &lt; num-1) i++; int r = i; if(l == r &amp;&amp; arr[l] != l+1) &#123;// cout &lt;&lt; "sdf: " &lt;&lt; l &lt;&lt; endl; flag = false; break; &#125; for(int j = l; j &lt;= r; j++) &#123; if(arr[j] &gt; r+1 || arr[j] &lt; l+1) &#123;// cout &lt;&lt; l &lt;&lt; ' ' &lt;&lt; r &lt;&lt; endl; flag = false; break; &#125; &#125; &#125; if(flag) printf("YES\n"); else printf("NO\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>codeforce</tag>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[在Linux发行版Firefox下安装最新版Flash]]></title>
     <url>%2F2018%2F02%2F07%2Ffirefox_flash%2F</url>
     <content type="text"><![CDATA[虽然在Windows上Chrome浏览器占据着霸主地位，但是在Linux上，明显面向开源社区的Firefox对各种发行版例如Ubuntu等优化得更棒。虽然Html5是趋势，但是Flash在日常浏览网页中依旧不能少。Ubuntu中的Firefox没有像Chrome一样内置Pepper Flash插件，而Adobe早已对Ubuntu停更。那么要如何为Ubuntu下的Firefox安装最新的Flash插件呢？ 进入 Download Adobe Flash Player 选择.tar.gz 适用于Linux下载 下载后解压flash_player_npapi_linux.x86_64.tar.gz，进入flash_player_npapi_linux.x86_64中复制libflashplayer.so 在~/.mozilla下新建文件夹plugins 把libflashplayer.so粘贴到plugins下 重启Firefox，完成最新Flash安装]]></content>
@@ -657,18 +697,6 @@
         <tag>Ubuntu</tag>
         <tag>Firefox</tag>
         <tag>Flash</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Codeforce 920C Swap Adjacent Elements]]></title>
-    <url>%2F2018%2F02%2F07%2Fcodeforce920C%2F</url>
-    <content type="text"><![CDATA[You have an array a consisting of n integers. Each integer from 1 to n appears exactly once in this array. For some indices i (1 ≤ i ≤ n - 1) it is possible to swap i-th element with (i + 1)-th, for other indices it is not possible. You may perform any number of swapping operations any order. There is no limit on the number of times you swap i-th element with (i + 1)-th (if the position is not forbidden). Can you make this array sorted in ascending order performing some sequence of swapping operations? Input The first line contains one integer n (2 ≤ n ≤ 200000) — the number of elements in the array. The second line contains n integers a1, a2, …, a**n (1 ≤ a**i ≤ 200000) — the elements of the array. Each integer from 1 to n appears exactly once. The third line contains a string of n - 1 characters, each character is either 0 or 1. If i-th character is 1, then you can swap i-th element with (i + 1)-th any number of times, otherwise it is forbidden to swap i-th element with (i + 1)-th. Output If it is possible to sort the array in ascending order using any sequence of swaps you are allowed to make, print YES. Otherwise, print NO. Examples input 12361 2 5 3 4 601110 output 1YES input 12361 2 5 3 4 601010 output 1NO Note In the first example you may swap a3 and a4, and then swap a4 and a5. 每段连续的1以及最后一个1右边的位置的数都是可以相互交换的，但是和其他的部分之间不能互换，所以每段区间[l, r]不能出现超出区间[l+1, r+1]范围的数 剩余的部分就是不能进行交换的部分，即数必须等于下标+1 C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#define N 200001using namespace std;int arr[N];char str[N];int main()&#123; int num; bool flag = true; while(~scanf("%d", &amp;num)) &#123; flag = true; for(int i = 0; i &lt; num; i++) &#123; scanf("%d", &amp;arr[i]); &#125; scanf("%s", str); getchar(); for(int i = 0; i &lt; num; i++) &#123; int l = i; while(str[i] == '1' &amp;&amp; i &lt; num-1) i++; int r = i; if(l == r &amp;&amp; arr[l] != l+1) &#123;// cout &lt;&lt; "sdf: " &lt;&lt; l &lt;&lt; endl; flag = false; break; &#125; for(int j = l; j &lt;= r; j++) &#123; if(arr[j] &gt; r+1 || arr[j] &lt; l+1) &#123;// cout &lt;&lt; l &lt;&lt; ' ' &lt;&lt; r &lt;&lt; endl; flag = false; break; &#125; &#125; &#125; if(flag) printf("YES\n"); else printf("NO\n"); &#125; return 0;&#125;]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>codeforce</tag>
-        <tag>c++</tag>
       </tags>
   </entry>
   <entry>
@@ -731,9 +759,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Codeforce 915C Permute Digits]]></title>
-    <url>%2F2018%2F01%2F26%2Fcodeforce915C%2F</url>
-    <content type="text"><![CDATA[You are given two positive integer numbers a and b. Permute (change order) of the digits of a to construct maximal number not exceeding b. No number in input and/or output can start with the digit 0. It is allowed to leave a as it is. Input The first line contains integer a (1 ≤ a ≤ 1018). The second line contains integer b (1 ≤ b ≤ 1018). Numbers don’t have leading zeroes. It is guaranteed that answer exists. Output Print the maximum possible number that is a permutation of digits of a and is not greater than b. The answer can’t have any leading zeroes. It is guaranteed that the answer exists. Examples input 12123222 output 1213 input 12392110000 output 19321 input 1249405000 output 14940 b一定不短于a 如果b比a长，直接降序排列a 如果一样长 先统计a中数字的个数 对于每一位b，都找不比b大的匹配，一旦有一位匹配后小于b的那位，之后就可以从最大的开始降序匹配 如果有一位无法匹配小于等于b的那位，那么就回退一位，匹配小于b的，这样后面就可以不受约束 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;iomanip&gt;using namespace std;bool cmp(char a, char b)&#123; return a &gt; b;&#125;int main()&#123; char str1[20]; char str2[20]; char tmp; int arr[15]; while(~scanf("%s", str1)) &#123; memset(arr, 0, sizeof(arr)); getchar(); scanf("%s", str2); getchar(); int len1 = strlen(str1); int len2 = strlen(str2); if(len2 &gt; len1) &#123; sort(str1, str1+len1, cmp); &#125; else &#123; bool flag = false; for(int i = 0; i &lt; len1; i++) &#123; arr[str1[i] - '0']++; str1[i] = str2[i]; &#125; for(int i = 0; i &lt; len2; i++) &#123; int j; if(flag == false) j = str1[i] - '0'; else j = 9; for(; j &gt;= 0; j--) &#123; if(arr[j] &gt; 0) &#123; arr[j]--; str1[i] = j+'0'; if(j &lt; str2[i] - '0') flag = true; break; &#125; &#125; if(j == -1 &amp;&amp; flag == false) &#123; i--; arr[str1[i]-'0']++; str1[i]--; i--; &#125; &#125; &#125; printf("%s\n", str1); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Codeforce 915A Garden]]></title>
+    <url>%2F2018%2F01%2F26%2Fcodeforce915A%2F</url>
+    <content type="text"><![CDATA[Luba thinks about watering her garden. The garden can be represented as a segment of length k. Luba has got n buckets, the i-th bucket allows her to water some continuous subsegment of garden of length exactly a**i each hour. Luba can’t water any parts of the garden that were already watered, also she can’t water the ground outside the garden. Luba has to choose one of the buckets in order to water the garden as fast as possible (as mentioned above, each hour she will water some continuous subsegment of length a**i if she chooses the i-th bucket). Help her to determine the minimum number of hours she has to spend watering the garden. It is guaranteed that Luba can always choose a bucket so it is possible water the garden. See the examples for better understanding. Input The first line of input contains two integer numbers n and k (1 ≤ n, k ≤ 100) — the number of buckets and the length of the garden, respectively. The second line of input contains n integer numbers a**i (1 ≤ a**i ≤ 100) — the length of the segment that can be watered by the i-th bucket in one hour. It is guaranteed that there is at least one bucket such that it is possible to water the garden in integer number of hours using only this bucket. Output Print one integer number — the minimum number of hours required to water the garden. Examples input 123 62 3 5 output 12 input 126 71 2 3 4 5 6 output 17 Note In the first test the best option is to choose the bucket that allows to water the segment of length 3. We can’t choose the bucket that allows to water the segment of length 5 because then we can’t water the whole garden. In the second test we can choose only the bucket that allows us to water the segment of length 1. C++ Code 123456789101112131415161718192021222324252627#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, k; int tmp; int mi; while(~scanf("%d%d", &amp;n, &amp;k)) &#123; mi = 1000; for(int i = 0; i &lt; n; i++) &#123; scanf("%d", &amp;tmp); if(k % tmp == 0) &#123; mi = min(k / tmp, mi); &#125; &#125; printf("%d\n", mi); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -755,9 +783,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Codeforce 915A Garden]]></title>
-    <url>%2F2018%2F01%2F26%2Fcodeforce915A%2F</url>
-    <content type="text"><![CDATA[Luba thinks about watering her garden. The garden can be represented as a segment of length k. Luba has got n buckets, the i-th bucket allows her to water some continuous subsegment of garden of length exactly a**i each hour. Luba can’t water any parts of the garden that were already watered, also she can’t water the ground outside the garden. Luba has to choose one of the buckets in order to water the garden as fast as possible (as mentioned above, each hour she will water some continuous subsegment of length a**i if she chooses the i-th bucket). Help her to determine the minimum number of hours she has to spend watering the garden. It is guaranteed that Luba can always choose a bucket so it is possible water the garden. See the examples for better understanding. Input The first line of input contains two integer numbers n and k (1 ≤ n, k ≤ 100) — the number of buckets and the length of the garden, respectively. The second line of input contains n integer numbers a**i (1 ≤ a**i ≤ 100) — the length of the segment that can be watered by the i-th bucket in one hour. It is guaranteed that there is at least one bucket such that it is possible to water the garden in integer number of hours using only this bucket. Output Print one integer number — the minimum number of hours required to water the garden. Examples input 123 62 3 5 output 12 input 126 71 2 3 4 5 6 output 17 Note In the first test the best option is to choose the bucket that allows to water the segment of length 3. We can’t choose the bucket that allows to water the segment of length 5 because then we can’t water the whole garden. In the second test we can choose only the bucket that allows us to water the segment of length 1. C++ Code 123456789101112131415161718192021222324252627#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, k; int tmp; int mi; while(~scanf("%d%d", &amp;n, &amp;k)) &#123; mi = 1000; for(int i = 0; i &lt; n; i++) &#123; scanf("%d", &amp;tmp); if(k % tmp == 0) &#123; mi = min(k / tmp, mi); &#125; &#125; printf("%d\n", mi); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Codeforce 915C Permute Digits]]></title>
+    <url>%2F2018%2F01%2F26%2Fcodeforce915C%2F</url>
+    <content type="text"><![CDATA[You are given two positive integer numbers a and b. Permute (change order) of the digits of a to construct maximal number not exceeding b. No number in input and/or output can start with the digit 0. It is allowed to leave a as it is. Input The first line contains integer a (1 ≤ a ≤ 1018). The second line contains integer b (1 ≤ b ≤ 1018). Numbers don’t have leading zeroes. It is guaranteed that answer exists. Output Print the maximum possible number that is a permutation of digits of a and is not greater than b. The answer can’t have any leading zeroes. It is guaranteed that the answer exists. Examples input 12123222 output 1213 input 12392110000 output 19321 input 1249405000 output 14940 b一定不短于a 如果b比a长，直接降序排列a 如果一样长 先统计a中数字的个数 对于每一位b，都找不比b大的匹配，一旦有一位匹配后小于b的那位，之后就可以从最大的开始降序匹配 如果有一位无法匹配小于等于b的那位，那么就回退一位，匹配小于b的，这样后面就可以不受约束 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;iomanip&gt;using namespace std;bool cmp(char a, char b)&#123; return a &gt; b;&#125;int main()&#123; char str1[20]; char str2[20]; char tmp; int arr[15]; while(~scanf("%s", str1)) &#123; memset(arr, 0, sizeof(arr)); getchar(); scanf("%s", str2); getchar(); int len1 = strlen(str1); int len2 = strlen(str2); if(len2 &gt; len1) &#123; sort(str1, str1+len1, cmp); &#125; else &#123; bool flag = false; for(int i = 0; i &lt; len1; i++) &#123; arr[str1[i] - '0']++; str1[i] = str2[i]; &#125; for(int i = 0; i &lt; len2; i++) &#123; int j; if(flag == false) j = str1[i] - '0'; else j = 9; for(; j &gt;= 0; j--) &#123; if(arr[j] &gt; 0) &#123; arr[j]--; str1[i] = j+'0'; if(j &lt; str2[i] - '0') flag = true; break; &#125; &#125; if(j == -1 &amp;&amp; flag == false) &#123; i--; arr[str1[i]-'0']++; str1[i]--; i--; &#125; &#125; &#125; printf("%s\n", str1); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -791,18 +819,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 23 Merge k Sorted Lists]]></title>
-    <url>%2F2018%2F01%2F24%2Fleetcode23%2F</url>
-    <content type="text"><![CDATA[Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. 12345678910111213141516171819202122232425262728# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeKLists(self, lists): """ :type lists: List[ListNode] :rtype: ListNode """ heap = [] i = 0 for node in lists: if node != None: heap.append((node.val, i, node)) i += 1 heapq.heapify(heap) cur = head = ListNode(0) while heap: pop = heapq.heappop(heap) cur.next = ListNode(pop[0]) cur = cur.next if pop[2].next != None: heapq.heappush(heap, (pop[2].next.val, i, pop[2].next)) i += 1 return head.next]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Linux下配置Git免密码]]></title>
     <url>%2F2018%2F01%2F24%2Fgit_password%2F</url>
     <content type="text"><![CDATA[本篇文章将会介绍如何在Linux下配置使Git在push/pull时免密码 操作步聚： 进入当前用户目录下； 创建并打开.git-credentials 按照以下格式输入内容： 1 https://&#123;username&#125;：&#123;password&#125;@github.com 其中username，password，github.com 都替换成你自己的内容 保存退出后执行 1git config --global credential.helper store 执行完后 /home/用户名/.gitconfig 会新增一项 helper = store 这时再执行git push/pull的时候就不会在要求你输入密码了。]]></content>
@@ -814,6 +830,18 @@
         <tag>Linux</tag>
         <tag>Ubuntu</tag>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 23 Merge k Sorted Lists]]></title>
+    <url>%2F2018%2F01%2F24%2Fleetcode23%2F</url>
+    <content type="text"><![CDATA[Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. 12345678910111213141516171819202122232425262728# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeKLists(self, lists): """ :type lists: List[ListNode] :rtype: ListNode """ heap = [] i = 0 for node in lists: if node != None: heap.append((node.val, i, node)) i += 1 heapq.heapify(heap) cur = head = ListNode(0) while heap: pop = heapq.heappop(heap) cur.next = ListNode(pop[0]) cur = cur.next if pop[2].next != None: heapq.heappush(heap, (pop[2].next.val, i, pop[2].next)) i += 1 return head.next]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -877,9 +905,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[HDU 5754 Life Winner Bo]]></title>
-    <url>%2F2018%2F01%2F14%2Fhdu5754%2F</url>
-    <content type="text"><![CDATA[Problem Description Bo is a “Life Winner”.He likes playing chessboard games with his girlfriend G.The size of the chessboard is N×M.The top left corner is numbered(1,1) and the lower right corner is numberd (N,M).For each game,Bo and G take turns moving a chesspiece(Bo first).At first,the chesspiece is located at (1,1).And the winner is the person who first moves the chesspiece to (N,M).At one point,if the chess can’t be moved and it isn’t located at (N,M),they end in a draw.In general,the chesspiece can only be moved right or down.Formally,suppose it is located at (x,y),it can be moved to the next point (x′,y′) only if x′≥x and y′≥y.Also it can’t be moved to the outside of chessboard.Besides,There are four kinds of chess(They have movement rules respectively).1.king.2.rook(castle).3.knight.4.queen.(The movement rule is as same as the chess.)For each type of chess,you should find out that who will win the game if they both play in an optimal strategy.Print the winner’s name(“B” or “G”) or “D” if nobody wins the game. Input In the first line,there is a number T as a case number.In the next T lines,there are three numbers type,N and M.“type” means the kind of the chess.T≤1000,2≤N,M≤1000,1≤type≤4 Output For each question,print the answer. Sample Input 1234541 5 52 5 53 5 54 5 5 Sample Output 1234GGDB Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cmath&gt;using namespace std;int dp1[1005][1005];int dp3[1005][1005];int dp4[1005][1005];void init()&#123; for(int i = 0; i &lt;= 1000; i++) &#123; dp1[i][1001] = dp1[1001][i] = 1; dp3[i][1000] = dp3[1000][i] = 3; dp3[i][1001] = dp3[1001][i] = 1; dp4[i][i] = dp4[i][1000] = dp4[1000][i] = 1; dp4[i][1001] = dp4[1001][i] = 1; &#125; dp3[1000][1000] = 0; dp3[999][999] = 3; dp1[1000][1000] = dp4[1000][1000] = 0; dp1[1001][1001] = dp4[1001][1001] = 1; for(int i = 1000; i &gt;= 0; i--) &#123; for(int j = 1000; j &gt;= 0; j--) &#123; if(dp1[i+1][j] == 1 &amp;&amp; (dp1[i][j+1] == 1 &amp;&amp; dp1[i+1][j+1] == 1)) dp1[i][j] = 0; else dp1[i][j] = 1; &#125; &#125; for(int i = 999; i &gt;= 0; i--) &#123; for(int j = 999; j &gt;= 0; j--) &#123; if(i == 999 &amp;&amp; j == 999)&#123;&#125; else if((i == 999 || dp3[i+2][j+1] == 1) &amp;&amp; (j == 999 || dp3[i+1][j+2] == 1)) dp3[i][j] = 0; else if(dp3[i+2][j+1] == 0 || dp3[i+1][j+2] == 0) dp3[i][j] = 1; else dp3[i][j] = 3; if(dp4[i][j]) continue; if(!dp4[i][j]) &#123; for(int ii = i - 1; ii &gt;= 0; ii--) dp4[ii][j] = 1; for(int ii = j - 1; ii &gt;= 0; ii--) dp4[i][ii] = 1; for(int ii = 1; i-ii &gt;= 0 &amp;&amp; j-ii &gt;= 0; ii++) dp4[i-ii][j-ii] = 1; &#125; &#125; &#125;&#125;int main()&#123; int ca; int t, n, m; memset(dp1, 0, sizeof(dp1)); memset(dp3, 0, sizeof(dp3)); memset(dp4, 0, sizeof(dp4)); init(); scanf("%d", &amp;ca); while(ca--) &#123; scanf("%d%d%d", &amp;t, &amp;n, &amp;m); if(t == 1) &#123; if(dp1[1000-n+1][1000-m+1]) printf("B\n"); else printf("G\n"); &#125; else if(t == 2) &#123; if((n-1) ^ (m-1)) printf("B\n"); else printf("G\n"); &#125; else if(t == 3) &#123; if(dp3[1000-n+1][1000-m+1] == 1) printf("B\n"); else if(dp3[1000-n+1][1000-m+1] == 0) printf("G\n"); else if(dp3[1000-n+1][1000-m+1] == 3) printf("D\n"); &#125; else &#123; if(dp4[1000-n+1][1000-m+1] == 1) printf("B\n"); else printf("G\n"); &#125; &#125; return 0;&#125;]]></content>
+    <title><![CDATA[HDU 5802 Windows 10]]></title>
+    <url>%2F2018%2F01%2F14%2Fhdu5802%2F</url>
+    <content type="text"><![CDATA[Problem Description Long long ago, there was an old monk living on the top of a mountain. Recently, our old monk found the operating system of his computer was updating to windows 10 automatically and he even can’t just stop it !!With a peaceful heart, the old monk gradually accepted this reality because his favorite comic LoveLive doesn’t depend on the OS. Today, like the past day, he opens bilibili and wants to watch it again. But he observes that the voice of his computer can be represented as dB and always be integer.Because he is old, he always needs 1 second to press a button. He found that if he wants to take up the voice, he only can add 1 dB in each second by pressing the up button. But when he wants to take down the voice, he can press the down button, and if the last second he presses the down button and the voice decrease x dB, then in this second, it will decrease 2 * x dB. But if the last second he chooses to have a rest or press the up button, in this second he can only decrease the voice by 1 dB.Now, he wonders the minimal seconds he should take to adjust the voice from p dB to q dB. Please be careful, because of some strange reasons, the voice of his computer can larger than any dB but can’t be less than 0 dB. Input First line contains a number T (1≤T≤300000),cases number.Next T line,each line contains two numbers p and q (0≤p,q≤109) Output The minimal seconds he should take Sample Input 12321 57 3 Sample Output 1244 Code 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;string.h&gt;#include &lt;algorithm&gt;using namespace std;int p, q;int dfs(int cur, int step, int stop)///现在位置，已走步数，停顿次数&#123; int cnt = 0; while(cur - (1&lt;&lt;cnt) + 1 &gt; q) cnt++; step += cnt; if(cur - (1&lt;&lt;cnt) + 1 == q) return step; int up = q - max(0, cur - (1&lt;&lt;cnt) + 1);///需要往回走多少步 int tmp = step + max(up-stop, 0);///通过把之前的停顿换成向上一步来减少之后向上的步数 return min(tmp, dfs(cur - (1&lt;&lt;(cnt-1))+1, step, stop + 1));&#125;int main()&#123; int ca; int ans; scanf("%d", &amp;ca); while(ca--) &#123; scanf("%d%d", &amp;p, &amp;q); if(p &lt;= q) ans = q - p; else ans = dfs(p, 0, 0); printf("%d\n", ans); &#125; return 0;&#125; ​]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -889,9 +917,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[HDU 5802 Windows 10]]></title>
-    <url>%2F2018%2F01%2F14%2Fhdu5802%2F</url>
-    <content type="text"><![CDATA[Problem Description Long long ago, there was an old monk living on the top of a mountain. Recently, our old monk found the operating system of his computer was updating to windows 10 automatically and he even can’t just stop it !!With a peaceful heart, the old monk gradually accepted this reality because his favorite comic LoveLive doesn’t depend on the OS. Today, like the past day, he opens bilibili and wants to watch it again. But he observes that the voice of his computer can be represented as dB and always be integer.Because he is old, he always needs 1 second to press a button. He found that if he wants to take up the voice, he only can add 1 dB in each second by pressing the up button. But when he wants to take down the voice, he can press the down button, and if the last second he presses the down button and the voice decrease x dB, then in this second, it will decrease 2 * x dB. But if the last second he chooses to have a rest or press the up button, in this second he can only decrease the voice by 1 dB.Now, he wonders the minimal seconds he should take to adjust the voice from p dB to q dB. Please be careful, because of some strange reasons, the voice of his computer can larger than any dB but can’t be less than 0 dB. Input First line contains a number T (1≤T≤300000),cases number.Next T line,each line contains two numbers p and q (0≤p,q≤109) Output The minimal seconds he should take Sample Input 12321 57 3 Sample Output 1244 Code 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;string.h&gt;#include &lt;algorithm&gt;using namespace std;int p, q;int dfs(int cur, int step, int stop)///现在位置，已走步数，停顿次数&#123; int cnt = 0; while(cur - (1&lt;&lt;cnt) + 1 &gt; q) cnt++; step += cnt; if(cur - (1&lt;&lt;cnt) + 1 == q) return step; int up = q - max(0, cur - (1&lt;&lt;cnt) + 1);///需要往回走多少步 int tmp = step + max(up-stop, 0);///通过把之前的停顿换成向上一步来减少之后向上的步数 return min(tmp, dfs(cur - (1&lt;&lt;(cnt-1))+1, step, stop + 1));&#125;int main()&#123; int ca; int ans; scanf("%d", &amp;ca); while(ca--) &#123; scanf("%d%d", &amp;p, &amp;q); if(p &lt;= q) ans = q - p; else ans = dfs(p, 0, 0); printf("%d\n", ans); &#125; return 0;&#125; ​]]></content>
+    <title><![CDATA[HDU 5754 Life Winner Bo]]></title>
+    <url>%2F2018%2F01%2F14%2Fhdu5754%2F</url>
+    <content type="text"><![CDATA[Problem Description Bo is a “Life Winner”.He likes playing chessboard games with his girlfriend G.The size of the chessboard is N×M.The top left corner is numbered(1,1) and the lower right corner is numberd (N,M).For each game,Bo and G take turns moving a chesspiece(Bo first).At first,the chesspiece is located at (1,1).And the winner is the person who first moves the chesspiece to (N,M).At one point,if the chess can’t be moved and it isn’t located at (N,M),they end in a draw.In general,the chesspiece can only be moved right or down.Formally,suppose it is located at (x,y),it can be moved to the next point (x′,y′) only if x′≥x and y′≥y.Also it can’t be moved to the outside of chessboard.Besides,There are four kinds of chess(They have movement rules respectively).1.king.2.rook(castle).3.knight.4.queen.(The movement rule is as same as the chess.)For each type of chess,you should find out that who will win the game if they both play in an optimal strategy.Print the winner’s name(“B” or “G”) or “D” if nobody wins the game. Input In the first line,there is a number T as a case number.In the next T lines,there are three numbers type,N and M.“type” means the kind of the chess.T≤1000,2≤N,M≤1000,1≤type≤4 Output For each question,print the answer. Sample Input 1234541 5 52 5 53 5 54 5 5 Sample Output 1234GGDB Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114#include &lt;iostream&gt;#include &lt;cstring&gt;#include &lt;cstdio&gt;#include &lt;algorithm&gt;#include &lt;cmath&gt;using namespace std;int dp1[1005][1005];int dp3[1005][1005];int dp4[1005][1005];void init()&#123; for(int i = 0; i &lt;= 1000; i++) &#123; dp1[i][1001] = dp1[1001][i] = 1; dp3[i][1000] = dp3[1000][i] = 3; dp3[i][1001] = dp3[1001][i] = 1; dp4[i][i] = dp4[i][1000] = dp4[1000][i] = 1; dp4[i][1001] = dp4[1001][i] = 1; &#125; dp3[1000][1000] = 0; dp3[999][999] = 3; dp1[1000][1000] = dp4[1000][1000] = 0; dp1[1001][1001] = dp4[1001][1001] = 1; for(int i = 1000; i &gt;= 0; i--) &#123; for(int j = 1000; j &gt;= 0; j--) &#123; if(dp1[i+1][j] == 1 &amp;&amp; (dp1[i][j+1] == 1 &amp;&amp; dp1[i+1][j+1] == 1)) dp1[i][j] = 0; else dp1[i][j] = 1; &#125; &#125; for(int i = 999; i &gt;= 0; i--) &#123; for(int j = 999; j &gt;= 0; j--) &#123; if(i == 999 &amp;&amp; j == 999)&#123;&#125; else if((i == 999 || dp3[i+2][j+1] == 1) &amp;&amp; (j == 999 || dp3[i+1][j+2] == 1)) dp3[i][j] = 0; else if(dp3[i+2][j+1] == 0 || dp3[i+1][j+2] == 0) dp3[i][j] = 1; else dp3[i][j] = 3; if(dp4[i][j]) continue; if(!dp4[i][j]) &#123; for(int ii = i - 1; ii &gt;= 0; ii--) dp4[ii][j] = 1; for(int ii = j - 1; ii &gt;= 0; ii--) dp4[i][ii] = 1; for(int ii = 1; i-ii &gt;= 0 &amp;&amp; j-ii &gt;= 0; ii++) dp4[i-ii][j-ii] = 1; &#125; &#125; &#125;&#125;int main()&#123; int ca; int t, n, m; memset(dp1, 0, sizeof(dp1)); memset(dp3, 0, sizeof(dp3)); memset(dp4, 0, sizeof(dp4)); init(); scanf("%d", &amp;ca); while(ca--) &#123; scanf("%d%d%d", &amp;t, &amp;n, &amp;m); if(t == 1) &#123; if(dp1[1000-n+1][1000-m+1]) printf("B\n"); else printf("G\n"); &#125; else if(t == 2) &#123; if((n-1) ^ (m-1)) printf("B\n"); else printf("G\n"); &#125; else if(t == 3) &#123; if(dp3[1000-n+1][1000-m+1] == 1) printf("B\n"); else if(dp3[1000-n+1][1000-m+1] == 0) printf("G\n"); else if(dp3[1000-n+1][1000-m+1] == 3) printf("D\n"); &#125; else &#123; if(dp4[1000-n+1][1000-m+1] == 1) printf("B\n"); else printf("G\n"); &#125; &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
