@@ -1,6 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[POJ 2240 Arbitrage]]></title>
+    <url>%2F2018%2F09%2F25%2Fpoj2240%2F</url>
+    <content type="text"><![CDATA[链接 SPFA找正环或者用Floyd找自己到自己最长路大于1的点 C++ Code SPFA 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;map&gt;#include &lt;queue&gt;#define M 35#define INF 80000000using namespace std;double arr[M][M];bool isInqueue[M];int numInqueue[M];int num, numedge;double dis[M];bool spfa()&#123; memset(numInqueue, 0, sizeof(numInqueue)); memset(isInqueue, 0, sizeof(isInqueue)); queue&lt;int&gt; q; for(int i = 1; i &lt;= num; i++)&#123; dis[i] = INF; q.push(i); isInqueue[i] = true; numInqueue[i]++; &#125; while(!q.empty())&#123; int cur = q.front(); q.pop(); isInqueue[cur] = false; for(int i = 1; i &lt;= num; i++)&#123; if(arr[cur][i] &gt; 0)&#123; if(dis[i] &lt; dis[cur]*arr[cur][i])&#123; dis[i] = dis[cur] * arr[cur][i]; if(!isInqueue[i])&#123; q.push(i); isInqueue[i] = true; numInqueue[i] ++; if(numInqueue[i] &gt;= num) return true; &#125; &#125; &#125; &#125; &#125; return false;&#125;int main()&#123; int ca = 1; while(scanf("%d", &amp;num) &amp;&amp; num != 0)&#123; memset(arr, 0 , sizeof(arr)); map&lt;string, int&gt; m; string name, c1, c2; double rate; for(int i = 1; i &lt;= num; i++)&#123; cin &gt;&gt; name; m[name] = i; &#125; scanf("%d", &amp;numedge); for(int i = 1; i &lt;= numedge; i++)&#123; cin &gt;&gt; c1 &gt;&gt; rate &gt;&gt; c2; arr[m[c1]][m[c2]] = rate; &#125; bool flag = spfa(); if(flag) printf("Case %d: Yes\n", ca++); else printf("Case %d: No\n", ca++); &#125; return 0;&#125; Floyd 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;map&gt;#include &lt;cstring&gt;#include &lt;string&gt;using namespace std;double arr[31][31];double max(double a, double b)&#123; return a &gt; b ? a : b;&#125;int main()&#123; map&lt;string, int&gt; name; int num , m; int a, b; double trans; string cash1, cash2; int ca = 1; while(cin &gt;&gt; num &amp;&amp; num) &#123; memset(arr, 0, sizeof(arr)); for(int i = 0; i &lt; num; i++) &#123; cin &gt;&gt; cash1; name[cash1] = i; &#125; cin &gt;&gt; m; for(int i = 0; i &lt; m; i++) &#123; cin &gt;&gt; cash1; a = name[cash1]; cin &gt;&gt; trans; cin &gt;&gt; cash2; b = name[cash2]; arr[a][b] = trans; &#125; for(int k = 0; k &lt; num; k++) for(int i = 0; i &lt; num; i++) for(int j = 0; j &lt; num; j++) arr[i][j] = max(arr[i][j], arr[i][k]*arr[k][j]); bool flag = false; for(int i = 0; i &lt; num; i++) &#123; if(arr[i][i] &gt; 1) &#123; cout &lt;&lt; "Case " &lt;&lt; ca++ &lt;&lt; ": Yes" &lt;&lt;endl; flag = true; break; &#125; &#125; if(!flag) printf("Case %d: No\n", ca++); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>最短路</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ 1125 Stockbroker Grapevine]]></title>
+    <url>%2F2018%2F09%2F24%2Fpoj1125%2F</url>
+    <content type="text"><![CDATA[链接 Floyd C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#define M 101#define INF 1000000using namespace std;int arr[M][M];int main()&#123; int num, contact; int to, cost; while(scanf("%d", &amp;num) &amp;&amp; num != 0)&#123; for(int i = 1; i &lt;= num; i++)&#123; for(int j = 1; j &lt;= num; j++)&#123; if(i == j) arr[i][j] = 0; else arr[i][j] = INF; &#125; &#125; for(int i = 1; i &lt;= num; i++)&#123; scanf("%d", &amp;contact); for(int j = 0; j &lt; contact; j++)&#123; scanf("%d%d", &amp;to, &amp;cost); arr[i][to] = cost; &#125; &#125; for(int k = 1; k &lt;= num; k++)&#123; for(int i = 1; i &lt;= num; i++)&#123; for(int j = 1; j &lt;= num; j++)&#123; arr[i][j] = min(arr[i][j], arr[i][k] + arr[k][j]); &#125; &#125; &#125; bool flag = false; int mi = INF; int pos; for(int i = 1; i &lt;= num; i++)&#123; flag = false; int mx = -1; for(int j = 1; j &lt;= num; j++)&#123; if(arr[i][j] &gt;= INF)&#123; flag = true; break; &#125; mx = max(mx, arr[i][j]); &#125; if(flag == false &amp;&amp; mi &gt; mx)&#123; mi = mx; pos = i; &#125; &#125; if(mi == INF) printf("disjoint\n"); else printf("%d %d\n", pos, mi); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>最短路</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[POJ 2253 Frogger（Floyd）]]></title>
     <url>%2F2018%2F09%2F23%2Fpoj2253%2F</url>
     <content type="text"><![CDATA[链接 利用Floyd的更新策略，只不过把要更新的值类型从最短路变成最大跨度。输出用%lf WA死我了，改用%f或cout就好了。 C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;math.h&gt;#define MAX 202using namespace std;struct node&#123; double x; double y;&#125;stones[MAX];double arr[MAX][MAX];int main()&#123; int num; int ca = 1; while(~scanf("%d", &amp;num) &amp;&amp; num != 0)&#123; for(int i = 0; i &lt; num; i++)&#123; scanf("%lf%lf", &amp;stones[i].x, &amp;stones[i].y); &#125; for(int i = 0; i &lt; num; i++)&#123; arr[i][i] = 0; for(int j = i+1; j &lt; num; j++)&#123; arr[i][j] = arr[j][i] = sqrt((stones[i].x - stones[j].x)*(stones[i].x - stones[j].x) + (stones[i].y - stones[j].y)*(stones[i].y - stones[j].y)); &#125; &#125; for(int k = 0; k &lt; num; k++)&#123; for(int i = 0; i &lt; num; i++)&#123; for(int j = 0; j &lt; num; j++)&#123; arr[i][j] = min(arr[i][j], max(arr[i][k], arr[k][j])); &#125; &#125; &#125; printf("Scenario #%d\n", ca++); printf("Frog Distance = %.3f\n\n", (arr[0][1])); &#125; return 0;&#125;]]></content>
@@ -205,8 +233,8 @@
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>Shiro</tag>
         <tag>Spring Boot</tag>
+        <tag>Shiro</tag>
         <tag>Mybatis</tag>
       </tags>
   </entry>
@@ -331,9 +359,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[机器学习实战--Apriori算法挖掘频繁项集]]></title>
-    <url>%2F2018%2F05%2F13%2FApriori%2F</url>
-    <content type="text"><![CDATA[Apriori算法是最著名的关联规则的挖掘方法，可以使用它挖掘频繁项集发现数据中的规律。著名的“啤酒与尿布”案例就是在分析大量超市的事务之后发现了“啤酒”与“尿布”这一频繁项集。这篇笔记主要是记录Apriori的Python3代码实现的，会就算法来讲解Apriori挖掘频繁项集的步骤，算法的详细内容在《数据挖掘-概念与技术》一书中有非常详细的讲解，这里不再赘述 完整代码在这里 数据格式 类似下方的二维数组，每一个list代表一个transaction，里面的每个数都是item的编号 1[[1,2,5], [2,4], [2,3], [1,2,4],[1,3], [2,3], [1,3], [1,2,3,5], [1,2,3]] 读取数据 12345678def loadDataSet(): thing_arr = [] with open('data/Groceries.txt', 'r') as f: X = f.read() thing_arr = json.loads(X) f.close() return thing_arr ​ 首先生成C1集合，将所有出现过的item编号都加入到C1中 1234567891011121314def createC1(dataSet): ''' 生成C1 :param dataSet: :return: ''' C1 = [] for transaction in dataSet: for item in transaction: if not [item] in C1: C1.append([item]) C1.sort() #将项集列表转换为不可变集和 return [frozenset(item) for item in C1] ​ 扫描数据集计数，去除Ck中的非频繁项集，生成L1 1234567891011121314151617181920212223def scanD(D, Ck, minSupport = 50): ''' 扫描事务集D过滤Ck :param D: :param Ck: :param minSupport: :return: ''' ssCnt = &#123;&#125; for tid in D: for can in Ck: if can.issubset(tid): if can not in ssCnt.keys() : ssCnt[can] = 1 else: ssCnt[can] += 1 retList = [] supportData = &#123;&#125; for key in ssCnt: support = ssCnt[key] if support &gt;= minSupport: retList.insert(0, key) supportData[key] = support return retList, supportData ​ 从Lk-1集中生成Ck集合，需要将Lk-1项集进行排序，然后将前k-2项相同的集合进行合并 123456789101112131415161718def aprioriGen(Lk, k): ''' 生成Ck :param Lk: :param k: :return: ''' retList = [] lenLk = len(Lk) for i in range(lenLk): for j in range(i+1, lenLk): L1 = list(Lk[i])[:k-2] L2 = list(Lk[j])[:k-2] L1.sort() L2.sort() if L1 == L2: retList.append(Lk[i] | Lk[j]) return retList ​ 将上述步骤结合起来，就可以生成所有的频繁项集，直到为空终止算法 12345678910111213def apriori(dataSet, minSupport = 50): C1 = createC1(dataSet=dataSet) D = [set(item) for item in dataSet] L1, supportData = scanD(D, C1, minSupport) L = [L1] k = 2 while(len(L[k-2]) &gt; 0): Ck = aprioriGen(L[k-2], k) Lk, supK = scanD(D, Ck, minSupport) supportData.update(supK) L.append(Lk) k += 1 return L, supportData 到此使用Apriori挖掘频繁项集就编写完了，后面还有关联规则的挖掘，未完。。 ​]]></content>
+    <title><![CDATA[机器学习实战--FP-growth算法挖掘频繁项集]]></title>
+    <url>%2F2018%2F05%2F13%2FFPgrowth%2F</url>
+    <content type="text"><![CDATA[FP-growth是频繁项集挖掘的一种优化算法。它先将事务先构造成一棵FP树，这样一来就不用像Apriori一项反复地扫描原来的事务了，大大提高了效率。这篇笔记主要是记录FP-growth的Python3代码实现的，会就算法来讲解FP-growth挖掘频繁项集的步骤，算法的详细内容在《数据挖掘-概念与技术》一书中有非常详细的讲解，这里不再赘述 完整代码在这里 数据格式 类似下方的二维数组，每一个list代表一个transaction，里面的每个数都是item的编号 1[[1,2,5], [2,4], [2,3], [1,2,4],[1,3], [2,3], [1,3], [1,2,3,5], [1,2,3]] 读取数据 12345678def loadDataSet(): thing_arr = [] with open('data/Groceries.txt', 'r') as f: X = f.read() thing_arr = json.loads(X) f.close() return thing_arr ​ FP-Growth实现起来相对复杂，需要定义树结点结构 1234567891011121314151617181920class treeNode: def __init__(self, nameValue, numOccur, parentNode): # 值 self.name = nameValue # 计数 self.count = numOccur # 下一个相同值的结点 self.nodeLink = None # 父节点 self.parent = parentNode # 孩子结点 self.children = &#123;&#125; def inc(self, numOccur): self.count += numOccur def disp(self, ind=1): print(" "*ind, self.name, ' ', self.count) for child in self.children.values(): child.disp(ind+1) ​ 初始化transaction计数 12345def createInitSet(dataSet): retDict = &#123;&#125; for trans in dataSet: retDict[frozenset(trans)] = 1 return retDict ​ 建立FP树 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879def createTree(dataSet, minSup = 1): ''' 创建根结点以及搜索链表表头 :param dataSet: :param minSup: :return: ''' # 搜索链表头 headerTable = &#123;&#125; # 在搜索用的链表头除记录每个item的频数 for trans in dataSet: for item in trans: headerTable[item] = headerTable.get(item, 0) + dataSet[trans] # 小于最小支持度的item不用考虑 for k in list(headerTable.keys()): if headerTable[k] &lt; minSup: del(headerTable[k]) freqItemSet = set(headerTable.keys()) # 如果不存在频繁项集则直接返回空 if len(freqItemSet) == 0: return None, None # 为每个结点增加一个指向下一个同值结点的指针 for k in headerTable.keys(): headerTable[k] = [headerTable[k], None] # 树根 retTree = treeNode('Null Set', 1, None) for tranSet, count in dataSet.items(): localD = &#123;&#125; for item in tranSet: if item in freqItemSet: localD[item] = headerTable[item][0] if len(localD) &gt; 0: # 每个transaction中的item按出现的次数从高到低排 orderedItems = [v[0] for v in sorted(localD.items(), key=lambda p: p[1], reverse=True)] # 建树 updateTree(orderedItems, retTree, headerTable, count) return retTree, headerTabledef updateTree(items, inTree, headerTable, count): ''' 每个transaction递归更新到树上，并更新搜索链表 :param items: :param inTree: :param headerTable: :param count: 每个transaction的出现次数 :return: ''' # 每个transaction的最高出现词数item直接接在root上 if items[0] in inTree.children: # 有该元素项时计数值+1 inTree.children[items[0]].inc(count) else: # 没有这个元素项时创建一个新节点 inTree.children[items[0]] = treeNode(items[0], count, inTree) # 更新头指针表或前一个相似元素项节点的指针指向新节点 if headerTable[items[0]][1] == None: headerTable[items[0]][1] = inTree.children[items[0]] else: updateHeader(headerTable[items[0]][1], inTree.children[items[0]]) # 递归建树 if len(items) &gt; 1: # 对剩下的元素项迭代调用updateTree函数 updateTree(items[1:], inTree.children[items[0]], headerTable, count) def updateHeader(nodeToTest, targetNode): ''' 找到链表尾加上一个 :param nodeToTest: :param targetNode: :return: ''' while (nodeToTest.nodeLink != None): nodeToTest = nodeToTest.nodeLink nodeToTest.nodeLink = targetNode ​ 在每次查询条件FP树时，需要递归寻找其条件前缀路径 12345678910111213141516171819202122def ascendTree(leafNode, prefixPath): ''' 递归寻找父节点 :param leafNode: :param prefixPath: :return: ''' if leafNode.parent != None: prefixPath.append(leafNode.name) ascendTree(leafNode.parent, prefixPath)def findPrefixPath(basePat, treeNode): condPats = &#123;&#125; while treeNode != None: prefixPath = [] # 获得某个叶子节点的前缀路径 ascendTree(treeNode, prefixPath) if len(prefixPath) &gt;= 2: # 去掉自己获得前缀路径，且权重为当前结点的权重，用于建立条件前缀树 condPats[frozenset(prefixPath[1:])] = treeNode.count treeNode = treeNode.nodeLink return condPats 进行频繁项挖掘 12345678910111213141516171819202122def mineTree(inTree, headerTable, minSup, preFix, freqItemList): ''' 递归查找频繁项集 :param inTree: FP树 :param headerTable: :param minSup: :param preFix: 当前前缀 :param freqItemList: 存储频繁项集 :return: ''' # 从出现次数少的开始找 bigL = [v[0] for v in sorted(headerTable.items(), key=lambda p: p[1][0])] for basePat in bigL: newFreqSet = preFix.copy() newFreqSet.add(basePat) freqItemList.append(newFreqSet) condPattBases = findPrefixPath(basePat, headerTable[basePat][1]) CondTree, Header = createTree(condPattBases, minSup) if Header != None: mineTree(CondTree, Header, minSup, newFreqSet, freqItemList) ​]]></content>
       <categories>
         <category>数据挖掘</category>
       </categories>
@@ -343,9 +371,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[机器学习实战--FP-growth算法挖掘频繁项集]]></title>
-    <url>%2F2018%2F05%2F13%2FFPgrowth%2F</url>
-    <content type="text"><![CDATA[FP-growth是频繁项集挖掘的一种优化算法。它先将事务先构造成一棵FP树，这样一来就不用像Apriori一项反复地扫描原来的事务了，大大提高了效率。这篇笔记主要是记录FP-growth的Python3代码实现的，会就算法来讲解FP-growth挖掘频繁项集的步骤，算法的详细内容在《数据挖掘-概念与技术》一书中有非常详细的讲解，这里不再赘述 完整代码在这里 数据格式 类似下方的二维数组，每一个list代表一个transaction，里面的每个数都是item的编号 1[[1,2,5], [2,4], [2,3], [1,2,4],[1,3], [2,3], [1,3], [1,2,3,5], [1,2,3]] 读取数据 12345678def loadDataSet(): thing_arr = [] with open('data/Groceries.txt', 'r') as f: X = f.read() thing_arr = json.loads(X) f.close() return thing_arr ​ FP-Growth实现起来相对复杂，需要定义树结点结构 1234567891011121314151617181920class treeNode: def __init__(self, nameValue, numOccur, parentNode): # 值 self.name = nameValue # 计数 self.count = numOccur # 下一个相同值的结点 self.nodeLink = None # 父节点 self.parent = parentNode # 孩子结点 self.children = &#123;&#125; def inc(self, numOccur): self.count += numOccur def disp(self, ind=1): print(" "*ind, self.name, ' ', self.count) for child in self.children.values(): child.disp(ind+1) ​ 初始化transaction计数 12345def createInitSet(dataSet): retDict = &#123;&#125; for trans in dataSet: retDict[frozenset(trans)] = 1 return retDict ​ 建立FP树 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879def createTree(dataSet, minSup = 1): ''' 创建根结点以及搜索链表表头 :param dataSet: :param minSup: :return: ''' # 搜索链表头 headerTable = &#123;&#125; # 在搜索用的链表头除记录每个item的频数 for trans in dataSet: for item in trans: headerTable[item] = headerTable.get(item, 0) + dataSet[trans] # 小于最小支持度的item不用考虑 for k in list(headerTable.keys()): if headerTable[k] &lt; minSup: del(headerTable[k]) freqItemSet = set(headerTable.keys()) # 如果不存在频繁项集则直接返回空 if len(freqItemSet) == 0: return None, None # 为每个结点增加一个指向下一个同值结点的指针 for k in headerTable.keys(): headerTable[k] = [headerTable[k], None] # 树根 retTree = treeNode('Null Set', 1, None) for tranSet, count in dataSet.items(): localD = &#123;&#125; for item in tranSet: if item in freqItemSet: localD[item] = headerTable[item][0] if len(localD) &gt; 0: # 每个transaction中的item按出现的次数从高到低排 orderedItems = [v[0] for v in sorted(localD.items(), key=lambda p: p[1], reverse=True)] # 建树 updateTree(orderedItems, retTree, headerTable, count) return retTree, headerTabledef updateTree(items, inTree, headerTable, count): ''' 每个transaction递归更新到树上，并更新搜索链表 :param items: :param inTree: :param headerTable: :param count: 每个transaction的出现次数 :return: ''' # 每个transaction的最高出现词数item直接接在root上 if items[0] in inTree.children: # 有该元素项时计数值+1 inTree.children[items[0]].inc(count) else: # 没有这个元素项时创建一个新节点 inTree.children[items[0]] = treeNode(items[0], count, inTree) # 更新头指针表或前一个相似元素项节点的指针指向新节点 if headerTable[items[0]][1] == None: headerTable[items[0]][1] = inTree.children[items[0]] else: updateHeader(headerTable[items[0]][1], inTree.children[items[0]]) # 递归建树 if len(items) &gt; 1: # 对剩下的元素项迭代调用updateTree函数 updateTree(items[1:], inTree.children[items[0]], headerTable, count) def updateHeader(nodeToTest, targetNode): ''' 找到链表尾加上一个 :param nodeToTest: :param targetNode: :return: ''' while (nodeToTest.nodeLink != None): nodeToTest = nodeToTest.nodeLink nodeToTest.nodeLink = targetNode ​ 在每次查询条件FP树时，需要递归寻找其条件前缀路径 12345678910111213141516171819202122def ascendTree(leafNode, prefixPath): ''' 递归寻找父节点 :param leafNode: :param prefixPath: :return: ''' if leafNode.parent != None: prefixPath.append(leafNode.name) ascendTree(leafNode.parent, prefixPath)def findPrefixPath(basePat, treeNode): condPats = &#123;&#125; while treeNode != None: prefixPath = [] # 获得某个叶子节点的前缀路径 ascendTree(treeNode, prefixPath) if len(prefixPath) &gt;= 2: # 去掉自己获得前缀路径，且权重为当前结点的权重，用于建立条件前缀树 condPats[frozenset(prefixPath[1:])] = treeNode.count treeNode = treeNode.nodeLink return condPats 进行频繁项挖掘 12345678910111213141516171819202122def mineTree(inTree, headerTable, minSup, preFix, freqItemList): ''' 递归查找频繁项集 :param inTree: FP树 :param headerTable: :param minSup: :param preFix: 当前前缀 :param freqItemList: 存储频繁项集 :return: ''' # 从出现次数少的开始找 bigL = [v[0] for v in sorted(headerTable.items(), key=lambda p: p[1][0])] for basePat in bigL: newFreqSet = preFix.copy() newFreqSet.add(basePat) freqItemList.append(newFreqSet) condPattBases = findPrefixPath(basePat, headerTable[basePat][1]) CondTree, Header = createTree(condPattBases, minSup) if Header != None: mineTree(CondTree, Header, minSup, newFreqSet, freqItemList) ​]]></content>
+    <title><![CDATA[机器学习实战--Apriori算法挖掘频繁项集]]></title>
+    <url>%2F2018%2F05%2F13%2FApriori%2F</url>
+    <content type="text"><![CDATA[Apriori算法是最著名的关联规则的挖掘方法，可以使用它挖掘频繁项集发现数据中的规律。著名的“啤酒与尿布”案例就是在分析大量超市的事务之后发现了“啤酒”与“尿布”这一频繁项集。这篇笔记主要是记录Apriori的Python3代码实现的，会就算法来讲解Apriori挖掘频繁项集的步骤，算法的详细内容在《数据挖掘-概念与技术》一书中有非常详细的讲解，这里不再赘述 完整代码在这里 数据格式 类似下方的二维数组，每一个list代表一个transaction，里面的每个数都是item的编号 1[[1,2,5], [2,4], [2,3], [1,2,4],[1,3], [2,3], [1,3], [1,2,3,5], [1,2,3]] 读取数据 12345678def loadDataSet(): thing_arr = [] with open('data/Groceries.txt', 'r') as f: X = f.read() thing_arr = json.loads(X) f.close() return thing_arr ​ 首先生成C1集合，将所有出现过的item编号都加入到C1中 1234567891011121314def createC1(dataSet): ''' 生成C1 :param dataSet: :return: ''' C1 = [] for transaction in dataSet: for item in transaction: if not [item] in C1: C1.append([item]) C1.sort() #将项集列表转换为不可变集和 return [frozenset(item) for item in C1] ​ 扫描数据集计数，去除Ck中的非频繁项集，生成L1 1234567891011121314151617181920212223def scanD(D, Ck, minSupport = 50): ''' 扫描事务集D过滤Ck :param D: :param Ck: :param minSupport: :return: ''' ssCnt = &#123;&#125; for tid in D: for can in Ck: if can.issubset(tid): if can not in ssCnt.keys() : ssCnt[can] = 1 else: ssCnt[can] += 1 retList = [] supportData = &#123;&#125; for key in ssCnt: support = ssCnt[key] if support &gt;= minSupport: retList.insert(0, key) supportData[key] = support return retList, supportData ​ 从Lk-1集中生成Ck集合，需要将Lk-1项集进行排序，然后将前k-2项相同的集合进行合并 123456789101112131415161718def aprioriGen(Lk, k): ''' 生成Ck :param Lk: :param k: :return: ''' retList = [] lenLk = len(Lk) for i in range(lenLk): for j in range(i+1, lenLk): L1 = list(Lk[i])[:k-2] L2 = list(Lk[j])[:k-2] L1.sort() L2.sort() if L1 == L2: retList.append(Lk[i] | Lk[j]) return retList ​ 将上述步骤结合起来，就可以生成所有的频繁项集，直到为空终止算法 12345678910111213def apriori(dataSet, minSupport = 50): C1 = createC1(dataSet=dataSet) D = [set(item) for item in dataSet] L1, supportData = scanD(D, C1, minSupport) L = [L1] k = 2 while(len(L[k-2]) &gt; 0): Ck = aprioriGen(L[k-2], k) Lk, supK = scanD(D, Ck, minSupport) supportData.update(supK) L.append(Lk) k += 1 return L, supportData 到此使用Apriori挖掘频繁项集就编写完了，后面还有关联规则的挖掘，未完。。 ​]]></content>
       <categories>
         <category>数据挖掘</category>
       </categories>
@@ -470,8 +498,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Java</tag>
         <tag>JetBrains</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -482,8 +510,8 @@
         <category>环境搭建</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>JetBrains</tag>
+        <tag>Java</tag>
         <tag>Spring Boot</tag>
       </tags>
   </entry>
@@ -501,9 +529,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[等度量映射(ISOMAP)]]></title>
-    <url>%2F2018%2F03%2F11%2FIsomap%2F</url>
-    <content type="text"><![CDATA[等度量映射(Isomap)是最经典的非线性映射降维方法之一，它在MDS的基础上引入了“测地距离”的概念，直接解决了MDS使用欧氏距离无法应对非线性流形的问题。 测地距离(Geometric Distance)是高维流形中两点之间的最短距离，高维流形中，空间是不规则的，所以最短距离不一定是直线距离(欧氏距离)。就像蚂蚁从立方体的一面爬到另一面，不能直接横穿立方体一样。 上图最左边的图中两个点的最近距离应该是蓝色实线的距离，而不应该是虚线的距离。 真实的测地距离是非常难以求出的，Isomap基于流形局部近似于欧式空间的定义提出了一种近似的求解方式 求得原样本的KNN图，并依据定义保留其欧式距离 所有非KNN的点间的距离规定为无穷大 用dijkstra或floyd求出任意两点的最短路便可近似表示两点间的测地距离 最后Isomap将得到的测地距离矩阵输入MDS完成降维; 感受下效果]]></content>
+    <title><![CDATA[多维缩放(MDS)]]></title>
+    <url>%2F2018%2F03%2F11%2FMDS%2F</url>
+    <content type="text"><![CDATA[多维缩放(multidimensional scaling ,MDS)，是另外一种线性降维方式，与主成分分析法和线性降维分析法都不同的是，多维缩放的目标不是保留数据的最大可分性，而是更加关注与高维数据内部的特征。多维缩放算法集中于保留高维空间中的“相似度”信息，而在一般的问题解决的过程中，这个“相似度”通常用欧式距离来定义。 假设D为m个样本在高维空间中的距离矩阵，distij为第i个样本与第j个样本的欧式距离 Z是样本在低维中映射的表示，那么，多维缩放的降维目标就是要保证： 令B=ZTZ，B为降维后样本的内积矩阵，bij=ziTzj 规定降维后的样本为中心化样本，因为只保留了距离信息，无论结果怎么旋转、平移都可以，即 那么 令 综合以上各式，得到 所以可以使用距离矩阵D来求得内积矩阵B， 为了完成降维，可以将B进行特征值分解 仅保留最大的前d’个特征值以及相应的特征向量，就可以得出降维后的结果]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -513,9 +541,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[多维缩放(MDS)]]></title>
-    <url>%2F2018%2F03%2F11%2FMDS%2F</url>
-    <content type="text"><![CDATA[多维缩放(multidimensional scaling ,MDS)，是另外一种线性降维方式，与主成分分析法和线性降维分析法都不同的是，多维缩放的目标不是保留数据的最大可分性，而是更加关注与高维数据内部的特征。多维缩放算法集中于保留高维空间中的“相似度”信息，而在一般的问题解决的过程中，这个“相似度”通常用欧式距离来定义。 假设D为m个样本在高维空间中的距离矩阵，distij为第i个样本与第j个样本的欧式距离 Z是样本在低维中映射的表示，那么，多维缩放的降维目标就是要保证： 令B=ZTZ，B为降维后样本的内积矩阵，bij=ziTzj 规定降维后的样本为中心化样本，因为只保留了距离信息，无论结果怎么旋转、平移都可以，即 那么 令 综合以上各式，得到 所以可以使用距离矩阵D来求得内积矩阵B， 为了完成降维，可以将B进行特征值分解 仅保留最大的前d’个特征值以及相应的特征向量，就可以得出降维后的结果]]></content>
+    <title><![CDATA[等度量映射(ISOMAP)]]></title>
+    <url>%2F2018%2F03%2F11%2FIsomap%2F</url>
+    <content type="text"><![CDATA[等度量映射(Isomap)是最经典的非线性映射降维方法之一，它在MDS的基础上引入了“测地距离”的概念，直接解决了MDS使用欧氏距离无法应对非线性流形的问题。 测地距离(Geometric Distance)是高维流形中两点之间的最短距离，高维流形中，空间是不规则的，所以最短距离不一定是直线距离(欧氏距离)。就像蚂蚁从立方体的一面爬到另一面，不能直接横穿立方体一样。 上图最左边的图中两个点的最近距离应该是蓝色实线的距离，而不应该是虚线的距离。 真实的测地距离是非常难以求出的，Isomap基于流形局部近似于欧式空间的定义提出了一种近似的求解方式 求得原样本的KNN图，并依据定义保留其欧式距离 所有非KNN的点间的距离规定为无穷大 用dijkstra或floyd求出任意两点的最短路便可近似表示两点间的测地距离 最后Isomap将得到的测地距离矩阵输入MDS完成降维; 感受下效果]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -533,23 +561,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Java</tag>
         <tag>JetBrains</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Ubuntu下通过docker运行eclipse che]]></title>
-    <url>%2F2018%2F03%2F09%2Feclipse_che%2F</url>
-    <content type="text"><![CDATA[Docker是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。开发者在笔记本上编译测试通过的容器可以批量地在生产环境中部署。个人理解：通过沙箱隔离出一块区域，每块区域都有不同的应用运行环境。类似虚拟机是为了操作系统提供模拟的硬件环境，docker容器给应用提供了模拟的系统环境。 Eclipse Che是一个现代的、开放源代码的软件开发环境。它是一个通过提供结构化的工作区、项目输入、模块化扩展插件来支持Codenvy的引擎。Che可以用作桌面IDE，RESTful工作空间服务器，或作为一个创建新的工具SDK。我们将使用docker来运行Che Docker安装 删除旧版本 1$ sudo apt-get remove docker docker-engine docker.io 安装最新版本Docker CE 12345678910111213141516$ sudo apt-get update$ sudo apt-get install \ apt-transport-https \ ca-certificates \ curl \ software-properties-common$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -$ sudo apt-key fingerprint 0EBFCD88$ sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) \ stable"$ sudo apt-get update$ sudo apt-get install docker-ce Hello World 1$ sudo docker run hello-world 运行che 1sudo docker run -ti -v /var/run/docker.sock:/var/run/docker.sock -v ~/Documents/che-data1:/data eclipse/che start -v ~/Documents/che-data1:/data表示将数据存储在~/Documents/che-data1 根据上面的结果浏览器输入http://localhost:8080 之后就可以像正常的IDE那样使用了; 运行界面 还有一个记录REST API请求的界面，打开localhost:8080/swagger]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>环境搭建</tag>
-        <tag>Ubuntu</tag>
-        <tag>Linux</tag>
-        <tag>docker</tag>
-        <tag>Eclipse</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -561,9 +574,24 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Ubuntu</tag>
         <tag>Linux</tag>
+        <tag>Ubuntu</tag>
         <tag>Java</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu下通过docker运行eclipse che]]></title>
+    <url>%2F2018%2F03%2F09%2Feclipse_che%2F</url>
+    <content type="text"><![CDATA[Docker是一个开源的引擎，可以轻松的为任何应用创建一个轻量级的、可移植的、自给自足的容器。开发者在笔记本上编译测试通过的容器可以批量地在生产环境中部署。个人理解：通过沙箱隔离出一块区域，每块区域都有不同的应用运行环境。类似虚拟机是为了操作系统提供模拟的硬件环境，docker容器给应用提供了模拟的系统环境。 Eclipse Che是一个现代的、开放源代码的软件开发环境。它是一个通过提供结构化的工作区、项目输入、模块化扩展插件来支持Codenvy的引擎。Che可以用作桌面IDE，RESTful工作空间服务器，或作为一个创建新的工具SDK。我们将使用docker来运行Che Docker安装 删除旧版本 1$ sudo apt-get remove docker docker-engine docker.io 安装最新版本Docker CE 12345678910111213141516$ sudo apt-get update$ sudo apt-get install \ apt-transport-https \ ca-certificates \ curl \ software-properties-common$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -$ sudo apt-key fingerprint 0EBFCD88$ sudo add-apt-repository \ "deb [arch=amd64] https://download.docker.com/linux/ubuntu \ $(lsb_release -cs) \ stable"$ sudo apt-get update$ sudo apt-get install docker-ce Hello World 1$ sudo docker run hello-world 运行che 1sudo docker run -ti -v /var/run/docker.sock:/var/run/docker.sock -v ~/Documents/che-data1:/data eclipse/che start -v ~/Documents/che-data1:/data表示将数据存储在~/Documents/che-data1 根据上面的结果浏览器输入http://localhost:8080 之后就可以像正常的IDE那样使用了; 运行界面 还有一个记录REST API请求的界面，打开localhost:8080/swagger]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>docker</tag>
+        <tag>Eclipse</tag>
       </tags>
   </entry>
   <entry>
@@ -777,8 +805,8 @@
         <category>环境搭建</category>
       </categories>
       <tags>
-        <tag>Ubuntu</tag>
         <tag>Linux</tag>
+        <tag>Ubuntu</tag>
         <tag>Firefox</tag>
         <tag>Flash</tag>
       </tags>
@@ -879,18 +907,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 25 Reverse Nodes in k-Group]]></title>
-    <url>%2F2018%2F01%2F25%2Fleetcode25%2F</url>
-    <content type="text"><![CDATA[Given a linked list, reverse the nodes of a linked list k at a time and return its modified list. k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is. You may not alter the values in the nodes, only nodes itself may be changed. Only constant memory is allowed. For example,Given this linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5 For k = 2, you should return: 2-&gt;1-&gt;4-&gt;3-&gt;5 For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5 Leetcode 24的扩展版，k个一组进行翻转，最后不到k个的不翻转 没轮一共翻转k-1次，每次都将后一个node连到已经连好的链的最前面，已经连好的链首节点之前的一个节点和尾节点两个节点标记为root、head Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def reverseKGroup(self, head, k): """ :type head: ListNode :type k: int :rtype: ListNode """ res = root = ListNode(-1) root.next = head tmp = head cnt = 0 while(tmp != None): tmp = tmp.next cnt += 1 while(cnt &gt;= k): for i in range(k-1): node = root.next root.next = head.next head.next = root.next.next root.next.next = node root = head head = head.next cnt -= k return res.next]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[LeetCode 29 Divide Two Integers]]></title>
     <url>%2F2018%2F01%2F25%2Fleetcode29%2F</url>
     <content type="text"><![CDATA[Divide two integers without using multiplication, division and mod operator. If it is overflow, return MAX_INT. overflow特殊情况：-2147483648 / (-1) = MAX_INT = 2147483647 12345678910111213141516171819202122232425class Solution: def divide(self, dividend, divisor): """ :type dividend: int :type divisor: int :rtype: int """ if dividend == -2147483648 and divisor == -1: return 2147483647 a = abs(dividend) b = abs(divisor) arr = [] while(b &lt;= a): arr.append(b) b &lt;&lt;= 1 sum = 0 ret = 0 for i in range(len(arr)-1, -1, -1): if sum + arr[i] &lt;= a: sum += arr[i] ret += (1&lt;&lt;i) if(((dividend &gt; 0) and (divisor &lt; 0)) or ((dividend &lt; 0) and (divisor &gt; 0))): return -ret else: return ret]]></content>
@@ -903,17 +919,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux下配置Git免密码]]></title>
-    <url>%2F2018%2F01%2F24%2Fgit_password%2F</url>
-    <content type="text"><![CDATA[本篇文章将会介绍如何在Linux下配置使Git在push/pull时免密码 操作步聚： 进入当前用户目录下； 创建并打开.git-credentials 按照以下格式输入内容： 1 https://&#123;username&#125;：&#123;password&#125;@github.com 其中username，password，github.com 都替换成你自己的内容 保存退出后执行 1git config --global credential.helper store 执行完后 /home/用户名/.gitconfig 会新增一项 helper = store 这时再执行git push/pull的时候就不会在要求你输入密码了。]]></content>
+    <title><![CDATA[LeetCode 25 Reverse Nodes in k-Group]]></title>
+    <url>%2F2018%2F01%2F25%2Fleetcode25%2F</url>
+    <content type="text"><![CDATA[Given a linked list, reverse the nodes of a linked list k at a time and return its modified list. k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is. You may not alter the values in the nodes, only nodes itself may be changed. Only constant memory is allowed. For example,Given this linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5 For k = 2, you should return: 2-&gt;1-&gt;4-&gt;3-&gt;5 For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5 Leetcode 24的扩展版，k个一组进行翻转，最后不到k个的不翻转 没轮一共翻转k-1次，每次都将后一个node连到已经连好的链的最前面，已经连好的链首节点之前的一个节点和尾节点两个节点标记为root、head Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def reverseKGroup(self, head, k): """ :type head: ListNode :type k: int :rtype: ListNode """ res = root = ListNode(-1) root.next = head tmp = head cnt = 0 while(tmp != None): tmp = tmp.next cnt += 1 while(cnt &gt;= k): for i in range(k-1): node = root.next root.next = head.next head.next = root.next.next root.next.next = node root = head head = head.next cnt -= k return res.next]]></content>
       <categories>
-        <category>环境搭建</category>
+        <category>ACM</category>
       </categories>
       <tags>
-        <tag>环境搭建</tag>
-        <tag>git</tag>
-        <tag>Ubuntu</tag>
-        <tag>Linux</tag>
+        <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -925,8 +939,22 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Ubuntu</tag>
         <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Linux下配置Git免密码]]></title>
+    <url>%2F2018%2F01%2F24%2Fgit_password%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍如何在Linux下配置使Git在push/pull时免密码 操作步聚： 进入当前用户目录下； 创建并打开.git-credentials 按照以下格式输入内容： 1 https://&#123;username&#125;：&#123;password&#125;@github.com 其中username，password，github.com 都替换成你自己的内容 保存退出后执行 1git config --global credential.helper store 执行完后 /home/用户名/.gitconfig 会新增一项 helper = store 这时再执行git push/pull的时候就不会在要求你输入密码了。]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
