@@ -4,6 +4,58 @@
 
     
   <url>
+    <loc>https://www.ph0en1x.space/2018/09/27/poj1094/</loc>
+    <lastmod>2018-09-26T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>POJ 1094 Sorting It All Out</title>
+        <pubTime>2018-09-26T16:00:00.000Z</pubTime>
+        
+        <tag>c++</tag>
+         
+        <tag>poj</tag>
+         
+        <tag>poj分类训练</tag>
+         
+        <tag>拓扑排序</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/09/26/poj1789/</loc>
+    <lastmod>2018-09-25T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>POJ 1789 Truck History（Prim）</title>
+        <pubTime>2018-09-25T16:00:00.000Z</pubTime>
+        
+        <tag>c++</tag>
+         
+        <tag>poj</tag>
+         
+        <tag>poj分类训练</tag>
+         
+        <tag>最小生成树</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.ph0en1x.space/2018/09/25/poj2240/</loc>
     <lastmod>2018-09-24T16:00:00.000Z</lastmod>
     <data>
@@ -732,18 +784,16 @@
 
     
   <url>
-    <loc>https://www.ph0en1x.space/2018/04/23/ubuntu_vlfeat/</loc>
+    <loc>https://www.ph0en1x.space/2018/04/23/ubuntu_matlab/</loc>
     <lastmod>2018-04-22T16:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>Ubuntu下编译安装VLfeat</title>
+        <title>Ubuntu下安装Matlab 2018a</title>
         <pubTime>2018-04-22T16:00:00.000Z</pubTime>
         
         <tag>Ubuntu</tag>
          
         <tag>matlab</tag>
-         
-        <tag>VLfeat</tag>
          
          
            
@@ -756,16 +806,18 @@
 
     
   <url>
-    <loc>https://www.ph0en1x.space/2018/04/23/ubuntu_matlab/</loc>
+    <loc>https://www.ph0en1x.space/2018/04/23/ubuntu_vlfeat/</loc>
     <lastmod>2018-04-22T16:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>Ubuntu下安装Matlab 2018a</title>
+        <title>Ubuntu下编译安装VLfeat</title>
         <pubTime>2018-04-22T16:00:00.000Z</pubTime>
         
         <tag>Ubuntu</tag>
          
         <tag>matlab</tag>
+         
+        <tag>VLfeat</tag>
          
          
            
@@ -1371,13 +1423,13 @@
          
         <tag>Deep Learning</tag>
          
-        <tag>Autoencoder</tag>
-         
         <tag>RBM</tag>
          
-        <tag>DBN</tag>
-         
         <tag>contrastive divergence</tag>
+         
+        <tag>Autoencoder</tag>
+         
+        <tag>DBN</tag>
          
          
            
@@ -1454,6 +1506,28 @@
 
     
   <url>
+    <loc>https://www.ph0en1x.space/2018/02/07/codeforce920C/</loc>
+    <lastmod>2018-02-06T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Codeforce 920C Swap Adjacent Elements</title>
+        <pubTime>2018-02-06T16:00:00.000Z</pubTime>
+        
+        <tag>codeforce</tag>
+         
+        <tag>c++</tag>
+         
+         
+           
+             
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://www.ph0en1x.space/2018/02/07/firefox_flash/</loc>
     <lastmod>2018-02-06T16:00:00.000Z</lastmod>
     <data>
@@ -1473,28 +1547,6 @@
            
              
               <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://www.ph0en1x.space/2018/02/07/codeforce920C/</loc>
-    <lastmod>2018-02-06T16:00:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>Codeforce 920C Swap Adjacent Elements</title>
-        <pubTime>2018-02-06T16:00:00.000Z</pubTime>
-        
-        <tag>codeforce</tag>
-         
-        <tag>c++</tag>
-         
-         
-           
-             
-              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
           
         </display>
     </data>
@@ -1654,28 +1706,6 @@
 
     
   <url>
-    <loc>https://www.ph0en1x.space/2018/01/26/codeforce915A/</loc>
-    <lastmod>2018-01-25T16:00:00.000Z</lastmod>
-    <data>
-        <display>
-        <title>Codeforce 915A Garden</title>
-        <pubTime>2018-01-25T16:00:00.000Z</pubTime>
-        
-        <tag>codeforce</tag>
-         
-        <tag>c++</tag>
-         
-         
-           
-             
-              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>https://www.ph0en1x.space/2018/01/26/codeforce915B/</loc>
     <lastmod>2018-01-25T16:00:00.000Z</lastmod>
     <data>
@@ -1698,16 +1728,16 @@
 
     
   <url>
-    <loc>https://www.ph0en1x.space/2018/01/25/leetcode29/</loc>
-    <lastmod>2018-01-24T16:00:00.000Z</lastmod>
+    <loc>https://www.ph0en1x.space/2018/01/26/codeforce915A/</loc>
+    <lastmod>2018-01-25T16:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>LeetCode 29 Divide Two Integers</title>
-        <pubTime>2018-01-24T16:00:00.000Z</pubTime>
+        <title>Codeforce 915A Garden</title>
+        <pubTime>2018-01-25T16:00:00.000Z</pubTime>
         
-        <tag>python</tag>
+        <tag>codeforce</tag>
          
-        <tag>leetcode</tag>
+        <tag>c++</tag>
          
          
            
@@ -1742,25 +1772,21 @@
 
     
   <url>
-    <loc>https://www.ph0en1x.space/2018/01/24/git_password/</loc>
-    <lastmod>2018-01-23T16:00:00.000Z</lastmod>
+    <loc>https://www.ph0en1x.space/2018/01/25/leetcode29/</loc>
+    <lastmod>2018-01-24T16:00:00.000Z</lastmod>
     <data>
         <display>
-        <title>Linux下配置Git免密码</title>
-        <pubTime>2018-01-23T16:00:00.000Z</pubTime>
+        <title>LeetCode 29 Divide Two Integers</title>
+        <pubTime>2018-01-24T16:00:00.000Z</pubTime>
         
-        <tag>环境搭建</tag>
+        <tag>python</tag>
          
-        <tag>Linux</tag>
-         
-        <tag>Ubuntu</tag>
-         
-        <tag>git</tag>
+        <tag>leetcode</tag>
          
          
            
              
-              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+              <breadCrumb title="ACM" url="https://www.ph0en1x.space/categories/ACM/"/>
           
         </display>
     </data>
@@ -1780,6 +1806,32 @@
         <tag>Linux</tag>
          
         <tag>Ubuntu</tag>
+         
+         
+           
+             
+              <breadCrumb title="环境搭建" url="https://www.ph0en1x.space/categories/%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://www.ph0en1x.space/2018/01/24/git_password/</loc>
+    <lastmod>2018-01-23T16:00:00.000Z</lastmod>
+    <data>
+        <display>
+        <title>Linux下配置Git免密码</title>
+        <pubTime>2018-01-23T16:00:00.000Z</pubTime>
+        
+        <tag>环境搭建</tag>
+         
+        <tag>Linux</tag>
+         
+        <tag>Ubuntu</tag>
+         
+        <tag>git</tag>
          
          
            
