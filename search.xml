@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[POJ 3020 Antenna Placement（匈牙利算法）]]></title>
+    <url>%2F2018%2F10%2F01%2Fpoj3020%2F</url>
+    <content type="text"><![CDATA[匈牙利算法 C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int n, m;int mp[45][15];bool grid[405][405];char in[15];int dir[4][2] = &#123;0,1,0,-1,1,0,-1,0&#125;;int cnt;bool vis[405];int link[405];int num;bool dfs(int x)&#123; for(int y = 0; y &lt; num; y++)&#123; if(grid[x][y] &amp;&amp; !vis[y])&#123; vis[y] = true; if(link[y] == -1 || dfs(link[y]))&#123; link[y] = x; return true; &#125; &#125; &#125; return false;&#125;void search()&#123; memset(link, -1, sizeof(link)); for(int i = 0; i &lt; num; i++)&#123; memset(vis, 0, sizeof(vis)); if(dfs(i))&#123; cnt++; &#125; &#125;&#125;int main()&#123; int ca; scanf("%d", &amp;ca); while(ca--)&#123; memset(mp, -1, sizeof(mp)); memset(grid, 0, sizeof(grid)); num = 0; scanf("%d%d", &amp;n, &amp;m); for(int i = 1; i &lt;= n; i++)&#123; scanf("%s", in+1); for(int j = 1; j &lt;= m; j++)&#123; if(in[j] == '*')&#123; mp[i][j] = num++; &#125; &#125; &#125; for(int i = 1; i &lt;= n; i++)&#123; for(int j = 1; j &lt;= m; j++)&#123; if(mp[i][j] &gt;= 0) for(int k = 0; k &lt; 4; k++)&#123; int x = i + dir[k][0]; int y = j + dir[k][1]; if(mp[x][y] &gt;= 0)&#123; grid[mp[i][j]][mp[x][y]] = true; &#125; &#125; &#125; &#125; cnt = 0; search(); printf("%d\n", num - cnt/2); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>二分图最大匹配</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[POJ 3041 Asteroids]]></title>
     <url>%2F2018%2F09%2F30%2Fpoj3041%2F</url>
     <content type="text"><![CDATA[匈牙利算法模板 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#define M 500using namespace std;bool grid[M][M];bool vis[M];//本轮是否已经尝试通过y来增广并且失败int n, k;int cnt;int link[M];bool dfs(int x)&#123; for(int i = 1; i &lt;= n; i++)&#123; if(grid[x][i] &amp;&amp; !vis[i])&#123; vis[i] = true; if(link[i] == -1 || dfs(link[i]) == true)&#123; link[i] = x; return true; &#125; &#125; &#125; return false;&#125;void search()&#123; for(int i = 1; i &lt;= n; i++)&#123; memset(vis, false, sizeof(vis)); if(dfs(i)) cnt++; &#125;&#125;int main()&#123; int x, y; while(~scanf("%d%d", &amp;n, &amp;k))&#123; memset(link, -1, sizeof(link)); memset(grid, false, sizeof(grid)); for(int i = 0; i &lt; k; i++)&#123; scanf("%d%d", &amp;x, &amp;y); grid[x][y] = true; &#125; cnt = 0; search(); printf("%d\n", cnt); &#125; return 0;&#125;]]></content>
@@ -15,20 +29,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[POJ 2485 Highways]]></title>
-    <url>%2F2018%2F09%2F29%2Fpoj2485%2F</url>
-    <content type="text"><![CDATA[要求能够让所有节点联通并且最大边权最小的问题，其实求的就是最小生成树的最大边权； 证明：最小生成树的最大边权一定是所有最小生成树中最小的 反证法：假设最小生成树T1的最大边(u, v)，和一个非最小生成树T2的最大边(a, b)，且(u, v) &gt; (a, b) &gt; T2中的其他所有边 去掉(u, v)，最小生成树会形成一个隔，u，v分别在割的两个分量中，且u，v在T2中一定存在一条唯一的路径，又由于u，v在T1中属于不同的分量，所以这条路径中一定存在着某条边两端分别在割的两个分量中，在T1中连上这条边就能够形成新的生成树，且比原来的最小生成树小，矛盾； C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;queue&gt;#include &lt;vector&gt;#define MAX 501using namespace std;int arr[MAX][MAX];bool vis[MAX];int ca, num;struct node&#123; int num; int v; bool operator&lt;(const node &amp;b) const&#123; return v &gt; b.v; &#125;&#125;;int prim(int start)&#123; int ans = 0; priority_queue&lt;node&gt; q; memset(vis, false, sizeof(vis)); node tmp; tmp.num = start; tmp.v = 0; q.push(tmp); for(int k = 0; k &lt; num; k++)&#123; node cur; do&#123; cur = q.top(); q.pop(); &#125;while(vis[cur.num]); vis[cur.num] = true; ans = max(ans, cur.v); for(int i = 0; i &lt; num; i++)&#123; if(!vis[i] &amp;&amp; arr[cur.num][i] &gt; 0)&#123; node tmp; tmp.num = i; tmp.v = arr[cur.num][i]; q.push(tmp); &#125; &#125; &#125; return ans;&#125;int main()&#123; while(~scanf("%d", &amp;ca))&#123; while(ca--)&#123; scanf("%d", &amp;num); for(int i = 0; i &lt; num; i++)&#123; for(int j = 0; j &lt; num; j++)&#123; scanf("%d", &amp;arr[i][j]); &#125; &#125; int ans = prim(0); printf("%d\n", ans); &#125; &#125; return 0;&#125;]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>poj</tag>
-        <tag>poj分类训练</tag>
-        <tag>最短路</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[POJ 3026 Borg Maze]]></title>
     <url>%2F2018%2F09%2F29%2Fpoj3026%2F</url>
     <content type="text"><![CDATA[把每个S和A都看成节点，BFS求之间的距离然后套用Prim来计算最小生成树。注意输入有坑，整数输入完后可能有多个空格，要用gets()而不能用getchar() C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;string&gt;#include &lt;queue&gt;#define M 55#define M_ROBOT 105using namespace std;struct node&#123; int x; int y; int step; node(int a, int b, int c)&#123; x = a; y = b; step = c; &#125; node()&#123; x = 0; y = 0; step = 0; &#125;&#125;robots[M_ROBOT];struct queueEdge&#123; int num; int v; queueEdge()&#123; num = 0; v = 0; &#125; queueEdge(to, len)&#123; num = to; v = len; &#125;&#125;;char mp[M][M];int arr[M_ROBOT][M_ROBOT];bool vis[M][M];int n, m, num;void bfs(int start)&#123; memset(vis, 0, sizeof(vis)); queue&lt;node&gt; q; robots[start].step = 0; q.push(robots[start]); while(!q.empty())&#123; node cur = q.front(); q.pop(); vis[cur.x][cur.y] = true; char tmp = mp[cur.x][cur.y]; if(tmp != '#' &amp;&amp; tmp != ' ')&#123; arr[start][(int)tmp] = cur.step; &#125; if(mp[cur.x-1][cur.y] != '#' &amp;&amp; !vis[cur.x-1][cur.y]) q.push(node(cur.x-1, cur.y, cur.step+1)); if(mp[cur.x+1][cur.y] != '#' &amp;&amp; !vis[cur.x+1][cur.y]) q.push(node(cur.x+1, cur.y, cur.step+1)); if(mp[cur.x][cur.y-1] != '#' &amp;&amp; !vis[cur.x][cur.y-1]) q.push(node(cur.x, cur.y-1, cur.step+1)); if(mp[cur.x][cur.y+1] != '#' &amp;&amp; !vis[cur.x][cur.y+1]) q.push(node(cur.x, cur.y+1, cur.step+1)); &#125;&#125;int prim(int start)&#123; int ans = 0; memset(vis, false, sizeof(vis)); priority_queue&lt;queueEdge&gt; q; q.push(queueEdge(start, 0)); for(int k = 0; k &lt; num; k++)&#123; do&#123; node cur = q.top(); q.pop(); &#125;while(vis[cur.num]); vis[cur.num] = true; ans += vis.v; for(int i = 0; i &lt; num; i++)&#123; if(!vis[i]) q.push(queueEdge(i, arr[cur.num][i])); &#125; &#125; return ans;&#125;int main()&#123; int ca; scanf("%d", &amp;ca); while(ca--)&#123; num = 0; scanf("%d%d", &amp;m, &amp;n); getchar(); for(int i = 0; i &lt; n; i++)&#123; gets(mp[i]); for(int j = 0; j &lt; m; j++)&#123; if(mp[i][j] == 'A' || mp[i][j] == 'S')&#123; mp[i][j] = num; robots[num].x = i; robots[num].y = j; num++; &#125; &#125; &#125; for(int i = 0; i &lt; num; i++)&#123; bfs(i); &#125; int ans = prim(0); printf("%d\n", ans); &#125; return 0;&#125;]]></content>
@@ -40,6 +40,20 @@
         <tag>poj</tag>
         <tag>poj分类训练</tag>
         <tag>最小生成树</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ 2485 Highways]]></title>
+    <url>%2F2018%2F09%2F29%2Fpoj2485%2F</url>
+    <content type="text"><![CDATA[要求能够让所有节点联通并且最大边权最小的问题，其实求的就是最小生成树的最大边权； 证明：最小生成树的最大边权一定是所有最小生成树中最小的 反证法：假设最小生成树T1的最大边(u, v)，和一个非最小生成树T2的最大边(a, b)，且(u, v) &gt; (a, b) &gt; T2中的其他所有边 去掉(u, v)，最小生成树会形成一个隔，u，v分别在割的两个分量中，且u，v在T2中一定存在一条唯一的路径，又由于u，v在T1中属于不同的分量，所以这条路径中一定存在着某条边两端分别在割的两个分量中，在T1中连上这条边就能够形成新的生成树，且比原来的最小生成树小，矛盾； C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;queue&gt;#include &lt;vector&gt;#define MAX 501using namespace std;int arr[MAX][MAX];bool vis[MAX];int ca, num;struct node&#123; int num; int v; bool operator&lt;(const node &amp;b) const&#123; return v &gt; b.v; &#125;&#125;;int prim(int start)&#123; int ans = 0; priority_queue&lt;node&gt; q; memset(vis, false, sizeof(vis)); node tmp; tmp.num = start; tmp.v = 0; q.push(tmp); for(int k = 0; k &lt; num; k++)&#123; node cur; do&#123; cur = q.top(); q.pop(); &#125;while(vis[cur.num]); vis[cur.num] = true; ans = max(ans, cur.v); for(int i = 0; i &lt; num; i++)&#123; if(!vis[i] &amp;&amp; arr[cur.num][i] &gt; 0)&#123; node tmp; tmp.num = i; tmp.v = arr[cur.num][i]; q.push(tmp); &#125; &#125; &#125; return ans;&#125;int main()&#123; while(~scanf("%d", &amp;ca))&#123; while(ca--)&#123; scanf("%d", &amp;num); for(int i = 0; i &lt; num; i++)&#123; for(int j = 0; j &lt; num; j++)&#123; scanf("%d", &amp;arr[i][j]); &#125; &#125; int ans = prim(0); printf("%d\n", ans); &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>最短路</tag>
       </tags>
   </entry>
   <entry>
@@ -479,18 +493,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Ubuntu下安装Matlab 2018a]]></title>
-    <url>%2F2018%2F04%2F23%2Fubuntu_matlab%2F</url>
-    <content type="text"><![CDATA[在Ubuntu在安装Matlab用于学习、研究用途。Linux上可以使用开源免费的Octave代替 下载Matlab 2018a 安装包 matlab是收费软件，所以这篇笔记没有提供下载和破解资源，各位想把Matlab用做学习研究用途的童鞋可以到各大PT站取下载 ​ 进入安装包内，和Windows安装一样，里面会有三个文件，分别是破解用的证书文件，光盘镜像1，光盘镜像2 ​ 创建挂载点~/matlab挂载映像文件1 123$ cd ~$ mkdir matlab $ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd1.iso ~/matlab/ ​ 挂载之后，进入根目录开始安装(注意不能直接在挂载目录下启动install) 12$ cd /$ sudo ./home/phoenix/matlab/install ​ 安装中提示输入key的可以到破解文件Crack中的readme.txt中找 按照提示进行安装，安装到一半时会提示插入光盘2，这时候就要挂载映像文件2 1$ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd2.iso ~/matlab/ ​ 安装好后第一次启动 12$ cd /usr/local/MATLAB/R2018a/bin$ sudo ./matlab ​ 选择不要联网激活，导入Crack中的license_standalone.lic文件 ​ 复制文件 1sudo cp -f YOUR_DOWNLOAD_DIR/Matlab2018aLinux64Crack/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so /usr/local/MATLAB/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl 再次启动 1$ sudo ./matlab]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>matlab</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[Ubuntu下编译安装VLfeat]]></title>
     <url>%2F2018%2F04%2F23%2Fubuntu_vlfeat%2F</url>
     <content type="text"><![CDATA[The VLFeat open source library implements popular computer vision algorithms specializing in image understanding and local features extraction and matching. Algorithms include Fisher Vector, VLAD, SIFT, MSER, k-means, hierarchical k-means, agglomerative information bottleneck, SLIC superpixels, quick shift superpixels, large scale SVM training, and many others. It is written in C for efficiency and compatibility, with interfaces in MATLAB for ease of use, and detailed documentation throughout. It supports Windows, Mac OS X, and Linux. 下载源码 解压进入vlfeat的根目录vlfeat_ROOT 修改Makefile 解除注释或添加一行 1DISABLE_OPENMP=yes ​ 打开/etc/ld.so.conf添加一行 1vlfeat_ROOT/toolbox/mex/mexa64 ​ 刷新环境配置 1sudo ldconfig ​ 再次进入vlfeat_ROOT，输入命令 1make MEX=matlab_ROOT/bin/mex ​ 编译成功后进入matlab命令行输入 1run('vlfeat_ROOT/toolbox/vl_setup.m') 运行成功后查看版本，正常显示后完成安装 1vl_version ​ 在matlab起始位置下(我的是HOME目录下)添加一个startup.m文件写上 1run('vlfeat_ROOT/toolbox/vl_setup.m') 就可以每次启动时自动加载vlfeat ​]]></content>
@@ -501,6 +503,18 @@
         <tag>Ubuntu</tag>
         <tag>matlab</tag>
         <tag>VLfeat</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Ubuntu下安装Matlab 2018a]]></title>
+    <url>%2F2018%2F04%2F23%2Fubuntu_matlab%2F</url>
+    <content type="text"><![CDATA[在Ubuntu在安装Matlab用于学习、研究用途。Linux上可以使用开源免费的Octave代替 下载Matlab 2018a 安装包 matlab是收费软件，所以这篇笔记没有提供下载和破解资源，各位想把Matlab用做学习研究用途的童鞋可以到各大PT站取下载 ​ 进入安装包内，和Windows安装一样，里面会有三个文件，分别是破解用的证书文件，光盘镜像1，光盘镜像2 ​ 创建挂载点~/matlab挂载映像文件1 123$ cd ~$ mkdir matlab $ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd1.iso ~/matlab/ ​ 挂载之后，进入根目录开始安装(注意不能直接在挂载目录下启动install) 12$ cd /$ sudo ./home/phoenix/matlab/install ​ 安装中提示输入key的可以到破解文件Crack中的readme.txt中找 按照提示进行安装，安装到一半时会提示插入光盘2，这时候就要挂载映像文件2 1$ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd2.iso ~/matlab/ ​ 安装好后第一次启动 12$ cd /usr/local/MATLAB/R2018a/bin$ sudo ./matlab ​ 选择不要联网激活，导入Crack中的license_standalone.lic文件 ​ 复制文件 1sudo cp -f YOUR_DOWNLOAD_DIR/Matlab2018aLinux64Crack/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so /usr/local/MATLAB/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl 再次启动 1$ sudo ./matlab]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>matlab</tag>
       </tags>
   </entry>
   <entry>
@@ -582,8 +596,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Java</tag>
         <tag>JetBrains</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -594,8 +608,8 @@
         <category>环境搭建</category>
       </categories>
       <tags>
-        <tag>Java</tag>
         <tag>JetBrains</tag>
+        <tag>Java</tag>
         <tag>Spring Boot</tag>
       </tags>
   </entry>
@@ -645,8 +659,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>Java</tag>
         <tag>JetBrains</tag>
+        <tag>Java</tag>
       </tags>
   </entry>
   <entry>
@@ -773,10 +787,10 @@
         <category>网络爬虫</category>
       </categories>
       <tags>
+        <tag>环境搭建</tag>
         <tag>BeautifulSoup</tag>
         <tag>网络爬虫</tag>
         <tag>python</tag>
-        <tag>环境搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -819,18 +833,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Fcitx下全角中括号无法输入的问题]]></title>
-    <url>%2F2018%2F02%2F15%2Ffcitx%2F</url>
-    <content type="text"><![CDATA[本篇文章将会介绍如何修复ubuntu下Fcitx输入法无法输入全角（中文）中括号【】并使用[]来切换候选字的方法 操作步聚： 打开fcitx字符映射文件 1sudo gedit /usr/share/fcitx/data/punc.mb.zh_CN ​ 修改 将 12[ ·] 「 」 修改为 12[ 【] 】 重启输入法完成修改]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>环境搭建</tag>
-        <tag>Fcitx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[受限制玻尔兹曼机(Restricted Bolzmann Machine)以及自编码器(Autoencoder)]]></title>
     <url>%2F2018%2F02%2F15%2FRBM%2F</url>
     <content type="text"><![CDATA[受限制玻尔兹曼机(Restricted Bolzmann Machine, RBM)与自编码器(Autoencoder, AE)是神经网络的两种基本结构，两个结构都能起到降维的作用，都可以用来对神经网络进行预训练（pre-training），这种预训练都是无监督的。由于RBM与MLP及其相似，一直以来我就困惑于他们两者，终于花了几天时间来搞清楚他们的区别和训练方法，发现他们甚至不是并列的关系。。 一、知识脉络受限制玻尔兹曼机 -&gt; 深度信念网络(Deep Blief Network, DBN) 自编码器 -&gt; 堆叠自编码器(Stacked Autoencoderm, SAE) 二、自编码器自编码器的输入维度与输出维度相等，训练目的是使数据的特征得到最大的保留，去除冗余信息，一个单层的自编码器结构如下图 当然一个自编码器也可以有很多层： 简化来看就是输入层-&gt;隐藏层-&gt;输出层，自编码器的目的就是使重建(reconstruction)的输出层能尽量还原输入层，同时获得中间隐藏层(最窄的橙色那层)既是降维的结果。若输入层到隐藏层间的部分称为编码器(灰色)，记号为f(x)，隐藏层到输出层之间的部分称为解码器(黄色)，记号为g(x)，那么自编码器的数学训练目标就是 三、受限制玻尔兹曼机受限制玻尔兹曼机是一个双层结构，可见层(visible)与隐藏层(hidden)，图结构为一个二分图，即可见层只与隐藏层之间有连接，但是层内是无连接的，因此RBM的性质：当给定可见层神经元的状态时，各隐藏层神经元的激活条件独立；反之当给定隐藏层神经元的状态时，可见层神经元的激活也条件独立。基本结构如下 受限制玻尔兹曼机的训练目的是为了最大程度的保留概率分布，定义了一个能量函数的概念 用矩阵来表示就是 a与b分别是可视层与隐藏层的偏置项(bias) v, h联合概率分布是 其中Z是所有[v, h]对对应的能量的总和，v的边缘概率分布如下，h同理 由于受限玻尔兹曼机结构上的特点，所以各隐藏层之间的神经元条件概率独立，即 可见层v同理 能量函数的具体推导过程将会在后面的文章中详细解释 四、训练方法就像RBM是由物理模型转化过来一样，训练方法与传统的反向传播(BP)也不一样 RBM最早的训练方法有Gibbs sampling，通过不断地来回采样来训练，如下图 然而这样的方法太慢，所以Hinton大神又提出了CD-k(contrastive divergence)算法，即只需要来回重复k次就可以，以CD-1为例: 就可以完成一次迭代，这就像是两种不同温度的液体进行混合，如果两者的温度差距较大，在混合的过程中就会产生较大的梯度，而受限制玻尔兹曼机的训练目标就是使得两边的“温度”能够尽量的相近，而在数据中这个“温度”的体现就是数据分布。也就是说，使用RBM进行模型的初始化训练能够最大程度的保留数据分布，防止梯度爆炸和梯度消失问题的出现。 五、深度信念网络与逐层训练由多层受限制玻尔兹曼机堆叠起来的网络叫作深度信念网络(DBN)。深度信念网络在最后一层接入一个Softmax层用作分类，训练的时候采取逐层训练+微调的方式 逐层训练就是从输入层开始将网络的相邻两层当作一个受限制玻尔兹曼机进行无监督训练，训练方法见上一节，训练后将上一个RBM的隐藏层当作下一个RBM的可见层继续 逐层无监督训练完毕后，将进行反向传播训练对模型进行微调，从输入端输入数据，最后从输出端开始进行反向传播 自编码器虽然只是要保证输出端与输入端尽量接近，但是随着自编码器堆叠深度的加深，就会出现类似梯度弥散与梯度爆炸等问题，Hinton大神同样也使用了类似RBM的训练方法对深度自编码器进行逐层训练，使模型的得到了很好的初始化，加快了模型的解的最优性和收敛速度。 六、参考 受限玻尔兹曼机与深度置信网络 Hinton G E. A practical guide to training restricted Boltzmann machines[M]//Neural networks: Tricks of the trade. Springer, Berlin, Heidelberg, 2012: 599-619. Bengio Y, Lamblin P, Popovici D, et al. Greedy layer-wise training of deep networks[C]//Advances in neural information processing systems. 2007: 153-160. Hinton G E, Osindero S, Teh Y W. A fast learning algorithm for deep belief nets[J]. Neural computation, 2006, 18(7): 1527-1554. Hinton G E, Salakhutdinov R R. Reducing the dimensionality of data with neural networks[J]. science, 2006, 313(5786): 504-507.]]></content>
@@ -844,6 +846,18 @@
         <tag>RBM</tag>
         <tag>DBN</tag>
         <tag>contrastive divergence</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Fcitx下全角中括号无法输入的问题]]></title>
+    <url>%2F2018%2F02%2F15%2Ffcitx%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍如何修复ubuntu下Fcitx输入法无法输入全角（中文）中括号【】并使用[]来切换候选字的方法 操作步聚： 打开fcitx字符映射文件 1sudo gedit /usr/share/fcitx/data/punc.mb.zh_CN ​ 修改 将 12[ ·] 「 」 修改为 12[ 【] 】 重启输入法完成修改]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Fcitx</tag>
       </tags>
   </entry>
   <entry>
@@ -955,6 +969,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Codeforce 915B Browser]]></title>
+    <url>%2F2018%2F01%2F26%2Fcodeforce915B%2F</url>
+    <content type="text"><![CDATA[Luba is surfing the Internet. She currently has n opened tabs in her browser, indexed from 1 to n from left to right. The mouse cursor is currently located at the pos-th tab. Luba needs to use the tabs with indices from l to r (inclusive) for her studies, and she wants to close all the tabs that don’t belong to this segment as fast as possible. Each second Luba can either try moving the cursor to the left or to the right (if the cursor is currently at the tab i, then she can move it to the tab max(i - 1, a) or to the tab min(i + 1, b)) or try closing all the tabs to the left or to the right of the cursor (if the cursor is currently at the tab i, she can close all the tabs with indices from segment [a, i - 1] or from segment [i + 1, b]). In the aforementioned expressions a and b denote the minimum and maximum index of an unclosed tab, respectively. For example, if there were 7 tabs initially and tabs 1, 2and 7 are closed, then a = 3, b = 6. What is the minimum number of seconds Luba has to spend in order to leave only the tabs with initial indices from l to r inclusiveopened? Input The only line of input contains four integer numbers n, pos, l, r (1 ≤ n ≤ 100, 1 ≤ pos ≤ n, 1 ≤ l ≤ r ≤ n) — the number of the tabs, the cursor position and the segment which Luba needs to leave opened. Output Print one integer equal to the minimum number of seconds required to close all the tabs outside the segment [l, r]. Examples input 16 3 2 4 output 15 input 16 3 1 3 output 11 input 15 2 1 5 output 10 Note In the first test Luba can do the following operations: shift the mouse cursor to the tab 2, close all the tabs to the left of it, shift the mouse cursor to the tab 3, then to the tab 4, and then close all the tabs to the right of it. In the second test she only needs to close all the tabs to the right of the current position of the cursor. In the third test Luba doesn’t need to do anything. 不要漏考虑情况 左右贴边 左贴边 pos在r右边 pos在r左边 右贴边 pos在l右边 pos在l左边 都不贴边 pos在l左边 pos在r右边 pos在l和r中间 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, pos, l, r; while(~scanf("%d%d%d%d", &amp;n, &amp;pos, &amp;l, &amp;r)) &#123; if(l == 1 &amp;&amp; r == n) &#123; printf("0\n"); &#125; else if(l == 1) &#123; if(pos &gt; r) &#123; printf("%d\n", pos-r+1); &#125; else &#123; printf("%d\n", r-pos+1); &#125; &#125; else if(r == n) &#123; if(pos &lt; l) &#123; printf("%d\n", l-pos+1); &#125; else &#123; printf("%d\n", pos-l+1); &#125; &#125; else &#123; if(pos &gt; r) &#123; printf("%d\n", pos-l+2); &#125; else if(pos &lt; l) &#123; printf("%d\n", r-pos+2); &#125; else &#123; printf("%d\n", (r-l) + 2 + min(r-pos, pos-l)); &#125; &#125; &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>codeforce</tag>
+        <tag>c++</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Codeforce 915A Garden]]></title>
     <url>%2F2018%2F01%2F26%2Fcodeforce915A%2F</url>
     <content type="text"><![CDATA[Luba thinks about watering her garden. The garden can be represented as a segment of length k. Luba has got n buckets, the i-th bucket allows her to water some continuous subsegment of garden of length exactly a**i each hour. Luba can’t water any parts of the garden that were already watered, also she can’t water the ground outside the garden. Luba has to choose one of the buckets in order to water the garden as fast as possible (as mentioned above, each hour she will water some continuous subsegment of length a**i if she chooses the i-th bucket). Help her to determine the minimum number of hours she has to spend watering the garden. It is guaranteed that Luba can always choose a bucket so it is possible water the garden. See the examples for better understanding. Input The first line of input contains two integer numbers n and k (1 ≤ n, k ≤ 100) — the number of buckets and the length of the garden, respectively. The second line of input contains n integer numbers a**i (1 ≤ a**i ≤ 100) — the length of the segment that can be watered by the i-th bucket in one hour. It is guaranteed that there is at least one bucket such that it is possible to water the garden in integer number of hours using only this bucket. Output Print one integer number — the minimum number of hours required to water the garden. Examples input 123 62 3 5 output 12 input 126 71 2 3 4 5 6 output 17 Note In the first test the best option is to choose the bucket that allows to water the segment of length 3. We can’t choose the bucket that allows to water the segment of length 5 because then we can’t water the whole garden. In the second test we can choose only the bucket that allows us to water the segment of length 1. C++ Code 123456789101112131415161718192021222324252627#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, k; int tmp; int mi; while(~scanf("%d%d", &amp;n, &amp;k)) &#123; mi = 1000; for(int i = 0; i &lt; n; i++) &#123; scanf("%d", &amp;tmp); if(k % tmp == 0) &#123; mi = min(k / tmp, mi); &#125; &#125; printf("%d\n", mi); &#125; return 0;&#125;]]></content>
@@ -970,18 +996,6 @@
     <title><![CDATA[Codeforce 915C Permute Digits]]></title>
     <url>%2F2018%2F01%2F26%2Fcodeforce915C%2F</url>
     <content type="text"><![CDATA[You are given two positive integer numbers a and b. Permute (change order) of the digits of a to construct maximal number not exceeding b. No number in input and/or output can start with the digit 0. It is allowed to leave a as it is. Input The first line contains integer a (1 ≤ a ≤ 1018). The second line contains integer b (1 ≤ b ≤ 1018). Numbers don’t have leading zeroes. It is guaranteed that answer exists. Output Print the maximum possible number that is a permutation of digits of a and is not greater than b. The answer can’t have any leading zeroes. It is guaranteed that the answer exists. Examples input 12123222 output 1213 input 12392110000 output 19321 input 1249405000 output 14940 b一定不短于a 如果b比a长，直接降序排列a 如果一样长 先统计a中数字的个数 对于每一位b，都找不比b大的匹配，一旦有一位匹配后小于b的那位，之后就可以从最大的开始降序匹配 如果有一位无法匹配小于等于b的那位，那么就回退一位，匹配小于b的，这样后面就可以不受约束 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;iomanip&gt;using namespace std;bool cmp(char a, char b)&#123; return a &gt; b;&#125;int main()&#123; char str1[20]; char str2[20]; char tmp; int arr[15]; while(~scanf("%s", str1)) &#123; memset(arr, 0, sizeof(arr)); getchar(); scanf("%s", str2); getchar(); int len1 = strlen(str1); int len2 = strlen(str2); if(len2 &gt; len1) &#123; sort(str1, str1+len1, cmp); &#125; else &#123; bool flag = false; for(int i = 0; i &lt; len1; i++) &#123; arr[str1[i] - '0']++; str1[i] = str2[i]; &#125; for(int i = 0; i &lt; len2; i++) &#123; int j; if(flag == false) j = str1[i] - '0'; else j = 9; for(; j &gt;= 0; j--) &#123; if(arr[j] &gt; 0) &#123; arr[j]--; str1[i] = j+'0'; if(j &lt; str2[i] - '0') flag = true; break; &#125; &#125; if(j == -1 &amp;&amp; flag == false) &#123; i--; arr[str1[i]-'0']++; str1[i]--; i--; &#125; &#125; &#125; printf("%s\n", str1); &#125; return 0;&#125;]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>codeforce</tag>
-        <tag>c++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Codeforce 915B Browser]]></title>
-    <url>%2F2018%2F01%2F26%2Fcodeforce915B%2F</url>
-    <content type="text"><![CDATA[Luba is surfing the Internet. She currently has n opened tabs in her browser, indexed from 1 to n from left to right. The mouse cursor is currently located at the pos-th tab. Luba needs to use the tabs with indices from l to r (inclusive) for her studies, and she wants to close all the tabs that don’t belong to this segment as fast as possible. Each second Luba can either try moving the cursor to the left or to the right (if the cursor is currently at the tab i, then she can move it to the tab max(i - 1, a) or to the tab min(i + 1, b)) or try closing all the tabs to the left or to the right of the cursor (if the cursor is currently at the tab i, she can close all the tabs with indices from segment [a, i - 1] or from segment [i + 1, b]). In the aforementioned expressions a and b denote the minimum and maximum index of an unclosed tab, respectively. For example, if there were 7 tabs initially and tabs 1, 2and 7 are closed, then a = 3, b = 6. What is the minimum number of seconds Luba has to spend in order to leave only the tabs with initial indices from l to r inclusiveopened? Input The only line of input contains four integer numbers n, pos, l, r (1 ≤ n ≤ 100, 1 ≤ pos ≤ n, 1 ≤ l ≤ r ≤ n) — the number of the tabs, the cursor position and the segment which Luba needs to leave opened. Output Print one integer equal to the minimum number of seconds required to close all the tabs outside the segment [l, r]. Examples input 16 3 2 4 output 15 input 16 3 1 3 output 11 input 15 2 1 5 output 10 Note In the first test Luba can do the following operations: shift the mouse cursor to the tab 2, close all the tabs to the left of it, shift the mouse cursor to the tab 3, then to the tab 4, and then close all the tabs to the right of it. In the second test she only needs to close all the tabs to the right of the current position of the cursor. In the third test Luba doesn’t need to do anything. 不要漏考虑情况 左右贴边 左贴边 pos在r右边 pos在r左边 右贴边 pos在l右边 pos在l左边 都不贴边 pos在l左边 pos在r右边 pos在l和r中间 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, pos, l, r; while(~scanf("%d%d%d%d", &amp;n, &amp;pos, &amp;l, &amp;r)) &#123; if(l == 1 &amp;&amp; r == n) &#123; printf("0\n"); &#125; else if(l == 1) &#123; if(pos &gt; r) &#123; printf("%d\n", pos-r+1); &#125; else &#123; printf("%d\n", r-pos+1); &#125; &#125; else if(r == n) &#123; if(pos &lt; l) &#123; printf("%d\n", l-pos+1); &#125; else &#123; printf("%d\n", pos-l+1); &#125; &#125; else &#123; if(pos &gt; r) &#123; printf("%d\n", pos-l+2); &#125; else if(pos &lt; l) &#123; printf("%d\n", r-pos+2); &#125; else &#123; printf("%d\n", (r-l) + 2 + min(r-pos, pos-l)); &#125; &#125; &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -1015,6 +1029,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[LeetCode 23 Merge k Sorted Lists]]></title>
+    <url>%2F2018%2F01%2F24%2Fleetcode23%2F</url>
+    <content type="text"><![CDATA[Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. 12345678910111213141516171819202122232425262728# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeKLists(self, lists): """ :type lists: List[ListNode] :rtype: ListNode """ heap = [] i = 0 for node in lists: if node != None: heap.append((node.val, i, node)) i += 1 heapq.heapify(heap) cur = head = ListNode(0) while heap: pop = heapq.heappop(heap) cur.next = ListNode(pop[0]) cur = cur.next if pop[2].next != None: heapq.heappush(heap, (pop[2].next.val, i, pop[2].next)) i += 1 return head.next]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Linux提升物理内存的使用率]]></title>
     <url>%2F2018%2F01%2F24%2Fubuntu_improve%2F</url>
     <content type="text"><![CDATA[介绍如何在Linux下调整交换分区swap的使用条件 在UBUNTU系统里面，并不是你的物理内存全部耗尽之后，系统才使用swap分区！系统的swappiness设定值，对如何使用swap分区是有着很大的联系。 swappiness=0 的时候表示最大限度使用物理内存，然后才是 swap空间swappiness＝100的时候表示积极的使用swap分区，并且把内存上的数据及时的搬运到swap空间里面 上面2个设置是极端设置，对于UBUNTU系统的默热值来说，这个值=60，如果想最佳化，可以修改为10-20左右！ 在ubuntu17以后移除了交换分区这一概念，改为交换文件 打开终端，输入查看 swappiness 的当前参数（默认应该看到的是60） 1cat /proc/sys/vm/swappiness 输入下面内容，修改这个参数为10（执行这一步只是临时修改，如果重启又会恢复60） 1sudo sysctl vm.swappiness=10 若要持久化配置，可以打开/etc/sysctl.conf文件 1sudo gedit /etc/sysctl.conf 添加一行 1vm.swappiness=10 ​]]></content>
@@ -1025,18 +1051,6 @@
         <tag>环境搭建</tag>
         <tag>Linux</tag>
         <tag>Ubuntu</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[LeetCode 23 Merge k Sorted Lists]]></title>
-    <url>%2F2018%2F01%2F24%2Fleetcode23%2F</url>
-    <content type="text"><![CDATA[Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. 12345678910111213141516171819202122232425262728# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeKLists(self, lists): """ :type lists: List[ListNode] :rtype: ListNode """ heap = [] i = 0 for node in lists: if node != None: heap.append((node.val, i, node)) i += 1 heapq.heapify(heap) cur = head = ListNode(0) while heap: pop = heapq.heappop(heap) cur.next = ListNode(pop[0]) cur = cur.next if pop[2].next != None: heapq.heappush(heap, (pop[2].next.val, i, pop[2].next)) i += 1 return head.next]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -1066,9 +1080,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 24 Swap Nodes in Pairs]]></title>
-    <url>%2F2018%2F01%2F20%2Fleetcode24%2F</url>
-    <content type="text"><![CDATA[Given a linked list, swap every two adjacent nodes and return its head. For example,Given 1-&gt;2-&gt;3-&gt;4, you should return the list as 2-&gt;1-&gt;4-&gt;3. Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed. Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def swapPairs(self, head): """ :type head: ListNode :rtype: ListNode """ if head == None or head.next == None: return head ret = head.next i = head j = head.next pre = None while j != None: i.next = j.next j.next = i if pre != None: pre.next = j if i.next != None: pre = i i = i.next j = i.next else: break return ret]]></content>
+    <title><![CDATA[LeetCode 15 3Sum]]></title>
+    <url>%2F2018%2F01%2F20%2Fleetcode15%2F</url>
+    <content type="text"><![CDATA[T Sum问题的O(n)解决方法； N Sum类的问题的一般解决方法； Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not contain duplicate triplets. 123456789&gt; For example, given array S = [-1, 0, 1, 2, -1, -4],&gt;&gt; A solution set is:&gt; [&gt; [-1, 0, 1],&gt; [-1, -1, 2]&gt; ]&gt;&gt; Two sum类问题，找两个数的和为一个定值的问题，如果直接使用二分查找，排序+查找或者在有序数组中直接查找的复杂度都是O(nlogn)，有的题卡复杂度的就过不去 Two Sum问题的一般做法对无序数组进行排序后（若数组已经是有序的化则不需要排序），设置两个指针left、right指向数组的首尾，target是要查找的目标 如果arr[left] + arr[right] == target，查找到了 如果arr[left] + arr[right] &lt; target，按照遍历的方式right往左移，right -= 1 如果arr[left] + arr[right] &gt; target，很显然right不需要再往左移动了，直接进入下一轮迭代，即left += 1，right不动 right不用像遍历一样回到最右边吗？不用。因为现在的arr[left]与right右边的数相加都是大于target的（不然right不会向左移），那么left再向右移动arr[left]只会更大，right也就不用再回到右边了 最后注意下重复数字答案重复的问题 Two Sum问题的这种解决方法排序+查找复杂度依然是O(nlogn)，但是主要是因为排序的消耗。如果题目已经给了有序的数列，那么复杂度将会降为O(n) N Sum 问题 对前几位进行遍历，对最后两维做Two Sum Python Code 1234567891011121314151617181920212223242526272829303132class Solution(object): def threeSum(self, nums): """ :type nums: List[int] :rtype: List[List[int]] """ ans = [] if len(nums) &lt; 3: return [] nums.sort() for i in range(len(nums) - 2): if nums[i] &gt; 0: break if i &gt; 0 and nums[i] == nums[i-1]: continue l = i+1 r = len(nums)-1 while l &lt; r: if nums[i] + nums[l] + nums[r] &gt; 0: r -= 1 elif nums[i] + nums[l] + nums[r] &lt; 0: l += 1 else: ans.append([nums[i], nums[l], nums[r]]) l += 1 while l &lt; r and nums[l] == nums[l-1]: l += 1 r -= 1 while l &lt; r and nums[r] == nums[r+1]: r -= 1 return ans]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -1078,9 +1092,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 15 3Sum]]></title>
-    <url>%2F2018%2F01%2F20%2Fleetcode15%2F</url>
-    <content type="text"><![CDATA[T Sum问题的O(n)解决方法； N Sum类的问题的一般解决方法； Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not contain duplicate triplets. 123456789&gt; For example, given array S = [-1, 0, 1, 2, -1, -4],&gt;&gt; A solution set is:&gt; [&gt; [-1, 0, 1],&gt; [-1, -1, 2]&gt; ]&gt;&gt; Two sum类问题，找两个数的和为一个定值的问题，如果直接使用二分查找，排序+查找或者在有序数组中直接查找的复杂度都是O(nlogn)，有的题卡复杂度的就过不去 Two Sum问题的一般做法对无序数组进行排序后（若数组已经是有序的化则不需要排序），设置两个指针left、right指向数组的首尾，target是要查找的目标 如果arr[left] + arr[right] == target，查找到了 如果arr[left] + arr[right] &lt; target，按照遍历的方式right往左移，right -= 1 如果arr[left] + arr[right] &gt; target，很显然right不需要再往左移动了，直接进入下一轮迭代，即left += 1，right不动 right不用像遍历一样回到最右边吗？不用。因为现在的arr[left]与right右边的数相加都是大于target的（不然right不会向左移），那么left再向右移动arr[left]只会更大，right也就不用再回到右边了 最后注意下重复数字答案重复的问题 Two Sum问题的这种解决方法排序+查找复杂度依然是O(nlogn)，但是主要是因为排序的消耗。如果题目已经给了有序的数列，那么复杂度将会降为O(n) N Sum 问题 对前几位进行遍历，对最后两维做Two Sum Python Code 1234567891011121314151617181920212223242526272829303132class Solution(object): def threeSum(self, nums): """ :type nums: List[int] :rtype: List[List[int]] """ ans = [] if len(nums) &lt; 3: return [] nums.sort() for i in range(len(nums) - 2): if nums[i] &gt; 0: break if i &gt; 0 and nums[i] == nums[i-1]: continue l = i+1 r = len(nums)-1 while l &lt; r: if nums[i] + nums[l] + nums[r] &gt; 0: r -= 1 elif nums[i] + nums[l] + nums[r] &lt; 0: l += 1 else: ans.append([nums[i], nums[l], nums[r]]) l += 1 while l &lt; r and nums[l] == nums[l-1]: l += 1 r -= 1 while l &lt; r and nums[r] == nums[r+1]: r -= 1 return ans]]></content>
+    <title><![CDATA[LeetCode 24 Swap Nodes in Pairs]]></title>
+    <url>%2F2018%2F01%2F20%2Fleetcode24%2F</url>
+    <content type="text"><![CDATA[Given a linked list, swap every two adjacent nodes and return its head. For example,Given 1-&gt;2-&gt;3-&gt;4, you should return the list as 2-&gt;1-&gt;4-&gt;3. Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed. Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def swapPairs(self, head): """ :type head: ListNode :rtype: ListNode """ if head == None or head.next == None: return head ret = head.next i = head j = head.next pre = None while j != None: i.next = j.next j.next = i if pre != None: pre.next = j if i.next != None: pre = i i = i.next j = i.next else: break return ret]]></content>
       <categories>
         <category>ACM</category>
       </categories>
