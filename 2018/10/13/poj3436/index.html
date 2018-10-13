@@ -140,7 +140,7 @@
 
 
 
-  <title>Archive | Ph0en1x Notebook</title>
+  <title>POJ 3436 ACM Computer Factory（ISAP） | Ph0en1x Notebook</title>
   
 
 
@@ -178,7 +178,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     
@@ -289,414 +289,210 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/10/13/poj3436/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ph0en1x">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ph0en1x Notebook">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h2 class="post-title" itemprop="name headline">POJ 3436 ACM Computer Factory（ISAP）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-13T00:00:00+08:00">2018-10-13</time>
+            
+
+            
+
+            
+          </span>
+
           
-        Good! 94 posts in total. Keep on posting.
-      </span>
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ACM/" itemprop="url" rel="index">
+                    <span itemprop="name">ACM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <blockquote>
+<p>   ISAP，每台机器都分成两个节点，中间连一条容量为工作效率的边；</p>
+<p>  如果输入没有1，则和源点连接，输出没有0的和汇点连接；</p>
+<p>  任意两个点之间输入和输出对应相加没有1则可以连接一条容量为INF的边。</p>
+</blockquote>
+<a id="more"></a>
+<p><strong>C++ Code</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> M 105</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 10005</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> from;</span><br><span class="line">    <span class="keyword">int</span> to;</span><br><span class="line">    <span class="keyword">int</span> flow;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    Edge(<span class="keyword">int</span> f, <span class="keyword">int</span> t, <span class="keyword">int</span> fl, <span class="keyword">int</span> c)&#123;</span><br><span class="line">        from = f;</span><br><span class="line">        to = t;</span><br><span class="line">        cap = c;</span><br><span class="line">        flow = fl;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> p, n;</span><br><span class="line"><span class="keyword">int</span> in[M][<span class="number">10</span>], out[M][<span class="number">10</span>];</span><br><span class="line"><span class="built_in">vector</span>&lt;Edge&gt; edges;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; head[M], prefix[M];</span><br><span class="line"><span class="keyword">int</span> deep[M], num[M], cur[M], pre[M];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> from, <span class="keyword">int</span> to, <span class="keyword">int</span> cap)</span></span>&#123;</span><br><span class="line">    edges.push_back(Edge(from, to, <span class="number">0</span>, cap));</span><br><span class="line">    edges.push_back(Edge(to, from, <span class="number">0</span>, <span class="number">0</span>));</span><br><span class="line">    <span class="keyword">int</span> sz = edges.size();</span><br><span class="line">    head[from].push_back(sz<span class="number">-2</span>);</span><br><span class="line">    head[to].push_back(sz<span class="number">-1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(deep, <span class="number">-1</span>, <span class="keyword">sizeof</span>(deep));</span><br><span class="line">    <span class="built_in">memset</span>(num, <span class="number">0</span>, <span class="keyword">sizeof</span>(num));</span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">    q.push(s);</span><br><span class="line">    deep[s] = <span class="number">0</span>;</span><br><span class="line">    num[deep[s]]++;</span><br><span class="line">    <span class="keyword">while</span>(!q.empty())&#123;</span><br><span class="line">        <span class="keyword">int</span> cur = q.front();</span><br><span class="line">        q.pop();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prefix[cur].size(); i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> to = prefix[cur][i];</span><br><span class="line">            <span class="keyword">if</span>(deep[to] &lt; <span class="number">0</span>)&#123;</span><br><span class="line">                deep[to] = deep[cur] + <span class="number">1</span>;</span><br><span class="line">                num[deep[to]]++;</span><br><span class="line">                q.push(to);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">augument</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pos = t;</span><br><span class="line">    <span class="keyword">int</span> flow = INF;</span><br><span class="line">    <span class="keyword">while</span>(pos != s)&#123;</span><br><span class="line">        Edge &amp;e = edges[pre[pos]];</span><br><span class="line">        flow = min(flow, e.cap - e.flow);</span><br><span class="line">        pos = e.from;</span><br><span class="line">    &#125;</span><br><span class="line">    pos = t;</span><br><span class="line">    <span class="keyword">while</span>(pos != s)&#123;</span><br><span class="line">        edges[pre[pos]].flow += flow;</span><br><span class="line">        edges[pre[pos]^<span class="number">1</span>].flow -= flow;</span><br><span class="line">        pos = edges[pre[pos]].from;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> flow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">ISAP</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> flow = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">bool</span> flag;</span><br><span class="line">    bfs(t, s);</span><br><span class="line">    <span class="keyword">int</span> pos = s;</span><br><span class="line">    <span class="built_in">memset</span>(cur, <span class="number">0</span>, <span class="keyword">sizeof</span>(cur));</span><br><span class="line">    <span class="keyword">while</span>(deep[s] &lt; <span class="number">2</span>*(n+<span class="number">1</span>))&#123;</span><br><span class="line"><span class="comment">//        cout &lt;&lt; flow &lt;&lt; " " &lt;&lt; pos &lt;&lt; " " &lt;&lt; deep[pos] &lt;&lt; endl;</span></span><br><span class="line">        <span class="keyword">if</span>(pos == t)&#123;</span><br><span class="line">            flow += augument(s, t);</span><br><span class="line">            pos = s;</span><br><span class="line">        &#125;</span><br><span class="line">        flag = <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = cur[pos]; i &lt; head[pos].size(); i++)&#123;</span><br><span class="line">            Edge &amp;e = edges[head[pos][i]];</span><br><span class="line">            <span class="keyword">if</span>(e.cap &gt; e.flow &amp;&amp; deep[pos] == deep[e.to] + <span class="number">1</span>)&#123;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">                cur[pos] = i;</span><br><span class="line">                pre[e.to] = head[pos][i];</span><br><span class="line">                pos = e.to;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(flag == <span class="literal">false</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> mi = <span class="number">2</span>*n+<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; head[pos].size(); i++)&#123;</span><br><span class="line">                Edge &amp;e = edges[head[pos][i]];</span><br><span class="line">                <span class="keyword">if</span>(e.cap &gt; e.flow)&#123;</span><br><span class="line">                    mi = min(mi, deep[e.to]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            num[deep[pos]]--;</span><br><span class="line">            <span class="keyword">if</span>(num[deep[pos]] == <span class="number">0</span>) <span class="keyword">break</span>;</span><br><span class="line">            deep[pos] = mi+<span class="number">1</span>;</span><br><span class="line">            num[deep[pos]]++;</span><br><span class="line">            cur[pos] = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">if</span>(pos != s)</span><br><span class="line">                pos = edges[pre[pos]].from;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> flow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tmp;</span><br><span class="line">    <span class="keyword">bool</span> one, zero, flag;</span><br><span class="line">    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;p, &amp;n))&#123;</span><br><span class="line">        edges.clear();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">2</span>*n+<span class="number">2</span>; i++)&#123;</span><br><span class="line">            head[i].clear();</span><br><span class="line">            prefix[i].clear();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;tmp);</span><br><span class="line">            add(i, i+n, tmp);</span><br><span class="line">            prefix[i+n].push_back(i);</span><br><span class="line">            one = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; p; j++)&#123;</span><br><span class="line">                <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;in[i][j]);</span><br><span class="line">                <span class="keyword">if</span>(in[i][j] == <span class="number">1</span>)</span><br><span class="line">                    one = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            zero = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; p; j++)&#123;</span><br><span class="line">                <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;out[i][j]);</span><br><span class="line">                <span class="keyword">if</span>(out[i][j] == <span class="number">0</span>)</span><br><span class="line">                    zero = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!one)&#123;</span><br><span class="line">                add(<span class="number">2</span>*n, i, INF);</span><br><span class="line">                prefix[i].push_back(<span class="number">2</span>*n);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(!zero)&#123;</span><br><span class="line">                add(i+n, <span class="number">2</span>*n+<span class="number">1</span>, INF);</span><br><span class="line">                prefix[<span class="number">2</span>*n+<span class="number">1</span>].push_back(i+n);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i == j) <span class="keyword">continue</span>;</span><br><span class="line">                flag = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; p; k++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(out[i][k] + in[j][k] == <span class="number">1</span>)&#123;</span><br><span class="line">                        flag = <span class="literal">false</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(flag == <span class="literal">true</span>)&#123;</span><br><span class="line">                    add(i+n, j, INF);</span><br><span class="line">                    prefix[j].push_back(i+n);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> ans = ISAP(<span class="number">2</span>*n, <span class="number">2</span>*n+<span class="number">1</span>);</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; edges.size(); i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(edges[i].flow &gt; <span class="number">0</span> &amp;&amp; edges[i].from % n != edges[i].to % n &amp;&amp; edges[i].from != <span class="number">2</span>*n &amp;&amp; edges[i].to != <span class="number">2</span>*n+<span class="number">1</span>)&#123;</span><br><span class="line">                v.push_back(i);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>, ans, v.size());</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; v.size(); i++)&#123;</span><br><span class="line">            Edge &amp;e = edges[v[i]];</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d %d %d\n"</span>, (e.from)%n+<span class="number">1</span>, (e.to)%n+<span class="number">1</span>, e.flow);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/c/" rel="tag"># c++</a>
+          
+            <a href="/tags/poj/" rel="tag"># poj</a>
+          
+            <a href="/tags/poj分类训练/" rel="tag"># poj分类训练</a>
+          
+            <a href="/tags/网络流/" rel="tag"># 网络流</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
         
-        
+
         
 
         
           
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
           </div>
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/24/poj1125/" itemprop="url">
-              
-                <span itemprop="name">POJ 1125 Stockbroker Grapevine</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-24T00:00:00+08:00"
-              content="2018-09-24" >
-          09-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        </div>
+      
       
 
-        
-        
-        
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/02/poj1459/" rel="next" title="POJ 1459 Power Network（ISAP）">
+                <i class="fa fa-chevron-left"></i> POJ 1459 Power Network（ISAP）
+              </a>
+            
+          </div>
 
-        
-        
+          <span class="post-nav-divider"></span>
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/23/poj2253/" itemprop="url">
-              
-                <span itemprop="name">POJ 2253 Frogger（Floyd）</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-23T00:00:00+08:00"
-              content="2018-09-23" >
-          09-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/22/poj1062/" itemprop="url">
-              
-                <span itemprop="name">POJ 1062 昂贵的聘礼</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-22T00:00:00+08:00"
-              content="2018-09-22" >
-          09-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/21/poj3259/" itemprop="url">
-              
-                <span itemprop="name">POJ 3259 Wormholes</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-21T00:00:00+08:00"
-              content="2018-09-21" >
-          09-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/20/poj1860/" itemprop="url">
-              
-                <span itemprop="name">POJ 1860 Currency Exchange（SPFA）</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-20T00:00:00+08:00"
-              content="2018-09-20" >
-          09-20
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/19/poj2996/" itemprop="url">
-              
-                <span itemprop="name">POJ 2996 Help Me with the Game</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-19T00:00:00+08:00"
-              content="2018-09-19" >
-          09-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/18/poj1573/" itemprop="url">
-              
-                <span itemprop="name">POJ 1573 Robot Motion</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-18T00:00:00+08:00"
-              content="2018-09-18" >
-          09-18
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/16/poj2632/" itemprop="url">
-              
-                <span itemprop="name">POJ 2632 Crashing Robots</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-16T00:00:00+08:00"
-              content="2018-09-16" >
-          09-16
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/15/poj1068/" itemprop="url">
-              
-                <span itemprop="name">POJ 1068 Parencodings</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-15T00:00:00+08:00"
-              content="2018-09-15" >
-          09-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/09/15/poj3295/" itemprop="url">
-              
-                <span itemprop="name">POJ 3295 Tautology</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-09-15T00:00:00+08:00"
-              content="2018-09-15" >
-          09-15
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-    </div>
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2018/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2018/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/2018/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2018/page/10/">10</a><a class="extend next" rel="next" href="/archives/2018/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -963,6 +759,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.1"></script>
+
+
 
   
 
