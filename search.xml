@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[POJ 2388 Who's in the Middle]]></title>
-    <url>%2F2018%2F10%2F25%2Fpoj2388%2F</url>
-    <content type="text"><![CDATA[一个大顶堆一个小顶堆和一个中位数mid， 第一个数是中位数，后面比中位数大的放到大顶堆，比中位数小的放到小顶堆， 并且不断调整两个堆的大小相差不超过1，较小的一方push mid，较大的一方pop一个当作mid C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;queue&gt;using namespace std;priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt; mi;priority_queue&lt;int, vector&lt;int&gt;, less&lt;int&gt; &gt; mx;int mid;int main()&#123; int ca, tmp; while(!mi.empty()) mi.pop(); while(!mx.empty()) mx.pop(); scanf("%d%d", &amp;ca, &amp;mid); ca--; while(ca--)&#123; scanf("%d", &amp;tmp); if(tmp &lt; mid)&#123; mx.push(tmp); &#125;else&#123; mi.push(tmp); &#125; if(mi.size() &gt;= mx.size() + 2)&#123; mx.push(mid); mid = mi.top(); mi.pop(); &#125;else if(mx.size() &gt;= mi.size() + 2)&#123; mi.push(mid); mid = mx.top(); mx.pop(); &#125; &#125; printf("%d\n", mid); return 0;&#125;]]></content>
+    <title><![CDATA[POJ 3349 Snowflake Snow Snowflakes（哈希）]]></title>
+    <url>%2F2018%2F10%2F28%2Fpoj3349%2F</url>
+    <content type="text"><![CDATA[先哈希，再对比，对比就是循环滚动对比 C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;vector&gt;#define MAX 100005#define KEY 100000using namespace std;int snowFlakes[MAX][6];vector&lt;int&gt; head[KEY];bool isSame(int a, int b)&#123; for(int i = 0; i &lt; 6; i++)&#123; bool flag = true; for(int j = 0; j &lt; 6; j++)&#123; if(snowFlakes[a][j] != snowFlakes[b][(i+j)%6])&#123; flag = false; break; &#125; &#125; if(flag == true) return true; &#125; for(int i = 0; i &lt; 6; i++)&#123; bool flag = true; for(int j = 0; j &lt; 6; j++)&#123; if(snowFlakes[a][j] != snowFlakes[b][(i-j+6)%6])&#123; flag = false; break; &#125; &#125; if(flag == true) return true; &#125; return false;&#125;int main()&#123; int num, sum; bool flag = false; scanf("%d", &amp;num); for(int i = 0; i &lt; num; i++)&#123; sum = 0; for(int j = 0; j &lt; 6; j++)&#123; scanf("%d", &amp;snowFlakes[i][j]); sum += snowFlakes[i][j]; &#125; if(flag == false)&#123; int key = sum % KEY; if(head[key].size() &gt; 0)&#123; for(int j = 0; j &lt; head[key].size(); j++)&#123; if(isSame(head[key][j], i))&#123; flag = true; break; &#125; &#125; &#125; head[key].push_back(i); &#125; &#125; if(flag)&#123; printf("Twin snowflakes found.\n"); &#125;else&#123; printf("No two snowflakes are alike.\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>哈希</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ 2299 Ultra-QuickSort（树状数组）]]></title>
+    <url>%2F2018%2F10%2F27%2Fpoj2299%2F</url>
+    <content type="text"><![CDATA[求逆序数，记录一下原来的位置，快排一下看看每个位置的数应该排在什么地方，然后从第一个数开始把它排序后的位置放入树状数组，并且可以算出在这之前的数有多少个没有放在这个数前面（已放入的数量-在我前面的数量），也就是逆序数 C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#define M 500005using namespace std;struct node&#123; int num; int order; bool operator&lt;(const node &amp;b) const&#123; return num &lt; b.num; &#125;&#125;arr[M];int ranks[M];int cnt[M];int num;int lowbit(int x)&#123; return (x &amp; (-x));&#125;void update(int pos, int x)&#123; while(pos &lt;= num)&#123; cnt[pos] += x; pos += lowbit(pos); &#125;&#125;int getSum(int pos)&#123; int ans = 0; while(pos &gt;= 1)&#123; ans += cnt[pos]; pos -= lowbit(pos); &#125; return ans;&#125;int main()&#123; while(~scanf("%d", &amp;num) &amp;&amp; num != 0)&#123; for(int i = 1; i &lt;= num; i++)&#123; scanf("%d", &amp;arr[i].num); arr[i].order = i; &#125; sort(arr + 1, arr + 1 + num); for(int i = 1; i &lt;= num; i++)&#123; ranks[arr[i].order] = i; &#125; memset(cnt, 0, sizeof(cnt)); long long ans = 0; for(int i = 1; i &lt;= num; i++)&#123; update(ranks[i], 1); ans += (i - getSum(ranks[i])); &#125; printf("%lld\n", ans); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -12,6 +26,7 @@
         <tag>poj</tag>
         <tag>poj分类训练</tag>
         <tag>排序</tag>
+        <tag>树状数组</tag>
       </tags>
   </entry>
   <entry>
@@ -26,6 +41,20 @@
         <tag>poj</tag>
         <tag>poj分类训练</tag>
         <tag>串</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ 2388 Who's in the Middle]]></title>
+    <url>%2F2018%2F10%2F25%2Fpoj2388%2F</url>
+    <content type="text"><![CDATA[一个大顶堆一个小顶堆和一个中位数mid， 第一个数是中位数，后面比中位数大的放到大顶堆，比中位数小的放到小顶堆， 并且不断调整两个堆的大小相差不超过1，较小的一方push mid，较大的一方pop一个当作mid C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;queue&gt;using namespace std;priority_queue&lt;int, vector&lt;int&gt;, greater&lt;int&gt; &gt; mi;priority_queue&lt;int, vector&lt;int&gt;, less&lt;int&gt; &gt; mx;int mid;int main()&#123; int ca, tmp; while(!mi.empty()) mi.pop(); while(!mx.empty()) mx.pop(); scanf("%d%d", &amp;ca, &amp;mid); ca--; while(ca--)&#123; scanf("%d", &amp;tmp); if(tmp &lt; mid)&#123; mx.push(tmp); &#125;else&#123; mi.push(tmp); &#125; if(mi.size() &gt;= mx.size() + 2)&#123; mx.push(mid); mid = mi.top(); mi.pop(); &#125;else if(mx.size() &gt;= mi.size() + 2)&#123; mi.push(mid); mid = mx.top(); mx.pop(); &#125; &#125; printf("%d\n", mid); return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>排序</tag>
       </tags>
   </entry>
   <entry>
@@ -113,20 +142,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[POJ 3026 Borg Maze]]></title>
-    <url>%2F2018%2F09%2F29%2Fpoj3026%2F</url>
-    <content type="text"><![CDATA[把每个S和A都看成节点，BFS求之间的距离然后套用Prim来计算最小生成树。注意输入有坑，整数输入完后可能有多个空格，要用gets()而不能用getchar() C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;string&gt;#include &lt;queue&gt;#define M 55#define M_ROBOT 105using namespace std;struct node&#123; int x; int y; int step; node(int a, int b, int c)&#123; x = a; y = b; step = c; &#125; node()&#123; x = 0; y = 0; step = 0; &#125;&#125;robots[M_ROBOT];struct queueEdge&#123; int num; int v; queueEdge()&#123; num = 0; v = 0; &#125; queueEdge(to, len)&#123; num = to; v = len; &#125;&#125;;char mp[M][M];int arr[M_ROBOT][M_ROBOT];bool vis[M][M];int n, m, num;void bfs(int start)&#123; memset(vis, 0, sizeof(vis)); queue&lt;node&gt; q; robots[start].step = 0; q.push(robots[start]); while(!q.empty())&#123; node cur = q.front(); q.pop(); vis[cur.x][cur.y] = true; char tmp = mp[cur.x][cur.y]; if(tmp != '#' &amp;&amp; tmp != ' ')&#123; arr[start][(int)tmp] = cur.step; &#125; if(mp[cur.x-1][cur.y] != '#' &amp;&amp; !vis[cur.x-1][cur.y]) q.push(node(cur.x-1, cur.y, cur.step+1)); if(mp[cur.x+1][cur.y] != '#' &amp;&amp; !vis[cur.x+1][cur.y]) q.push(node(cur.x+1, cur.y, cur.step+1)); if(mp[cur.x][cur.y-1] != '#' &amp;&amp; !vis[cur.x][cur.y-1]) q.push(node(cur.x, cur.y-1, cur.step+1)); if(mp[cur.x][cur.y+1] != '#' &amp;&amp; !vis[cur.x][cur.y+1]) q.push(node(cur.x, cur.y+1, cur.step+1)); &#125;&#125;int prim(int start)&#123; int ans = 0; memset(vis, false, sizeof(vis)); priority_queue&lt;queueEdge&gt; q; q.push(queueEdge(start, 0)); for(int k = 0; k &lt; num; k++)&#123; do&#123; node cur = q.top(); q.pop(); &#125;while(vis[cur.num]); vis[cur.num] = true; ans += vis.v; for(int i = 0; i &lt; num; i++)&#123; if(!vis[i]) q.push(queueEdge(i, arr[cur.num][i])); &#125; &#125; return ans;&#125;int main()&#123; int ca; scanf("%d", &amp;ca); while(ca--)&#123; num = 0; scanf("%d%d", &amp;m, &amp;n); getchar(); for(int i = 0; i &lt; n; i++)&#123; gets(mp[i]); for(int j = 0; j &lt; m; j++)&#123; if(mp[i][j] == 'A' || mp[i][j] == 'S')&#123; mp[i][j] = num; robots[num].x = i; robots[num].y = j; num++; &#125; &#125; &#125; for(int i = 0; i &lt; num; i++)&#123; bfs(i); &#125; int ans = prim(0); printf("%d\n", ans); &#125; return 0;&#125;]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>poj</tag>
-        <tag>poj分类训练</tag>
-        <tag>最小生成树</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[POJ 2485 Highways]]></title>
     <url>%2F2018%2F09%2F29%2Fpoj2485%2F</url>
     <content type="text"><![CDATA[要求能够让所有节点联通并且最大边权最小的问题，其实求的就是最小生成树的最大边权； 证明：最小生成树的最大边权一定是所有最小生成树中最小的 反证法：假设最小生成树T1的最大边(u, v)，和一个非最小生成树T2的最大边(a, b)，且(u, v) &gt; (a, b) &gt; T2中的其他所有边 去掉(u, v)，最小生成树会形成一个隔，u，v分别在割的两个分量中，且u，v在T2中一定存在一条唯一的路径，又由于u，v在T1中属于不同的分量，所以这条路径中一定存在着某条边两端分别在割的两个分量中，在T1中连上这条边就能够形成新的生成树，且比原来的最小生成树小，矛盾； C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;queue&gt;#include &lt;vector&gt;#define MAX 501using namespace std;int arr[MAX][MAX];bool vis[MAX];int ca, num;struct node&#123; int num; int v; bool operator&lt;(const node &amp;b) const&#123; return v &gt; b.v; &#125;&#125;;int prim(int start)&#123; int ans = 0; priority_queue&lt;node&gt; q; memset(vis, false, sizeof(vis)); node tmp; tmp.num = start; tmp.v = 0; q.push(tmp); for(int k = 0; k &lt; num; k++)&#123; node cur; do&#123; cur = q.top(); q.pop(); &#125;while(vis[cur.num]); vis[cur.num] = true; ans = max(ans, cur.v); for(int i = 0; i &lt; num; i++)&#123; if(!vis[i] &amp;&amp; arr[cur.num][i] &gt; 0)&#123; node tmp; tmp.num = i; tmp.v = arr[cur.num][i]; q.push(tmp); &#125; &#125; &#125; return ans;&#125;int main()&#123; while(~scanf("%d", &amp;ca))&#123; while(ca--)&#123; scanf("%d", &amp;num); for(int i = 0; i &lt; num; i++)&#123; for(int j = 0; j &lt; num; j++)&#123; scanf("%d", &amp;arr[i][j]); &#125; &#125; int ans = prim(0); printf("%d\n", ans); &#125; &#125; return 0;&#125;]]></content>
@@ -138,6 +153,20 @@
         <tag>poj</tag>
         <tag>poj分类训练</tag>
         <tag>最短路</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ 3026 Borg Maze]]></title>
+    <url>%2F2018%2F09%2F29%2Fpoj3026%2F</url>
+    <content type="text"><![CDATA[把每个S和A都看成节点，BFS求之间的距离然后套用Prim来计算最小生成树。注意输入有坑，整数输入完后可能有多个空格，要用gets()而不能用getchar() C++ Code 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596979899100101102103104105106107108109110111112113114115116#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;string&gt;#include &lt;queue&gt;#define M 55#define M_ROBOT 105using namespace std;struct node&#123; int x; int y; int step; node(int a, int b, int c)&#123; x = a; y = b; step = c; &#125; node()&#123; x = 0; y = 0; step = 0; &#125;&#125;robots[M_ROBOT];struct queueEdge&#123; int num; int v; queueEdge()&#123; num = 0; v = 0; &#125; queueEdge(to, len)&#123; num = to; v = len; &#125;&#125;;char mp[M][M];int arr[M_ROBOT][M_ROBOT];bool vis[M][M];int n, m, num;void bfs(int start)&#123; memset(vis, 0, sizeof(vis)); queue&lt;node&gt; q; robots[start].step = 0; q.push(robots[start]); while(!q.empty())&#123; node cur = q.front(); q.pop(); vis[cur.x][cur.y] = true; char tmp = mp[cur.x][cur.y]; if(tmp != '#' &amp;&amp; tmp != ' ')&#123; arr[start][(int)tmp] = cur.step; &#125; if(mp[cur.x-1][cur.y] != '#' &amp;&amp; !vis[cur.x-1][cur.y]) q.push(node(cur.x-1, cur.y, cur.step+1)); if(mp[cur.x+1][cur.y] != '#' &amp;&amp; !vis[cur.x+1][cur.y]) q.push(node(cur.x+1, cur.y, cur.step+1)); if(mp[cur.x][cur.y-1] != '#' &amp;&amp; !vis[cur.x][cur.y-1]) q.push(node(cur.x, cur.y-1, cur.step+1)); if(mp[cur.x][cur.y+1] != '#' &amp;&amp; !vis[cur.x][cur.y+1]) q.push(node(cur.x, cur.y+1, cur.step+1)); &#125;&#125;int prim(int start)&#123; int ans = 0; memset(vis, false, sizeof(vis)); priority_queue&lt;queueEdge&gt; q; q.push(queueEdge(start, 0)); for(int k = 0; k &lt; num; k++)&#123; do&#123; node cur = q.top(); q.pop(); &#125;while(vis[cur.num]); vis[cur.num] = true; ans += vis.v; for(int i = 0; i &lt; num; i++)&#123; if(!vis[i]) q.push(queueEdge(i, arr[cur.num][i])); &#125; &#125; return ans;&#125;int main()&#123; int ca; scanf("%d", &amp;ca); while(ca--)&#123; num = 0; scanf("%d%d", &amp;m, &amp;n); getchar(); for(int i = 0; i &lt; n; i++)&#123; gets(mp[i]); for(int j = 0; j &lt; m; j++)&#123; if(mp[i][j] == 'A' || mp[i][j] == 'S')&#123; mp[i][j] = num; robots[num].x = i; robots[num].y = j; num++; &#125; &#125; &#125; for(int i = 0; i &lt; num; i++)&#123; bfs(i); &#125; int ans = prim(0); printf("%d\n", ans); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>最小生成树</tag>
       </tags>
   </entry>
   <entry>
@@ -415,8 +444,8 @@
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>Spring Boot</tag>
         <tag>Shiro</tag>
+        <tag>Spring Boot</tag>
         <tag>Mybatis</tag>
       </tags>
   </entry>
@@ -480,9 +509,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 41 First Missing Positive]]></title>
-    <url>%2F2018%2F08%2F23%2Fleetcode41%2F</url>
-    <content type="text"><![CDATA[桶排序思想，一种理想情况下接近O(n)的排序算法 Given an unsorted integer array, find the smallest missing positive integer. Example 1: 123&gt; Input: [1,2,0]&gt; Output: 3&gt; Example 2: 123&gt; Input: [3,4,-1,1]&gt; Output: 2&gt; Example 3: 123&gt; Input: [7,8,9,11,12]&gt; Output: 1&gt; Note: Your algorithm should run in O(n) time and uses constant extra space. 假设这n个数就是1-n进行排序，即i应该放在nums[i-1]上 扫描一遍数组，只要当前位置上的数不是在1-n之间并且没有正确摆放，就与正确位置上的数进行一次交换 所有的数都会被扫描到一遍，每一次交换都会使得一个数到达它应该在的位置上，所以最多交换n次，扫描过后所有在1-n区间内的数都会被换到它应该在的位置上 再从头扫描一遍数组，第一个放置错误的位置就是第一个缺失的数，如果都正确了，那么就是n+1缺失 Python Code 12345678910111213141516171819class Solution: def firstMissingPositive(self, nums): """ :type nums: List[int] :rtype: int """ length = len(nums) if length == 0: return 1 for i in range(length): while nums[i] &gt; 0 and nums[i] &lt;= length and nums[i] != i+1 and nums[i] != nums[nums[i]-1]: tmp = nums[nums[i]-1] nums[nums[i]-1] = nums[i] nums[i] = tmp for i in range(length): if nums[i] != i+1: return i+1 return length+1]]></content>
+    <title><![CDATA[LeetCode 11 Container With Most Water]]></title>
+    <url>%2F2018%2F08%2F23%2Fleetcode11%2F</url>
+    <content type="text"><![CDATA[2-SUM 同类型题目 Given n non-negative integers a1, a2, …, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water. Note: You may not slant the container and n is at least 2. The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49. 算法： 刚开始设置最左边和最右边两个板，记录当前面积，然后把短的那边的指针向中心移动一个位置，比较面积，以此类推； 证明： 以左边指针为例，如果左边较短，那么右边的指针无论怎么向左移动都不可能得到更大的面积了，所以可以看作直接跳过大层循环，即左边指针向右一位。右边指针同理； 左边向右一位后，右边的指针不需要回到最右边，因为右边指针的右边不可能有比左边指针移动前更大的（相当于双方打擂台，守擂的一定比对方之前打擂失败的都要强），所以左指针移动后不可能通过右指针右边的数得到更好的答案。 Python Code 1234567891011121314151617class Solution(object): def maxArea(self, height): """ :type height: List[int] :rtype: int """ mx = 0 i = 0 j = len(height) - 1 while i &lt; j: v = min(height[i], height[j]) * (j-i) mx = max(mx, v) if height[i] &lt; height[j]: i += 1 else: j -= 1 return mx]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -492,9 +521,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 11 Container With Most Water]]></title>
-    <url>%2F2018%2F08%2F23%2Fleetcode11%2F</url>
-    <content type="text"><![CDATA[2-SUM 同类型题目 Given n non-negative integers a1, a2, …, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water. Note: You may not slant the container and n is at least 2. The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49. 算法： 刚开始设置最左边和最右边两个板，记录当前面积，然后把短的那边的指针向中心移动一个位置，比较面积，以此类推； 证明： 以左边指针为例，如果左边较短，那么右边的指针无论怎么向左移动都不可能得到更大的面积了，所以可以看作直接跳过大层循环，即左边指针向右一位。右边指针同理； 左边向右一位后，右边的指针不需要回到最右边，因为右边指针的右边不可能有比左边指针移动前更大的（相当于双方打擂台，守擂的一定比对方之前打擂失败的都要强），所以左指针移动后不可能通过右指针右边的数得到更好的答案。 Python Code 1234567891011121314151617class Solution(object): def maxArea(self, height): """ :type height: List[int] :rtype: int """ mx = 0 i = 0 j = len(height) - 1 while i &lt; j: v = min(height[i], height[j]) * (j-i) mx = max(mx, v) if height[i] &lt; height[j]: i += 1 else: j -= 1 return mx]]></content>
+    <title><![CDATA[LeetCode 41 First Missing Positive]]></title>
+    <url>%2F2018%2F08%2F23%2Fleetcode41%2F</url>
+    <content type="text"><![CDATA[桶排序思想，一种理想情况下接近O(n)的排序算法 Given an unsorted integer array, find the smallest missing positive integer. Example 1: 123&gt; Input: [1,2,0]&gt; Output: 3&gt; Example 2: 123&gt; Input: [3,4,-1,1]&gt; Output: 2&gt; Example 3: 123&gt; Input: [7,8,9,11,12]&gt; Output: 1&gt; Note: Your algorithm should run in O(n) time and uses constant extra space. 假设这n个数就是1-n进行排序，即i应该放在nums[i-1]上 扫描一遍数组，只要当前位置上的数不是在1-n之间并且没有正确摆放，就与正确位置上的数进行一次交换 所有的数都会被扫描到一遍，每一次交换都会使得一个数到达它应该在的位置上，所以最多交换n次，扫描过后所有在1-n区间内的数都会被换到它应该在的位置上 再从头扫描一遍数组，第一个放置错误的位置就是第一个缺失的数，如果都正确了，那么就是n+1缺失 Python Code 12345678910111213141516171819class Solution: def firstMissingPositive(self, nums): """ :type nums: List[int] :rtype: int """ length = len(nums) if length == 0: return 1 for i in range(length): while nums[i] &gt; 0 and nums[i] &lt;= length and nums[i] != i+1 and nums[i] != nums[nums[i]-1]: tmp = nums[nums[i]-1] nums[nums[i]-1] = nums[i] nums[i] = tmp for i in range(length): if nums[i] != i+1: return i+1 return length+1]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -541,9 +570,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[机器学习实战--FP-growth算法挖掘频繁项集]]></title>
-    <url>%2F2018%2F05%2F13%2FFPgrowth%2F</url>
-    <content type="text"><![CDATA[FP-growth是频繁项集挖掘的一种优化算法。它先将事务先构造成一棵FP树，这样一来就不用像Apriori一项反复地扫描原来的事务了，大大提高了效率。这篇笔记主要是记录FP-growth的Python3代码实现的，会就算法来讲解FP-growth挖掘频繁项集的步骤，算法的详细内容在《数据挖掘-概念与技术》一书中有非常详细的讲解，这里不再赘述 完整代码在这里 数据格式 类似下方的二维数组，每一个list代表一个transaction，里面的每个数都是item的编号 1[[1,2,5], [2,4], [2,3], [1,2,4],[1,3], [2,3], [1,3], [1,2,3,5], [1,2,3]] 读取数据 12345678def loadDataSet(): thing_arr = [] with open('data/Groceries.txt', 'r') as f: X = f.read() thing_arr = json.loads(X) f.close() return thing_arr ​ FP-Growth实现起来相对复杂，需要定义树结点结构 1234567891011121314151617181920class treeNode: def __init__(self, nameValue, numOccur, parentNode): # 值 self.name = nameValue # 计数 self.count = numOccur # 下一个相同值的结点 self.nodeLink = None # 父节点 self.parent = parentNode # 孩子结点 self.children = &#123;&#125; def inc(self, numOccur): self.count += numOccur def disp(self, ind=1): print(" "*ind, self.name, ' ', self.count) for child in self.children.values(): child.disp(ind+1) ​ 初始化transaction计数 12345def createInitSet(dataSet): retDict = &#123;&#125; for trans in dataSet: retDict[frozenset(trans)] = 1 return retDict ​ 建立FP树 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879def createTree(dataSet, minSup = 1): ''' 创建根结点以及搜索链表表头 :param dataSet: :param minSup: :return: ''' # 搜索链表头 headerTable = &#123;&#125; # 在搜索用的链表头除记录每个item的频数 for trans in dataSet: for item in trans: headerTable[item] = headerTable.get(item, 0) + dataSet[trans] # 小于最小支持度的item不用考虑 for k in list(headerTable.keys()): if headerTable[k] &lt; minSup: del(headerTable[k]) freqItemSet = set(headerTable.keys()) # 如果不存在频繁项集则直接返回空 if len(freqItemSet) == 0: return None, None # 为每个结点增加一个指向下一个同值结点的指针 for k in headerTable.keys(): headerTable[k] = [headerTable[k], None] # 树根 retTree = treeNode('Null Set', 1, None) for tranSet, count in dataSet.items(): localD = &#123;&#125; for item in tranSet: if item in freqItemSet: localD[item] = headerTable[item][0] if len(localD) &gt; 0: # 每个transaction中的item按出现的次数从高到低排 orderedItems = [v[0] for v in sorted(localD.items(), key=lambda p: p[1], reverse=True)] # 建树 updateTree(orderedItems, retTree, headerTable, count) return retTree, headerTabledef updateTree(items, inTree, headerTable, count): ''' 每个transaction递归更新到树上，并更新搜索链表 :param items: :param inTree: :param headerTable: :param count: 每个transaction的出现次数 :return: ''' # 每个transaction的最高出现词数item直接接在root上 if items[0] in inTree.children: # 有该元素项时计数值+1 inTree.children[items[0]].inc(count) else: # 没有这个元素项时创建一个新节点 inTree.children[items[0]] = treeNode(items[0], count, inTree) # 更新头指针表或前一个相似元素项节点的指针指向新节点 if headerTable[items[0]][1] == None: headerTable[items[0]][1] = inTree.children[items[0]] else: updateHeader(headerTable[items[0]][1], inTree.children[items[0]]) # 递归建树 if len(items) &gt; 1: # 对剩下的元素项迭代调用updateTree函数 updateTree(items[1:], inTree.children[items[0]], headerTable, count) def updateHeader(nodeToTest, targetNode): ''' 找到链表尾加上一个 :param nodeToTest: :param targetNode: :return: ''' while (nodeToTest.nodeLink != None): nodeToTest = nodeToTest.nodeLink nodeToTest.nodeLink = targetNode ​ 在每次查询条件FP树时，需要递归寻找其条件前缀路径 12345678910111213141516171819202122def ascendTree(leafNode, prefixPath): ''' 递归寻找父节点 :param leafNode: :param prefixPath: :return: ''' if leafNode.parent != None: prefixPath.append(leafNode.name) ascendTree(leafNode.parent, prefixPath)def findPrefixPath(basePat, treeNode): condPats = &#123;&#125; while treeNode != None: prefixPath = [] # 获得某个叶子节点的前缀路径 ascendTree(treeNode, prefixPath) if len(prefixPath) &gt;= 2: # 去掉自己获得前缀路径，且权重为当前结点的权重，用于建立条件前缀树 condPats[frozenset(prefixPath[1:])] = treeNode.count treeNode = treeNode.nodeLink return condPats 进行频繁项挖掘 12345678910111213141516171819202122def mineTree(inTree, headerTable, minSup, preFix, freqItemList): ''' 递归查找频繁项集 :param inTree: FP树 :param headerTable: :param minSup: :param preFix: 当前前缀 :param freqItemList: 存储频繁项集 :return: ''' # 从出现次数少的开始找 bigL = [v[0] for v in sorted(headerTable.items(), key=lambda p: p[1][0])] for basePat in bigL: newFreqSet = preFix.copy() newFreqSet.add(basePat) freqItemList.append(newFreqSet) condPattBases = findPrefixPath(basePat, headerTable[basePat][1]) CondTree, Header = createTree(condPattBases, minSup) if Header != None: mineTree(CondTree, Header, minSup, newFreqSet, freqItemList) ​]]></content>
+    <title><![CDATA[机器学习实战--Apriori算法挖掘频繁项集]]></title>
+    <url>%2F2018%2F05%2F13%2FApriori%2F</url>
+    <content type="text"><![CDATA[Apriori算法是最著名的关联规则的挖掘方法，可以使用它挖掘频繁项集发现数据中的规律。著名的“啤酒与尿布”案例就是在分析大量超市的事务之后发现了“啤酒”与“尿布”这一频繁项集。这篇笔记主要是记录Apriori的Python3代码实现的，会就算法来讲解Apriori挖掘频繁项集的步骤，算法的详细内容在《数据挖掘-概念与技术》一书中有非常详细的讲解，这里不再赘述 完整代码在这里 数据格式 类似下方的二维数组，每一个list代表一个transaction，里面的每个数都是item的编号 1[[1,2,5], [2,4], [2,3], [1,2,4],[1,3], [2,3], [1,3], [1,2,3,5], [1,2,3]] 读取数据 12345678def loadDataSet(): thing_arr = [] with open('data/Groceries.txt', 'r') as f: X = f.read() thing_arr = json.loads(X) f.close() return thing_arr ​ 首先生成C1集合，将所有出现过的item编号都加入到C1中 1234567891011121314def createC1(dataSet): ''' 生成C1 :param dataSet: :return: ''' C1 = [] for transaction in dataSet: for item in transaction: if not [item] in C1: C1.append([item]) C1.sort() #将项集列表转换为不可变集和 return [frozenset(item) for item in C1] ​ 扫描数据集计数，去除Ck中的非频繁项集，生成L1 1234567891011121314151617181920212223def scanD(D, Ck, minSupport = 50): ''' 扫描事务集D过滤Ck :param D: :param Ck: :param minSupport: :return: ''' ssCnt = &#123;&#125; for tid in D: for can in Ck: if can.issubset(tid): if can not in ssCnt.keys() : ssCnt[can] = 1 else: ssCnt[can] += 1 retList = [] supportData = &#123;&#125; for key in ssCnt: support = ssCnt[key] if support &gt;= minSupport: retList.insert(0, key) supportData[key] = support return retList, supportData ​ 从Lk-1集中生成Ck集合，需要将Lk-1项集进行排序，然后将前k-2项相同的集合进行合并 123456789101112131415161718def aprioriGen(Lk, k): ''' 生成Ck :param Lk: :param k: :return: ''' retList = [] lenLk = len(Lk) for i in range(lenLk): for j in range(i+1, lenLk): L1 = list(Lk[i])[:k-2] L2 = list(Lk[j])[:k-2] L1.sort() L2.sort() if L1 == L2: retList.append(Lk[i] | Lk[j]) return retList ​ 将上述步骤结合起来，就可以生成所有的频繁项集，直到为空终止算法 12345678910111213def apriori(dataSet, minSupport = 50): C1 = createC1(dataSet=dataSet) D = [set(item) for item in dataSet] L1, supportData = scanD(D, C1, minSupport) L = [L1] k = 2 while(len(L[k-2]) &gt; 0): Ck = aprioriGen(L[k-2], k) Lk, supK = scanD(D, Ck, minSupport) supportData.update(supK) L.append(Lk) k += 1 return L, supportData 到此使用Apriori挖掘频繁项集就编写完了，后面还有关联规则的挖掘，未完。。 ​]]></content>
       <categories>
         <category>数据挖掘</category>
       </categories>
@@ -553,9 +582,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[机器学习实战--Apriori算法挖掘频繁项集]]></title>
-    <url>%2F2018%2F05%2F13%2FApriori%2F</url>
-    <content type="text"><![CDATA[Apriori算法是最著名的关联规则的挖掘方法，可以使用它挖掘频繁项集发现数据中的规律。著名的“啤酒与尿布”案例就是在分析大量超市的事务之后发现了“啤酒”与“尿布”这一频繁项集。这篇笔记主要是记录Apriori的Python3代码实现的，会就算法来讲解Apriori挖掘频繁项集的步骤，算法的详细内容在《数据挖掘-概念与技术》一书中有非常详细的讲解，这里不再赘述 完整代码在这里 数据格式 类似下方的二维数组，每一个list代表一个transaction，里面的每个数都是item的编号 1[[1,2,5], [2,4], [2,3], [1,2,4],[1,3], [2,3], [1,3], [1,2,3,5], [1,2,3]] 读取数据 12345678def loadDataSet(): thing_arr = [] with open('data/Groceries.txt', 'r') as f: X = f.read() thing_arr = json.loads(X) f.close() return thing_arr ​ 首先生成C1集合，将所有出现过的item编号都加入到C1中 1234567891011121314def createC1(dataSet): ''' 生成C1 :param dataSet: :return: ''' C1 = [] for transaction in dataSet: for item in transaction: if not [item] in C1: C1.append([item]) C1.sort() #将项集列表转换为不可变集和 return [frozenset(item) for item in C1] ​ 扫描数据集计数，去除Ck中的非频繁项集，生成L1 1234567891011121314151617181920212223def scanD(D, Ck, minSupport = 50): ''' 扫描事务集D过滤Ck :param D: :param Ck: :param minSupport: :return: ''' ssCnt = &#123;&#125; for tid in D: for can in Ck: if can.issubset(tid): if can not in ssCnt.keys() : ssCnt[can] = 1 else: ssCnt[can] += 1 retList = [] supportData = &#123;&#125; for key in ssCnt: support = ssCnt[key] if support &gt;= minSupport: retList.insert(0, key) supportData[key] = support return retList, supportData ​ 从Lk-1集中生成Ck集合，需要将Lk-1项集进行排序，然后将前k-2项相同的集合进行合并 123456789101112131415161718def aprioriGen(Lk, k): ''' 生成Ck :param Lk: :param k: :return: ''' retList = [] lenLk = len(Lk) for i in range(lenLk): for j in range(i+1, lenLk): L1 = list(Lk[i])[:k-2] L2 = list(Lk[j])[:k-2] L1.sort() L2.sort() if L1 == L2: retList.append(Lk[i] | Lk[j]) return retList ​ 将上述步骤结合起来，就可以生成所有的频繁项集，直到为空终止算法 12345678910111213def apriori(dataSet, minSupport = 50): C1 = createC1(dataSet=dataSet) D = [set(item) for item in dataSet] L1, supportData = scanD(D, C1, minSupport) L = [L1] k = 2 while(len(L[k-2]) &gt; 0): Ck = aprioriGen(L[k-2], k) Lk, supK = scanD(D, Ck, minSupport) supportData.update(supK) L.append(Lk) k += 1 return L, supportData 到此使用Apriori挖掘频繁项集就编写完了，后面还有关联规则的挖掘，未完。。 ​]]></content>
+    <title><![CDATA[机器学习实战--FP-growth算法挖掘频繁项集]]></title>
+    <url>%2F2018%2F05%2F13%2FFPgrowth%2F</url>
+    <content type="text"><![CDATA[FP-growth是频繁项集挖掘的一种优化算法。它先将事务先构造成一棵FP树，这样一来就不用像Apriori一项反复地扫描原来的事务了，大大提高了效率。这篇笔记主要是记录FP-growth的Python3代码实现的，会就算法来讲解FP-growth挖掘频繁项集的步骤，算法的详细内容在《数据挖掘-概念与技术》一书中有非常详细的讲解，这里不再赘述 完整代码在这里 数据格式 类似下方的二维数组，每一个list代表一个transaction，里面的每个数都是item的编号 1[[1,2,5], [2,4], [2,3], [1,2,4],[1,3], [2,3], [1,3], [1,2,3,5], [1,2,3]] 读取数据 12345678def loadDataSet(): thing_arr = [] with open('data/Groceries.txt', 'r') as f: X = f.read() thing_arr = json.loads(X) f.close() return thing_arr ​ FP-Growth实现起来相对复杂，需要定义树结点结构 1234567891011121314151617181920class treeNode: def __init__(self, nameValue, numOccur, parentNode): # 值 self.name = nameValue # 计数 self.count = numOccur # 下一个相同值的结点 self.nodeLink = None # 父节点 self.parent = parentNode # 孩子结点 self.children = &#123;&#125; def inc(self, numOccur): self.count += numOccur def disp(self, ind=1): print(" "*ind, self.name, ' ', self.count) for child in self.children.values(): child.disp(ind+1) ​ 初始化transaction计数 12345def createInitSet(dataSet): retDict = &#123;&#125; for trans in dataSet: retDict[frozenset(trans)] = 1 return retDict ​ 建立FP树 12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879def createTree(dataSet, minSup = 1): ''' 创建根结点以及搜索链表表头 :param dataSet: :param minSup: :return: ''' # 搜索链表头 headerTable = &#123;&#125; # 在搜索用的链表头除记录每个item的频数 for trans in dataSet: for item in trans: headerTable[item] = headerTable.get(item, 0) + dataSet[trans] # 小于最小支持度的item不用考虑 for k in list(headerTable.keys()): if headerTable[k] &lt; minSup: del(headerTable[k]) freqItemSet = set(headerTable.keys()) # 如果不存在频繁项集则直接返回空 if len(freqItemSet) == 0: return None, None # 为每个结点增加一个指向下一个同值结点的指针 for k in headerTable.keys(): headerTable[k] = [headerTable[k], None] # 树根 retTree = treeNode('Null Set', 1, None) for tranSet, count in dataSet.items(): localD = &#123;&#125; for item in tranSet: if item in freqItemSet: localD[item] = headerTable[item][0] if len(localD) &gt; 0: # 每个transaction中的item按出现的次数从高到低排 orderedItems = [v[0] for v in sorted(localD.items(), key=lambda p: p[1], reverse=True)] # 建树 updateTree(orderedItems, retTree, headerTable, count) return retTree, headerTabledef updateTree(items, inTree, headerTable, count): ''' 每个transaction递归更新到树上，并更新搜索链表 :param items: :param inTree: :param headerTable: :param count: 每个transaction的出现次数 :return: ''' # 每个transaction的最高出现词数item直接接在root上 if items[0] in inTree.children: # 有该元素项时计数值+1 inTree.children[items[0]].inc(count) else: # 没有这个元素项时创建一个新节点 inTree.children[items[0]] = treeNode(items[0], count, inTree) # 更新头指针表或前一个相似元素项节点的指针指向新节点 if headerTable[items[0]][1] == None: headerTable[items[0]][1] = inTree.children[items[0]] else: updateHeader(headerTable[items[0]][1], inTree.children[items[0]]) # 递归建树 if len(items) &gt; 1: # 对剩下的元素项迭代调用updateTree函数 updateTree(items[1:], inTree.children[items[0]], headerTable, count) def updateHeader(nodeToTest, targetNode): ''' 找到链表尾加上一个 :param nodeToTest: :param targetNode: :return: ''' while (nodeToTest.nodeLink != None): nodeToTest = nodeToTest.nodeLink nodeToTest.nodeLink = targetNode ​ 在每次查询条件FP树时，需要递归寻找其条件前缀路径 12345678910111213141516171819202122def ascendTree(leafNode, prefixPath): ''' 递归寻找父节点 :param leafNode: :param prefixPath: :return: ''' if leafNode.parent != None: prefixPath.append(leafNode.name) ascendTree(leafNode.parent, prefixPath)def findPrefixPath(basePat, treeNode): condPats = &#123;&#125; while treeNode != None: prefixPath = [] # 获得某个叶子节点的前缀路径 ascendTree(treeNode, prefixPath) if len(prefixPath) &gt;= 2: # 去掉自己获得前缀路径，且权重为当前结点的权重，用于建立条件前缀树 condPats[frozenset(prefixPath[1:])] = treeNode.count treeNode = treeNode.nodeLink return condPats 进行频繁项挖掘 12345678910111213141516171819202122def mineTree(inTree, headerTable, minSup, preFix, freqItemList): ''' 递归查找频繁项集 :param inTree: FP树 :param headerTable: :param minSup: :param preFix: 当前前缀 :param freqItemList: 存储频繁项集 :return: ''' # 从出现次数少的开始找 bigL = [v[0] for v in sorted(headerTable.items(), key=lambda p: p[1][0])] for basePat in bigL: newFreqSet = preFix.copy() newFreqSet.add(basePat) freqItemList.append(newFreqSet) condPattBases = findPrefixPath(basePat, headerTable[basePat][1]) CondTree, Header = createTree(condPattBases, minSup) if Header != None: mineTree(CondTree, Header, minSup, newFreqSet, freqItemList) ​]]></content>
       <categories>
         <category>数据挖掘</category>
       </categories>
@@ -577,6 +606,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Ubuntu下安装Matlab 2018a]]></title>
+    <url>%2F2018%2F04%2F23%2Fubuntu_matlab%2F</url>
+    <content type="text"><![CDATA[在Ubuntu在安装Matlab用于学习、研究用途。Linux上可以使用开源免费的Octave代替 下载Matlab 2018a 安装包 matlab是收费软件，所以这篇笔记没有提供下载和破解资源，各位想把Matlab用做学习研究用途的童鞋可以到各大PT站取下载 ​ 进入安装包内，和Windows安装一样，里面会有三个文件，分别是破解用的证书文件，光盘镜像1，光盘镜像2 ​ 创建挂载点~/matlab挂载映像文件1 123$ cd ~$ mkdir matlab $ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd1.iso ~/matlab/ ​ 挂载之后，进入根目录开始安装(注意不能直接在挂载目录下启动install) 12$ cd /$ sudo ./home/phoenix/matlab/install ​ 安装中提示输入key的可以到破解文件Crack中的readme.txt中找 按照提示进行安装，安装到一半时会提示插入光盘2，这时候就要挂载映像文件2 1$ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd2.iso ~/matlab/ ​ 安装好后第一次启动 12$ cd /usr/local/MATLAB/R2018a/bin$ sudo ./matlab ​ 选择不要联网激活，导入Crack中的license_standalone.lic文件 ​ 复制文件 1sudo cp -f YOUR_DOWNLOAD_DIR/Matlab2018aLinux64Crack/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so /usr/local/MATLAB/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl 再次启动 1$ sudo ./matlab]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>matlab</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Ubuntu下编译安装VLfeat]]></title>
     <url>%2F2018%2F04%2F23%2Fubuntu_vlfeat%2F</url>
     <content type="text"><![CDATA[The VLFeat open source library implements popular computer vision algorithms specializing in image understanding and local features extraction and matching. Algorithms include Fisher Vector, VLAD, SIFT, MSER, k-means, hierarchical k-means, agglomerative information bottleneck, SLIC superpixels, quick shift superpixels, large scale SVM training, and many others. It is written in C for efficiency and compatibility, with interfaces in MATLAB for ease of use, and detailed documentation throughout. It supports Windows, Mac OS X, and Linux. 下载源码 解压进入vlfeat的根目录vlfeat_ROOT 修改Makefile 解除注释或添加一行 1DISABLE_OPENMP=yes ​ 打开/etc/ld.so.conf添加一行 1vlfeat_ROOT/toolbox/mex/mexa64 ​ 刷新环境配置 1sudo ldconfig ​ 再次进入vlfeat_ROOT，输入命令 1make MEX=matlab_ROOT/bin/mex ​ 编译成功后进入matlab命令行输入 1run('vlfeat_ROOT/toolbox/vl_setup.m') 运行成功后查看版本，正常显示后完成安装 1vl_version ​ 在matlab起始位置下(我的是HOME目录下)添加一个startup.m文件写上 1run('vlfeat_ROOT/toolbox/vl_setup.m') 就可以每次启动时自动加载vlfeat ​]]></content>
@@ -587,18 +628,6 @@
         <tag>Ubuntu</tag>
         <tag>matlab</tag>
         <tag>VLfeat</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Ubuntu下安装Matlab 2018a]]></title>
-    <url>%2F2018%2F04%2F23%2Fubuntu_matlab%2F</url>
-    <content type="text"><![CDATA[在Ubuntu在安装Matlab用于学习、研究用途。Linux上可以使用开源免费的Octave代替 下载Matlab 2018a 安装包 matlab是收费软件，所以这篇笔记没有提供下载和破解资源，各位想把Matlab用做学习研究用途的童鞋可以到各大PT站取下载 ​ 进入安装包内，和Windows安装一样，里面会有三个文件，分别是破解用的证书文件，光盘镜像1，光盘镜像2 ​ 创建挂载点~/matlab挂载映像文件1 123$ cd ~$ mkdir matlab $ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd1.iso ~/matlab/ ​ 挂载之后，进入根目录开始安装(注意不能直接在挂载目录下启动install) 12$ cd /$ sudo ./home/phoenix/matlab/install ​ 安装中提示输入key的可以到破解文件Crack中的readme.txt中找 按照提示进行安装，安装到一半时会提示插入光盘2，这时候就要挂载映像文件2 1$ sudo mount -t auto -o loop YOUR_DOWNLOAD_DIR/R2018a_glnxa64_dvd2.iso ~/matlab/ ​ 安装好后第一次启动 12$ cd /usr/local/MATLAB/R2018a/bin$ sudo ./matlab ​ 选择不要联网激活，导入Crack中的license_standalone.lic文件 ​ 复制文件 1sudo cp -f YOUR_DOWNLOAD_DIR/Matlab2018aLinux64Crack/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl/libmwlmgrimpl.so /usr/local/MATLAB/R2018a/bin/glnxa64/matlab_startup_plugins/lmgrimpl 再次启动 1$ sudo ./matlab]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>Ubuntu</tag>
-        <tag>matlab</tag>
       </tags>
   </entry>
   <entry>
@@ -711,9 +740,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[多维缩放(MDS)]]></title>
-    <url>%2F2018%2F03%2F11%2FMDS%2F</url>
-    <content type="text"><![CDATA[多维缩放(multidimensional scaling ,MDS)，是另外一种线性降维方式，与主成分分析法和线性降维分析法都不同的是，多维缩放的目标不是保留数据的最大可分性，而是更加关注与高维数据内部的特征。多维缩放算法集中于保留高维空间中的“相似度”信息，而在一般的问题解决的过程中，这个“相似度”通常用欧式距离来定义。 假设D为m个样本在高维空间中的距离矩阵，distij为第i个样本与第j个样本的欧式距离 Z是样本在低维中映射的表示，那么，多维缩放的降维目标就是要保证： 令B=ZTZ，B为降维后样本的内积矩阵，bij=ziTzj 规定降维后的样本为中心化样本，因为只保留了距离信息，无论结果怎么旋转、平移都可以，即 那么 令 综合以上各式，得到 所以可以使用距离矩阵D来求得内积矩阵B， 为了完成降维，可以将B进行特征值分解 仅保留最大的前d’个特征值以及相应的特征向量，就可以得出降维后的结果]]></content>
+    <title><![CDATA[等度量映射(ISOMAP)]]></title>
+    <url>%2F2018%2F03%2F11%2FIsomap%2F</url>
+    <content type="text"><![CDATA[等度量映射(Isomap)是最经典的非线性映射降维方法之一，它在MDS的基础上引入了“测地距离”的概念，直接解决了MDS使用欧氏距离无法应对非线性流形的问题。 测地距离(Geometric Distance)是高维流形中两点之间的最短距离，高维流形中，空间是不规则的，所以最短距离不一定是直线距离(欧氏距离)。就像蚂蚁从立方体的一面爬到另一面，不能直接横穿立方体一样。 上图最左边的图中两个点的最近距离应该是蓝色实线的距离，而不应该是虚线的距离。 真实的测地距离是非常难以求出的，Isomap基于流形局部近似于欧式空间的定义提出了一种近似的求解方式 求得原样本的KNN图，并依据定义保留其欧式距离 所有非KNN的点间的距离规定为无穷大 用dijkstra或floyd求出任意两点的最短路便可近似表示两点间的测地距离 最后Isomap将得到的测地距离矩阵输入MDS完成降维; 感受下效果]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -723,9 +752,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[等度量映射(ISOMAP)]]></title>
-    <url>%2F2018%2F03%2F11%2FIsomap%2F</url>
-    <content type="text"><![CDATA[等度量映射(Isomap)是最经典的非线性映射降维方法之一，它在MDS的基础上引入了“测地距离”的概念，直接解决了MDS使用欧氏距离无法应对非线性流形的问题。 测地距离(Geometric Distance)是高维流形中两点之间的最短距离，高维流形中，空间是不规则的，所以最短距离不一定是直线距离(欧氏距离)。就像蚂蚁从立方体的一面爬到另一面，不能直接横穿立方体一样。 上图最左边的图中两个点的最近距离应该是蓝色实线的距离，而不应该是虚线的距离。 真实的测地距离是非常难以求出的，Isomap基于流形局部近似于欧式空间的定义提出了一种近似的求解方式 求得原样本的KNN图，并依据定义保留其欧式距离 所有非KNN的点间的距离规定为无穷大 用dijkstra或floyd求出任意两点的最短路便可近似表示两点间的测地距离 最后Isomap将得到的测地距离矩阵输入MDS完成降维; 感受下效果]]></content>
+    <title><![CDATA[多维缩放(MDS)]]></title>
+    <url>%2F2018%2F03%2F11%2FMDS%2F</url>
+    <content type="text"><![CDATA[多维缩放(multidimensional scaling ,MDS)，是另外一种线性降维方式，与主成分分析法和线性降维分析法都不同的是，多维缩放的目标不是保留数据的最大可分性，而是更加关注与高维数据内部的特征。多维缩放算法集中于保留高维空间中的“相似度”信息，而在一般的问题解决的过程中，这个“相似度”通常用欧式距离来定义。 假设D为m个样本在高维空间中的距离矩阵，distij为第i个样本与第j个样本的欧式距离 Z是样本在低维中映射的表示，那么，多维缩放的降维目标就是要保证： 令B=ZTZ，B为降维后样本的内积矩阵，bij=ziTzj 规定降维后的样本为中心化样本，因为只保留了距离信息，无论结果怎么旋转、平移都可以，即 那么 令 综合以上各式，得到 所以可以使用距离矩阵D来求得内积矩阵B， 为了完成降维，可以将B进行特征值分解 仅保留最大的前d’个特征值以及相应的特征向量，就可以得出降维后的结果]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -871,10 +900,10 @@
         <category>网络爬虫</category>
       </categories>
       <tags>
-        <tag>环境搭建</tag>
         <tag>BeautifulSoup</tag>
         <tag>网络爬虫</tag>
         <tag>python</tag>
+        <tag>环境搭建</tag>
       </tags>
   </entry>
   <entry>
@@ -917,18 +946,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Fcitx下全角中括号无法输入的问题]]></title>
-    <url>%2F2018%2F02%2F15%2Ffcitx%2F</url>
-    <content type="text"><![CDATA[本篇文章将会介绍如何修复ubuntu下Fcitx输入法无法输入全角（中文）中括号【】并使用[]来切换候选字的方法 操作步聚： 打开fcitx字符映射文件 1sudo gedit /usr/share/fcitx/data/punc.mb.zh_CN ​ 修改 将 12[ ·] 「 」 修改为 12[ 【] 】 重启输入法完成修改]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>环境搭建</tag>
-        <tag>Fcitx</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[受限制玻尔兹曼机(Restricted Bolzmann Machine)以及自编码器(Autoencoder)]]></title>
     <url>%2F2018%2F02%2F15%2FRBM%2F</url>
     <content type="text"><![CDATA[受限制玻尔兹曼机(Restricted Bolzmann Machine, RBM)与自编码器(Autoencoder, AE)是神经网络的两种基本结构，两个结构都能起到降维的作用，都可以用来对神经网络进行预训练（pre-training），这种预训练都是无监督的。由于RBM与MLP及其相似，一直以来我就困惑于他们两者，终于花了几天时间来搞清楚他们的区别和训练方法，发现他们甚至不是并列的关系。。 一、知识脉络受限制玻尔兹曼机 -&gt; 深度信念网络(Deep Blief Network, DBN) 自编码器 -&gt; 堆叠自编码器(Stacked Autoencoderm, SAE) 二、自编码器自编码器的输入维度与输出维度相等，训练目的是使数据的特征得到最大的保留，去除冗余信息，一个单层的自编码器结构如下图 当然一个自编码器也可以有很多层： 简化来看就是输入层-&gt;隐藏层-&gt;输出层，自编码器的目的就是使重建(reconstruction)的输出层能尽量还原输入层，同时获得中间隐藏层(最窄的橙色那层)既是降维的结果。若输入层到隐藏层间的部分称为编码器(灰色)，记号为f(x)，隐藏层到输出层之间的部分称为解码器(黄色)，记号为g(x)，那么自编码器的数学训练目标就是 三、受限制玻尔兹曼机受限制玻尔兹曼机是一个双层结构，可见层(visible)与隐藏层(hidden)，图结构为一个二分图，即可见层只与隐藏层之间有连接，但是层内是无连接的，因此RBM的性质：当给定可见层神经元的状态时，各隐藏层神经元的激活条件独立；反之当给定隐藏层神经元的状态时，可见层神经元的激活也条件独立。基本结构如下 受限制玻尔兹曼机的训练目的是为了最大程度的保留概率分布，定义了一个能量函数的概念 用矩阵来表示就是 a与b分别是可视层与隐藏层的偏置项(bias) v, h联合概率分布是 其中Z是所有[v, h]对对应的能量的总和，v的边缘概率分布如下，h同理 由于受限玻尔兹曼机结构上的特点，所以各隐藏层之间的神经元条件概率独立，即 可见层v同理 能量函数的具体推导过程将会在后面的文章中详细解释 四、训练方法就像RBM是由物理模型转化过来一样，训练方法与传统的反向传播(BP)也不一样 RBM最早的训练方法有Gibbs sampling，通过不断地来回采样来训练，如下图 然而这样的方法太慢，所以Hinton大神又提出了CD-k(contrastive divergence)算法，即只需要来回重复k次就可以，以CD-1为例: 就可以完成一次迭代，这就像是两种不同温度的液体进行混合，如果两者的温度差距较大，在混合的过程中就会产生较大的梯度，而受限制玻尔兹曼机的训练目标就是使得两边的“温度”能够尽量的相近，而在数据中这个“温度”的体现就是数据分布。也就是说，使用RBM进行模型的初始化训练能够最大程度的保留数据分布，防止梯度爆炸和梯度消失问题的出现。 五、深度信念网络与逐层训练由多层受限制玻尔兹曼机堆叠起来的网络叫作深度信念网络(DBN)。深度信念网络在最后一层接入一个Softmax层用作分类，训练的时候采取逐层训练+微调的方式 逐层训练就是从输入层开始将网络的相邻两层当作一个受限制玻尔兹曼机进行无监督训练，训练方法见上一节，训练后将上一个RBM的隐藏层当作下一个RBM的可见层继续 逐层无监督训练完毕后，将进行反向传播训练对模型进行微调，从输入端输入数据，最后从输出端开始进行反向传播 自编码器虽然只是要保证输出端与输入端尽量接近，但是随着自编码器堆叠深度的加深，就会出现类似梯度弥散与梯度爆炸等问题，Hinton大神同样也使用了类似RBM的训练方法对深度自编码器进行逐层训练，使模型的得到了很好的初始化，加快了模型的解的最优性和收敛速度。 六、参考 受限玻尔兹曼机与深度置信网络 Hinton G E. A practical guide to training restricted Boltzmann machines[M]//Neural networks: Tricks of the trade. Springer, Berlin, Heidelberg, 2012: 599-619. Bengio Y, Lamblin P, Popovici D, et al. Greedy layer-wise training of deep networks[C]//Advances in neural information processing systems. 2007: 153-160. Hinton G E, Osindero S, Teh Y W. A fast learning algorithm for deep belief nets[J]. Neural computation, 2006, 18(7): 1527-1554. Hinton G E, Salakhutdinov R R. Reducing the dimensionality of data with neural networks[J]. science, 2006, 313(5786): 504-507.]]></content>
@@ -938,10 +955,22 @@
       <tags>
         <tag>Machine Learning</tag>
         <tag>Deep Learning</tag>
-        <tag>Autoencoder</tag>
         <tag>RBM</tag>
-        <tag>DBN</tag>
         <tag>contrastive divergence</tag>
+        <tag>Autoencoder</tag>
+        <tag>DBN</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Fcitx下全角中括号无法输入的问题]]></title>
+    <url>%2F2018%2F02%2F15%2Ffcitx%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍如何修复ubuntu下Fcitx输入法无法输入全角（中文）中括号【】并使用[]来切换候选字的方法 操作步聚： 打开fcitx字符映射文件 1sudo gedit /usr/share/fcitx/data/punc.mb.zh_CN ​ 修改 将 12[ ·] 「 」 修改为 12[ 【] 】 重启输入法完成修改]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Fcitx</tag>
       </tags>
   </entry>
   <entry>
@@ -994,9 +1023,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Codeforce 920A Water The Garden]]></title>
-    <url>%2F2018%2F02%2F06%2Fcodeforce920A%2F</url>
-    <content type="text"><![CDATA[It is winter now, and Max decided it’s about time he watered the garden. The garden can be represented as n consecutive garden beds, numbered from 1 to n. k beds contain water taps (i-th tap is located in the bed x**i), which, if turned on, start delivering water to neighbouring beds. If the tap on the bed x**i is turned on, then after one second has passed, the bed x**i will be watered; after two seconds have passed, the beds from the segment [x**i - 1, x**i + 1] will be watered (if they exist); after j seconds have passed (j is an integer number), the beds from the segment [x**i - (j - 1), x**i + (j - 1)] will be watered (if they exist). Nothing changes during the seconds, so, for example, we can’t say that the segment [x**i - 2.5, x**i + 2.5] will be watered after 2.5seconds have passed; only the segment [x**i - 2, x**i + 2] will be watered at that moment. The garden from test 1. White colour denotes a garden bed without a tap, red colour — a garden bed with a tap. The garden from test 1 after 2 seconds have passed after turning on the tap. White colour denotes an unwatered garden bed, blue colour — a watered bed. Max wants to turn on all the water taps at the same moment, and now he wonders, what is the minimum number of seconds that have to pass after he turns on some taps until the whole garden is watered. Help him to find the answer! Input The first line contains one integer t — the number of test cases to solve (1 ≤ t ≤ 200). Then t test cases follow. The first line of each test case contains two integers n and k(1 ≤ n ≤ 200, 1 ≤ k ≤ n) — the number of garden beds and water taps, respectively. Next line contains k integers x**i (1 ≤ x**i ≤ n) — the location of i-th water tap. It is guaranteed that for each condition x**i - 1 &lt; x**i holds. It is guaranteed that the sum of n over all test cases doesn’t exceed 200. Note that in hacks you have to set t = 1. Output For each test case print one integer — the minimum number of seconds that have to pass after Max turns on some of the water taps, until the whole garden is watered. Example input 123456735 133 31 2 34 11 output 123314 Note The first example consists of 3 tests: There are 5 garden beds, and a water tap in the bed 3. If we turn it on, then after 1second passes, only bed 3 will be watered; after 2 seconds pass, beds [1, 3] will be watered, and after 3 seconds pass, everything will be watered. There are 3 garden beds, and there is a water tap in each one. If we turn all of them on, then everything will be watered after 1 second passes. There are 4 garden beds, and only one tap in the bed 1. It will take 4 seconds to water, for example, bed 4. C++ Code 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int t, n, k, tmp = 0, pretmp; int mi = 0; while(~scanf("%d", &amp;t)) &#123; for(int i = 0; i &lt; t; i++) &#123; scanf("%d%d", &amp;n, &amp;k); for(int j = 0; j &lt; k; j++) &#123; pretmp = tmp; scanf("%d", &amp;tmp); if(j == 0) mi = tmp; if(j &gt; 0 &amp;&amp; j &lt; k-1) mi = max(mi, (tmp-pretmp+2)/2); if(j == k-1) &#123; mi = max(mi, (tmp-pretmp+2)/2); mi = max(mi, n-tmp+1); &#125; &#125; printf("%d\n", mi); &#125; &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Codeforce 920B Tea Queue]]></title>
+    <url>%2F2018%2F02%2F06%2Fcodeforce920B%2F</url>
+    <content type="text"><![CDATA[Recently n students from city S moved to city P to attend a programming camp. They moved there by train. In the evening, all students in the train decided that they want to drink some tea. Of course, no two people can use the same teapot simultaneously, so the students had to form a queue to get their tea. i-th student comes to the end of the queue at the beginning of l**i-th second. If there are multiple students coming to the queue in the same moment, then the student with greater index comes after the student with lesser index. Students in the queue behave as follows: if there is nobody in the queue before the student, then he uses the teapot for exactly one second and leaves the queue with his tea; otherwise the student waits for the people before him to get their tea. If at the beginning of r**i-th second student i still cannot get his tea (there is someone before him in the queue), then he leaves the queue without getting any tea. For each student determine the second he will use the teapot and get his tea (if he actually gets it). Input The first line contains one integer t — the number of test cases to solve (1 ≤ t ≤ 1000). Then t test cases follow. The first line of each test case contains one integer n (1 ≤ n ≤ 1000) — the number of students. Then n lines follow. Each line contains two integer l**i, r**i (1 ≤ l**i ≤ r**i ≤ 5000) — the second i-th student comes to the end of the queue, and the second he leaves the queue if he still cannot get his tea. It is guaranteed that for every condition l**i - 1 ≤ l**i holds. The sum of n over all test cases doesn’t exceed 1000. Note that in hacks you have to set t = 1. Output For each test case print n integers. i-th of them must be equal to the second when i-th student gets his tea, or 0 if he leaves without tea. Example input 12345678221 31 431 51 12 3 output 121 2 1 0 2 Note The example contains 2 tests: During 1-st second, students 1 and 2 come to the queue, and student 1 gets his tea. Student 2 gets his tea during 2-nd second. During 1-st second, students 1 and 2 come to the queue, student 1 gets his tea, and student 2 leaves without tea. During 2-nd second, student 3 comes and gets his tea. C++ Code 12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int t; int cur = 0; int num; int l, r; int arr[1005]; scanf("%d", &amp;t); while(t--) &#123; scanf("%d", &amp;num); cur = 0; for(int i = 0; i &lt; num; i++) &#123; scanf("%d%d", &amp;l, &amp;r); if(l &lt;= cur) &#123; if(cur &gt;= r) arr[i] = 0; else &#123; arr[i] = ++cur; &#125; &#125; else &#123; cur = l; arr[i] = l; &#125; &#125; for(int i = 0; i &lt; num; i++) printf("%d ", arr[i]); printf("\n"); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -1006,9 +1035,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Codeforce 920B Tea Queue]]></title>
-    <url>%2F2018%2F02%2F06%2Fcodeforce920B%2F</url>
-    <content type="text"><![CDATA[Recently n students from city S moved to city P to attend a programming camp. They moved there by train. In the evening, all students in the train decided that they want to drink some tea. Of course, no two people can use the same teapot simultaneously, so the students had to form a queue to get their tea. i-th student comes to the end of the queue at the beginning of l**i-th second. If there are multiple students coming to the queue in the same moment, then the student with greater index comes after the student with lesser index. Students in the queue behave as follows: if there is nobody in the queue before the student, then he uses the teapot for exactly one second and leaves the queue with his tea; otherwise the student waits for the people before him to get their tea. If at the beginning of r**i-th second student i still cannot get his tea (there is someone before him in the queue), then he leaves the queue without getting any tea. For each student determine the second he will use the teapot and get his tea (if he actually gets it). Input The first line contains one integer t — the number of test cases to solve (1 ≤ t ≤ 1000). Then t test cases follow. The first line of each test case contains one integer n (1 ≤ n ≤ 1000) — the number of students. Then n lines follow. Each line contains two integer l**i, r**i (1 ≤ l**i ≤ r**i ≤ 5000) — the second i-th student comes to the end of the queue, and the second he leaves the queue if he still cannot get his tea. It is guaranteed that for every condition l**i - 1 ≤ l**i holds. The sum of n over all test cases doesn’t exceed 1000. Note that in hacks you have to set t = 1. Output For each test case print n integers. i-th of them must be equal to the second when i-th student gets his tea, or 0 if he leaves without tea. Example input 12345678221 31 431 51 12 3 output 121 2 1 0 2 Note The example contains 2 tests: During 1-st second, students 1 and 2 come to the queue, and student 1 gets his tea. Student 2 gets his tea during 2-nd second. During 1-st second, students 1 and 2 come to the queue, student 1 gets his tea, and student 2 leaves without tea. During 2-nd second, student 3 comes and gets his tea. C++ Code 12345678910111213141516171819202122232425262728293031323334353637383940414243#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int t; int cur = 0; int num; int l, r; int arr[1005]; scanf("%d", &amp;t); while(t--) &#123; scanf("%d", &amp;num); cur = 0; for(int i = 0; i &lt; num; i++) &#123; scanf("%d%d", &amp;l, &amp;r); if(l &lt;= cur) &#123; if(cur &gt;= r) arr[i] = 0; else &#123; arr[i] = ++cur; &#125; &#125; else &#123; cur = l; arr[i] = l; &#125; &#125; for(int i = 0; i &lt; num; i++) printf("%d ", arr[i]); printf("\n"); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Codeforce 920A Water The Garden]]></title>
+    <url>%2F2018%2F02%2F06%2Fcodeforce920A%2F</url>
+    <content type="text"><![CDATA[It is winter now, and Max decided it’s about time he watered the garden. The garden can be represented as n consecutive garden beds, numbered from 1 to n. k beds contain water taps (i-th tap is located in the bed x**i), which, if turned on, start delivering water to neighbouring beds. If the tap on the bed x**i is turned on, then after one second has passed, the bed x**i will be watered; after two seconds have passed, the beds from the segment [x**i - 1, x**i + 1] will be watered (if they exist); after j seconds have passed (j is an integer number), the beds from the segment [x**i - (j - 1), x**i + (j - 1)] will be watered (if they exist). Nothing changes during the seconds, so, for example, we can’t say that the segment [x**i - 2.5, x**i + 2.5] will be watered after 2.5seconds have passed; only the segment [x**i - 2, x**i + 2] will be watered at that moment. The garden from test 1. White colour denotes a garden bed without a tap, red colour — a garden bed with a tap. The garden from test 1 after 2 seconds have passed after turning on the tap. White colour denotes an unwatered garden bed, blue colour — a watered bed. Max wants to turn on all the water taps at the same moment, and now he wonders, what is the minimum number of seconds that have to pass after he turns on some taps until the whole garden is watered. Help him to find the answer! Input The first line contains one integer t — the number of test cases to solve (1 ≤ t ≤ 200). Then t test cases follow. The first line of each test case contains two integers n and k(1 ≤ n ≤ 200, 1 ≤ k ≤ n) — the number of garden beds and water taps, respectively. Next line contains k integers x**i (1 ≤ x**i ≤ n) — the location of i-th water tap. It is guaranteed that for each condition x**i - 1 &lt; x**i holds. It is guaranteed that the sum of n over all test cases doesn’t exceed 200. Note that in hacks you have to set t = 1. Output For each test case print one integer — the minimum number of seconds that have to pass after Max turns on some of the water taps, until the whole garden is watered. Example input 123456735 133 31 2 34 11 output 123314 Note The first example consists of 3 tests: There are 5 garden beds, and a water tap in the bed 3. If we turn it on, then after 1second passes, only bed 3 will be watered; after 2 seconds pass, beds [1, 3] will be watered, and after 3 seconds pass, everything will be watered. There are 3 garden beds, and there is a water tap in each one. If we turn all of them on, then everything will be watered after 1 second passes. There are 4 garden beds, and only one tap in the bed 1. It will take 4 seconds to water, for example, bed 4. C++ Code 123456789101112131415161718192021222324252627282930313233343536#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int t, n, k, tmp = 0, pretmp; int mi = 0; while(~scanf("%d", &amp;t)) &#123; for(int i = 0; i &lt; t; i++) &#123; scanf("%d%d", &amp;n, &amp;k); for(int j = 0; j &lt; k; j++) &#123; pretmp = tmp; scanf("%d", &amp;tmp); if(j == 0) mi = tmp; if(j &gt; 0 &amp;&amp; j &lt; k-1) mi = max(mi, (tmp-pretmp+2)/2); if(j == k-1) &#123; mi = max(mi, (tmp-pretmp+2)/2); mi = max(mi, n-tmp+1); &#125; &#125; printf("%d\n", mi); &#125; &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -1089,6 +1118,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[LeetCode 29 Divide Two Integers]]></title>
+    <url>%2F2018%2F01%2F25%2Fleetcode29%2F</url>
+    <content type="text"><![CDATA[Divide two integers without using multiplication, division and mod operator. If it is overflow, return MAX_INT. overflow特殊情况：-2147483648 / (-1) = MAX_INT = 2147483647 12345678910111213141516171819202122232425class Solution: def divide(self, dividend, divisor): """ :type dividend: int :type divisor: int :rtype: int """ if dividend == -2147483648 and divisor == -1: return 2147483647 a = abs(dividend) b = abs(divisor) arr = [] while(b &lt;= a): arr.append(b) b &lt;&lt;= 1 sum = 0 ret = 0 for i in range(len(arr)-1, -1, -1): if sum + arr[i] &lt;= a: sum += arr[i] ret += (1&lt;&lt;i) if(((dividend &gt; 0) and (divisor &lt; 0)) or ((dividend &lt; 0) and (divisor &gt; 0))): return -ret else: return ret]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[LeetCode 25 Reverse Nodes in k-Group]]></title>
     <url>%2F2018%2F01%2F25%2Fleetcode25%2F</url>
     <content type="text"><![CDATA[Given a linked list, reverse the nodes of a linked list k at a time and return its modified list. k is a positive integer and is less than or equal to the length of the linked list. If the number of nodes is not a multiple of k then left-out nodes in the end should remain as it is. You may not alter the values in the nodes, only nodes itself may be changed. Only constant memory is allowed. For example,Given this linked list: 1-&gt;2-&gt;3-&gt;4-&gt;5 For k = 2, you should return: 2-&gt;1-&gt;4-&gt;3-&gt;5 For k = 3, you should return: 3-&gt;2-&gt;1-&gt;4-&gt;5 Leetcode 24的扩展版，k个一组进行翻转，最后不到k个的不翻转 没轮一共翻转k-1次，每次都将后一个node连到已经连好的链的最前面，已经连好的链首节点之前的一个节点和尾节点两个节点标记为root、head Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def reverseKGroup(self, head, k): """ :type head: ListNode :type k: int :rtype: ListNode """ res = root = ListNode(-1) root.next = head tmp = head cnt = 0 while(tmp != None): tmp = tmp.next cnt += 1 while(cnt &gt;= k): for i in range(k-1): node = root.next root.next = head.next head.next = root.next.next root.next.next = node root = head head = head.next cnt -= k return res.next]]></content>
@@ -1101,15 +1142,16 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 29 Divide Two Integers]]></title>
-    <url>%2F2018%2F01%2F25%2Fleetcode29%2F</url>
-    <content type="text"><![CDATA[Divide two integers without using multiplication, division and mod operator. If it is overflow, return MAX_INT. overflow特殊情况：-2147483648 / (-1) = MAX_INT = 2147483647 12345678910111213141516171819202122232425class Solution: def divide(self, dividend, divisor): """ :type dividend: int :type divisor: int :rtype: int """ if dividend == -2147483648 and divisor == -1: return 2147483647 a = abs(dividend) b = abs(divisor) arr = [] while(b &lt;= a): arr.append(b) b &lt;&lt;= 1 sum = 0 ret = 0 for i in range(len(arr)-1, -1, -1): if sum + arr[i] &lt;= a: sum += arr[i] ret += (1&lt;&lt;i) if(((dividend &gt; 0) and (divisor &lt; 0)) or ((dividend &lt; 0) and (divisor &gt; 0))): return -ret else: return ret]]></content>
+    <title><![CDATA[Linux提升物理内存的使用率]]></title>
+    <url>%2F2018%2F01%2F24%2Fubuntu_improve%2F</url>
+    <content type="text"><![CDATA[介绍如何在Linux下调整交换分区swap的使用条件 在UBUNTU系统里面，并不是你的物理内存全部耗尽之后，系统才使用swap分区！系统的swappiness设定值，对如何使用swap分区是有着很大的联系。 swappiness=0 的时候表示最大限度使用物理内存，然后才是 swap空间swappiness＝100的时候表示积极的使用swap分区，并且把内存上的数据及时的搬运到swap空间里面 上面2个设置是极端设置，对于UBUNTU系统的默热值来说，这个值=60，如果想最佳化，可以修改为10-20左右！ 在ubuntu17以后移除了交换分区这一概念，改为交换文件 打开终端，输入查看 swappiness 的当前参数（默认应该看到的是60） 1cat /proc/sys/vm/swappiness 输入下面内容，修改这个参数为10（执行这一步只是临时修改，如果重启又会恢复60） 1sudo sysctl vm.swappiness=10 若要持久化配置，可以打开/etc/sysctl.conf文件 1sudo gedit /etc/sysctl.conf 添加一行 1vm.swappiness=10 ​]]></content>
       <categories>
-        <category>ACM</category>
+        <category>环境搭建</category>
       </categories>
       <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
+        <tag>环境搭建</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -1124,19 +1166,6 @@
         <tag>Linux</tag>
         <tag>Ubuntu</tag>
         <tag>git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux提升物理内存的使用率]]></title>
-    <url>%2F2018%2F01%2F24%2Fubuntu_improve%2F</url>
-    <content type="text"><![CDATA[介绍如何在Linux下调整交换分区swap的使用条件 在UBUNTU系统里面，并不是你的物理内存全部耗尽之后，系统才使用swap分区！系统的swappiness设定值，对如何使用swap分区是有着很大的联系。 swappiness=0 的时候表示最大限度使用物理内存，然后才是 swap空间swappiness＝100的时候表示积极的使用swap分区，并且把内存上的数据及时的搬运到swap空间里面 上面2个设置是极端设置，对于UBUNTU系统的默热值来说，这个值=60，如果想最佳化，可以修改为10-20左右！ 在ubuntu17以后移除了交换分区这一概念，改为交换文件 打开终端，输入查看 swappiness 的当前参数（默认应该看到的是60） 1cat /proc/sys/vm/swappiness 输入下面内容，修改这个参数为10（执行这一步只是临时修改，如果重启又会恢复60） 1sudo sysctl vm.swappiness=10 若要持久化配置，可以打开/etc/sysctl.conf文件 1sudo gedit /etc/sysctl.conf 添加一行 1vm.swappiness=10 ​]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>环境搭建</tag>
-        <tag>Linux</tag>
-        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -1164,9 +1193,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 24 Swap Nodes in Pairs]]></title>
-    <url>%2F2018%2F01%2F20%2Fleetcode24%2F</url>
-    <content type="text"><![CDATA[Given a linked list, swap every two adjacent nodes and return its head. For example,Given 1-&gt;2-&gt;3-&gt;4, you should return the list as 2-&gt;1-&gt;4-&gt;3. Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed. Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def swapPairs(self, head): """ :type head: ListNode :rtype: ListNode """ if head == None or head.next == None: return head ret = head.next i = head j = head.next pre = None while j != None: i.next = j.next j.next = i if pre != None: pre.next = j if i.next != None: pre = i i = i.next j = i.next else: break return ret]]></content>
+    <title><![CDATA[LeetCode 15 3Sum]]></title>
+    <url>%2F2018%2F01%2F20%2Fleetcode15%2F</url>
+    <content type="text"><![CDATA[T Sum问题的O(n)解决方法； N Sum类的问题的一般解决方法； Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not contain duplicate triplets. 123456789&gt; For example, given array S = [-1, 0, 1, 2, -1, -4],&gt;&gt; A solution set is:&gt; [&gt; [-1, 0, 1],&gt; [-1, -1, 2]&gt; ]&gt;&gt; Two sum类问题，找两个数的和为一个定值的问题，如果直接使用二分查找，排序+查找或者在有序数组中直接查找的复杂度都是O(nlogn)，有的题卡复杂度的就过不去 Two Sum问题的一般做法对无序数组进行排序后（若数组已经是有序的化则不需要排序），设置两个指针left、right指向数组的首尾，target是要查找的目标 如果arr[left] + arr[right] == target，查找到了 如果arr[left] + arr[right] &lt; target，按照遍历的方式right往左移，right -= 1 如果arr[left] + arr[right] &gt; target，很显然right不需要再往左移动了，直接进入下一轮迭代，即left += 1，right不动 right不用像遍历一样回到最右边吗？不用。因为现在的arr[left]与right右边的数相加都是大于target的（不然right不会向左移），那么left再向右移动arr[left]只会更大，right也就不用再回到右边了 最后注意下重复数字答案重复的问题 Two Sum问题的这种解决方法排序+查找复杂度依然是O(nlogn)，但是主要是因为排序的消耗。如果题目已经给了有序的数列，那么复杂度将会降为O(n) N Sum 问题 对前几位进行遍历，对最后两维做Two Sum Python Code 1234567891011121314151617181920212223242526272829303132class Solution(object): def threeSum(self, nums): """ :type nums: List[int] :rtype: List[List[int]] """ ans = [] if len(nums) &lt; 3: return [] nums.sort() for i in range(len(nums) - 2): if nums[i] &gt; 0: break if i &gt; 0 and nums[i] == nums[i-1]: continue l = i+1 r = len(nums)-1 while l &lt; r: if nums[i] + nums[l] + nums[r] &gt; 0: r -= 1 elif nums[i] + nums[l] + nums[r] &lt; 0: l += 1 else: ans.append([nums[i], nums[l], nums[r]]) l += 1 while l &lt; r and nums[l] == nums[l-1]: l += 1 r -= 1 while l &lt; r and nums[r] == nums[r+1]: r -= 1 return ans]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -1176,9 +1205,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 15 3Sum]]></title>
-    <url>%2F2018%2F01%2F20%2Fleetcode15%2F</url>
-    <content type="text"><![CDATA[T Sum问题的O(n)解决方法； N Sum类的问题的一般解决方法； Given an array S of n integers, are there elements a, b, c in S such that a + b + c = 0? Find all unique triplets in the array which gives the sum of zero. Note: The solution set must not contain duplicate triplets. 123456789&gt; For example, given array S = [-1, 0, 1, 2, -1, -4],&gt;&gt; A solution set is:&gt; [&gt; [-1, 0, 1],&gt; [-1, -1, 2]&gt; ]&gt;&gt; Two sum类问题，找两个数的和为一个定值的问题，如果直接使用二分查找，排序+查找或者在有序数组中直接查找的复杂度都是O(nlogn)，有的题卡复杂度的就过不去 Two Sum问题的一般做法对无序数组进行排序后（若数组已经是有序的化则不需要排序），设置两个指针left、right指向数组的首尾，target是要查找的目标 如果arr[left] + arr[right] == target，查找到了 如果arr[left] + arr[right] &lt; target，按照遍历的方式right往左移，right -= 1 如果arr[left] + arr[right] &gt; target，很显然right不需要再往左移动了，直接进入下一轮迭代，即left += 1，right不动 right不用像遍历一样回到最右边吗？不用。因为现在的arr[left]与right右边的数相加都是大于target的（不然right不会向左移），那么left再向右移动arr[left]只会更大，right也就不用再回到右边了 最后注意下重复数字答案重复的问题 Two Sum问题的这种解决方法排序+查找复杂度依然是O(nlogn)，但是主要是因为排序的消耗。如果题目已经给了有序的数列，那么复杂度将会降为O(n) N Sum 问题 对前几位进行遍历，对最后两维做Two Sum Python Code 1234567891011121314151617181920212223242526272829303132class Solution(object): def threeSum(self, nums): """ :type nums: List[int] :rtype: List[List[int]] """ ans = [] if len(nums) &lt; 3: return [] nums.sort() for i in range(len(nums) - 2): if nums[i] &gt; 0: break if i &gt; 0 and nums[i] == nums[i-1]: continue l = i+1 r = len(nums)-1 while l &lt; r: if nums[i] + nums[l] + nums[r] &gt; 0: r -= 1 elif nums[i] + nums[l] + nums[r] &lt; 0: l += 1 else: ans.append([nums[i], nums[l], nums[r]]) l += 1 while l &lt; r and nums[l] == nums[l-1]: l += 1 r -= 1 while l &lt; r and nums[r] == nums[r+1]: r -= 1 return ans]]></content>
+    <title><![CDATA[LeetCode 24 Swap Nodes in Pairs]]></title>
+    <url>%2F2018%2F01%2F20%2Fleetcode24%2F</url>
+    <content type="text"><![CDATA[Given a linked list, swap every two adjacent nodes and return its head. For example,Given 1-&gt;2-&gt;3-&gt;4, you should return the list as 2-&gt;1-&gt;4-&gt;3. Your algorithm should use only constant space. You may not modify the values in the list, only nodes itself can be changed. Python Code 123456789101112131415161718192021222324252627282930# Definition for singly-linked list.# class ListNode(object):# def __init__(self, x):# self.val = x# self.next = Noneclass Solution(object): def swapPairs(self, head): """ :type head: ListNode :rtype: ListNode """ if head == None or head.next == None: return head ret = head.next i = head j = head.next pre = None while j != None: i.next = j.next j.next = i if pre != None: pre.next = j if i.next != None: pre = i i = i.next j = i.next else: break return ret]]></content>
       <categories>
         <category>ACM</category>
       </categories>

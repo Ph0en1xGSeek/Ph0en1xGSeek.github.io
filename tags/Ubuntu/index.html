@@ -98,14 +98,14 @@
 
 <meta name="description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Categories">
-<meta property="og:url" content="https://www.ph0en1x.space/categories/index.html">
+<meta property="og:title" content="Tags">
+<meta property="og:url" content="https://www.ph0en1x.space/tags/index.html">
 <meta property="og:site_name" content="Ph0en1x Notebook">
 <meta property="og:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-22T10:39:54.048Z">
+<meta property="og:updated_time" content="2018-02-22T10:40:05.695Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Categories">
+<meta name="twitter:title" content="Tags">
 <meta name="twitter:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
 
 
@@ -134,7 +134,7 @@
 
 
 
-  <link rel="canonical" href="https://www.ph0en1x.space/categories/"/>
+  <link rel="canonical" href="https://www.ph0en1x.space/tags/"/>
 
 
 
@@ -381,7 +381,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">98</span>
+                    <span class="site-state-item-count">100</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -403,7 +403,7 @@
                 
                 <div class="site-state-item site-state-tags">
                   <a href="/tags/index.html">
-                    <span class="site-state-item-count">59</span>
+                    <span class="site-state-item-count">61</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
@@ -488,26 +488,6 @@
 <span>Hosted by <a href="https://pages.coding.me" >Coding Pages</a></span>
 
         
-<div class="busuanzi-count">
-  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-  
-    <span class="site-uv">
-      声望
-      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
-      
-    </span>
-  
-
-  
-    <span class="site-pv">
-      浏览量
-      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
-      
-    </span>
-  
-</div>
-
 
 
 
@@ -836,204 +816,6 @@
                     }
                     slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
                   }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
-    }
-
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
-      }
-    });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-<script>
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
-
-
-  
-  
-  
-  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
-
-  
-  
-  <script src="/lib/needsharebutton/needsharebutton.js"></script>
-
-  <script>
-    
-      pbOptions = {};
-      
-          pbOptions.iconStyle = "box";
-      
-          pbOptions.boxForm = "horizontal";
-      
-          pbOptions.position = "bottomCenter";
-      
-          pbOptions.networks = "Weibo,Wechat,Douban,QQZone";
-      
-      new needShareButton('#needsharebutton-postbottom', pbOptions);
-    
-    
-      flOptions = {};
-      
-          flOptions.iconStyle = "box";
-      
-          flOptions.boxForm = "vertical";
-      
-          flOptions.position = "middleRight";
-      
-          flOptions.networks = "Weibo,Wechat,Douban,QQZone";
-      
-      new needShareButton('#needsharebutton-float', flOptions);
-    
-  </script>
-
-  
-
-  
-
-  
-
-  
-
-</body>
-</html>
 
                   // sort slices in content by search text's count and hits' count
 
