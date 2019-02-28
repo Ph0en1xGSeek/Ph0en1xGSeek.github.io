@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="oPBIkpTu0J" />
+<meta name="google-site-verification" content="TipGWEPl2YFtMc6big_ugeXvdf0JkNEoFkqHVdn9V8M" />
+<meta name="360-site-verification" content="29ef2f44c16e261d7bc7dc0e831c96b1" />
+<meta name="msvalidate.01" content="8DA9B03059CCE6D474F50950C21C5E11" />
+<meta name="sogou_site_verification" content="BtLMCSfs2U"/>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch.png?v=6.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.ico?v=6.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.ico?v=6.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.1" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Machine Learning, Data Mining, AI, Software, 机器学习, 人工智能, Java, C++, Python" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Categories">
+<meta property="og:url" content="https://www.ph0en1x.space/categories/index.html">
+<meta property="og:site_name" content="Ph0en1x Notebook">
+<meta property="og:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-02-22T10:39:54.048Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Categories">
+<meta name="twitter:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.1',
+    sidebar: {"position":"right","display":"always","offset":15,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.ph0en1x.space/categories/"/>
+
+
+
+
+
+  <title>Time, clocks, and the ordering of events in a distributed system 阅读笔记 | Ph0en1x Notebook</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-112419973-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?112171ead002ea668592650a675d8d85";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ph0en1x Notebook</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">A step forward every day</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2018/11/18/Lamport_clocks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ph0en1x">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ph0en1x Notebook">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Time, clocks, and the ordering of events in a distributed system 阅读笔记</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-18T00:00:00+08:00">2018-11-18</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式算法/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>  参考文献：Lamport L. Time, clocks, and the ordering of events in a distributed system[J]. Communications of The ACM, 1978, 21(7): 558-565.</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="一、基本问题"><a href="#一、基本问题" class="headerlink" title="一、基本问题"></a>一、基本问题</h2><p>本篇文章所讨论的问题是分布式系统中事件发生的先后顺序的问题。在日常生活中，我们经常通过时间，也就是日期、时分秒等等概念来确定时间发生的先后顺序。虽然这样的解释在单机系统或者一个很小的空间范围内不会出现太大的歧义，但是，在复杂的分布式系统当中，由于不同进程或是不同主机之间用于规定时间的时钟无法保证实时同步以及传输过程中的时延问题，这样的规定也就变得无效。例如两个进程A、B分别要对一个共享变量进行修改，在实际时间上A要比B先发出请求，理论上应该先满足A所发出的请求，但是A进程的请求比B进程的请求晚到达，这就会导致变量最终与期望的值不同。作者在文中强调我们一定要意识到在分布式系统中事件发生仅仅存在偏序关系这一点。所以在分布式系统中需要定义一种新的时间发生“序”的概念，使得不同进程间时间发生的顺序能够得到确定。</p>
+<h2 id="二、主要贡献"><a href="#二、主要贡献" class="headerlink" title="二、主要贡献"></a>二、主要贡献</h2><p>本文定义了一个应用于分布式多进程系统中事件发生的一个偏序关系“happen before”，并提出了一个算法，将这样的偏序关系推广为全序关系，并将全序关系应用于一个同步问题。但是这样的全序关系还会遇到一种异常情况，作者又提出利用同步物理时钟 (physical clocks) 来避免这样的问题。</p>
+<h2 id="三、偏序关系"><a href="#三、偏序关系" class="headerlink" title="三、偏序关系"></a>三、偏序关系</h2><p>偏序关系与全系关系不同，全序关系具有反对称性，这也就意味着全序关系中，任何两个元素之间都可以有关系。但偏序关系不具有反对称性，故两个元素之间不一定具有关系。像前面所说的，很多人在描述事件发生先后顺序时，都隐含地运用了一个全序关系，也就是物理理论中的时间关系。但是分布式系统中很难保持一个统一的精确的时钟，也就是两个事件间可能无法确定先.后关系，所以，作者将事件发生的前后关系定义为一个偏序集，也就是“happen before”关系，记作”-&gt;”。“happen before”关系的定义如下：</p>
+<ol>
+<li>如果a和b是同一个进程中的事件，并且a在b之前发生，则a-&gt; b</li>
+<li>a事件是一个进程发送请求，b事件是另一个进程接收请求，则a-&gt; b</li>
+<li>如果a-&gt;b并且b-&gt; c​，则​a-&gt;c​，即偏序的传递性</li>
+</ol>
+<p>另外如果两个事件a，b既不满足a-&gt;b，也不满足b-&gt;a​，那么可以说两个事件是并发的 (concurrent)</p>
+<p>作者通过一张“空间-时间”表来解释偏序关系，例如Figure 1，横向为不同的进程，纵向向上表示时间的推移，注意时间的推移只在单个进程上是有意义的。进程上的点代表了发生的事件，而波浪线表示消息，箭尾代表一个消息的发送事件而箭头表示消息到达的事件。按照上面的定义，偏序关系只定义在波浪线从箭尾到箭头以及进程线从下到上，这样一条路径上的点对这条路径上后续的点之间存在“happen before”关系（如p1​与r4​），若无法找到这样一条路径连接的两个点，则是并发关系（p3​与q3​）。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/distributed_algorithm/Fig1.PNG" alt=""></p>
+<h2 id="四、逻辑时钟"><a href="#四、逻辑时钟" class="headerlink" title="四、逻辑时钟"></a>四、逻辑时钟</h2><p>为了与物理时钟进行区分，作者提出了逻辑时钟的概念，定义为：每个进程Pi都有一个时钟C_i，当b是进程j的一个事件的时候，系统全局时钟C给b分配的时间为C<b> = Cj<b>。</b></b></p>
+<p>逻辑时钟的大小与物理时钟的先后没有关系，仅仅与时间发生的先后有关系，即定义时钟条件 (Clock Condition)</p>
+<ul>
+<li>Clock Condition. 对于任意的事件a，b，如果a-&gt;b则C<a> = C<b>.</b></a></li>
+</ul>
+<p>这个条件的逆命题不能够成立，即C<a> = C<b>不能够推出a-&gt;b。</b></a></p>
+<p>根据时钟条件以及前面定义的“happen before”偏序关系可以很容易地得出下面两个条件：</p>
+<p>C1. 在同一个进程i中如果a比b先发生，那么Ci<a> = Ci<b></b></a></p>
+<p>C2. 若进程i的事件a是给进程j发送一条消息并且b事件是进程j接收这条消息的事件，那么Ci<a> = Cj<b></b></a></p>
+<p>再引入一个逻辑时钟“滴答” (tick)的概念，根据上面两个时钟条件，逻辑时钟在同一个进程先后的两个事件之间至少存在一个时钟tick，而在进程之间消息发送与接收事件之间，也要存在一个时钟tick。在图上如果用虚线表示时间tick的连线，同个进程的两个点之间一定存在一条连线，而消息发送的波浪线一定会穿过至少一条的连线。同时，由于进程与进程之间的物理时钟并不影响逻辑时钟，所以可以将每个进程轴上的点的距离进行任意地拉伸，比如把对应的tick对齐，使得tick之间的连线相互平行并垂直于进程轴，方便观察，如Figure 3所示。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/distributed_algorithm/Fig2.PNG" alt=""></p>
+<p>为了满足两个时钟条件C1和C2，就要遵守下面两个实现规则 (Implementation rule)：</p>
+<p>IR1. 每一个进程中连续的两个事件之间时钟值C要递增。</p>
+<p>IR2. 如果事件a需要发送一条消息，那么它需要在消息中包含自己的时间戳 (timestamp)，当b收到这个消息后，读取消息中的时间戳后，需要设置设置自己的时钟值，设置的值不能比当前自己的时钟值小并且要大于消息中的时间戳。</p>
+<p>显然IR1保证了C1的满足，而IR2保证了C2的满足。可以想到的一种最简单的实现就是单个进程中的每个非接收消息的事件偏序时间都等于前一个事件偏序事件+1，若该事件接收消息，则需要设置为max(prev, Tm) + 1，其中prev是该进程前一个事件的逻辑时间，Tm是收到消息中包含的时间戳。</p>
+<h2 id="五、扩展为事件的全序"><a href="#五、扩展为事件的全序" class="headerlink" title="五、扩展为事件的全序"></a>五、扩展为事件的全序</h2><p>文中提出了一种简单的方法，将事件的偏序关系推广到了整个分布式系统中所有事件的全序关系，这种定义的方法任意定义了一个进程上的全序关系“prec”，即给进程定义一个优先级，默认按照逻辑时钟值来进行排序，当逻辑时钟值相同时，则按照进程的全序关系来进行排序。</p>
+<p>定义系统事件的全序关系“=&gt;”：</p>
+<ol>
+<li>$Ci<a> &lt; Cj<b>，或者</b></a></li>
+<li>$Ci<a> = Cj<b> and Pi prec Pj</b></a></li>
+</ol>
+<p>这种定义方法有点类似于拓扑排序，即定义好偏序关系后，通过定义一个任意的优先级，形成最终的序列，但是其中的偏序关系也得到了保留。在本文讨论的问题中，就是当a-&gt;b则a=&gt;b。但是这种全序的定义时十分随意的，不同的逻辑时钟，即使满足前面提到的两个实现规则，最终会产生不同的全序关系，不同的进程全序关系，最终的序列也不同。</p>
+<h2 id="六、互斥问题的应用"><a href="#六、互斥问题的应用" class="headerlink" title="六、互斥问题的应用"></a>六、互斥问题的应用</h2><p>我们希望一个给进程分配资源的算法需要满足以下条件：</p>
+<p>I. 资源分配给其他进程之前，之前分配的进程需要先释放这个资源</p>
+<p>II. 资源要按照请求的先后顺序来进行分配</p>
+<p>III. 只要每个被赋予权限的进程最终都释放了资源，那么所有的请求最终都能够被赋予资源</p>
+<p>这三点看来都是简单的要求，而在实际中却不那么好满足。例如，采用中心调度进程P0来进行资源分配时，进程P1先向P0申请资源，然后P1向P2发送消息，P2收到消息后，向P0发送一个资源申请的请求，显然P1的请求应该先被满足，但是我们无法保证P1的请求比P2先到达。</p>
+<p>为解决这个问题，作者使用一个满足IR1、IR2的系统时钟，生成一个事件的全序关系，并假设两个进程间的通信不会丢失且按序到达，那么算法规则定义如下：</p>
+<ol>
+<li>申请资源时，进程Pi会发送一个带有时间戳的消息Tm:Pi给其他进程，并把这条消息放入自己的请求队列 (Request queue) 中</li>
+<li>进程Pj接收到Tm:Pi后，也放入自己维护的请求队列中，并发回一个带有时间戳的消息</li>
+<li>释放消息时，进程Pi移除所有自己请求队列中的Tm:Pi，并将释放进程的消息和时间戳发送给其他进程</li>
+<li>当进程Pj收到释放资源消息时，也移除掉自己请求队列中的Tm:Pi</li>
+<li>只有Pi本地验证当以下两个条件都满足的时候，进程Pi才会被分配资源：<ul>
+<li>Tm:Pi存在于自己的请求队列中并且在规定的全序关系中排在最前面</li>
+<li>收到了其他所有进程发来的时间戳晚于Tm的消息</li>
+</ul>
+</li>
+</ol>
+<p>这样的算法满足了前面的条件I-III：</p>
+<ul>
+<li>通过3和4可以保证条件I</li>
+<li>由于满足了全序序列，同时也满足了所有偏序关系，所以偏序关系上后出现的请求的时间戳一定会比先出现的要高，根据规则5(i)就能够按序进行资源赋予，满足条件II</li>
+<li>规则2保证了规则5(ii)的触发，规则3将会移除自己进程中需要释放的请求，规则4将会移除在其他进程中记录的请求，这样，无论按照全序规则的下一个请求出现在哪个进程中，都能够满足，即触发了规则5(i)，满足了条件III</li>
+</ul>
+<h2 id="七、物理时钟"><a href="#七、物理时钟" class="headerlink" title="七、物理时钟"></a>七、物理时钟</h2><p>上面所设计的系统已经能够利用逻辑时钟生成的全序序列来完成一个进程资源分配算法了，但是，上述的系统当一个进程崩溃时就无法运行，因为请求资源的的进程将无法收到所有其他进程的确认信息，也就无法满足规则5(ii)。然而仅仅凭借逻辑时钟，很难确认一个进程是否已经崩溃或只是处于事件的间隙间。</p>
+<p>再考虑一种情况，当用户A使用计算机发送一个请求，然后他打电话让B（系统并不知到电话里的信息）也发送一个请求，由于系统并不知道电话里消息所形成的一个偏序关系，所以如果先收到B的消息的话，仍然会先满足B的请求，这就造成了一个异常行为 (Anomalous Behavior)。</p>
+<p>上面两个例子表明了，在分布式系统中引入物理时钟是有必要的，逻辑时钟无法处理Anomalous Behavior这样的又系统外部信息所照成的异常。假设系统中产生的事件集合为ψ，而并上外部事件后的集合为_ψ<em>, 在</em>ψ_上定义新的“happen before”强时钟条件关系“–&gt;”:</p>
+<ul>
+<li>Strong Clock Condition. 对于任意的事件a，b，如果a–&gt;b则C<a> = C<b>.</b></a></li>
+</ul>
+<p>现在引入系统中物理时钟条件，系统中需要保证每个进程之间的物理时钟相互接近并且改变的速度之间也要相互接近，所以要满足以下两个物理时钟条件：</p>
+<p>PC1. 存在一个常数κ &lt;&lt; 1，对于任意i: |dCi(t)/dt - 1|&lt;κ.</p>
+<p>PC2. 对于任意i，j: |Ci(t)-Cj(t)|&lt;ε.</p>
+<p>这两个物理时钟条件要保证不发生异常行为，需要对时钟同步的过程中的两个变量ε ， κ进行限制。要满足Ci(t+μ)-Cj(t)&gt;0，其中μ是进程间通信的时延，也就是说，两个进程间的物理时钟相差不能超过物理时延，在物理事件上较晚开始的事务当其他进程的消息到达后，依然要拥有更大的时间戳。同时根据PC2可以得出Ci(t+μ)-Ci(t)&gt;(1-κ)μ，可以推导出，要满足Ci(t+μ)-Cj(t)&gt;0，就要满足ε/(1-κ)&lt;= μ.这两个物理时钟条件要保证不发生异常行为，需要对时钟同步的过程中的两个变量ε ， κ进行限制。要满足</p>
+<p>最后将实现规则IR1，IR2进行推广</p>
+<p>IR1’. 当任意进程Pi如果在物理事件t没有收到消息，那么Ci在t处可微并且dCi(t)/dt &gt; 0.</p>
+<p>IR2’. (a) Pi在t时刻发送一个带有一个时间戳Tm=Ci(t)的消息m. (b) Pj在t’时刻收到消息m，Pj设置Cj(t’)为max(Cj(t’-0), Tm+μm).</p>
+<p>其中μm是传输的最小时延，Cj(t’-0)是Cj(t)在t’处的左极限。</p>
+<h2 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h2><p>本文定义了分布式系统中的偏序关系“happen before”，并将其扩展为了全序关系，展示如何解决同步问题。并且讨论如何引入物理时钟来避免异常行为以及同步物理时钟需要满足的条件。可以说这篇文章对分布式系统的发展起到了奠基的作用。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Distributed-Algorithm/" rel="tag"># Distributed Algorithm</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/28/poj3349/" rel="next" title="POJ 3349 Snowflake Snow Snowflakes（哈希）">
+                <i class="fa fa-chevron-left"></i> POJ 3349 Snowflake Snow Snowflakes（哈希）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/18/Bigtable/" rel="prev" title="Bigtable, A distributed storage system for structured data 阅读笔记">
+                Bigtable, A distributed storage system for structured data 阅读笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Ph0en1x" />
+            
+              <p class="site-author-name" itemprop="name">Ph0en1x</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">106</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    <span class="site-state-item-count">63</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Ph0en1xGSeek" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/pan-guo-sheng-50" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-quora"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/Ph0en1xGSeek" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、基本问题"><span class="nav-number">1.</span> <span class="nav-text">一、基本问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、主要贡献"><span class="nav-number">2.</span> <span class="nav-text">二、主要贡献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、偏序关系"><span class="nav-number">3.</span> <span class="nav-text">三、偏序关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、逻辑时钟"><span class="nav-number">4.</span> <span class="nav-text">四、逻辑时钟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、扩展为事件的全序"><span class="nav-number">5.</span> <span class="nav-text">五、扩展为事件的全序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、互斥问题的应用"><span class="nav-number">6.</span> <span class="nav-text">六、互斥问题的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、物理时钟"><span class="nav-number">7.</span> <span class="nav-text">七、物理时钟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#八、总结"><span class="nav-number">8.</span> <span class="nav-text">八、总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ph0en1x</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.1"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "vertical";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
