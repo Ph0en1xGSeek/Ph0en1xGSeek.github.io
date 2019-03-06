@@ -374,6 +374,11 @@
           
 
           
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
 
           
 
@@ -407,15 +412,15 @@
 <p>另外如果两个事件a，b既不满足a-&gt;b，也不满足b-&gt;a​，那么可以说两个事件是并发的 (concurrent)</p>
 <p>作者通过一张“空间-时间”表来解释偏序关系，例如Figure 1，横向为不同的进程，纵向向上表示时间的推移，注意时间的推移只在单个进程上是有意义的。进程上的点代表了发生的事件，而波浪线表示消息，箭尾代表一个消息的发送事件而箭头表示消息到达的事件。按照上面的定义，偏序关系只定义在波浪线从箭尾到箭头以及进程线从下到上，这样一条路径上的点对这条路径上后续的点之间存在“happen before”关系（如p1​与r4​），若无法找到这样一条路径连接的两个点，则是并发关系（p3​与q3​）。</p>
 <p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/distributed_algorithm/Fig1.PNG" alt=""></p>
-<h2 id="四、逻辑时钟"><a href="#四、逻辑时钟" class="headerlink" title="四、逻辑时钟"></a>四、逻辑时钟</h2><p>为了与物理时钟进行区分，作者提出了逻辑时钟的概念，定义为：每个进程Pi都有一个时钟C_i，当b是进程j的一个事件的时候，系统全局时钟C给b分配的时间为C<b> = Cj<b>。</b></b></p>
+<h2 id="四、逻辑时钟"><a href="#四、逻辑时钟" class="headerlink" title="四、逻辑时钟"></a>四、逻辑时钟</h2><p>为了与物理时钟进行区分，作者提出了逻辑时钟的概念，定义为：每个进程Pi都有一个时钟Ci，当b是进程j的一个事件的时候，系统全局时钟C给b分配的时间为C&lt;b&gt; = Cj&lt;b&gt;。</p>
 <p>逻辑时钟的大小与物理时钟的先后没有关系，仅仅与时间发生的先后有关系，即定义时钟条件 (Clock Condition)</p>
 <ul>
-<li>Clock Condition. 对于任意的事件a，b，如果a-&gt;b则C<a> = C<b>.</b></a></li>
+<li>Clock Condition. 对于任意的事件a，b，如果a-&gt;b则C&lt;a&gt; = C&lt;b&gt;.</li>
 </ul>
-<p>这个条件的逆命题不能够成立，即C<a> = C<b>不能够推出a-&gt;b。</b></a></p>
+<p>这个条件的逆命题不能够成立，即C&lt;a&gt; = C&lt;b&gt;不能够推出a-&gt;b。</p>
 <p>根据时钟条件以及前面定义的“happen before”偏序关系可以很容易地得出下面两个条件：</p>
-<p>C1. 在同一个进程i中如果a比b先发生，那么Ci<a> = Ci<b></b></a></p>
-<p>C2. 若进程i的事件a是给进程j发送一条消息并且b事件是进程j接收这条消息的事件，那么Ci<a> = Cj<b></b></a></p>
+<p>C1. 在同一个进程i中如果a比b先发生，那么Ci&lt;a&gt; = Ci&lt;b&gt;</p>
+<p>C2. 若进程i的事件a是给进程j发送一条消息并且b事件是进程j接收这条消息的事件，那么Ci&lt;a&gt; = Cj&lt;b&gt;</p>
 <p>再引入一个逻辑时钟“滴答” (tick)的概念，根据上面两个时钟条件，逻辑时钟在同一个进程先后的两个事件之间至少存在一个时钟tick，而在进程之间消息发送与接收事件之间，也要存在一个时钟tick。在图上如果用虚线表示时间tick的连线，同个进程的两个点之间一定存在一条连线，而消息发送的波浪线一定会穿过至少一条的连线。同时，由于进程与进程之间的物理时钟并不影响逻辑时钟，所以可以将每个进程轴上的点的距离进行任意地拉伸，比如把对应的tick对齐，使得tick之间的连线相互平行并垂直于进程轴，方便观察，如Figure 3所示。</p>
 <p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/distributed_algorithm/Fig2.PNG" alt=""></p>
 <p>为了满足两个时钟条件C1和C2，就要遵守下面两个实现规则 (Implementation rule)：</p>
@@ -425,8 +430,8 @@
 <h2 id="五、扩展为事件的全序"><a href="#五、扩展为事件的全序" class="headerlink" title="五、扩展为事件的全序"></a>五、扩展为事件的全序</h2><p>文中提出了一种简单的方法，将事件的偏序关系推广到了整个分布式系统中所有事件的全序关系，这种定义的方法任意定义了一个进程上的全序关系“prec”，即给进程定义一个优先级，默认按照逻辑时钟值来进行排序，当逻辑时钟值相同时，则按照进程的全序关系来进行排序。</p>
 <p>定义系统事件的全序关系“=&gt;”：</p>
 <ol>
-<li>$Ci<a> &lt; Cj<b>，或者</b></a></li>
-<li>$Ci<a> = Cj<b> and Pi prec Pj</b></a></li>
+<li>Ci&lt;a&gt; &lt; Cj&lt;b&gt;，或者</li>
+<li>Ci&lt;a&gt; = Cj&lt;b&gt; and Pi prec Pj</li>
 </ol>
 <p>这种定义方法有点类似于拓扑排序，即定义好偏序关系后，通过定义一个任意的优先级，形成最终的序列，但是其中的偏序关系也得到了保留。在本文讨论的问题中，就是当a-&gt;b则a=&gt;b。但是这种全序的定义时十分随意的，不同的逻辑时钟，即使满足前面提到的两个实现规则，最终会产生不同的全序关系，不同的进程全序关系，最终的序列也不同。</p>
 <h2 id="六、互斥问题的应用"><a href="#六、互斥问题的应用" class="headerlink" title="六、互斥问题的应用"></a>六、互斥问题的应用</h2><p>我们希望一个给进程分配资源的算法需要满足以下条件：</p>
@@ -454,9 +459,9 @@
 </ul>
 <h2 id="七、物理时钟"><a href="#七、物理时钟" class="headerlink" title="七、物理时钟"></a>七、物理时钟</h2><p>上面所设计的系统已经能够利用逻辑时钟生成的全序序列来完成一个进程资源分配算法了，但是，上述的系统当一个进程崩溃时就无法运行，因为请求资源的的进程将无法收到所有其他进程的确认信息，也就无法满足规则5(ii)。然而仅仅凭借逻辑时钟，很难确认一个进程是否已经崩溃或只是处于事件的间隙间。</p>
 <p>再考虑一种情况，当用户A使用计算机发送一个请求，然后他打电话让B（系统并不知到电话里的信息）也发送一个请求，由于系统并不知道电话里消息所形成的一个偏序关系，所以如果先收到B的消息的话，仍然会先满足B的请求，这就造成了一个异常行为 (Anomalous Behavior)。</p>
-<p>上面两个例子表明了，在分布式系统中引入物理时钟是有必要的，逻辑时钟无法处理Anomalous Behavior这样的又系统外部信息所照成的异常。假设系统中产生的事件集合为ψ，而并上外部事件后的集合为_ψ<em>, 在</em>ψ_上定义新的“happen before”强时钟条件关系“–&gt;”:</p>
+<p>上面两个例子表明了，在分布式系统中引入物理时钟是有必要的，逻辑时钟无法处理Anomalous Behavior这样的又系统外部信息所照成的异常。假设系统中产生的事件集合为ψ，而并上外部事件后的集合为<em>ψ</em>, 在<em>ψ</em>上定义新的“happen before”强时钟条件关系“–&gt;”:</p>
 <ul>
-<li>Strong Clock Condition. 对于任意的事件a，b，如果a–&gt;b则C<a> = C<b>.</b></a></li>
+<li>Strong Clock Condition. 对于任意的事件a，b，如果a–&gt;b则C&lt;a&gt; = C&lt;b&gt;.</li>
 </ul>
 <p>现在引入系统中物理时钟条件，系统中需要保证每个进程之间的物理时钟相互接近并且改变的速度之间也要相互接近，所以要满足以下两个物理时钟条件：</p>
 <p>PC1. 存在一个常数κ &lt;&lt; 1，对于任意i: |dCi(t)/dt - 1|&lt;κ.</p>
@@ -724,6 +729,26 @@
 
 
         
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      UV
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      PV
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
 
 
 
