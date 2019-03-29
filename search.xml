@@ -1,6 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[LeetCode 123 Best Time to Buy and Sell Stock III]]></title>
+    <url>%2F2019%2F03%2F29%2Fleetcode123%2F</url>
+    <content type="text"><![CDATA[维护两个变量b与s，b[i]为前i日内买入的最大剩余钱量(可以为负)。s[i]为前i日卖出后的最大钱量。 s[i]由b[i]迭代而来，b[i]由前一轮的s[i]迭代而来，所以只用一轮循环就可以完成更新。 C++ Code 1234567891011121314151617class Solution &#123;public: int maxProfit(vector&lt;int&gt;&amp; prices) &#123; if(prices.size() == 0)&#123; return 0; &#125; int b1 = -0x7fffffff, s1 = 0, b2 = -0x7fffffff, s2 = 0; for(int i = 0; i &lt; prices.size(); i++)&#123; b1 = max(b1, -prices[i]); s1 = max(s1, prices[i] + b1); b2 = max(b2, s1 - prices[i]); s2 = max(s2, prices[i] + b2); &#125; return s2; &#125;&#125;;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[hdu 2089 不要62]]></title>
+    <url>%2F2019%2F03%2F19%2Fhdu2089%2F</url>
+    <content type="text"><![CDATA[数位dp，先预处理出所有i位数字的情况 dp[i][j]，i代表数字的位数，j代表状况 dp[i][0],表示不存在不吉利数字的个数 dp[i][1],表示不存在不吉利数字，且最高位为2的个数 dp[i][2],表示存在不吉利数字的个数 从数字的最高位开始，例如98765，从9这一位开始，不幸运的个数为ans。 这一位数字如果由0~8这九个数字打头之后都是有完整的i-1位数的，所以这一位只考虑填入0~8，然后这一位作为9的时候讨论下一位就行了。 加上之前就已经是不吉利的情况。直接ans+= 9*dp[i-1][2] 因为加上了这一位而变成不吉利的数的情况，一共分为三种情况。 这位如果可以填入4，那么ans += dp[i-1][0] 这位可以填入6，那么ans += dp[i-1][1] 如果这一位可以填入2，并且前一位是6，那么ans += dp[i][1] 最后该位填入arr[i]，进入下一位开始讨论。 算出ans之后，n-ans就是前n个数字中吉利的数字，算区间的话用头尾减一下就好了。 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;cstring&gt;using namespace std;int dp[10][3];//dp[i][j]，i代表数字的位数，j代表状况//dp[i][0],表示不存在不吉利数字//dp[i][1],表示不存在不吉利数字，且最高位为2//dp[i][2],表示存在不吉利数字void init()&#123; memset(dp, 0, sizeof(dp)); dp[0][0] = 1; for(int i = 1; i &lt;= 6; i++)//最大999999 &#123; //最高位加上不含4的9个数字的状况，但因为会放6，所以要减去前一种开头为2的情况 dp[i][0] = 9 * dp[i-1][0] - dp[i-1][1]; //只有2 dp[i][1] = dp[i-1][0]; //已经含有的前面放什么数都可以，或者是放一个4，或者是在2前面放6 dp[i][2] = dp[i-1][0] + dp[i-1][1] + 10 * dp[i-1][2]; &#125;&#125;int solve(int n)///1到n（不算n）幸运数个数&#123; int counts = 0, tmp = n, flag = 0, arr[10], ans = 0;//ans为不幸运数 while(n) &#123; arr[++counts] = n % 10; n /= 10; &#125; arr[counts + 1] = 0; ///每一步都只计算到0~arr[i]-1开头的情况，然后这一位作为arr[i]开始计算下一位 for(int i = counts; i &gt;=1; i--) &#123; ///0~arr[i]-1打头有完整的i-1位数 ans += dp[i-1][2] * arr[i]; ///因为加上该位才变成不吉利的情况 if(flag) ///高位已经出现4或62了，所有数都要算 ans += dp[i-1][0] * arr[i]; else &#123; ///若该位大于4，就要加上4+ i-1位幸运数构成的不幸运数 if(arr[i] &gt; 4) ans += dp[i-1][0]; if(arr[i+1] == 6 &amp;&amp; arr[i] &gt; 2) ans += dp[i][1]; if(arr[i] &gt; 6) ans += dp[i-1][1]; &#125; if(arr[i] == 4 || (arr[i+1] == 6 &amp;&amp; arr[i] == 2)) flag = 1; &#125; return tmp - ans;&#125;int main()&#123; int n, m; init(); while(scanf("%d%d", &amp;n, &amp;m) &amp;&amp; n+m) &#123; printf("%d\n", solve(m + 1) - solve(n)); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>hdu</tag>
+        <tag>数位dp</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 440 K-th Smallest in Lexicographical Order]]></title>
+    <url>%2F2019%2F03%2F18%2Fleetcode440%2F</url>
+    <content type="text"><![CDATA[按字典序排列1~n的数字字符串，找到第k个是什么数字 把所有的数字看作是在一个字典树上，每个结点最多有10个子节点 一个个结点搜索，可以预先计算出这个结点所有子节点的数目，并加起来与k作比较，还不够则搜索下一个兄弟结点，否则就遍历到子节点继续计算子节点数量。 prefix记录的是当前从根节点到当前结点的路径，prefix+1则是下一个兄弟结点的路径。 以样例输入为例。例如计算1的子节点数，那么先计算1~2之间的个数（1个），然后计算10~20之间的个数（4个）。。。 若prefix的子节点数量超过了还需要的数量，那么搜索prefix的第一个子节点，即prefix*10 与 prefix*10 + 1 C++ Code 12345678910111213141516171819202122232425class Solution &#123;public: int findKthNumber(int n, int k) &#123; long long prefix = 1; k--; while(k &gt; 0)&#123; long long from = prefix; long long to = prefix + 1; long long step = 0; while(from &lt;= n)&#123; step += min((long long)n+1, to) - from; from *= 10; to *= 10; &#125; if(step &lt;= k)&#123; k -= step; prefix++; &#125;else&#123; prefix *= 10; k--; &#125; &#125; return prefix; &#125;&#125;;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 81 Search in Rotated Sorted Array II]]></title>
+    <url>%2F2019%2F03%2F17%2Fleetcode81%2F</url>
+    <content type="text"><![CDATA[与leetcode 33有所不同，会存在重复出现数字的情况 在二分中若num[mid] == nums[left]就无法判断mid这个数落在右边的那段里还是左边的那段里，这时候只能先保守地left++然后进入下一轮 若num[mid] &gt; num[left]，那么mid与left落在同一个单调段内，那么如果这时候target正好在num[mid] 与num[left]之间，那么可以很放心的把right移到mid-1的位置。否则可以将left移到mid+1的位置 若num[mid] &lt; num[right]，情况与2相反。 C++ Code 12345678910111213141516171819202122232425262728293031class Solution &#123;public: bool search(vector&lt;int&gt;&amp; nums, int target) &#123; if(nums.size() == 0)&#123; return false; &#125; int left = 0, right = nums.size() - 1; while(left &lt;= right)&#123; int mid = (left + right) &gt;&gt; 1; if(nums[mid] == target) &#123; return true; &#125;else if(nums[mid] == nums[left])&#123; left++; continue; &#125;else if(nums[mid] &gt; nums[left])&#123; if(nums[left] &lt;= target &amp;&amp; target &lt; nums[mid])&#123; right = mid - 1; &#125;else&#123; left = mid + 1; &#125; &#125;else&#123; if(nums[right] &gt;= target &amp;&amp; nums[mid] &lt; target)&#123; left = mid + 1; &#125;else&#123; right = mid - 1; &#125; &#125; &#125; return false; &#125;&#125;;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[LeetCode 72 Edit Distance]]></title>
+    <url>%2F2019%2F03%2F12%2Fleetcode72%2F</url>
+    <content type="text"><![CDATA[编辑距离推导，动态规划。 给定两个字符串s、t，用增加、删除、替换三种操作，使得s变成t的最少次数。 动态规划，dp[i][j]表示s前i个字符变为t的前j个字符的编辑距离。 初始化：dp[0][j] = j, dp[i][0] = i 递推分为两种情况： s[i] == t[j] dp[i][j] = min(dp[i-1][j] + 1, dp[i][j-1] + 1, dp[i-1][j-1]) 分别对应删掉s[i]再变为t，s变为t[0: j-1]再加上t[j]，以及s[0: i-1]变为t[0: j-1] 但是，第一种情况可以改为直接将s[0: i-1]变为t，然后将t[j]去掉(因为s[i]还保留着)，步数不变并且不少于s[0: i-1]变为t[0: j-1]。同理可证第二种情况的步数不少于s[0: i-1]变为t[0: j-1]。所以只需要从最后一种情况进行更新就行。 s[i] != t[j] dp[i][j] = min(dp[i-1][j] + 1, dp[i][j-1] + 1, dp[i-1][j-1] + 1) 分别对应删掉s[i]再变为t，s变为t[0: j-1]再加上t[j]，以及s[0: i-1]变为t[0: j-1]再替换s[i] C++ Code 123456789101112131415161718192021222324252627282930313233class Solution &#123;public: int minDistance(string word1, string word2) &#123; int len1 = word1.length(); int len2 = word2.length(); vector&lt;vector&lt;int&gt; &gt; dp; for(int i = 0; i &lt;= len1; i++)&#123; vector&lt;int&gt; dpi; for(int j = 0; j &lt;= len2; j++)&#123; if(i == 0)&#123; dpi.push_back(j); &#125;else if(j == 0)&#123; dpi.push_back(i); &#125;else&#123; dpi.push_back(0); &#125; &#125; dp.push_back(dpi); &#125; for(int i = 1; i &lt;= len1; i++)&#123; for(int j = 1; j &lt;= len2; j++)&#123; if(word1[i-1] == word2[j-1])&#123; dp[i][j] = dp[i-1][j-1]; &#125;else&#123; int mi = min(dp[i-1][j], dp[i][j-1]); mi = min(mi, dp[i-1][j-1]); dp[i][j] = mi + 1; &#125; &#125; &#125; return dp[len1][len2]; &#125;&#125;;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>leetcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[POJ 2151 Check the difficulty of problems]]></title>
     <url>%2F2019%2F02%2F28%2Fpoj2151%2F</url>
     <content type="text"><![CDATA[动态规划问题。需要使用动态规划求出下面几个值 p[i][j]: 队i完成j题的概率，是题目的输入 dp[i][j][k]: 队i在前j题中完成k题的概率 s[i][j]: 队i完成不多于j题的概率，dp[i][m][0~j]的累加 p1: 所有队都至少完成一题的概率，(1-s[i][0])累乘 p2: 所有队都做出1~n-1题的概率，(s[i][n-1]-s[i][0])累乘 显然，最终的结果是p1-p2 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#define M 32#define T 1002using namespace std;double p[T][M]; // probability of team i solves problem jdouble dp[T][M][M]; // probability of team i solves k of the first j problemsdouble s[T][M]; //probability of team i solves at most j problemsint main()&#123; int m, t, n; while(scanf("%d%d%d", &amp;m, &amp;t, &amp;n) &amp;&amp; m != 0)&#123; memset(dp, 0, sizeof(dp)); memset(s, 0, sizeof(s)); for(int i = 1; i &lt;= t; i++)&#123; for(int j = 1; j &lt;= m; j++)&#123; scanf("%lf", &amp;p[i][j]); &#125; &#125; for(int i = 1 ; i &lt;= t; i++)&#123; dp[i][0][0] = 1.0; for(int j = 1; j &lt;= m; j++)&#123; dp[i][j][0] = dp[i][j-1][0] * (1 - p[i][j]); for(int k = 1; k &lt;= j; k++)&#123; dp[i][j][k] = dp[i][j-1][k-1] * p[i][j] + dp[i][j-1][k] * (1 - p[i][j]); &#125; &#125; &#125; for(int i = 1; i &lt;= t; i++)&#123; s[i][0] = dp[i][m][0]; for(int j = 1; j &lt;= m; j++)&#123; s[i][j] = s[i][j-1] + dp[i][m][j]; &#125; &#125; double p1 = 1.0; for(int i = 1; i &lt;= t; i++)&#123; p1 *= (1-s[i][0]); &#125; double p2 = 1.0; for(int i = 1; i &lt;= t; i++)&#123; p2 *= (s[i][n-1] - s[i][0]); &#125; printf("%.3f\n", p1-p2); &#125; return 0;&#125;]]></content>
@@ -29,9 +90,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[In search of an understandable consensus algorithm 阅读笔记]]></title>
-    <url>%2F2019%2F01%2F10%2FRaft%2F</url>
-    <content type="text"><![CDATA[参考文献：Ongaro D, Ousterhout J K. In search of an understandable consensus algorithm[C]//USENIX Annual Technical Conference. 2014: 305-319. 一、Raft简介Raft的作者认为Paxos即使经过几次的重新描述，但依旧让人难以理解，同时Paxos在提出过程中大多数都集中于单提案的模型，没有对实际应用做太详细的规定，因此过于理论化，在实际投入生产过程中，还是必须要提出许多变体来对相对应的应用场景做相应的优化。所以他提出了一套更加容易理解、更适合工业实践和教学的一致性算法。因此Raft算法的设计目标就是易理解，让人更容易理解算法流程和设计目的。 Raft将每个服务器都看作一个状态机(state machine)，每个状态机中都维护着一个日志，客户机向一个状态机提交一个请求，也就是向对应的状态机的日志添加了个带有命令的log entry。Raft算法维护所有服务器中的日志保持一致。这样所有的状态机都按照相同的顺序执行所有的操作，输出相同的输出。 Raft中也是分为三种不同的角色，而且与Paxos一样，角色也并非与服务器一一对应，而是动态改变的，一台服务器可能因为某些事件的触发而产生角色的变动。但是，每个角色所需要执行的操作却大不相同，三种状态间的转换如图1所示： 领导者(Leaders) Raft引入了领导者这一角色，但这个想法并不是Raft最早提出的，早在Paxos的变体multi-paxos中已经有类似角色的体现。 同时，Raft中使用任期(term)的概念。这一概念与Paxos中的number这一概念一样都充当了逻辑时钟的作用。在每一个任期的开始需要选出至少一个领导者(某些情况下一个任期内的所有候选者都竞选失败，没有领导者产生)，然后由领导者来控制后续的日志复制(log replication)。理论上只要当前的领导者服务器没有发生故障或者因为连接中断，任期可以无限长。在领导者失效时，为了防止单点失效的问题，Raft会重新在新的任期中进行一次选举来保证系统依旧可用。日志在Paxos当中相对应于提案，而复制日志相当于Paxos中确认提案与学习提案。但是，新的log只能由领导者提出，也就是客户端直接向领导者提出申请，然后由领导者去通知其他机器新的log和提交确认。 候选者(Candidates) 候选者是一个中间状态，跟随者要想成为领导者，必须要先声明成为候选人，然后进行选举，请求其他服务器为自己投票，赢得由其他的跟随者投票，最终成为领导者，若在竞选中失败，则只能变回跟随者。 跟随者(Followers) 跟随者有点像是Paxos中的学习者，被动地接受他人提出的变动。但是却和Paxos中的学习者不完全一样，Raft中的跟随者还有一个重要的任务，就是检查候选者的合法性以及给合法的候选者投票，让他们成为领导者。 根据上面的一些设定，Raft一共研究的就是三个子问题： 如何选举领导者，当现有的领导者失效的情况下，如何选出新的领导者，选举领导者的时候如何确定新的领导者不会破坏安全性原则 如何进行日志的复制，什么时候可以保证日志可以安全提交 如何保证系统的安全性，要维护包含以下的几个性质： 选举安全性：每一个任期(term)内只能有一个服务器被选举为领导者。 领导者只做append操作：领导者的所有的日志entry只能append在队列尾，而不能删除和覆盖。 日志匹配：如果两个日志在相同的序号上的日志entry的任期相同，那么这个日志从头到这个序号之间的日志entry时完全相同的。 领导者完整性：在一个领导者上提交的日志entry，在后面的term的领导者中也必须出现。也就是说，只有同步了最新log的server才能够被选举为领导者。 状态机安全性：如果一个服务器已经执行了日志上某个entry中的指令，那么其他服务器上相同序号不同的日志entry将不能够执行。 二、领导者选举整个过程的第一步是选举领导者，在系统刚刚启动时或者是当现有的领导者失效时，都将会触发这个过程。当一个跟随者一段时间(所有跟随者都会设置一个一定区间内的随机的计时周期，election timeout)内没有收到来自领导者定时发送的心跳(Heartbeat)或是其他候选者发送来的投票请求时(其他服务器竞选请求也会阻止一个跟随者成为候选者)，就会为自己开始一轮选举。开始选举主要需要以下步骤： 自己所知道的任期+1 给自己投一票 同时给所有人发送投票请求规定所有的跟随者只能投第一个收到的请求一票。当候选者收到半数请求的确认回复时，则赢下了这次选举，将自己的状态改为领导者，并向其他所有服务器开始广播自己的心跳，告知新的任期的开始，以确保其他服务器不会开始新的选举。 在候选者还在等待投票的时候，若收到一个任期不小于自己的其他领导者的心跳，说明已有其他候选者赢得了选举(若任期比自己小，可能是原来被网络阻隔的领导者的包达到了，在这种情况下，可以继续进行选举，等待选举胜利之后取代原来的领导者)，那么将放弃这次选举，将状态改回跟随者(不用改回任期，因为当前的新领导者的任期不会小于自己，他会通知自己以及其他所有的服务器将自己的任期进行更新)。 另一种情况是，同时有两个及以上的候选者产生，他们同时发出了投票请求，这样很可能就都得不到半数以上的投票。这种情况下候选者会在等待超时后重新执行一遍上述三步的流程，直到有一个领导者获胜，而election timeout的随机性也避免了这一情况的反复发生。 三、日志复制按照上一章的领导者选举过程顺利完成领导者选举之后，胜出的领导者就开始接受客户端的请求。接收客户端请求后，领导者会在自己的状态机上append上包含最新命令的log entry，并通过AppendEntries远程过程调用(RPC)，将这个log entry同步到其他服务器上。当超过半数的服务(包括自己)应答append成功后，领导者会在状态机上确认提交这个命令并将结果返回给客户机，同时通知其他服务器提交这个命令。 然而，在复制日志的过程中，会出现各种各样的问题，图2展示了多种领导者与跟随者上日志不一致的情况。例如跟随者缺失一些日志(a-b)，也有可能多出一些(c-d)，也有可能即少一些又多一些(e-f)。例如当服务器在作为跟随者的时候崩溃或网络连接错误，就有可能造成日志的缺失。当作为领导者时的崩溃或网络连接错误而没有将用户提交的请求进行同步，就有可能造成未提交的日志的多出。而实际中情况可能更加复杂。为解决上面这种不一致的情况，领导者在同步日志的时候，需要进行一些一致性检测。上面提到，只要两个服务器日志内的某条entry的任期和序号都一致。那么领导者只需要记下每个服务器当前还未同步日志序号(nextIndex)，然后将这个位置之后的日志发送过去，并在AppendEntrie请求中带上自己的任期，跟随者就可以根据送来的日志内的任期和序号以及领导者的任期，检查自己是否能够同步这些日志。如果不能同步，那么跟随者将会将自己所需要的日志号发送回给领导者，让领导者调整对自己的nextIndex，最终就能保证日志的一致。 但是，这样还不能保证领导者完整性。存在这样一种情况，在前一个任期内网络连接断开而没有同步某些已提交日志entry的某个跟随者，在新的任期中成功当选。显然让这样的服务器成为领导者是不安全的，因为他会覆盖掉原来已经提交的log(Raft的日志只能由领导者同步到跟随者上，不能指望跟随者告诉领导者他的缺失)。所以Raft在选举的时候设置了一个机制，跟随者需要检查当前候选者的已提交日志是否比自己的要旧，若是更旧则不能投票给他让他当选。由于所有日志的提交都需要至少有半数以上的服务器的通过，所以这一机制也就保证了提交日志记录不是最新的服务器无法成功当选领导者。 四、总结Paxos与Raft都是为解决分布式系统中一致性问题而提出的一致性算法。不同的是，Paxos更加偏向理论解释而Raft更偏向于实现。虽然本篇笔记所阅读的Paxos的论文只讨论了Paxos的最基础部分，但仍然能够看出其原理描述的优美精妙，让人切实地体会到算法的简洁有效，也是因为这些让Paxos在过去的十年间几乎成为了一致性算法的代名词。而Raft更加注重于可理解性和实现方面，在算法为何有效方面阐述的较为直白清晰。但Raft体现的细节较多，对每一种可能出现的情况都逐一进行讨论并说明给出的解决方案。]]></content>
+    <title><![CDATA[Paxos made simple 阅读笔记]]></title>
+    <url>%2F2019%2F01%2F10%2FPaxos%2F</url>
+    <content type="text"><![CDATA[参考文献：Lamport L. Paxos made simple[J]. ACM Sigact News, 2001, 32(4): 18-25. 一、Paxos简介Paxos是Lamport提出的最著名的基于消息传递的一致性算法，在2006年Google将其运用于Chubby锁服务器上后便受到了巨大的关注。Paxos Made Simple这篇论文中Lamport用了比较通俗的叙述方式来讲解了Paxos这个模型，也是Paxos的基础版本，支持单提案的达成一致与提交。 在这个模型中进程一共有三种角色，分别是 提案者(Proposers) 接受者(Acceptors) 学习者(Learners) 而每一个进程不限于一种角色。 Paxos一共分为两个阶段(Phrase)，分别是 提案阶段在这个阶段内，提案者会向接受者发送准备请求(ready request)，准备请求中带有一个编号n。 接受阶段在提案阶段一个提案者收到了超过半数的接受着返回的准备请求的应答，那么提案者将会向回复他的接受者发送一个带有编号n以及提案的接受请求(accept request)。 这篇笔记将会介绍Paxos如此设计的思路以及过程的详细细节，后面还会将Paxos与近几年比较火的另一种一致性算法Raft进行简单的比较。 二、要求与假设Paxos是一个一致性算法，而一致性算法的目标是让所有的进程最终都能够对提案达成一致。所以实现Paxos的最终效果是若没有提出一个提案，那么就不会有提案被选中，而若有提案被提出，那么最终只有一个提案会被选中。文中提到了三个一致性的安全性(safety)需求： 只有提出的提案能最终能被选中 只有一个提案能被选中 除非一个提案真的被选中了，否则进程不会选择这个提案 而系统的活性(liveness)则是某些提出的提案最终能被选中，并且进程最终能够学到这个提案。 文章讨论基于以下几个假设： 每个实体的执行速度不同，甚至会在任何时候崩溃、重启。因为有可能在提案选择后失效，因此想要得到一个解，必须要实现持久化某些信息。 消息传递的事件可以任意长，可以重复或丢失，但不会被破坏(无拜占庭问题)。 三、选择提案要保证上述的只有一个提案被最终选中的要求，同时保证系统的鲁棒性，那么需要做到一个提案能够被超过半数的接受者(majority)接受，因为无法找到两个majority能够接受不同的提案，只有所有进程都遵守这一规则，才能最终只有一个提案被选中。而要保证一定要有一个提案被选中，接受者应该对第一个提案进行接受。如果只有一个提案被提出却不接受，就无法得到majority，这就得到了第一个需求： P1. 接受者必须接受它所接收到的第一个提案 但是这个要求在有两个或更多提案的时候可能会得不到一个majority，所以每个进程不能仅被允许接收这一个提案。于是每个提案除了要带有一个值(value)以外，还要带上一个互不相同的数(number)来区分它们。这样一来就可以允许选择多个不同的提案了。但是由于最终选出的提案的值必须唯一，所以要添加另外一个条件： P2. 如果值为v的提案被选择了，那么所有被选择的数更大的提案的值也是v 由于提案的值被选中，那么这个提案一定要被某些接受者接受，所以P2的可以改写为 P2a. 如果值为v的提案被选择了，那么所有被任何一个接受者接受的数更大的提案的值也是v 但是还存在这样一种情况，有些接受者(c)还没有接受到任何的提案，但是这时一个新的数更大但值不同提案被提出且被发送给了c，由于P1的要求，c必须接受这个提案，那么这样一来就违反了P2a，所以P2a还应该进一步修改为： P2b. 如果值为v的提案被选择了，那么任何一个提案者提出的数更大的提案的值也是v 根据提出-接受-选中的因果关系，可以得出P2b -&gt; P2a -&gt; P2，而要具体实现P2b，只需要满足另一个变体 P2c. 如果提出了一个值为v，数为n的提议，那么一定存在一个接受者majority集合S，满足下面的其中一个条件 S内不存在任何接受过数小于n的提案 v是S中接受者接受的数小于n的最大数提案的值v 为了维护P2c，提案者在提出数为n的提案的时候就需要去学习当前不大于n的最大数提案的值，这些提案有的已经被接受，有的还没被接受。如果已被接受的话，那么就直接让接受者告知提案者就行。如果还未接受，那就会造成困难，因为提案者无法预测未来。所以文中又做了一个限制，那就是提案者会请求接受者不再去接受那些数小于自己提案的数的提案。 而接受者这边，只要不违背安全性要求的请求都可以回复，也就是接受者可以回复所有的准备请求，除了前面承诺过的不再接受的提案的接受请求以外的其他请求也都可以回复，这就可以提出一个比P1更强的需求： P1a. 接受者可以接受一个数为n的提案，当且仅当接受者只要没有回复过大于n的准备请求 这里还有一些隐含的优化可以做，那就是虽然接受者可以回复一个数小于当前已经回复过的最大为n准备请求，但是这个没有必要，因为最终接受者也不会接受后续的接受请求，所以接受者可以直接忽略这样的请求。同时，对于已经和接受的提案相同的准备请求，也不予以回复。 要做这些优化，接受者也只需要记住两个变量，一个是当前已经回复过的最大的准备请求以及已经接受的数最大的提议。第一个用来确定是否要回复一个准备请求以及是否要接受一个提案，第二个用来告知后面更大数的提议者去修改自己的提议。 综合上面的推导，就可以合理地提出Paxos提出并一致通过提案的算法流程了： Phase1. 提案者要提出一个提案，赋予数n和值v，那么他将向至少过半数的(majority)接受者发送准备请求(prepare request) 接受者受到准备请求后，只要这个请求中的数n大于自己曾经回复过的最大的数，那么就向提案者发送回复信息，回复中包含两个内容 向提案者承诺不再接受小于n的提案 如果已经接受过提案，则把已经接受过的提案的值v返回给提案者 Phase2. 如果提案者收到了半数以上接受者对自己数为n的准备请求的回复，那么就可以向这些接受者发送自己的提案(n, v)，v要根据接受者的回复进行修改。如果接受者的回复中带有曾经接受过的提案的值，那就改成这个值，否则就按照原来提出的值v 接受者如果在这段事件内没有回复其他的准备请求(其他提议者提出了n更大的提议，改变了这个接受者记录的最大回复值)，那么就可以接受这个提案。 只要遵守上面的流程，就可以保证算法的正确性，提案者可以在任何时候废除自己的提案。作为优化，提案者可以在得知已经有n更大的提案提出时放弃自己现在的提案。 四、学习被选择的值上面一个章节主要是一个提案提出后要如何得到一致通过，就像是一个公司的董事会对一个方案进行讨论，当得出最终结果或是得到半数董事通过后，就要讲这个最终结果通知给下面的员工。在Paxos模型中，学习者(learner)就扮演着员工这样一个角色。文中提出了三种不同的由接受者将通过的提案通知学习者的方案。 第一种方法最简单，接受者在接受提案后，立即将自己接受的提案广播给所有的学习者。但是这么做，会产生大约n_{acceptor} * n_{learner}的信息量，信息量过大。所以要进行一定的优化，减少网络负载。 第二种方案是将方案都发送给指定的单个学习者，再由这个学习者转发给所有其他的学习者(不存在拜占庭问题)来避免不必要的信息量，这样一来就可以将复杂度降至比较理想的n_{acceptor} + n_{learner}，但这种方案容易产生单点失效的问题，单个学习者一旦失效后，所有的学习者都无法直到通过的提案。 最后一种是前两种方案的折中，接受者将自己的方案发送给一个特定集合S的学习者，然后由这个集合中的学习者将结论转发给其他的学习者，这个方法会在方案二的基础上带来| S |倍的复杂度提升，但是却可以大大提高可靠性。 以上就是对Paxos算法的理解与讨论，可以看出Paxos算法设计的极为简洁，但却极为有效，这也是它能够逐渐被人们接受并流行的原因。然而这只是Paxos的Basic版，比较偏向理论，对于实现的讨论比较少，后续以此为基础还提出了很多优化和增强的版本。下一篇将会介绍近几年比较流行的一个算法Raft。]]></content>
       <categories>
         <category>分布式算法</category>
       </categories>
@@ -40,9 +101,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Paxos made simple 阅读笔记]]></title>
-    <url>%2F2019%2F01%2F10%2FPaxos%2F</url>
-    <content type="text"><![CDATA[参考文献：Lamport L. Paxos made simple[J]. ACM Sigact News, 2001, 32(4): 18-25. 一、Paxos简介Paxos是Lamport提出的最著名的基于消息传递的一致性算法，在2006年Google将其运用于Chubby锁服务器上后便受到了巨大的关注。Paxos Made Simple这篇论文中Lamport用了比较通俗的叙述方式来讲解了Paxos这个模型，也是Paxos的基础版本，支持单提案的达成一致与提交。 在这个模型中进程一共有三种角色，分别是 提案者(Proposers) 接受者(Acceptors) 学习者(Learners) 而每一个进程不限于一种角色。 Paxos一共分为两个阶段(Phrase)，分别是 提案阶段在这个阶段内，提案者会向接受者发送准备请求(ready request)，准备请求中带有一个编号n。 接受阶段在提案阶段一个提案者收到了超过半数的接受着返回的准备请求的应答，那么提案者将会向回复他的接受者发送一个带有编号n以及提案的接受请求(accept request)。 这篇笔记将会介绍Paxos如此设计的思路以及过程的详细细节，后面还会将Paxos与近几年比较火的另一种一致性算法Raft进行简单的比较。 二、要求与假设Paxos是一个一致性算法，而一致性算法的目标是让所有的进程最终都能够对提案达成一致。所以实现Paxos的最终效果是若没有提出一个提案，那么就不会有提案被选中，而若有提案被提出，那么最终只有一个提案会被选中。文中提到了三个一致性的安全性(safety)需求： 只有提出的提案能最终能被选中 只有一个提案能被选中 除非一个提案真的被选中了，否则进程不会选择这个提案 而系统的活性(liveness)则是某些提出的提案最终能被选中，并且进程最终能够学到这个提案。 文章讨论基于以下几个假设： 每个实体的执行速度不同，甚至会在任何时候崩溃、重启。因为有可能在提案选择后失效，因此想要得到一个解，必须要实现持久化某些信息。 消息传递的事件可以任意长，可以重复或丢失，但不会被破坏(无拜占庭问题)。 三、选择提案要保证上述的只有一个提案被最终选中的要求，同时保证系统的鲁棒性，那么需要做到一个提案能够被超过半数的接受者(majority)接受，因为无法找到两个majority能够接受不同的提案，只有所有进程都遵守这一规则，才能最终只有一个提案被选中。而要保证一定要有一个提案被选中，接受者应该对第一个提案进行接受。如果只有一个提案被提出却不接受，就无法得到majority，这就得到了第一个需求： P1. 接受者必须接受它所接收到的第一个提案 但是这个要求在有两个或更多提案的时候可能会得不到一个majority，所以每个进程不能仅被允许接收这一个提案。于是每个提案除了要带有一个值(value)以外，还要带上一个互不相同的数(number)来区分它们。这样一来就可以允许选择多个不同的提案了。但是由于最终选出的提案的值必须唯一，所以要添加另外一个条件： P2. 如果值为v的提案被选择了，那么所有被选择的数更大的提案的值也是v 由于提案的值被选中，那么这个提案一定要被某些接受者接受，所以P2的可以改写为 P2a. 如果值为v的提案被选择了，那么所有被任何一个接受者接受的数更大的提案的值也是v 但是还存在这样一种情况，有些接受者(c)还没有接受到任何的提案，但是这时一个新的数更大但值不同提案被提出且被发送给了c，由于P1的要求，c必须接受这个提案，那么这样一来就违反了P2a，所以P2a还应该进一步修改为： P2b. 如果值为v的提案被选择了，那么任何一个提案者提出的数更大的提案的值也是v 根据提出-接受-选中的因果关系，可以得出P2b -&gt; P2a -&gt; P2，而要具体实现P2b，只需要满足另一个变体 P2c. 如果提出了一个值为v，数为n的提议，那么一定存在一个接受者majority集合S，满足下面的其中一个条件 S内不存在任何接受过数小于n的提案 v是S中接受者接受的数小于n的最大数提案的值v 为了维护P2c，提案者在提出数为n的提案的时候就需要去学习当前不大于n的最大数提案的值，这些提案有的已经被接受，有的还没被接受。如果已被接受的话，那么就直接让接受者告知提案者就行。如果还未接受，那就会造成困难，因为提案者无法预测未来。所以文中又做了一个限制，那就是提案者会请求接受者不再去接受那些数小于自己提案的数的提案。 而接受者这边，只要不违背安全性要求的请求都可以回复，也就是接受者可以回复所有的准备请求，除了前面承诺过的不再接受的提案的接受请求以外的其他请求也都可以回复，这就可以提出一个比P1更强的需求： P1a. 接受者可以接受一个数为n的提案，当且仅当接受者只要没有回复过大于n的准备请求 这里还有一些隐含的优化可以做，那就是虽然接受者可以回复一个数小于当前已经回复过的最大为n准备请求，但是这个没有必要，因为最终接受者也不会接受后续的接受请求，所以接受者可以直接忽略这样的请求。同时，对于已经和接受的提案相同的准备请求，也不予以回复。 要做这些优化，接受者也只需要记住两个变量，一个是当前已经回复过的最大的准备请求以及已经接受的数最大的提议。第一个用来确定是否要回复一个准备请求以及是否要接受一个提案，第二个用来告知后面更大数的提议者去修改自己的提议。 综合上面的推导，就可以合理地提出Paxos提出并一致通过提案的算法流程了： Phase1. 提案者要提出一个提案，赋予数n和值v，那么他将向至少过半数的(majority)接受者发送准备请求(prepare request) 接受者受到准备请求后，只要这个请求中的数n大于自己曾经回复过的最大的数，那么就向提案者发送回复信息，回复中包含两个内容 向提案者承诺不再接受小于n的提案 如果已经接受过提案，则把已经接受过的提案的值v返回给提案者 Phase2. 如果提案者收到了半数以上接受者对自己数为n的准备请求的回复，那么就可以向这些接受者发送自己的提案(n, v)，v要根据接受者的回复进行修改。如果接受者的回复中带有曾经接受过的提案的值，那就改成这个值，否则就按照原来提出的值v 接受者如果在这段事件内没有回复其他的准备请求(其他提议者提出了n更大的提议，改变了这个接受者记录的最大回复值)，那么就可以接受这个提案。 只要遵守上面的流程，就可以保证算法的正确性，提案者可以在任何时候废除自己的提案。作为优化，提案者可以在得知已经有n更大的提案提出时放弃自己现在的提案。 四、学习被选择的值上面一个章节主要是一个提案提出后要如何得到一致通过，就像是一个公司的董事会对一个方案进行讨论，当得出最终结果或是得到半数董事通过后，就要讲这个最终结果通知给下面的员工。在Paxos模型中，学习者(learner)就扮演着员工这样一个角色。文中提出了三种不同的由接受者将通过的提案通知学习者的方案。 第一种方法最简单，接受者在接受提案后，立即将自己接受的提案广播给所有的学习者。但是这么做，会产生大约n_{acceptor} * n_{learner}的信息量，信息量过大。所以要进行一定的优化，减少网络负载。 第二种方案是将方案都发送给指定的单个学习者，再由这个学习者转发给所有其他的学习者(不存在拜占庭问题)来避免不必要的信息量，这样一来就可以将复杂度降至比较理想的n_{acceptor} + n_{learner}，但这种方案容易产生单点失效的问题，单个学习者一旦失效后，所有的学习者都无法直到通过的提案。 最后一种是前两种方案的折中，接受者将自己的方案发送给一个特定集合S的学习者，然后由这个集合中的学习者将结论转发给其他的学习者，这个方法会在方案二的基础上带来| S |倍的复杂度提升，但是却可以大大提高可靠性。 以上就是对Paxos算法的理解与讨论，可以看出Paxos算法设计的极为简洁，但却极为有效，这也是它能够逐渐被人们接受并流行的原因。然而这只是Paxos的Basic版，比较偏向理论，对于实现的讨论比较少，后续以此为基础还提出了很多优化和增强的版本。下一篇将会介绍近几年比较流行的一个算法Raft。]]></content>
+    <title><![CDATA[In search of an understandable consensus algorithm 阅读笔记]]></title>
+    <url>%2F2019%2F01%2F10%2FRaft%2F</url>
+    <content type="text"><![CDATA[参考文献：Ongaro D, Ousterhout J K. In search of an understandable consensus algorithm[C]//USENIX Annual Technical Conference. 2014: 305-319. 一、Raft简介Raft的作者认为Paxos即使经过几次的重新描述，但依旧让人难以理解，同时Paxos在提出过程中大多数都集中于单提案的模型，没有对实际应用做太详细的规定，因此过于理论化，在实际投入生产过程中，还是必须要提出许多变体来对相对应的应用场景做相应的优化。所以他提出了一套更加容易理解、更适合工业实践和教学的一致性算法。因此Raft算法的设计目标就是易理解，让人更容易理解算法流程和设计目的。 Raft将每个服务器都看作一个状态机(state machine)，每个状态机中都维护着一个日志，客户机向一个状态机提交一个请求，也就是向对应的状态机的日志添加了个带有命令的log entry。Raft算法维护所有服务器中的日志保持一致。这样所有的状态机都按照相同的顺序执行所有的操作，输出相同的输出。 Raft中也是分为三种不同的角色，而且与Paxos一样，角色也并非与服务器一一对应，而是动态改变的，一台服务器可能因为某些事件的触发而产生角色的变动。但是，每个角色所需要执行的操作却大不相同，三种状态间的转换如图1所示： 领导者(Leaders) Raft引入了领导者这一角色，但这个想法并不是Raft最早提出的，早在Paxos的变体multi-paxos中已经有类似角色的体现。 同时，Raft中使用任期(term)的概念。这一概念与Paxos中的number这一概念一样都充当了逻辑时钟的作用。在每一个任期的开始需要选出至少一个领导者(某些情况下一个任期内的所有候选者都竞选失败，没有领导者产生)，然后由领导者来控制后续的日志复制(log replication)。理论上只要当前的领导者服务器没有发生故障或者因为连接中断，任期可以无限长。在领导者失效时，为了防止单点失效的问题，Raft会重新在新的任期中进行一次选举来保证系统依旧可用。日志在Paxos当中相对应于提案，而复制日志相当于Paxos中确认提案与学习提案。但是，新的log只能由领导者提出，也就是客户端直接向领导者提出申请，然后由领导者去通知其他机器新的log和提交确认。 候选者(Candidates) 候选者是一个中间状态，跟随者要想成为领导者，必须要先声明成为候选人，然后进行选举，请求其他服务器为自己投票，赢得由其他的跟随者投票，最终成为领导者，若在竞选中失败，则只能变回跟随者。 跟随者(Followers) 跟随者有点像是Paxos中的学习者，被动地接受他人提出的变动。但是却和Paxos中的学习者不完全一样，Raft中的跟随者还有一个重要的任务，就是检查候选者的合法性以及给合法的候选者投票，让他们成为领导者。 根据上面的一些设定，Raft一共研究的就是三个子问题： 如何选举领导者，当现有的领导者失效的情况下，如何选出新的领导者，选举领导者的时候如何确定新的领导者不会破坏安全性原则 如何进行日志的复制，什么时候可以保证日志可以安全提交 如何保证系统的安全性，要维护包含以下的几个性质： 选举安全性：每一个任期(term)内只能有一个服务器被选举为领导者。 领导者只做append操作：领导者的所有的日志entry只能append在队列尾，而不能删除和覆盖。 日志匹配：如果两个日志在相同的序号上的日志entry的任期相同，那么这个日志从头到这个序号之间的日志entry时完全相同的。 领导者完整性：在一个领导者上提交的日志entry，在后面的term的领导者中也必须出现。也就是说，只有同步了最新log的server才能够被选举为领导者。 状态机安全性：如果一个服务器已经执行了日志上某个entry中的指令，那么其他服务器上相同序号不同的日志entry将不能够执行。 二、领导者选举整个过程的第一步是选举领导者，在系统刚刚启动时或者是当现有的领导者失效时，都将会触发这个过程。当一个跟随者一段时间(所有跟随者都会设置一个一定区间内的随机的计时周期，election timeout)内没有收到来自领导者定时发送的心跳(Heartbeat)或是其他候选者发送来的投票请求时(其他服务器竞选请求也会阻止一个跟随者成为候选者)，就会为自己开始一轮选举。开始选举主要需要以下步骤： 自己所知道的任期+1 给自己投一票 同时给所有人发送投票请求规定所有的跟随者只能投第一个收到的请求一票。当候选者收到半数请求的确认回复时，则赢下了这次选举，将自己的状态改为领导者，并向其他所有服务器开始广播自己的心跳，告知新的任期的开始，以确保其他服务器不会开始新的选举。 在候选者还在等待投票的时候，若收到一个任期不小于自己的其他领导者的心跳，说明已有其他候选者赢得了选举(若任期比自己小，可能是原来被网络阻隔的领导者的包达到了，在这种情况下，可以继续进行选举，等待选举胜利之后取代原来的领导者)，那么将放弃这次选举，将状态改回跟随者(不用改回任期，因为当前的新领导者的任期不会小于自己，他会通知自己以及其他所有的服务器将自己的任期进行更新)。 另一种情况是，同时有两个及以上的候选者产生，他们同时发出了投票请求，这样很可能就都得不到半数以上的投票。这种情况下候选者会在等待超时后重新执行一遍上述三步的流程，直到有一个领导者获胜，而election timeout的随机性也避免了这一情况的反复发生。 三、日志复制按照上一章的领导者选举过程顺利完成领导者选举之后，胜出的领导者就开始接受客户端的请求。接收客户端请求后，领导者会在自己的状态机上append上包含最新命令的log entry，并通过AppendEntries远程过程调用(RPC)，将这个log entry同步到其他服务器上。当超过半数的服务(包括自己)应答append成功后，领导者会在状态机上确认提交这个命令并将结果返回给客户机，同时通知其他服务器提交这个命令。 然而，在复制日志的过程中，会出现各种各样的问题，图2展示了多种领导者与跟随者上日志不一致的情况。例如跟随者缺失一些日志(a-b)，也有可能多出一些(c-d)，也有可能即少一些又多一些(e-f)。例如当服务器在作为跟随者的时候崩溃或网络连接错误，就有可能造成日志的缺失。当作为领导者时的崩溃或网络连接错误而没有将用户提交的请求进行同步，就有可能造成未提交的日志的多出。而实际中情况可能更加复杂。为解决上面这种不一致的情况，领导者在同步日志的时候，需要进行一些一致性检测。上面提到，只要两个服务器日志内的某条entry的任期和序号都一致。那么领导者只需要记下每个服务器当前还未同步日志序号(nextIndex)，然后将这个位置之后的日志发送过去，并在AppendEntrie请求中带上自己的任期，跟随者就可以根据送来的日志内的任期和序号以及领导者的任期，检查自己是否能够同步这些日志。如果不能同步，那么跟随者将会将自己所需要的日志号发送回给领导者，让领导者调整对自己的nextIndex，最终就能保证日志的一致。 但是，这样还不能保证领导者完整性。存在这样一种情况，在前一个任期内网络连接断开而没有同步某些已提交日志entry的某个跟随者，在新的任期中成功当选。显然让这样的服务器成为领导者是不安全的，因为他会覆盖掉原来已经提交的log(Raft的日志只能由领导者同步到跟随者上，不能指望跟随者告诉领导者他的缺失)。所以Raft在选举的时候设置了一个机制，跟随者需要检查当前候选者的已提交日志是否比自己的要旧，若是更旧则不能投票给他让他当选。由于所有日志的提交都需要至少有半数以上的服务器的通过，所以这一机制也就保证了提交日志记录不是最新的服务器无法成功当选领导者。 四、总结Paxos与Raft都是为解决分布式系统中一致性问题而提出的一致性算法。不同的是，Paxos更加偏向理论解释而Raft更偏向于实现。虽然本篇笔记所阅读的Paxos的论文只讨论了Paxos的最基础部分，但仍然能够看出其原理描述的优美精妙，让人切实地体会到算法的简洁有效，也是因为这些让Paxos在过去的十年间几乎成为了一致性算法的代名词。而Raft更加注重于可理解性和实现方面，在算法为何有效方面阐述的较为直白清晰。但Raft体现的细节较多，对每一种可能出现的情况都逐一进行讨论并说明给出的解决方案。]]></content>
       <categories>
         <category>分布式算法</category>
       </categories>
@@ -410,20 +471,6 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[POJ 3295 Tautology]]></title>
-    <url>%2F2018%2F09%2F15%2Fpoj3295%2F</url>
-    <content type="text"><![CDATA[求一个式子是否是重言式，符号在前，直接构造一个栈来枚举并求出式子是否都为真 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;bool valid(char* wff, int num)&#123; bool st[101]; int top = 0; int len = strlen(wff); for(int i = len-1; i &gt;= 0; i--)&#123; if(wff[i] == 'p')&#123; st[top++] = ((1&amp;num) == 1); &#125;else if(wff[i] == 'q')&#123; st[top++] = (((1&lt;&lt;1)&amp;num) == (1&lt;&lt;1)); &#125;else if(wff[i] == 'r')&#123; st[top++] = (((1&lt;&lt;2)&amp;num) == (1&lt;&lt;2)); &#125;else if(wff[i] == 's')&#123; st[top++] = (((1&lt;&lt;3)&amp;num) == (1&lt;&lt;3)); &#125;else if(wff[i] == 't')&#123; st[top++] = (((1&lt;&lt;4)&amp;num) == (1&lt;&lt;4)); &#125;else if(wff[i] == 'K')&#123; st[top-2] = (st[top-1] &amp;&amp; st[top-2]); top--; &#125;else if(wff[i] == 'A')&#123; st[top-2] = (st[top-1] || st[top-2]); top--; &#125;else if(wff[i] == 'C')&#123; st[top-2] = ((!st[top-2]) || st[top-1]); top--; &#125;else if(wff[i] == 'E')&#123; st[top-2] = (st[top-1] == st[top-2]); top--; &#125;else if(wff[i] == 'N')&#123; st[top-1] = !st[top-1]; &#125; &#125; return st[0];&#125;int main()&#123; char wff[101]; bool flag; while(scanf("%s", wff) &amp;&amp; strcmp(wff, "0") != 0)&#123; flag = true; for(int i = 0; i &lt; (1&lt;&lt;5); i++)&#123; if(valid(wff, i) == false)&#123; flag = false; break; &#125; &#125; if(flag) printf("tautology\n"); else printf("not\n"); &#125; return 0;&#125;]]></content>
-      <categories>
-        <category>ACM</category>
-      </categories>
-      <tags>
-        <tag>c++</tag>
-        <tag>poj</tag>
-        <tag>poj分类训练</tag>
-        <tag>构造法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[POJ 1068 Parencodings]]></title>
     <url>%2F2018%2F09%2F15%2Fpoj1068%2F</url>
     <content type="text"><![CDATA[给定括号串的两种编码，第一种是显示每个右括号左边有多少个左括号，第二种显示每个右括号与其匹配的左括号间有多少个右括号（包括自己），给出第一种编码，求第二种编码 可以直接模拟，算出原括号串然后去数出第二种编码，也可以定位与右括号匹配的左括号在哪个右括号分割出的区间内，即给出的第一种编码两个数之间是两个相邻右括号之间的左括号数，找的时候就从左边相邻的右括号开始枚举，每次加一个右括号数num_right同时加上中间相应的左括号数num_left直到num_left &gt; num_right为止 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int ca; int num; int diff[25]; int arr[25]; arr[0] = 0; scanf("%d", &amp;ca); while(ca--)&#123; memset(diff, 0, sizeof(diff)); scanf("%d", &amp;num); for(int i = 1; i &lt;= num; i++)&#123; scanf("%d", &amp;arr[i]); diff[i] = arr[i] - arr[i-1]; &#125; for(int i = 1; i &lt;= num; i++)&#123; int j = i; /*number of right parentheses between (j-1)th and (i)th right parentheses, including (i)th*/ int num_right = 1; /*number of left parentheses between (j-1)th and (i)th right parentheses*/ int num_left = diff[j]; while(num_right &gt; num_left)&#123; num_right += 1; j--; num_left += diff[j]; &#125; printf("%d ", num_right); &#125; printf("\n"); &#125; return 0;&#125;]]></content>
@@ -435,6 +482,20 @@
         <tag>poj</tag>
         <tag>poj分类训练</tag>
         <tag>模拟法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[POJ 3295 Tautology]]></title>
+    <url>%2F2018%2F09%2F15%2Fpoj3295%2F</url>
+    <content type="text"><![CDATA[求一个式子是否是重言式，符号在前，直接构造一个栈来枚举并求出式子是否都为真 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;bool valid(char* wff, int num)&#123; bool st[101]; int top = 0; int len = strlen(wff); for(int i = len-1; i &gt;= 0; i--)&#123; if(wff[i] == 'p')&#123; st[top++] = ((1&amp;num) == 1); &#125;else if(wff[i] == 'q')&#123; st[top++] = (((1&lt;&lt;1)&amp;num) == (1&lt;&lt;1)); &#125;else if(wff[i] == 'r')&#123; st[top++] = (((1&lt;&lt;2)&amp;num) == (1&lt;&lt;2)); &#125;else if(wff[i] == 's')&#123; st[top++] = (((1&lt;&lt;3)&amp;num) == (1&lt;&lt;3)); &#125;else if(wff[i] == 't')&#123; st[top++] = (((1&lt;&lt;4)&amp;num) == (1&lt;&lt;4)); &#125;else if(wff[i] == 'K')&#123; st[top-2] = (st[top-1] &amp;&amp; st[top-2]); top--; &#125;else if(wff[i] == 'A')&#123; st[top-2] = (st[top-1] || st[top-2]); top--; &#125;else if(wff[i] == 'C')&#123; st[top-2] = ((!st[top-2]) || st[top-1]); top--; &#125;else if(wff[i] == 'E')&#123; st[top-2] = (st[top-1] == st[top-2]); top--; &#125;else if(wff[i] == 'N')&#123; st[top-1] = !st[top-1]; &#125; &#125; return st[0];&#125;int main()&#123; char wff[101]; bool flag; while(scanf("%s", wff) &amp;&amp; strcmp(wff, "0") != 0)&#123; flag = true; for(int i = 0; i &lt; (1&lt;&lt;5); i++)&#123; if(valid(wff, i) == false)&#123; flag = false; break; &#125; &#125; if(flag) printf("tautology\n"); else printf("not\n"); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>ACM</category>
+      </categories>
+      <tags>
+        <tag>c++</tag>
+        <tag>poj</tag>
+        <tag>poj分类训练</tag>
+        <tag>构造法</tag>
       </tags>
   </entry>
   <entry>
@@ -516,8 +577,8 @@
       </categories>
       <tags>
         <tag>Java</tag>
-        <tag>Shiro</tag>
         <tag>Spring Boot</tag>
+        <tag>Shiro</tag>
         <tag>Mybatis</tag>
       </tags>
   </entry>
@@ -581,9 +642,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 11 Container With Most Water]]></title>
-    <url>%2F2018%2F08%2F23%2Fleetcode11%2F</url>
-    <content type="text"><![CDATA[2-SUM 同类型题目 Given n non-negative integers a1, a2, …, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water. Note: You may not slant the container and n is at least 2. The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49. 算法： 刚开始设置最左边和最右边两个板，记录当前面积，然后把短的那边的指针向中心移动一个位置，比较面积，以此类推； 证明： 以左边指针为例，如果左边较短，那么右边的指针无论怎么向左移动都不可能得到更大的面积了，所以可以看作直接跳过大层循环，即左边指针向右一位。右边指针同理； 左边向右一位后，右边的指针不需要回到最右边，因为右边指针的右边不可能有比左边指针移动前更大的（相当于双方打擂台，守擂的一定比对方之前打擂失败的都要强），所以左指针移动后不可能通过右指针右边的数得到更好的答案。 Python Code 1234567891011121314151617class Solution(object): def maxArea(self, height): """ :type height: List[int] :rtype: int """ mx = 0 i = 0 j = len(height) - 1 while i &lt; j: v = min(height[i], height[j]) * (j-i) mx = max(mx, v) if height[i] &lt; height[j]: i += 1 else: j -= 1 return mx]]></content>
+    <title><![CDATA[LeetCode 41 First Missing Positive]]></title>
+    <url>%2F2018%2F08%2F23%2Fleetcode41%2F</url>
+    <content type="text"><![CDATA[桶排序思想，一种理想情况下接近O(n)的排序算法 Given an unsorted integer array, find the smallest missing positive integer. Example 1: 123&gt; Input: [1,2,0]&gt; Output: 3&gt; Example 2: 123&gt; Input: [3,4,-1,1]&gt; Output: 2&gt; Example 3: 123&gt; Input: [7,8,9,11,12]&gt; Output: 1&gt; Note: Your algorithm should run in O(n) time and uses constant extra space. 假设这n个数就是1-n进行排序，即i应该放在nums[i-1]上 扫描一遍数组，只要当前位置上的数不是在1-n之间并且没有正确摆放，就与正确位置上的数进行一次交换 所有的数都会被扫描到一遍，每一次交换都会使得一个数到达它应该在的位置上，所以最多交换n次，扫描过后所有在1-n区间内的数都会被换到它应该在的位置上 再从头扫描一遍数组，第一个放置错误的位置就是第一个缺失的数，如果都正确了，那么就是n+1缺失 Python Code 12345678910111213141516171819class Solution: def firstMissingPositive(self, nums): """ :type nums: List[int] :rtype: int """ length = len(nums) if length == 0: return 1 for i in range(length): while nums[i] &gt; 0 and nums[i] &lt;= length and nums[i] != i+1 and nums[i] != nums[nums[i]-1]: tmp = nums[nums[i]-1] nums[nums[i]-1] = nums[i] nums[i] = tmp for i in range(length): if nums[i] != i+1: return i+1 return length+1]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -593,9 +654,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 41 First Missing Positive]]></title>
-    <url>%2F2018%2F08%2F23%2Fleetcode41%2F</url>
-    <content type="text"><![CDATA[桶排序思想，一种理想情况下接近O(n)的排序算法 Given an unsorted integer array, find the smallest missing positive integer. Example 1: 123&gt; Input: [1,2,0]&gt; Output: 3&gt; Example 2: 123&gt; Input: [3,4,-1,1]&gt; Output: 2&gt; Example 3: 123&gt; Input: [7,8,9,11,12]&gt; Output: 1&gt; Note: Your algorithm should run in O(n) time and uses constant extra space. 假设这n个数就是1-n进行排序，即i应该放在nums[i-1]上 扫描一遍数组，只要当前位置上的数不是在1-n之间并且没有正确摆放，就与正确位置上的数进行一次交换 所有的数都会被扫描到一遍，每一次交换都会使得一个数到达它应该在的位置上，所以最多交换n次，扫描过后所有在1-n区间内的数都会被换到它应该在的位置上 再从头扫描一遍数组，第一个放置错误的位置就是第一个缺失的数，如果都正确了，那么就是n+1缺失 Python Code 12345678910111213141516171819class Solution: def firstMissingPositive(self, nums): """ :type nums: List[int] :rtype: int """ length = len(nums) if length == 0: return 1 for i in range(length): while nums[i] &gt; 0 and nums[i] &lt;= length and nums[i] != i+1 and nums[i] != nums[nums[i]-1]: tmp = nums[nums[i]-1] nums[nums[i]-1] = nums[i] nums[i] = tmp for i in range(length): if nums[i] != i+1: return i+1 return length+1]]></content>
+    <title><![CDATA[LeetCode 11 Container With Most Water]]></title>
+    <url>%2F2018%2F08%2F23%2Fleetcode11%2F</url>
+    <content type="text"><![CDATA[2-SUM 同类型题目 Given n non-negative integers a1, a2, …, an , where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water. Note: You may not slant the container and n is at least 2. The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water (blue section) the container can contain is 49. 算法： 刚开始设置最左边和最右边两个板，记录当前面积，然后把短的那边的指针向中心移动一个位置，比较面积，以此类推； 证明： 以左边指针为例，如果左边较短，那么右边的指针无论怎么向左移动都不可能得到更大的面积了，所以可以看作直接跳过大层循环，即左边指针向右一位。右边指针同理； 左边向右一位后，右边的指针不需要回到最右边，因为右边指针的右边不可能有比左边指针移动前更大的（相当于双方打擂台，守擂的一定比对方之前打擂失败的都要强），所以左指针移动后不可能通过右指针右边的数得到更好的答案。 Python Code 1234567891011121314151617class Solution(object): def maxArea(self, height): """ :type height: List[int] :rtype: int """ mx = 0 i = 0 j = len(height) - 1 while i &lt; j: v = min(height[i], height[j]) * (j-i) mx = max(mx, v) if height[i] &lt; height[j]: i += 1 else: j -= 1 return mx]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -781,8 +842,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>JetBrains</tag>
         <tag>Java</tag>
+        <tag>JetBrains</tag>
       </tags>
   </entry>
   <entry>
@@ -793,8 +854,8 @@
         <category>环境搭建</category>
       </categories>
       <tags>
-        <tag>JetBrains</tag>
         <tag>Java</tag>
+        <tag>JetBrains</tag>
         <tag>Spring Boot</tag>
       </tags>
   </entry>
@@ -812,9 +873,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[多维缩放(MDS)]]></title>
-    <url>%2F2018%2F03%2F11%2FMDS%2F</url>
-    <content type="text"><![CDATA[多维缩放(multidimensional scaling ,MDS)，是另外一种线性降维方式，与主成分分析法和线性降维分析法都不同的是，多维缩放的目标不是保留数据的最大可分性，而是更加关注与高维数据内部的特征。多维缩放算法集中于保留高维空间中的“相似度”信息，而在一般的问题解决的过程中，这个“相似度”通常用欧式距离来定义。 假设D为m个样本在高维空间中的距离矩阵，distij为第i个样本与第j个样本的欧式距离 Z是样本在低维中映射的表示，那么，多维缩放的降维目标就是要保证： 令B=ZTZ，B为降维后样本的内积矩阵，bij=ziTzj 规定降维后的样本为中心化样本，因为只保留了距离信息，无论结果怎么旋转、平移都可以，即 那么 令 综合以上各式，得到 所以可以使用距离矩阵D来求得内积矩阵B， 为了完成降维，可以将B进行特征值分解 仅保留最大的前d’个特征值以及相应的特征向量，就可以得出降维后的结果]]></content>
+    <title><![CDATA[等度量映射(ISOMAP)]]></title>
+    <url>%2F2018%2F03%2F11%2FIsomap%2F</url>
+    <content type="text"><![CDATA[等度量映射(Isomap)是最经典的非线性映射降维方法之一，它在MDS的基础上引入了“测地距离”的概念，直接解决了MDS使用欧氏距离无法应对非线性流形的问题。 测地距离(Geometric Distance)是高维流形中两点之间的最短距离，高维流形中，空间是不规则的，所以最短距离不一定是直线距离(欧氏距离)。就像蚂蚁从立方体的一面爬到另一面，不能直接横穿立方体一样。 上图最左边的图中两个点的最近距离应该是蓝色实线的距离，而不应该是虚线的距离。 真实的测地距离是非常难以求出的，Isomap基于流形局部近似于欧式空间的定义提出了一种近似的求解方式 求得原样本的KNN图，并依据定义保留其欧式距离 所有非KNN的点间的距离规定为无穷大 用dijkstra或floyd求出任意两点的最短路便可近似表示两点间的测地距离 最后Isomap将得到的测地距离矩阵输入MDS完成降维; 感受下效果]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -824,9 +885,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[等度量映射(ISOMAP)]]></title>
-    <url>%2F2018%2F03%2F11%2FIsomap%2F</url>
-    <content type="text"><![CDATA[等度量映射(Isomap)是最经典的非线性映射降维方法之一，它在MDS的基础上引入了“测地距离”的概念，直接解决了MDS使用欧氏距离无法应对非线性流形的问题。 测地距离(Geometric Distance)是高维流形中两点之间的最短距离，高维流形中，空间是不规则的，所以最短距离不一定是直线距离(欧氏距离)。就像蚂蚁从立方体的一面爬到另一面，不能直接横穿立方体一样。 上图最左边的图中两个点的最近距离应该是蓝色实线的距离，而不应该是虚线的距离。 真实的测地距离是非常难以求出的，Isomap基于流形局部近似于欧式空间的定义提出了一种近似的求解方式 求得原样本的KNN图，并依据定义保留其欧式距离 所有非KNN的点间的距离规定为无穷大 用dijkstra或floyd求出任意两点的最短路便可近似表示两点间的测地距离 最后Isomap将得到的测地距离矩阵输入MDS完成降维; 感受下效果]]></content>
+    <title><![CDATA[多维缩放(MDS)]]></title>
+    <url>%2F2018%2F03%2F11%2FMDS%2F</url>
+    <content type="text"><![CDATA[多维缩放(multidimensional scaling ,MDS)，是另外一种线性降维方式，与主成分分析法和线性降维分析法都不同的是，多维缩放的目标不是保留数据的最大可分性，而是更加关注与高维数据内部的特征。多维缩放算法集中于保留高维空间中的“相似度”信息，而在一般的问题解决的过程中，这个“相似度”通常用欧式距离来定义。 假设D为m个样本在高维空间中的距离矩阵，distij为第i个样本与第j个样本的欧式距离 Z是样本在低维中映射的表示，那么，多维缩放的降维目标就是要保证： 令B=ZTZ，B为降维后样本的内积矩阵，bij=ziTzj 规定降维后的样本为中心化样本，因为只保留了距离信息，无论结果怎么旋转、平移都可以，即 那么 令 综合以上各式，得到 所以可以使用距离矩阵D来求得内积矩阵B， 为了完成降维，可以将B进行特征值分解 仅保留最大的前d’个特征值以及相应的特征向量，就可以得出降维后的结果]]></content>
       <categories>
         <category>机器学习</category>
       </categories>
@@ -844,8 +905,8 @@
       </categories>
       <tags>
         <tag>环境搭建</tag>
-        <tag>JetBrains</tag>
         <tag>Java</tag>
+        <tag>JetBrains</tag>
       </tags>
   </entry>
   <entry>
@@ -1018,6 +1079,18 @@
       </tags>
   </entry>
   <entry>
+    <title><![CDATA[Fcitx下全角中括号无法输入的问题]]></title>
+    <url>%2F2018%2F02%2F15%2Ffcitx%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍如何修复ubuntu下Fcitx输入法无法输入全角（中文）中括号【】并使用[]来切换候选字的方法 操作步聚： 打开fcitx字符映射文件 1sudo gedit /usr/share/fcitx/data/punc.mb.zh_CN ​ 修改 将 12[ ·] 「 」 修改为 12[ 【] 】 重启输入法完成修改]]></content>
+      <categories>
+        <category>环境搭建</category>
+      </categories>
+      <tags>
+        <tag>环境搭建</tag>
+        <tag>Fcitx</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[受限制玻尔兹曼机(Restricted Bolzmann Machine)以及自编码器(Autoencoder)]]></title>
     <url>%2F2018%2F02%2F15%2FRBM%2F</url>
     <content type="text"><![CDATA[受限制玻尔兹曼机(Restricted Bolzmann Machine, RBM)与自编码器(Autoencoder, AE)是神经网络的两种基本结构，两个结构都能起到降维的作用，都可以用来对神经网络进行预训练（pre-training），这种预训练都是无监督的。由于RBM与MLP及其相似，一直以来我就困惑于他们两者，终于花了几天时间来搞清楚他们的区别和训练方法，发现他们甚至不是并列的关系。。 一、知识脉络受限制玻尔兹曼机 -&gt; 深度信念网络(Deep Blief Network, DBN) 自编码器 -&gt; 堆叠自编码器(Stacked Autoencoderm, SAE) 二、自编码器自编码器的输入维度与输出维度相等，训练目的是使数据的特征得到最大的保留，去除冗余信息，一个单层的自编码器结构如下图 当然一个自编码器也可以有很多层： 简化来看就是输入层-&gt;隐藏层-&gt;输出层，自编码器的目的就是使重建(reconstruction)的输出层能尽量还原输入层，同时获得中间隐藏层(最窄的橙色那层)既是降维的结果。若输入层到隐藏层间的部分称为编码器(灰色)，记号为f(x)，隐藏层到输出层之间的部分称为解码器(黄色)，记号为g(x)，那么自编码器的数学训练目标就是 三、受限制玻尔兹曼机受限制玻尔兹曼机是一个双层结构，可见层(visible)与隐藏层(hidden)，图结构为一个二分图，即可见层只与隐藏层之间有连接，但是层内是无连接的，因此RBM的性质：当给定可见层神经元的状态时，各隐藏层神经元的激活条件独立；反之当给定隐藏层神经元的状态时，可见层神经元的激活也条件独立。基本结构如下 受限制玻尔兹曼机的训练目的是为了最大程度的保留概率分布，定义了一个能量函数的概念 用矩阵来表示就是 a与b分别是可视层与隐藏层的偏置项(bias) v, h联合概率分布是 其中Z是所有[v, h]对对应的能量的总和，v的边缘概率分布如下，h同理 由于受限玻尔兹曼机结构上的特点，所以各隐藏层之间的神经元条件概率独立，即 可见层v同理 能量函数的具体推导过程将会在后面的文章中详细解释 四、训练方法就像RBM是由物理模型转化过来一样，训练方法与传统的反向传播(BP)也不一样 RBM最早的训练方法有Gibbs sampling，通过不断地来回采样来训练，如下图 然而这样的方法太慢，所以Hinton大神又提出了CD-k(contrastive divergence)算法，即只需要来回重复k次就可以，以CD-1为例: 就可以完成一次迭代，这就像是两种不同温度的液体进行混合，如果两者的温度差距较大，在混合的过程中就会产生较大的梯度，而受限制玻尔兹曼机的训练目标就是使得两边的“温度”能够尽量的相近，而在数据中这个“温度”的体现就是数据分布。也就是说，使用RBM进行模型的初始化训练能够最大程度的保留数据分布，防止梯度爆炸和梯度消失问题的出现。 五、深度信念网络与逐层训练由多层受限制玻尔兹曼机堆叠起来的网络叫作深度信念网络(DBN)。深度信念网络在最后一层接入一个Softmax层用作分类，训练的时候采取逐层训练+微调的方式 逐层训练就是从输入层开始将网络的相邻两层当作一个受限制玻尔兹曼机进行无监督训练，训练方法见上一节，训练后将上一个RBM的隐藏层当作下一个RBM的可见层继续 逐层无监督训练完毕后，将进行反向传播训练对模型进行微调，从输入端输入数据，最后从输出端开始进行反向传播 自编码器虽然只是要保证输出端与输入端尽量接近，但是随着自编码器堆叠深度的加深，就会出现类似梯度弥散与梯度爆炸等问题，Hinton大神同样也使用了类似RBM的训练方法对深度自编码器进行逐层训练，使模型的得到了很好的初始化，加快了模型的解的最优性和收敛速度。 六、参考 受限玻尔兹曼机与深度置信网络 Hinton G E. A practical guide to training restricted Boltzmann machines[M]//Neural networks: Tricks of the trade. Springer, Berlin, Heidelberg, 2012: 599-619. Bengio Y, Lamblin P, Popovici D, et al. Greedy layer-wise training of deep networks[C]//Advances in neural information processing systems. 2007: 153-160. Hinton G E, Osindero S, Teh Y W. A fast learning algorithm for deep belief nets[J]. Neural computation, 2006, 18(7): 1527-1554. Hinton G E, Salakhutdinov R R. Reducing the dimensionality of data with neural networks[J]. science, 2006, 313(5786): 504-507.]]></content>
@@ -1031,18 +1104,6 @@
         <tag>contrastive divergence</tag>
         <tag>Autoencoder</tag>
         <tag>DBN</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Fcitx下全角中括号无法输入的问题]]></title>
-    <url>%2F2018%2F02%2F15%2Ffcitx%2F</url>
-    <content type="text"><![CDATA[本篇文章将会介绍如何修复ubuntu下Fcitx输入法无法输入全角（中文）中括号【】并使用[]来切换候选字的方法 操作步聚： 打开fcitx字符映射文件 1sudo gedit /usr/share/fcitx/data/punc.mb.zh_CN ​ 修改 将 12[ ·] 「 」 修改为 12[ 【] 】 重启输入法完成修改]]></content>
-      <categories>
-        <category>环境搭建</category>
-      </categories>
-      <tags>
-        <tag>环境搭建</tag>
-        <tag>Fcitx</tag>
       </tags>
   </entry>
   <entry>
@@ -1166,9 +1227,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Codeforce 915B Browser]]></title>
-    <url>%2F2018%2F01%2F26%2Fcodeforce915B%2F</url>
-    <content type="text"><![CDATA[Luba is surfing the Internet. She currently has n opened tabs in her browser, indexed from 1 to n from left to right. The mouse cursor is currently located at the pos-th tab. Luba needs to use the tabs with indices from l to r (inclusive) for her studies, and she wants to close all the tabs that don’t belong to this segment as fast as possible. Each second Luba can either try moving the cursor to the left or to the right (if the cursor is currently at the tab i, then she can move it to the tab max(i - 1, a) or to the tab min(i + 1, b)) or try closing all the tabs to the left or to the right of the cursor (if the cursor is currently at the tab i, she can close all the tabs with indices from segment [a, i - 1] or from segment [i + 1, b]). In the aforementioned expressions a and b denote the minimum and maximum index of an unclosed tab, respectively. For example, if there were 7 tabs initially and tabs 1, 2and 7 are closed, then a = 3, b = 6. What is the minimum number of seconds Luba has to spend in order to leave only the tabs with initial indices from l to r inclusiveopened? Input The only line of input contains four integer numbers n, pos, l, r (1 ≤ n ≤ 100, 1 ≤ pos ≤ n, 1 ≤ l ≤ r ≤ n) — the number of the tabs, the cursor position and the segment which Luba needs to leave opened. Output Print one integer equal to the minimum number of seconds required to close all the tabs outside the segment [l, r]. Examples input 16 3 2 4 output 15 input 16 3 1 3 output 11 input 15 2 1 5 output 10 Note In the first test Luba can do the following operations: shift the mouse cursor to the tab 2, close all the tabs to the left of it, shift the mouse cursor to the tab 3, then to the tab 4, and then close all the tabs to the right of it. In the second test she only needs to close all the tabs to the right of the current position of the cursor. In the third test Luba doesn’t need to do anything. 不要漏考虑情况 左右贴边 左贴边 pos在r右边 pos在r左边 右贴边 pos在l右边 pos在l左边 都不贴边 pos在l左边 pos在r右边 pos在l和r中间 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, pos, l, r; while(~scanf("%d%d%d%d", &amp;n, &amp;pos, &amp;l, &amp;r)) &#123; if(l == 1 &amp;&amp; r == n) &#123; printf("0\n"); &#125; else if(l == 1) &#123; if(pos &gt; r) &#123; printf("%d\n", pos-r+1); &#125; else &#123; printf("%d\n", r-pos+1); &#125; &#125; else if(r == n) &#123; if(pos &lt; l) &#123; printf("%d\n", l-pos+1); &#125; else &#123; printf("%d\n", pos-l+1); &#125; &#125; else &#123; if(pos &gt; r) &#123; printf("%d\n", pos-l+2); &#125; else if(pos &lt; l) &#123; printf("%d\n", r-pos+2); &#125; else &#123; printf("%d\n", (r-l) + 2 + min(r-pos, pos-l)); &#125; &#125; &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Codeforce 915C Permute Digits]]></title>
+    <url>%2F2018%2F01%2F26%2Fcodeforce915C%2F</url>
+    <content type="text"><![CDATA[You are given two positive integer numbers a and b. Permute (change order) of the digits of a to construct maximal number not exceeding b. No number in input and/or output can start with the digit 0. It is allowed to leave a as it is. Input The first line contains integer a (1 ≤ a ≤ 1018). The second line contains integer b (1 ≤ b ≤ 1018). Numbers don’t have leading zeroes. It is guaranteed that answer exists. Output Print the maximum possible number that is a permutation of digits of a and is not greater than b. The answer can’t have any leading zeroes. It is guaranteed that the answer exists. Examples input 12123222 output 1213 input 12392110000 output 19321 input 1249405000 output 14940 b一定不短于a 如果b比a长，直接降序排列a 如果一样长 先统计a中数字的个数 对于每一位b，都找不比b大的匹配，一旦有一位匹配后小于b的那位，之后就可以从最大的开始降序匹配 如果有一位无法匹配小于等于b的那位，那么就回退一位，匹配小于b的，这样后面就可以不受约束 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;iomanip&gt;using namespace std;bool cmp(char a, char b)&#123; return a &gt; b;&#125;int main()&#123; char str1[20]; char str2[20]; char tmp; int arr[15]; while(~scanf("%s", str1)) &#123; memset(arr, 0, sizeof(arr)); getchar(); scanf("%s", str2); getchar(); int len1 = strlen(str1); int len2 = strlen(str2); if(len2 &gt; len1) &#123; sort(str1, str1+len1, cmp); &#125; else &#123; bool flag = false; for(int i = 0; i &lt; len1; i++) &#123; arr[str1[i] - '0']++; str1[i] = str2[i]; &#125; for(int i = 0; i &lt; len2; i++) &#123; int j; if(flag == false) j = str1[i] - '0'; else j = 9; for(; j &gt;= 0; j--) &#123; if(arr[j] &gt; 0) &#123; arr[j]--; str1[i] = j+'0'; if(j &lt; str2[i] - '0') flag = true; break; &#125; &#125; if(j == -1 &amp;&amp; flag == false) &#123; i--; arr[str1[i]-'0']++; str1[i]--; i--; &#125; &#125; &#125; printf("%s\n", str1); &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -1178,9 +1239,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Codeforce 915C Permute Digits]]></title>
-    <url>%2F2018%2F01%2F26%2Fcodeforce915C%2F</url>
-    <content type="text"><![CDATA[You are given two positive integer numbers a and b. Permute (change order) of the digits of a to construct maximal number not exceeding b. No number in input and/or output can start with the digit 0. It is allowed to leave a as it is. Input The first line contains integer a (1 ≤ a ≤ 1018). The second line contains integer b (1 ≤ b ≤ 1018). Numbers don’t have leading zeroes. It is guaranteed that answer exists. Output Print the maximum possible number that is a permutation of digits of a and is not greater than b. The answer can’t have any leading zeroes. It is guaranteed that the answer exists. Examples input 12123222 output 1213 input 12392110000 output 19321 input 1249405000 output 14940 b一定不短于a 如果b比a长，直接降序排列a 如果一样长 先统计a中数字的个数 对于每一位b，都找不比b大的匹配，一旦有一位匹配后小于b的那位，之后就可以从最大的开始降序匹配 如果有一位无法匹配小于等于b的那位，那么就回退一位，匹配小于b的，这样后面就可以不受约束 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;#include &lt;iomanip&gt;using namespace std;bool cmp(char a, char b)&#123; return a &gt; b;&#125;int main()&#123; char str1[20]; char str2[20]; char tmp; int arr[15]; while(~scanf("%s", str1)) &#123; memset(arr, 0, sizeof(arr)); getchar(); scanf("%s", str2); getchar(); int len1 = strlen(str1); int len2 = strlen(str2); if(len2 &gt; len1) &#123; sort(str1, str1+len1, cmp); &#125; else &#123; bool flag = false; for(int i = 0; i &lt; len1; i++) &#123; arr[str1[i] - '0']++; str1[i] = str2[i]; &#125; for(int i = 0; i &lt; len2; i++) &#123; int j; if(flag == false) j = str1[i] - '0'; else j = 9; for(; j &gt;= 0; j--) &#123; if(arr[j] &gt; 0) &#123; arr[j]--; str1[i] = j+'0'; if(j &lt; str2[i] - '0') flag = true; break; &#125; &#125; if(j == -1 &amp;&amp; flag == false) &#123; i--; arr[str1[i]-'0']++; str1[i]--; i--; &#125; &#125; &#125; printf("%s\n", str1); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[Codeforce 915B Browser]]></title>
+    <url>%2F2018%2F01%2F26%2Fcodeforce915B%2F</url>
+    <content type="text"><![CDATA[Luba is surfing the Internet. She currently has n opened tabs in her browser, indexed from 1 to n from left to right. The mouse cursor is currently located at the pos-th tab. Luba needs to use the tabs with indices from l to r (inclusive) for her studies, and she wants to close all the tabs that don’t belong to this segment as fast as possible. Each second Luba can either try moving the cursor to the left or to the right (if the cursor is currently at the tab i, then she can move it to the tab max(i - 1, a) or to the tab min(i + 1, b)) or try closing all the tabs to the left or to the right of the cursor (if the cursor is currently at the tab i, she can close all the tabs with indices from segment [a, i - 1] or from segment [i + 1, b]). In the aforementioned expressions a and b denote the minimum and maximum index of an unclosed tab, respectively. For example, if there were 7 tabs initially and tabs 1, 2and 7 are closed, then a = 3, b = 6. What is the minimum number of seconds Luba has to spend in order to leave only the tabs with initial indices from l to r inclusiveopened? Input The only line of input contains four integer numbers n, pos, l, r (1 ≤ n ≤ 100, 1 ≤ pos ≤ n, 1 ≤ l ≤ r ≤ n) — the number of the tabs, the cursor position and the segment which Luba needs to leave opened. Output Print one integer equal to the minimum number of seconds required to close all the tabs outside the segment [l, r]. Examples input 16 3 2 4 output 15 input 16 3 1 3 output 11 input 15 2 1 5 output 10 Note In the first test Luba can do the following operations: shift the mouse cursor to the tab 2, close all the tabs to the left of it, shift the mouse cursor to the tab 3, then to the tab 4, and then close all the tabs to the right of it. In the second test she only needs to close all the tabs to the right of the current position of the cursor. In the third test Luba doesn’t need to do anything. 不要漏考虑情况 左右贴边 左贴边 pos在r右边 pos在r左边 右贴边 pos在l右边 pos在l左边 都不贴边 pos在l左边 pos在r右边 pos在l和r中间 C++ Code 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556#include &lt;iostream&gt;#include &lt;stdio.h&gt;#include &lt;algorithm&gt;#include &lt;string.h&gt;using namespace std;int main()&#123; int n, pos, l, r; while(~scanf("%d%d%d%d", &amp;n, &amp;pos, &amp;l, &amp;r)) &#123; if(l == 1 &amp;&amp; r == n) &#123; printf("0\n"); &#125; else if(l == 1) &#123; if(pos &gt; r) &#123; printf("%d\n", pos-r+1); &#125; else &#123; printf("%d\n", r-pos+1); &#125; &#125; else if(r == n) &#123; if(pos &lt; l) &#123; printf("%d\n", l-pos+1); &#125; else &#123; printf("%d\n", pos-l+1); &#125; &#125; else &#123; if(pos &gt; r) &#123; printf("%d\n", pos-l+2); &#125; else if(pos &lt; l) &#123; printf("%d\n", r-pos+2); &#125; else &#123; printf("%d\n", (r-l) + 2 + min(r-pos, pos-l)); &#125; &#125; &#125; return 0;&#125;]]></content>
       <categories>
         <category>ACM</category>
       </categories>
@@ -1214,17 +1275,15 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[Linux下配置Git免密码]]></title>
-    <url>%2F2018%2F01%2F24%2Fgit_password%2F</url>
-    <content type="text"><![CDATA[本篇文章将会介绍如何在Linux下配置使Git在push/pull时免密码 操作步聚： 进入当前用户目录下； 创建并打开.git-credentials 按照以下格式输入内容： 1 https://&#123;username&#125;：&#123;password&#125;@github.com 其中username，password，github.com 都替换成你自己的内容 保存退出后执行 1git config --global credential.helper store 执行完后 /home/用户名/.gitconfig 会新增一项 helper = store 这时再执行git push/pull的时候就不会在要求你输入密码了。]]></content>
+    <title><![CDATA[LeetCode 23 Merge k Sorted Lists]]></title>
+    <url>%2F2018%2F01%2F24%2Fleetcode23%2F</url>
+    <content type="text"><![CDATA[Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. 12345678910111213141516171819202122232425262728# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeKLists(self, lists): """ :type lists: List[ListNode] :rtype: ListNode """ heap = [] i = 0 for node in lists: if node != None: heap.append((node.val, i, node)) i += 1 heapq.heapify(heap) cur = head = ListNode(0) while heap: pop = heapq.heappop(heap) cur.next = ListNode(pop[0]) cur = cur.next if pop[2].next != None: heapq.heappush(heap, (pop[2].next.val, i, pop[2].next)) i += 1 return head.next]]></content>
       <categories>
-        <category>环境搭建</category>
+        <category>ACM</category>
       </categories>
       <tags>
-        <tag>环境搭建</tag>
-        <tag>Linux</tag>
-        <tag>Ubuntu</tag>
-        <tag>git</tag>
+        <tag>python</tag>
+        <tag>leetcode</tag>
       </tags>
   </entry>
   <entry>
@@ -1241,15 +1300,17 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[LeetCode 23 Merge k Sorted Lists]]></title>
-    <url>%2F2018%2F01%2F24%2Fleetcode23%2F</url>
-    <content type="text"><![CDATA[Merge k sorted linked lists and return it as one sorted list. Analyze and describe its complexity. 12345678910111213141516171819202122232425262728# Definition for singly-linked list.# class ListNode:# def __init__(self, x):# self.val = x# self.next = Noneclass Solution: def mergeKLists(self, lists): """ :type lists: List[ListNode] :rtype: ListNode """ heap = [] i = 0 for node in lists: if node != None: heap.append((node.val, i, node)) i += 1 heapq.heapify(heap) cur = head = ListNode(0) while heap: pop = heapq.heappop(heap) cur.next = ListNode(pop[0]) cur = cur.next if pop[2].next != None: heapq.heappush(heap, (pop[2].next.val, i, pop[2].next)) i += 1 return head.next]]></content>
+    <title><![CDATA[Linux下配置Git免密码]]></title>
+    <url>%2F2018%2F01%2F24%2Fgit_password%2F</url>
+    <content type="text"><![CDATA[本篇文章将会介绍如何在Linux下配置使Git在push/pull时免密码 操作步聚： 进入当前用户目录下； 创建并打开.git-credentials 按照以下格式输入内容： 1 https://&#123;username&#125;：&#123;password&#125;@github.com 其中username，password，github.com 都替换成你自己的内容 保存退出后执行 1git config --global credential.helper store 执行完后 /home/用户名/.gitconfig 会新增一项 helper = store 这时再执行git push/pull的时候就不会在要求你输入密码了。]]></content>
       <categories>
-        <category>ACM</category>
+        <category>环境搭建</category>
       </categories>
       <tags>
-        <tag>python</tag>
-        <tag>leetcode</tag>
+        <tag>环境搭建</tag>
+        <tag>Linux</tag>
+        <tag>Ubuntu</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
