@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="oPBIkpTu0J" />
+<meta name="google-site-verification" content="TipGWEPl2YFtMc6big_ugeXvdf0JkNEoFkqHVdn9V8M" />
+<meta name="360-site-verification" content="29ef2f44c16e261d7bc7dc0e831c96b1" />
+<meta name="msvalidate.01" content="8DA9B03059CCE6D474F50950C21C5E11" />
+<meta name="sogou_site_verification" content="BtLMCSfs2U"/>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch.png?v=6.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.ico?v=6.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.ico?v=6.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.1" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Machine Learning, Data Mining, AI, Software, 机器学习, 人工智能, Java, C++, Python" />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/rss2.xml" title="Ph0en1x Notebook" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Tags">
+<meta property="og:url" content="https://www.ph0en1x.space/tags/index.html">
+<meta property="og:site_name" content="Ph0en1x Notebook">
+<meta property="og:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-02-22T10:40:05.695Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tags">
+<meta name="twitter:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.1',
+    sidebar: {"position":"right","display":"always","offset":15,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.ph0en1x.space/tags/"/>
+
+
+
+
+
+  <title>网络表示学习(一)--结构篇 | Ph0en1x Notebook</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-112419973-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?112171ead002ea668592650a675d8d85";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ph0en1x Notebook</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">A step forward every day</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2019/04/30/network_struct/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ph0en1x">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ph0en1x Notebook">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">网络表示学习(一)--结构篇</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-30T00:00:00+08:00">2019-04-30</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>图结构数据是除了图片、文本、语音之外又一常见且重要的数据类型，例如社交网络数据、引用网络数据、和生物蛋白质数据等等。在针对图像、文本等数据的机器学习任务中，都有相对应的方法，将这些数据中的特征用一个稠密向量进行表示，然后再运用于各种各样的任务中去。网络表示学习就是将网络中结点的特征，嵌入(Embedding)至低位向量中的方法。学习到的这些向量将会保留图结构数据结点的相似性，使得一些下游机器学习任务，例如结点分类、结点聚类、连接预测、可视化等等的模型泛化性能得到增强。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/karate.PNG" alt="karate"></p>
+</blockquote>
+<p>本文首先将会介绍网络表示学习最为著名的三份工作：DeepWalk、LINE和Node2Vec。</p>
+<p>然后将会介绍两篇在AAAI18上的两篇网络结构表示学习的新工作HARP、GraphGAN</p>
+<p>本文首发于知乎专栏：<a href="https://zhuanlan.zhihu.com/p/64991884" target="_blank" rel="noopener">SoftWiser</a></p>
+<a id="more"></a>
+<h1 id="一、DeepWalk-Online-Learning-of-Social-Representations"><a href="#一、DeepWalk-Online-Learning-of-Social-Representations" class="headerlink" title="一、DeepWalk: Online Learning of Social Representations"></a>一、DeepWalk: Online Learning of Social Representations</h1><p>DeepWalk可以称得上是这个方向上最著名的工作了，几乎所有网络表示学习相关的论文，都会引用DeepWalk作为Baseline之一，同时DeepWalk也是很多相关工作所使用的底层方法之一。可见这份工作在网络表示学习领域的地位。</p>
+<ol>
+<li><p><strong>Method</strong></p>
+<p>DeepWalk最主要的贡献就是他将Network Embedding与自然语言处理中重要的Word Embedding方法Word2Vec联系了起来，使得Network Embedding问题转化为了一个Word Embedding问题。</p>
+<p>转化方法其实很简单，就是随机游走。如下图所示，DeepWalk通过从每个结点出发n_walks次，每一步都采取均匀采样的方式选择当前结点的邻接结点作为下一步的结点随机游走。当游走的路径长度达到walk_length后，停止一次游走。这样就生成了一个个游走的序列，每个序列都称为一个walk。每个walk都被当成Word2Vec中的一个句子，而每个结点都是Word2Vec中的一个词。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/dw.PNG" alt="dw"></p>
+<p>之后的算法几乎和Word2Vec的Skipgram版本完全一样。使用一个大小为window_size的滑动窗口作为一条walk的context，使用一个context中的中心词去推测所有context中的其他词，使用的目标函数也与Word2Vec一致。</p>
+</li>
+<li><p><strong>Experiments</strong></p>
+<p>DeepWalk选择Multi-Label Classification作为评价算法Performance的指标。评价中将通过DeepWalk学习获得的Embedding按照不同的比例划分为训练集与测试集。训练集作为N个one-vs-rest对率回归分类器的训练数据，将其中置信度最高的k个类别作为结点的预测类别。其中N为类别的个数，k为结点的标签数。</p>
+<p>实验结果如下所示：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/dw_result.PNG" alt="dw_result"></p>
+</li>
+</ol>
+<h1 id="二、LINE-Large-scale-Information-Network-Embedding"><a href="#二、LINE-Large-scale-Information-Network-Embedding" class="headerlink" title="二、LINE: Large-scale Information Network Embedding"></a>二、LINE: Large-scale Information Network Embedding</h1><p>虽然DeepWalk通过随机游走的方式，将图结构数据转化为了自然语言处理的任务来完成。但是，图结构中节点的关系往往比词上下文关系更加的复杂。通常部分的图结构数据中边具有权重，使用现有的Word2Vec方法无法很好的应对这个问题。此外，在现实世界数据中，图的规模往往过于庞大，以至于存下所有的walk的开销将十分惊人。</p>
+<ol>
+<li><p><strong>Method</strong></p>
+<p>LINE不再采用随机游走的方法。相反，他在图上定义了两种相似度——一阶相似度与二阶相似度。</p>
+<ul>
+<li>一阶相似度：一阶相似度就是要保证低维的嵌入中要保留两个结点之间的直接联系的紧密程度，换句话说就是保留结点之间的边权，若两个结点之间不存在边，那么他们之间的一阶相似度为0。例如下图中的6、7两个结点就拥有很高的一阶相似度。</li>
+<li>二阶相似度：二阶相似度用一句俗话来概括就是“我朋友的朋友也可能是我的朋友”。他所比较的是两个结点邻居的相似程度。若两个结点拥有相同的邻居，他们也更加的相似。如果将邻居看作context，那么两个二阶相似度高的结点之间拥有相似的context。这一点与DeepWalk的目标一致。例如下图中的5、6两点拥有很高的二阶相似度。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/line.PNG" alt="line"></p>
+<p>LINE的目标就是保留这两种相似度。</p>
+<ul>
+<li><p>LINE的一阶相似度</p>
+<p>两个结点实际的一阶相似度表达如下：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/line1_hat.PNG" alt="line1_hat"></p>
+<p>其中W是所有边权重之和。而两个结点embedding之间的相似度为：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/line1.PNG" alt="line1"></p>
+<p>其中u是结点的embedding。即两个结点表示的内积套上一个 对率函数的结果。这样一来目标函数设为实际相似度与表示相似度之间的KL散度就可以了，这样一来，只要最小化KL散度(下式中约去了一些常数)，就能保证表示相似度尽量接近实际相似度。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/line1_KL.PNG" alt="line1_KL"></p>
+</li>
+<li><p>LINE的二阶相似度</p>
+<p>两个结点实际的二阶相似度表达式如下：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/line2_hat.PNG" alt="line2_hat"></p>
+<p>其中wij是边ij的权重，di是结点i的出度。两个结点embedding的相似度为：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/line2.PNG" alt="line2"></p>
+<p>其中V为结点i的所有邻居，这里与一阶相似度不同的地方是，对于邻居结点，使用了另一组的embedding，称作context。目标函数依旧是KL散度，也就是最终，拥有相似邻居的结点，将会拥有相近的embedding。</p>
+</li>
+</ul>
+<p>最终要获得同时包含有一阶相似度和二阶相似度的embedding，只需要将通过一阶相似度获得的embedding与通过二阶相似度获得的embedding拼接即可。</p>
+</li>
+<li><p><strong>Experiments</strong></p>
+<p>同样也来看一下LINE在结点分类任务中的表现：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/line_result.PNG" alt="line_result"></p>
+<p>可以看到，当考虑到一阶相似度之后，也就是边的权重后，LINE的表现效果要略好于DeepWalk。</p>
+</li>
+</ol>
+<h1 id="三、Node2Vec-Scalable-Feature-Learning-for-Networks"><a href="#三、Node2Vec-Scalable-Feature-Learning-for-Networks" class="headerlink" title="三、Node2Vec: Scalable Feature Learning for Networks"></a>三、Node2Vec: Scalable Feature Learning for Networks</h1><p>Node2Vec是一份基于DeepWalk的延伸工作，它改进了DeepWalk随机游走的策略。</p>
+<ol>
+<li><p><strong>Method</strong></p>
+<p>Node2Vec认为，现有的方法无法很好的保留网络的结构信息，例如下图所示，有一些点之间的连接非常紧密(比如u, s1, s2, s3, s4)，他们之间就组成了一个社区(community)。网络中可能存在着各种各样的社区，而有的结点在社区中可能又扮演着相似的角色(比如u与s6)。</p>
+<p>Node2Vec的优化目标为以下两个：</p>
+<ul>
+<li>让同一个社区内的结点表示能够相互接近，或</li>
+<li>在不同社区内扮演相似角色的结点表示也要相互接近。</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/node2vec_community.PNG" alt="node2vec_community"></p>
+<p>为此，Node2Vec就要在DeepWalk现有的基础上，对随机游走的策略进行优化。Node2Vec提出了两种游走策略：</p>
+<ul>
+<li><strong>广度优先策略</strong></li>
+<li><strong>深度优先策略</strong></li>
+</ul>
+<p>就如上图的标注所示，深度优先游走策略将会限制游走序列中出现重复的结点，防止游走掉头，促进游走向更远的地方进行。而广度优先游走策略相反将会促进游走不断的回头，去访问上一步结点的其他邻居结点。</p>
+<p>这样一来，当使用广度优先策略时，游走将会在一个社区内长时间停留，使得一个社区内的结点互相成为context，这也就达到了第一条优化目标。相反，当使用深度优先的策略的时候，游走很难在同一个社区内停留，也就达到了第二条优化目标。</p>
+</li>
+</ol>
+<p>   那么如何达到这样的两种随机游走策略呢，这里需要用到两个超参数p和q用来控制深度优先策略和广度优先策略的比重，如下图所示。</p>
+<p>   <img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/node2vec.PNG" alt="node2vec"></p>
+<p>   假设现在游走序列从t走到v，这时候需要算出三个系数，分别作为控制下一步走向方向的偏置α</p>
+<p>   <img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/node2vec_bias.PNG" alt="node2vec_bias"></p>
+<p>   其中d(t, x)代表t结点到下一步结点x的最短路，最多为2。</p>
+<ul>
+<li>当d(t, x)=0时，表示下一步游走是回到上一步的结点；</li>
+<li>当d(t, x)=1时，表示下一步游走跳向t的另外一个邻居结点；</li>
+<li><p>当d(t, x)=2时，表示下一步游走向更远的结点移动。</p>
+<p>而Node2Vec同时还考虑了边权w的影响，所以最终的偏置系数以及游走策略为</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/node2vec_bias2.PNG" alt="node2vec_bias2"></p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/node2vec_walk.PNG" alt="node2vec_walk"></p>
+<p>这样一来，就可以看出，超参数p控制的是重新访问原来结点的概率，也就是保守探索系数，而超参数q控制的是游走向更远方向的概率，也就是激进探索系数。如果q较大，那么游走策略则更偏向于广度优先策略，若q较小，则偏向于深度优先策略。</p>
+</li>
+</ul>
+<ol start="2">
+<li><p><strong>Experiments</strong></p>
+<p>多标签分类任务中可以看出，当调整好适当的p、q值之后，Node2Vec的效果要略好于DeepWalk</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/node2vec_result.PNG" alt="node2vec_result"></p>
+</li>
+</ol>
+<h1 id="四、HARP-Hierarchical-Representation-Learning-for-Networks"><a href="#四、HARP-Hierarchical-Representation-Learning-for-Networks" class="headerlink" title="四、HARP: Hierarchical Representation Learning for Networks"></a>四、HARP: Hierarchical Representation Learning for Networks</h1><p>上面介绍了DeepWalk、LINE、Node2Vec三个网络表示学习中最为著名的三种算法。但是，这三个算法都有一个共同的弱点，那就是他们所捕捉的网络结点关系过近，都是局部邻居。LINE仅仅只考虑到了一阶邻居与二阶邻居之间的相似度关系。DeepWalk与Node2Vec虽然可以通过随机游走，获得较长的游走序列，但是游走的长度比起现在图数据的规模，随机游走的长度还是太短了。所以就需要想一种方法捕捉全局的相似度。</p>
+<ol>
+<li><p><strong>Method</strong></p>
+<p>HARP采取的方式就是通过多次折叠，将原来的大图层层收缩为较小的图，使得通过较短的随机游走距离，能够覆盖所有的，然后将小图作为上面三个算法的输入，学习Embedding。在将收缩后的小图被学习到的Embedding，作为折叠前的的图的Embedding的初始化，继续将折叠前的图输入到表示学习算法之中。最终再层层学得原来大图的Embedding。HARP的算法流程如下图所示。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/harp.PNG" alt="harp"></p>
+<p><strong>图折叠算法</strong></p>
+<p>那么要理解HARP这个算法的关键，就在于图折叠算法。HARP的图折叠算法，主要有以下两种方法</p>
+<ul>
+<li><p>边折叠 (Edge Collapsing)</p>
+<p>边折叠算法选择尽可能多的边，这些边没有共同的顶点，即每个顶点只有一条与之连接的边被选中。然后，如下图(a)所示，这些边被折叠成为一个结点，成为了折叠后的新结点。</p>
+</li>
+<li><p>星折叠 (Star Collapsing)</p>
+<p>虽然边折叠在最好的情况下每一轮折叠可以将结点的数量缩减一半，这样一来图折叠算法的总次数为O(logk)。但在某些特殊情况下却不能很好的发挥作用。如下图(b)所示，星形结构是网络中最常见结构之一，在这种结构中，如果使用边折叠算法，那么就至多只能折叠一条边，算法要执行的总次数则会退化为O(k)。所以，HARP采用了另外一种折叠策略，就是星折叠。如下图(c)所示，星状网络中有两种结点，中心结点和周围节点，星折叠方法就是将同一个中心结点的周围结点两两配对，折叠成一个结点，来尽量减少星状结构的周围结点，以增强边折叠的效率。</p>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/harp_collapse.PNG" alt="harp_collapse"></p>
+<p>HARP在每次折叠的时候，先是使用星折叠减少星形结构，然后再执行一次边折叠。具体的图折叠算法流程如下面的伪代码所示。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/harp_algorithm.PNG" alt="harp_algorithm"></p>
+</li>
+<li><p><strong>Experiment</strong></p>
+<p>通过HARP的多标签分类结果可以看出，使用HARP的图折叠和层级训练的手段后，相较于其相应的底层算法，都有一定的提升。实际上，经过我本人的实验，在更大规模的图上(结点数量达到数十万甚至上百万时)，这样的提升将会更加明显。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/harp_result.PNG" alt="harp_result"></p>
+</li>
+</ol>
+<h1 id="五、GraphGAN-Graph-Representation-Learning-with-Generative-Adversarial-Nets"><a href="#五、GraphGAN-Graph-Representation-Learning-with-Generative-Adversarial-Nets" class="headerlink" title="五、GraphGAN: Graph Representation Learning with Generative Adversarial Nets"></a>五、GraphGAN: Graph Representation Learning with Generative Adversarial Nets</h1><p>GraphGAN这份工作，顾名思义，就是尝试使用生成对抗网络(Generative Adversarial Nets, GAN)来增强网络表示学习的表现。</p>
+<ol>
+<li><p><strong>Method</strong></p>
+<p>要是理解GAN，那么GraphGAN的大题模块及其作用应该就能够很容易地想到。GraphGAN一共包含两个主要的模块：</p>
+<ul>
+<li><p>判别器</p>
+<p>由于Network Embedding任务大多是无监督，结点本身不带有任何标签，所以判别器要判别的就是网络自身带有的信息，也就是连接信息。GraphGAN中的判别器实际上就是一个连接预测器，通过输入两个结点的Embedding来判定两个结点之间是否存在一条边。</p>
+</li>
+<li><p>生成器</p>
+<p>生成器的作用就是通过合理的方式生成一些点对，然后将这些点对输入到判别器中，尽量让判别器将这两个点对误认为是在图上存在边的两个结点的Embedding。</p>
+</li>
+</ul>
+<p>之后的训练过程就是生成器与判别器较量的过程。生成器不断调整每个结点的Embedding以及自己的参数，使得按照自己的规则生成出来的两个就节点对能够被判别器判别成为存在连接。而判别器则通过调整自身的参数，使自己能够准确的将图中实际存在边的结点对判定为true而将生成器生成的结点对判定为false。他们两个共同组成GraphGAN的目标函数：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/graphgan_minmax.PNG" alt="graphgan_minmax"></p>
+</li>
+<li><p><strong>Implemention</strong></p>
+<p>那么GraphGAN中的判别器与生成器具体是怎么实现的呢？</p>
+<p>前面介绍的DeepWalk、LINE、Node2Vec等方法都是先获得一些context，然后通过训练使得这些结点的Embedding相互接近，然后通过随机的负采样得到一些负样本，让这些负样本的结点之间的Embedding相互远离。事实上GraphGAN的判别器与前面工作的context训练非常相似，也是让ground truth的Embedding相互接近，让生成器生成的节点对的Embedding相互远离。</p>
+<p>这样一来生成器看似是代替了原来负采样的过程，然而生成器却需要能够生成与ground truth尽量相似的数据，这就与原来的负采样不太一致。那么这是为什么呢？</p>
+<p>产生这样疑惑的原因是我们从以判别器为主的角度来看待这个模型。如果我们从生成器的角度来理解这个模型的时候，这些疑惑就会得到解释。判别器仅仅只是作为训练时的目标函数的实现，它起到的作用有两个，一是让ground truth相互接近，另外一个就是给生成器提供损失函数。而一个经过精心设计的生成器，就可以利用这样的损失函数，训练出我们需要的Embedding。</p>
+<p>下面就来介绍一下GraphGAN的生成器是如何工作的。</p>
+<p>首先，生成器要遵守以下三个原则：</p>
+<ul>
+<li>Normalized，即所有结点被当作负样本的概率之和为1；</li>
+<li>Graph-structure-aware，结点被选中负样本的概率随着据中心结点的最短路增大而减小；</li>
+<li>Computational efficient，不能针对所有结点来计算softmax，只能关联到一个结点的小子集。</li>
+</ul>
+<p>算法开始前，需要生成每个结点的BFS树，然后为了选取某一个结点的负采样，需要沿着该结点的BFS树向下或向上遍历。从某个父节点转移到它的子节点或父节点的概率为：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/graphgan_p.PNG" alt="graphgan_p"></p>
+<p>然后，一个结点最终被选取为起始结点的负样本的概率为：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/graphgan_g.PNG" alt="graphgan_g"></p>
+<p>以下图为例子，给定一个图，现在要从vc这个点开始负采样，那么先以vc为根生成BFS树。然后再算出每个结点与其子结点的转移概率，通过这个概率采样子节点，直到哪个结点被遍历了两次，结束。输出这个重复遍历的结点作为负样本。这个遍历过程中涉及到的所有其他结点(绿色结点)都要在训练中训练到。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/graphgan.PNG" alt="graphgan"></p>
+<p>这样的作法复合上面提出的三种原则，论文中给出了详细的证明。</p>
+</li>
+<li><p><strong>Experiment</strong></p>
+<p>同样来看看GraphGAN的多标签分类的实验结果</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/graphgan_result.PNG" alt="graphgan_result"></p>
+</li>
+</ol>
+<h1 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h1><p>本文介绍了几种针对网络结构进行表示学习的方法，首先是DeepWalk、LINE、Node2Vec三个最为著名的工作。之后介绍了近两年的一些针对网络结构的网络表示方法HARP和GraphGAN，了解近些年针对结构的网络表示学习的一些新思路。但是，现实中的网络中的内容远远不止结构这么简单。网络中的结点可能有不同的类别，每种结点又可能有不同的属性。所以，还需要有针对利用网络中其他信息的相关研究。</p>
+<h1 id="七、参考文献"><a href="#七、参考文献" class="headerlink" title="七、参考文献"></a>七、参考文献</h1><p>[1] Perozzi B, Al-Rfou R, Skiena S. Deepwalk: Online learning of social representations[C]//Proceedings of the 20th ACM SIGKDD international conference on Knowledge discovery and data mining. ACM, 2014: 701-710.</p>
+<p>[2] Tang J, Qu M, Wang M, et al. Line: Large-scale information network embedding[C]//Proceedings of the 24th international conference on world wide web. International World Wide Web Conferences Steering Committee, 2015: 1067-1077.</p>
+<p>[3] Grover A, Leskovec J. node2vec: Scalable feature learning for networks[C]//Proceedings of the 22nd ACM SIGKDD international conference on Knowledge discovery and data mining. ACM, 2016: 855-864.</p>
+<p>[4] Chen H, Perozzi B, Hu Y, et al. Harp: Hierarchical representation learning for networks[C]//Thirty-Second AAAI Conference on Artificial Intelligence. 2018.</p>
+<p>[5] Wang H, Wang J, Wang J, et al. Graphgan: Graph representation learning with generative adversarial nets[C]//Thirty-Second AAAI Conference on Artificial Intelligence. 2018.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Representation-Learning/" rel="tag"># Representation Learning</a>
+          
+            <a href="/tags/Network-Embedding/" rel="tag"># Network Embedding</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/27/optimizer_nesterov/" rel="next" title="Nesterov Optimizer的理解与实现">
+                <i class="fa fa-chevron-left"></i> Nesterov Optimizer的理解与实现
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/02/leetcode239/" rel="prev" title="LeetCode 239 Sliding Window Maximum">
+                LeetCode 239 Sliding Window Maximum <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Ph0en1x" />
+            
+              <p class="site-author-name" itemprop="name">Ph0en1x</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">119</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    <span class="site-state-item-count">67</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Ph0en1xGSeek" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/pan-guo-sheng-50" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-quora"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/Ph0en1xGSeek" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、DeepWalk-Online-Learning-of-Social-Representations"><span class="nav-number">1.</span> <span class="nav-text">一、DeepWalk: Online Learning of Social Representations</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、LINE-Large-scale-Information-Network-Embedding"><span class="nav-number">2.</span> <span class="nav-text">二、LINE: Large-scale Information Network Embedding</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、Node2Vec-Scalable-Feature-Learning-for-Networks"><span class="nav-number">3.</span> <span class="nav-text">三、Node2Vec: Scalable Feature Learning for Networks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、HARP-Hierarchical-Representation-Learning-for-Networks"><span class="nav-number">4.</span> <span class="nav-text">四、HARP: Hierarchical Representation Learning for Networks</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、GraphGAN-Graph-Representation-Learning-with-Generative-Adversarial-Nets"><span class="nav-number">5.</span> <span class="nav-text">五、GraphGAN: Graph Representation Learning with Generative Adversarial Nets</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、总结"><span class="nav-number">6.</span> <span class="nav-text">六、总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、参考文献"><span class="nav-number">7.</span> <span class="nav-text">七、参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ph0en1x</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      UV
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      PV
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.1"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "vertical";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
