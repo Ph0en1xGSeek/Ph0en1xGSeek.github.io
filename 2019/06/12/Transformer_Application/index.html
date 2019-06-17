@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+<meta name="baidu-site-verification" content="oPBIkpTu0J" />
+<meta name="google-site-verification" content="TipGWEPl2YFtMc6big_ugeXvdf0JkNEoFkqHVdn9V8M" />
+<meta name="360-site-verification" content="29ef2f44c16e261d7bc7dc0e831c96b1" />
+<meta name="msvalidate.01" content="8DA9B03059CCE6D474F50950C21C5E11" />
+<meta name="sogou_site_verification" content="BtLMCSfs2U"/>
+
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=6.0.1" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch.png?v=6.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon32.ico?v=6.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon16.ico?v=6.0.1">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.0.1" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Machine Learning, Data Mining, AI, Software, 机器学习, 人工智能, Java, C++, Python" />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/rss2.xml" title="Ph0en1x Notebook" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Categories">
+<meta property="og:url" content="https://www.ph0en1x.space/categories/index.html">
+<meta property="og:site_name" content="Ph0en1x Notebook">
+<meta property="og:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2018-02-22T10:39:54.048Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Categories">
+<meta name="twitter:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.0.1',
+    sidebar: {"position":"right","display":"always","offset":15,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.ph0en1x.space/categories/"/>
+
+
+
+
+
+  <title>Transformer结构及其应用--GPT、BERT、MT-DNN、GPT-2 | Ph0en1x Notebook</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-112419973-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?112171ead002ea668592650a675d8d85";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Ph0en1x Notebook</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">A step forward every day</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-th"></i> <br />Categories</a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />Archives</a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />Search</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2019/06/12/Transformer_Application/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ph0en1x">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ph0en1x Notebook">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Transformer结构及其应用--GPT、BERT、MT-DNN、GPT-2</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-12T00:00:00+08:00">2019-06-12</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/机器学习/" itemprop="url" rel="index">
+                    <span itemprop="name">机器学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">阅读
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文首先详细介绍Transformer的基本结构，然后再通过<strong>GPT</strong>、<strong>BERT</strong>、<strong>MT-DNN</strong>以及<strong>GPT-2</strong>等基于Transformer的知名应用工作的介绍并附上GitHub链接，看看Transformer如何在各个模型中中大显神威。</p>
+<p>本文首发于知乎专栏：<a href="https://zhuanlan.zhihu.com/p/69290203" target="_blank" rel="noopener">SoftWiser</a></p>
+</blockquote>
+<a id="more"></a>
+<h1 id="一、取代RNN——Transformer"><a href="#一、取代RNN——Transformer" class="headerlink" title="一、取代RNN——Transformer"></a>一、取代RNN——Transformer</h1><p>在介绍Transformer前我们来回顾一下RNN的结构</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/LSTM/RNN.png" alt=""></p>
+<p>对RNN有一定了解的话，一定会知道，RNN有两个很明显的问题</p>
+<ul>
+<li>效率问题：需要逐个词进行处理，后一个词要等到前一个词的隐状态输出以后才能开始处理</li>
+<li>如果传递距离过长还会有梯度消失、梯度爆炸和遗忘问题</li>
+</ul>
+<p>为了缓解传递间的梯度和遗忘问题，设计了各种各样的RNN cell，最著名的两个就是LSTM和GRU了</p>
+<p>LSTM (Long Short Term Memory)</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/LSTM/LSTM.jpg" alt=""></p>
+<p>GRU (Gated Recurrent Unit)</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/LSTM/GRU.png" alt=""></p>
+<p>但是，引用网上一个博主的比喻，这么做就像是在给马车换车轮，为什么不直接换成汽车呢？</p>
+<p>于是就有了我们本文要介绍的核心结构——Transformer。Transformer 是Google Brain 2017的提出的一篇工作，它针对RNN的弱点进行重新设计，解决了RNN效率问题和传递中的缺陷等，在很多问题上都超过了RNN的表现。Transfromer的基本结构如下图所示，它是一个N进N出的结构，也就是说每个Transformer单元相当于一层的RNN层，接收一整个句子所有词作为输入，然后为句子中的每个词都做出一个输出。但是与RNN不同的是，Transformer能够同时处理句子中的所有词，并且任意两个词之间的操作距离都是1，这么一来就很好地解决了上面提到的RNN的效率问题和距离问题。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/transformer1.png" alt="transformer1"></p>
+<p>每个Transformer单元都有两个最重要的子层，分别是Self-Attention层与Feed Forward层，后面会对这两个层的详细结构做介绍。文章使用Transformer搭建了一个类似Seq2Seq的语言翻译模型，并为Encoder与Decoder设计了两种不同的Transformer结构。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/block.png" alt="block"></p>
+<p>Decoder Transformer相对于Encoder Transformer多了一个Encoder-Decoder Attention层，用来接收来自于Encoder的输出作为参数。最终只要按照下图的方式堆叠，就可以完成Transformer Seq2Seq的结构搭建。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/transformer2.png" alt="transformer2"></p>
+<p>举个例子介绍下如何使用这个Transformer Seq2Seq做翻译</p>
+<ul>
+<li><p>首先，Transformer对原语言的句子进行编码，得到memory。</p>
+</li>
+<li><p>第一次解码时输入只有一个&lt;SOS&gt;标志，表示句子的开始。</p>
+</li>
+<li><p>解码器通过这个唯一的输入得到的唯一的输出，用于预测句子的第一个词。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/transformer5.gif" alt="transformer5"></p>
+</li>
+<li><p>第二次解码，将第一次的输出Append到输入中，输入就变成了&lt;SOS&gt;和句子的第一个词(ground truth或上一步的预测)，解码生成的第二个输出用于预测句子的第二个词。以此类推(过程与Seq2Seq非常类似)</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/transformer6.gif" alt="transformer6"></p>
+</li>
+</ul>
+<p>了解了Transformer的大致结构以及如何用它来完成翻译任务后，接下来就看看Transformer的详细结构：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/transformer3.png" alt="transformer3"></p>
+<p>核心组件就是上面所提到的Self-Attention和Feed Forward Networks，但还有很多其他细节，接下来我们就开始逐个结构的来解读Transformer。</p>
+<p><strong>Self Attention</strong></p>
+<p>Self Attention就是句子中的某个词对于本身的所有词做一次Attention。算出每个词对于这个词的权重，然后将这个词表示为所有词的加权和。每一次的Self Attention操作，就像是为每个词做了一次Convolution操作或Aggregation操作。具体操作如下：</p>
+<p>首先，每个词都要通过三个矩阵Wq, Wk, Wv进行一次线性变化，一分为三，生成每个词自己的<strong>query, key, vector</strong>三个向量。以一个词为中心进行Self Attention时，都是用这个词的key向量与每个词的query向量做点积，再通过Softmax归一化出权重。然后通过这些权重算出所有词的vector的加权和，作为这个词的输出。具体过程如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/transformer4.png" alt="transformer4"></p>
+<p>归一化之前需要通过除以向量的维度dk来进行标准化，所以最终Self Attention用矩阵变换的方式可以表示为</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/attention.PNG" alt="atttention"></p>
+<p>最终每个Self Attention接受n个词向量的输入，输出n个Aggregated的向量。</p>
+<p>上文提到Encoder中的Self Attention与Decoder中的有所不同，Encoder中的Q、K、V全部来自于上一层单元的输出，而Decoder只有Q来自于上一个Decoder单元的输出，K与V都来自于Encoder最后一层的输出。也就是说，Decoder是要通过当前状态与Encoder的输出算出权重后，将Encoder的编码加权得到下一层的状态。</p>
+<p><strong>Masked Attention</strong></p>
+<p>通过观察上面的结构图我们还可以发现Decoder与Encoder的另外一个不同，就是每个Decoder单元的输入层，要先经过一个Masked Attention层。那么Masked的与普通版本的Attention有什么区别呢？</p>
+<p>Encoder因为要编码整个句子，所以每个词都需要考虑上下文的关系。所以每个词在计算的过程中都是可以看到句子中所有的词的。但是Decoder与Seq2Seq中的解码器类似，每个词都只能看到前面词的状态，所以是一个单向的Self-Attention结构。</p>
+<p>Masked Attention的实现也非常简单，只要在普通的Self Attention的Softmax步骤之前，与(&amp;)上一个下三角矩阵M就好了</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/masked_attention.PNG" alt="masked_attention"></p>
+<p><strong>Multi-Head Attention</strong></p>
+<p>Multi-Head Attention就是将上述的Attention做h遍，然后将h个输出进行concat得到最终的输出。这样做可以很好地提高算法的稳定性，在很多Attention相关的工作中都有相关的应用。Transformer的实现中，为了提高Multi-Head的效率，将W扩大了h倍，然后通过view(reshape)和transpose操作将相同词的不同head的k、q、v排列在一起进行同时计算，完成计算后再次通过reshape和transpose完成拼接，相当于对于所有的head进行了一个并行处理。</p>
+<p><strong>Position-wise Feed Forward Networks</strong></p>
+<p>Encoder中和Decoder中经过Attention之后输出的n个向量（这里n是词的个数）都分别的输入到一个全连接层中，完成一个逐个位置的前馈网络。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/ffnx.PNG" alt="ffnx"></p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/FFN.png" alt="FFN"></p>
+<p><strong>Add &amp; Norm</strong></p>
+<p>是一个残差网络，将一层的输入与其标准化后的输出进行相加即可。Transformer中每一个Self Attention层与FFN层后面都会连一个Add &amp; Norm层。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/addnorm.png" alt="addnorm"></p>
+<p><strong>Positional Encoding</strong></p>
+<p>由于Transformer中既不存在RNN，也不同于CNN，句子里的所有词都被同等的看待，所以词之间就没有了先后关系。换句话说，很可能会带上和词袋模型相同的不足。为了解决这个问题，Transformer提出了Positional Encoding的方案，就是给每个输入的词向量叠加一个固定的向量来表示它的位置。文中使用的Positional Encoding如下：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/pe.PNG" alt="pe"></p>
+<p>其中pos是词在句子中的位置，i是词向量中第i位，即将每个词的词向量为一行进行叠加，然后针对每一列都叠加上一个相位不同或波长逐渐增大的波，以此来唯一区分位置。</p>
+<p><strong>Transformer 工作流程</strong></p>
+<p>Transformer的工作流程就是上面介绍的每一个子流程的拼接</p>
+<ul>
+<li>输入的词向量首先叠加上Positional Encoding，然后输入至Transformer内</li>
+<li>每个Encoder Transformer会进行一次Multi-head self attention-&gt;Add &amp; Normalize-&gt;FFN-&gt;Add &amp; Normalize流程，然后将输出输入至下一个Encoder中</li>
+<li>最后一个Encoder的输出将会作为memory保留</li>
+<li>每个Decoder Transformer会进行一次Masked Multi-head self attention-&gt;Multi-head self attention-&gt;Add &amp; Normalize-&gt;FFN-&gt;Add &amp; Normalize流程，其中Multi-head self attention时的K、V至来自于Encoder的memory。根据任务要求输出需要的最后一层Embedding。</li>
+<li>Transformer的输出向量可以用来做各种下游任务</li>
+</ul>
+<p><strong>GitHub链接：</strong><a href="https://github.com/harvardnlp/annotated-transformer" target="_blank" rel="noopener">https://github.com/harvardnlp/annotated-transformer</a></p>
+<p><strong>Post Scriptum</strong></p>
+<p>虽然在Transformer文章中提出了一种自然语言翻译的模型，很多文章把这个模型称为Transformer。但我们还是倾向于将文章中利用Self-Attention的Encoder或Decoder的子结构称为Transformer。文中和源码中还包含了很多其他的一些优化例如<strong>学习率动态变化</strong>，<strong>Residual Dropout</strong>以及<strong>Label Smoothing</strong>在这里就不再赘述，有兴趣的朋友可以阅读相关参考文献进行了解。</p>
+<h1 id="二、单向二阶段训练模型——OpenAI-GPT"><a href="#二、单向二阶段训练模型——OpenAI-GPT" class="headerlink" title="二、单向二阶段训练模型——OpenAI GPT"></a>二、单向二阶段训练模型——OpenAI GPT</h1><p>GPT(Generative Pre-Training)，是OpenAI在2018年提出的模型，利用Transformer模型来解决各种自然语言问题，例如分类、推理、问答、相似度等应用的模型。GPT采用了Pre-training + Fine-tuning的训练模式，使得大量无标记的数据得以利用，大大提高了这些问题的效果。</p>
+<p>GPT就是利用Transformer进行自然语言各种任务的尝试之一，主要有以下三个要点</p>
+<ul>
+<li>Pre-Training的方式</li>
+<li>单向Transformer模型</li>
+<li>Fine-Tuning与不同输入数据结构的变化</li>
+</ul>
+<p>如果已经理解了Transformer的原理，那么只需要再搞懂上面的三个内容就能够对GPT有更深的认识。</p>
+<p><strong>Pre-Training 训练方式</strong></p>
+<p>很多机器学习任务都需要带标签的数据集作为输入完成。但是我们身边存在大量没有标注的数据，例如文本、图片、代码等等。标注这些数据需要花费大量的人力和时间，标注的速度远远不及数据产生的速度，所以带有标签的数据往往只占有总数据集很小的一部分。随着算力的不断提高，计算机能够处理的数据量逐渐增大。如果不能很好利用这些无标签的数据就显得很浪费。</p>
+<p>所以半监督学习和预训练+微调的二阶段模式整变得越来越受欢迎。最常见的二阶段方法就是Word2Vec，使用大量无标记的文本训练出带有一定语义信息的词向量，然后将这些词向量作为下游机器学习任务的输入，就能够大大提高下游模型的泛化能力。</p>
+<p>但是Word2Vec有一个问题，就是单个单词只能有一个Embedding。这样一来，一词多义就不能很好地进行表示。</p>
+<p><strong>ELMo</strong>首先想到了在预训练阶段为每个词汇集其上下文信息，使用的是基于bi-LSTM的语言模型给词向量带上上下文语义信息：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/elmo_eq.PNG" alt="elmo_eq"></p>
+<p>上式分别代表了左右两向的LSTM-RNN，他们共享输入的词向量X以及RNN各层权重S，也就是使用双向RNN两向的输出，来同时预测下一个单词(右向的下一个，左向的上一个)，具体结构如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/elmo.PNG" alt="elmo"></p>
+<p>但ELMo使用的是RNN来完成语言模型的预训练，那么如何使用Transformer来完成预训练呢？</p>
+<p><strong>单向Transformer结构</strong></p>
+<p>OpenAI GPT采用了单向Transformer完成了这项预训练任务。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/gpt1.PNG" alt="gpt1"></p>
+<p>什么是单向Transformer？在Transformer的文章中，提到了Encoder与Decoder使用的Transformer Block是不同的。在Decoder Block中，使用了Masked Self-Attention，即句子中的每个词，都只能对包括自己在内的前面所有词进行Attention，这就是单向Transformer。GPT使用的Transformer结构就是将Encoder中的Self-Attention替换成了Masked Self-Attention，具体结构如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/gpt2.PNG" alt="gpt2"></p>
+<p>由于采用的是单向的Transformer，只能看到上文的词，所以语言模型为：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/pre-training.PNG" alt="pre-training"></p>
+<p>而训练的过程其实非常的简单，就是将句子n个词的词向量(第一个为&lt;SOS&gt;)加上Positional Encoding后输入到前面提到的Transfromer中，n个输出分别预测该位置的下一个词(&lt;SOS&gt;预测句子中的第一个词，最后一个词的预测结果不用于语言模型的训练)。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/pre-trainingx.PNG" alt="pre-trainingx"></p>
+<p>由于使用了Masked Self-Attention，所以每个位置的词都不会“看见”后面的词，也就是预测的时候是看不见“答案”的，保证了模型的合理性，这也是为什么OpenAI采用了单向Transformer的原因。</p>
+<p><strong>Fine-Tuning与不同输入数据结构的变化</strong></p>
+<p>接下来就进入模型训练的第二步，运用少量的带标签数据对模型参数进行微调。</p>
+<p>上一步中最后一个词的输出我们没有用到，在这一步中就要使用这一个输出来作为下游监督学习的输入。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/fine-tuning.PNG" alt="fine-tuning"></p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/fine-tuningx.PNG" alt="fine-tuningx"></p>
+<p>为避免Fine-Tuning使得模型陷入过拟合，文中还提到了辅助训练目标的方法，类似于一个多任务模型或者半监督学习。具体方法就是在使用最后一个词的预测结果进行监督学习的同时，前面的词继续上一步的无监督训练，使得最终的损失函数成为：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/objective.PNG" alt="objective"></p>
+<p>针对不同任务，需要修改输入数据的格式：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/gpt3.PNG" alt="gpt3"></p>
+<ul>
+<li>Classification：对于分类问题，不需要做什么修改</li>
+<li>Entailment：对于推理问题，可以将先验与假设使用一个分隔符分开</li>
+<li>Similarity：对于相似度问题，由于模型是单向的，但相似度与顺序无关。所以需要将两个句子顺序颠倒后两次输入的结果相加来做最后的推测</li>
+<li>Multiple Choice：对于问答问题，则是将上下文、问题放在一起与答案分隔开，然后进行预测</li>
+</ul>
+<p><strong>GitHub链接：</strong><a href="https://github.com/openai/finetune-transformer-lm" target="_blank" rel="noopener">https://github.com/openai/finetune-transformer-lm</a></p>
+<p><strong>Post Scriptum</strong></p>
+<p>OpenAI GPT在Transformer的运用和二阶段训练方式上做出了很好的探索，也取得了非常不错的效果，为后面的BERT铺平了道路。</p>
+<h1 id="三、双向二阶段训练模型——BERT"><a href="#三、双向二阶段训练模型——BERT" class="headerlink" title="三、双向二阶段训练模型——BERT"></a>三、双向二阶段训练模型——BERT</h1><p>BERT(Bidirectional Encoder Representation from Transformer)，是Google Brain在2018年提出的基于Transformer的自然语言表示框架。一提出就获得了大量的关注。BERT与GPT一样，采取了Pre-training + Fine-tuning的训练方式，在分类、标注等任务下都获得了更好的效果。</p>
+<p>BERT与GPT非常的相似，都是基于Transformer的二阶段训练模型，都分为Pre-Training与Fine-Tuning两个阶段，都在Pre-Training阶段无监督地训练出一个可通用的Transformer模型，然后在Fine-Tuning阶段对这个模型中的参数进行微调，使之能够适应不同的下游任务。</p>
+<p>虽然BERT与GPT看上去非常的相似，但是它们的训练目标和模型结构和使用上还是有着些许的不同：</p>
+<ul>
+<li>GPT采用的是单向的Transformer，而BERT采用的是双向的Transformer，也就是不用进行Mask操作；</li>
+<li>使用的结构的不同，直接导致了它们在Pre-Training阶段训练目标的不同；</li>
+</ul>
+<p><strong>双向Transformer</strong></p>
+<p>BERT采用的是不经过Mask的Transformer，也就是与Transformer文章中的Encoder Transformer结构完全一样：</p>
+<p>GPT中因为要完成语言模型的训练，也就要求Pre-Training预测下一个词的时候只能够看见当前以及之前的词，这也是GPT放弃原本Transformer的双向结构转而采用单向结构的原因。</p>
+<p>BERT为了能够同时得到上下文的信息，而不是像GPT一样完全放弃下文信息，采用了双向的Transformer。但是这样一来，就无法再像GPT一样采用正常的语言模型来预训练了，因为BERT的结构导致每个Transformer的输出都可以看见整个句子的，无论你用这个输出去预测什么，都会“看见”参考答案，也就是“see itself”的问题。ELMo中虽然采用的是双向RNN，但是两个RNN之间是独立的，所以可以避免see itself的问题。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/bert1.PNG" alt="bert1"></p>
+<p><strong>Pre-Training阶段</strong></p>
+<p>那么BERT想用双向的Transformer模型，就不得不放弃GPT中所采用的语言模型来作为预训练的目标函数。取而代之的，BERT提出了一种完全不同的预训练方法。</p>
+<ul>
+<li><p>Masked Language Model (MLM)</p>
+<p>在Transformer中，我们即想要知道上文的信息，又想要知道下文的信息，但同时要保证整个模型不知道要预测词的信息，那么就干脆不要告诉模型这个词的信息就可以了。也就是说，BERT在输入的句子中，挖掉一些需要预测的词，然后通过上下文来分析句子，最终使用其相应位置的输出来预测被挖掉的词。这其实就像是在做完形填空 (Cloze)一样。</p>
+<p>但是，直接将大量的词替换为&lt;MASK&gt;标签可能会造成一些问题，模型可能会认为只需要预测&lt;MASK&gt;相应的输出就行，其他位置的输出就无所谓。同时Fine-Tuning阶段的输入数据中并没有&lt;MASK&gt;标签，也有数据分布不同的问题。为了减轻这样训练带来的影响，BERT采用了如下的方式：</p>
+<ol>
+<li>输入数据中随机选择15%的词用于预测，这15%的词中，</li>
+<li>80%的词向量输入时被替换为&lt;MASK&gt;</li>
+<li>10%的词的词向量在输入时被替换为其他词的词向量</li>
+<li>另外10%保持不动</li>
+</ol>
+<p>这样一来就相当于告诉模型，我可能给你答案，也可能不给你答案，也可能给你错误的答案，有&lt;MASK&gt;的地方我会检查你的答案，没&lt;MASK&gt;的地方我也可能检查你的答案，所以&lt;MASK&gt;标签对你来说没有什么特殊意义，所以无论如何，你都要好好预测所有位置的输出。</p>
+</li>
+<li><p>Next Sentence Prediction (NSP)</p>
+<p>BERT还提出了另外一种预训练方式NSP，与MLM同时进行，组成多任务预训练。这种预训练的方式就是往Transformer中输入连续的两个句子，左边的句子前面加上一个&lt;CLS&gt;标签，它的输出被用来判断两个句子之间是否是连续上下文关系。采用负采样的方法，正负样本各占50%。</p>
+<p>为了区分两个句子的前后关系，BERT除了加入了Positional Encoding之外，还两外加入了一个在预训练时需要学习的Segment Embedding来区分两个句子。这样一来，BERT的输入就由词向量、位置向量、段向量三个部分相加组成。此外，两个句子之间使用&lt;SEP&gt;标签予以区分。</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/bert2.PNG" alt="bert2"></p>
+</li>
+</ul>
+<p>整体Pre-Training的示意图如下：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/bert3.PNG" alt="bert3"></p>
+<p><strong>Fine-Tuning阶段</strong></p>
+<p>BERT的Fine-Tuning阶段和GPT没有太大区别。因为采用了双向的Transformer所以放弃了GPT在Fine-Tuning阶段使用的辅助训练目标，也就是语言模型。此外就是将分类预测用的输出向量从GPT的最后一个词的输出位置改为了句子开头&lt;CLS&gt;的位置了。不同的任务Fine-Tuning的示意图如下：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/bert4.PNG" alt="bert4"></p>
+<p><strong>GitHub链接：</strong><a href="https://github.com/google-research/bert" target="_blank" rel="noopener">https://github.com/google-research/bert</a></p>
+<p><strong>Post Scriptum</strong></p>
+<p>个人认为，BERT只是GPT模型的一种trade-off，为了在两个阶段都能够同时获得句子上下文的信息，使用了双向Transformer模型。但是为此却要付出失去传统语言模型的代价，转而采用MLM+NSP这种更加复杂的方式进行预训练。</p>
+<h1 id="四、多任务模型——MT-DNN"><a href="#四、多任务模型——MT-DNN" class="headerlink" title="四、多任务模型——MT-DNN"></a>四、多任务模型——MT-DNN</h1><p>MT-DNN (Multi-Task Deep Neural Networks) 依然采用了BERT的二阶段训练方法以及双向Transformer。在Pre-Training阶段，MT-DNN与BERT几乎完全一样，但是在Fine-Tuning阶段，MT-DNN采用了多任务的微调方式。<strong>同时</strong>采用Transformer输出的上下文Embedding进行单句分类、文本对相似度、文本对分类以及问答等任务的训练。整个结构如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/mtdnn.PNG" alt="mtdnn"></p>
+<p><strong>GitHub链接：</strong><a href="https://github.com/namisan/mt-dnn" target="_blank" rel="noopener">https://github.com/namisan/mt-dnn</a></p>
+<h1 id="五、单向通用模型——GPT-2"><a href="#五、单向通用模型——GPT-2" class="headerlink" title="五、单向通用模型——GPT-2"></a>五、单向通用模型——GPT-2</h1><p>GPT-2继续沿用了原来在GPT种使用的单向Transformer模型，而这篇文章的目的就是尽可能利用单向Transformer的优势，做一些BERT使用的双向Transformer所做不到的事。那就是通过上文生成下文文本。</p>
+<p>GPT-2的想法就是<strong>完全舍弃Fine-Tuning过程</strong>，转而使用一个容量更大、无监督训练、更加通用的语言模型来完成各种各样的任务。我们完全不需要去定义这个模型应该做什么任务，因为很多标签所蕴含的信息，就存在于语料当中。就像一个人如果博览群书，自然可以根据看过的内容轻松的做到自动摘要、问答、续写文章这些事。</p>
+<p>严格来说GPT-2可能不算是一个多任务模型，但是它确实使用相同的模型、相同的参数完成了不同的任务。那么GPT-2是怎么使用语言模型完成多种任务的呢？</p>
+<p>通常我们针对特定任务训练的专用模型，给定输入，就可以返回这个任务相应的输出，也就是</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/gpt2_1.PNG" alt="gpt2_1"></p>
+<p>那么如果我们希望设计一个通用的模型，这个模型在给定输入的同时还需要给定任务类型，然后根据给定输入与任务来做出相应的输出，那么模型就可以表示成下面这个样子</p>
+<p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/BERT/gpt2_2.PNG" alt="gpt2_2"></p>
+<p>就好像原来我需要翻译一个句子，需要专门设计一个翻译模型，想要问答系统需要专门设计一个问答模型。但是如果一个模型足够聪明，并且能够根据你的上文生成下文，那我们就可以通过在输入中加入一些标识符就可以区分各种问题。比如可以直接问他：(‘自然语言处理’, 中文翻译)来得到我们需要的结果Nature Language Processing。在我的理解中GPT-2更像是一个无所不知的问答系统，通过告知一个给定任务的标识符，就可以对多种领域的问答、多种任务做出合适的回答。GPT-2满足零样本设置 (zero-shot setting)， 在训练的过程中不需要告诉他应该完成什么样的任务，预测是也能给出较为合理的回答。</p>
+<p>那么GPT-2为了做到上面这些要求，做了哪些工作呢？</p>
+<ol>
+<li><p>拓宽并加大数据集</p>
+<p>首先就是要让模型博览群书，如果训练样本都不够多，那还怎么进行推理？前面的工作都是针对某一个特定问题的，所以数据集都比较片面。GPT-2收集了一个规模更大、范围更广的数据集。同时呢，要保证这个数据集的质量，保留那些拥有高质量内容的网页。最终组成了一个800万个文本，40G的数据集WebText。</p>
+</li>
+<li><p>扩大网络容量</p>
+<p>书多了脑袋容量也得带一些要不然记不住书里的东西。为了提高网络的容量，使其拥有更强的学习潜力，GPT-2将Transformer堆叠的层数增加到48层，隐层的维度为1600，参数量达到了15亿。</p>
+</li>
+<li><p>调整网络结构</p>
+<p>GPT-2将词汇表提升到50257，最大的上下文大小 (context size) 从GPT的512提升到了1024，batchsize从512提升为1024。此外还对Transformer做出了小调整，标准化层放到没每个sub-block之前，最后一个Self-attention后又增加了一个标准化层；改变了残差层的初始化方法等等。</p>
+</li>
+</ol>
+<p><strong>GitHub链接：</strong><a href="https://github.com/openai/gpt-2" target="_blank" rel="noopener">https://github.com/openai/gpt-2</a></p>
+<p><strong>Post Scriptum</strong></p>
+<p>GPT-2其实最惊人的是其极强的生成能力，而如此强大的生成能力主要还是要归功于其数据质量以及惊人参数量和数据规模。GPT-2的参数量大到用于实验的模型都还处于欠拟合状态，如果接着训练，效果还能进一步提升。</p>
+<h1 id="六、总结"><a href="#六、总结" class="headerlink" title="六、总结"></a>六、总结</h1><p>总上面这些关于Transformer工作的发展中，我也整理出了一些关于深度学习发展趋势的个人心得：</p>
+<ol>
+<li><p>有监督模型向半监督甚至无监督方向发展</p>
+<p>数据的规模的增长速度远远超过了数据的标注速度，这也就导致了大量无标签数据的产生。这些无标签的数据并非没有价值，相反，如果找到合适的“炼金术”，将可以从这些海量的数据中获取意想不到的价值。如何利用上这些无标签的数据来改善任务的表现变成了一个越来越无法轻视的问题。</p>
+</li>
+<li><p>从少量数据复杂模型到大量数据简单模型</p>
+<p>深度神经网络的拟合能力非常的强大，一个简单的神经网络模型就足以拟合任何函数。但无奈使用越简单的网络结构完成同一个任务，对数据量的要求也更高。数据量越是上升，数据质量越是提高，往往对模型的要求就会越会降低。数据量越大，模型就越容易捕捉到符合真实世界分布的特征。Word2Vec就是一个例子，它所使用的目标函数非常的简单，但是由于使用了大量的文本，于是训练出的词向量中就包含了许多有趣的特性。</p>
+</li>
+<li><p>从专用模型向通用模型发展</p>
+<p>GPT、BERT、MT-DNN、GPT-2都使用了经过预训练的通用模型来继续进行下游的机器学习任务，并不需要对模型本身再做太多的修改。如果一个模型的表达能力足够的强，训练时候使用的数据量足够的大，那么模型的通用性就会更强，就不需要针对特定的任务做太多的修改。最极端的情况就像是GPT-2这个样子，训练时甚至完全不需要知道后续的下游任务是什么，就能够训练出一个通用的多任务模型。</p>
+</li>
+<li><p>对数据的规模和质量提高</p>
+<p>GPT、BERT、MT-DNN、GPT-2虽然先后刷榜，但是我认为成绩的提升中，数据规模的提升占有比结构调整更大的比重。随着模型的通用化和简单化，为提升模型的性能，今后更多的注意力将会从如何设计一个复杂、专用的模型转移到如何获取、清洗、精化出质量更加出众的、大量的数据上。数据的处理方式调整的作用将会大于模型结构调整的作用。</p>
+</li>
+</ol>
+<p>综上所述，DL竞赛迟早要成为大厂间拼资源、拼算力的较量。可能几年内就会出现一个新的课题：绿色AI，低碳AI，可持续AI。。。</p>
+<p>以上😂</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] Vaswani A, Shazeer N, Parmar N, et al. Attention is All you Need[J]. neural information processing systems, 2017: 5998-6008.</p>
+<p>[2] <a href="http://nlp.seas.harvard.edu/2018/04/03/attention.html" target="_blank" rel="noopener">http://nlp.seas.harvard.edu/2018/04/03/attention.html</a></p>
+<p>[3] <a href="https://jalammar.github.io/illustrated-transformer/" target="_blank" rel="noopener">https://jalammar.github.io/illustrated-transformer/</a></p>
+<p>[4] Radford, Alec, et al. “Improving language understanding by generative pre-training.” URL <a href="https://s3-us-west-2" target="_blank" rel="noopener">https://s3-us-west-2</a>. amazonaws. com/openai-assets/research-covers/languageunsupervised/language understanding paper. pdf (2018).</p>
+<p>[5] Peters M E, Neumann M, Iyyer M, et al. DEEP CONTEXTUALIZED WORD REPRESENTATIONS[J]. north american chapter of the association for computational linguistics, 2018: 2227-2237.</p>
+<p>[6] Devlin J, Chang M, Lee K, et al. BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding[J]. arXiv: Computation and Language, 2018.</p>
+<p>[7] Liu X, He P, Chen W, et al. Multi-Task Deep Neural Networks for Natural Language Understanding.[J]. arXiv: Computation and Language, 2019.</p>
+<p>[8] Radford A, Wu J, Child R, et al. Language models are unsupervised multitask learners[J]. OpenAI Blog, 2019, 1(8).</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Representation-Learning/" rel="tag"># Representation Learning</a>
+          
+            <a href="/tags/NLP/" rel="tag"># NLP</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/17/kickstart2018A/" rel="next" title="kick start 2018 Round A">
+                <i class="fa fa-chevron-left"></i> kick start 2018 Round A
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="Ph0en1x" />
+            
+              <p class="site-author-name" itemprop="name">Ph0en1x</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">122</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    <span class="site-state-item-count">69</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/rss2.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/Ph0en1xGSeek" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/pan-guo-sheng-50" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-quora"></i></a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/Ph0en1xGSeek" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、取代RNN——Transformer"><span class="nav-number">1.</span> <span class="nav-text">一、取代RNN——Transformer</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、单向二阶段训练模型——OpenAI-GPT"><span class="nav-number">2.</span> <span class="nav-text">二、单向二阶段训练模型——OpenAI GPT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、双向二阶段训练模型——BERT"><span class="nav-number">3.</span> <span class="nav-text">三、双向二阶段训练模型——BERT</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、多任务模型——MT-DNN"><span class="nav-number">4.</span> <span class="nav-text">四、多任务模型——MT-DNN</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、单向通用模型——GPT-2"><span class="nav-number">5.</span> <span class="nav-text">五、单向通用模型——GPT-2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、总结"><span class="nav-number">6.</span> <span class="nav-text">六、总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">7.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heartbeat"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ph0en1x</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      UV
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      PV
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+      <div id="needsharebutton-float">
+        <span class="btn">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </span>
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.0.1"></script>
+
+
+
+  
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+      flOptions = {};
+      
+          flOptions.iconStyle = "box";
+      
+          flOptions.boxForm = "vertical";
+      
+          flOptions.position = "middleRight";
+      
+          flOptions.networks = "Weibo,Wechat,Douban,QQZone";
+      
+      new needShareButton('#needsharebutton-float', flOptions);
+    
+  </script>
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
