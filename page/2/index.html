@@ -102,14 +102,14 @@
 
 <meta name="description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Categories">
-<meta property="og:url" content="https://www.ph0en1x.space/categories/index.html">
+<meta property="og:title" content="Tags">
+<meta property="og:url" content="https://www.ph0en1x.space/tags/index.html">
 <meta property="og:site_name" content="Ph0en1x Notebook">
 <meta property="og:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-22T10:39:54.048Z">
+<meta property="og:updated_time" content="2018-02-22T10:40:05.695Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Categories">
+<meta name="twitter:title" content="Tags">
 <meta name="twitter:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
 
 
@@ -138,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="https://www.ph0en1x.space/categories/"/>
+  <link rel="canonical" href="https://www.ph0en1x.space/tags/"/>
 
 
 
@@ -310,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2019/04/03/leetcode229/">
+    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2019/04/03/leetcode137/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ph0en1x">
@@ -329,7 +329,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/03/leetcode229/" itemprop="url">LeetCode 169 Majority Element</a></h2>
+                <a class="post-title-link" href="/2019/04/03/leetcode137/" itemprop="url">LeetCode 137 Single Number II</a></h2>
         
 
         <div class="post-meta">
@@ -401,13 +401,18 @@
       
         
           <blockquote>
-<p>169 Majority Element </p>
-<p>229 Majority Element II</p>
-<p>摩尔投票法</p>
+<ol>
+<li>这题比起其他都是两个但有一个只出现一次要复杂一些，原来只需要统计（模2）出现0次，1次的情况，现在需要统计每一位出现了0次，1次和2次（模3）的状态。</li>
+<li>用one two three来统计每一位出现次数，出现在three中的可以从one two中约去</li>
+<li>每一个数，首先和one与一下，得到原来是1次，现在变成两次的情况，或到two中</li>
+<li>再和one抑或，原来是0的变成1，原来是1的由于进入two了变成0</li>
+<li>one和two与，得到出现三次的情况，把他们从one two中抑或掉或者与非掉就行</li>
+<li>最后的one就是最后的结果（模3为1）</li>
+</ol>
 </blockquote>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/04/03/leetcode229/#more" rel="contents">
+            <a class="btn" href="/2019/04/03/leetcode137/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
@@ -1512,154 +1517,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2019/01/10/Raft/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ph0en1x">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.png">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ph0en1x Notebook">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/01/10/Raft/" itemprop="url">In search of an understandable consensus algorithm 阅读笔记</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-10T00:00:00+08:00">2019-01-10</time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/分布式算法/" itemprop="url" rel="index">
-                    <span itemprop="name">分布式算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>  参考文献：Ongaro D, Ousterhout J K. In search of an understandable consensus algorithm[C]//USENIX Annual Technical Conference. 2014: 305-319.</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/01/10/Raft/#more" rel="contents">
-              Read more &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2019/01/10/Paxos/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1756,6 +1613,154 @@
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2019/01/10/Paxos/#more" rel="contents">
+              Read more &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2019/01/10/Raft/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ph0en1x">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ph0en1x Notebook">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/01/10/Raft/" itemprop="url">In search of an understandable consensus algorithm 阅读笔记</a></h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-10T00:00:00+08:00">2019-01-10</time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式算法/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>  参考文献：Ongaro D, Ousterhout J K. In search of an understandable consensus algorithm[C]//USENIX Annual Technical Conference. 2014: 305-319.</p>
+</blockquote>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2019/01/10/Raft/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
