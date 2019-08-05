@@ -310,7 +310,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2019/04/03/leetcode137/">
+    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2019/04/03/leetcode164/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ph0en1x">
@@ -329,7 +329,7 @@
         
           <h2 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/04/03/leetcode137/" itemprop="url">LeetCode 137 Single Number II</a></h2>
+                <a class="post-title-link" href="/2019/04/03/leetcode164/" itemprop="url">LeetCode 164 Maximum Gap（桶排序）</a></h2>
         
 
         <div class="post-meta">
@@ -401,18 +401,13 @@
       
         
           <blockquote>
-<ol>
-<li>这题比起其他都是两个但有一个只出现一次要复杂一些，原来只需要统计（模2）出现0次，1次的情况，现在需要统计每一位出现了0次，1次和2次（模3）的状态。</li>
-<li>用one two three来统计每一位出现次数，出现在three中的可以从one two中约去</li>
-<li>每一个数，首先和one与一下，得到原来是1次，现在变成两次的情况，或到two中</li>
-<li>再和one抑或，原来是0的变成1，原来是1的由于进入two了变成0</li>
-<li>one和two与，得到出现三次的情况，把他们从one two中抑或掉或者与非掉就行</li>
-<li>最后的one就是最后的结果（模3为1）</li>
-</ol>
+<p>这题既然是hard，那么就肯定要求复杂度在O(1)内完成。</p>
+<p>考虑桶排序的方法，n个数大小相差最多为m的，那么大小相邻的两个数之间的间隔不会大于m / (n+1)</p>
+<p>然后只要按照这个间隔构造足够的桶，维护每个桶中的最大值和最小值，同一个桶中的数字间隔不会多余答案所以只需要考虑每个桶的最小值与前面出现的最大值之间的差值就可以了。</p>
 </blockquote>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/04/03/leetcode137/#more" rel="contents">
+            <a class="btn" href="/2019/04/03/leetcode164/#more" rel="contents">
               Read more &raquo;
             </a>
           </div>
