@@ -102,14 +102,14 @@
 
 <meta name="description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Tags">
-<meta property="og:url" content="https://www.ph0en1x.space/tags/index.html">
+<meta property="og:title" content="Categories">
+<meta property="og:url" content="https://www.ph0en1x.space/categories/index.html">
 <meta property="og:site_name" content="Ph0en1x Notebook">
 <meta property="og:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2018-02-22T10:40:05.695Z">
+<meta property="og:updated_time" content="2018-02-22T10:39:54.048Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tags">
+<meta name="twitter:title" content="Categories">
 <meta name="twitter:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
 
 
@@ -138,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="https://www.ph0en1x.space/tags/"/>
+  <link rel="canonical" href="https://www.ph0en1x.space/categories/"/>
 
 
 
@@ -510,7 +510,7 @@
 <h1 id="五、HARP-Hierarchical-Representation-Learning-for-Networks"><a href="#五、HARP-Hierarchical-Representation-Learning-for-Networks" class="headerlink" title="五、HARP: Hierarchical Representation Learning for Networks"></a>五、HARP: Hierarchical Representation Learning for Networks</h1><p>上面介绍了DeepWalk、LINE、Node2Vec三个网络表示学习中最为著名的三种算法。但是，这三个算法都有一个共同的弱点，那就是他们所捕捉的网络结点关系过近，都是局部邻居。LINE仅仅只考虑到了一阶邻居与二阶邻居之间的相似度关系。DeepWalk与Node2Vec虽然可以通过随机游走，获得较长的游走序列，但是游走的长度比起现在图数据的规模，随机游走的长度还是太短了。所以就需要想一种方法捕捉全局的相似度。</p>
 <ol>
 <li><p><strong>Method</strong></p>
-<p>HARP采取的方式就是通过多次折叠，将原来的大图层层收缩为较小的图，使得通过较短的随机游走距离，能够覆盖所有的，然后将小图作为上面三个算法的输入，学习Embedding。在将收缩后的小图被学习到的Embedding，作为折叠前的的图的Embedding的初始化，继续将折叠前的图输入到表示学习算法之中。最终再层层学得原来大图的Embedding。HARP的算法流程如下图所示。</p>
+<p>HARP采取的方式就是通过多次折叠，将原来的大图层层收缩为较小的图，使得通过较短的随机游走距离，就能够覆盖所有的网络结点，然后将小图作为DeepWalk、LINE或Node2Vec的输入，学习Embedding。最后将在收缩后的小图中学习到的Embedding作为折叠前的的图的Embedding的初始化，继续学习折叠前的图的Embedding。以此类推层层学得原来大图的Embedding。HARP的算法流程如下图所示。</p>
 <p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/embedding/harp.PNG" alt="harp"></p>
 <p><strong>图折叠算法</strong></p>
 <p>那么要理解HARP这个算法的关键，就在于图折叠算法。HARP的图折叠算法，主要有以下两种方法</p>
