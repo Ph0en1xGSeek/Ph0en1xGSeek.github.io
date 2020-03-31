@@ -103,7 +103,7 @@
 <meta name="description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Categories">
-<meta property="og:url" content="https://www.ph0en1x.space/categories/index.html">
+<meta property="og:url" content="https://ph0en1xgseek.github.io/categories/index.html">
 <meta property="og:site_name" content="Ph0en1x Notebook">
 <meta property="og:description" content="Ph0en1x的个人博客，内容包括ACM、机器学习、数据挖掘、网络爬虫、c++、python、Java、tensorflow、数据库、实战技能、Angular等等，记录个人的学习实践经历">
 <meta property="og:locale" content="en">
@@ -138,7 +138,7 @@
 
 
 
-  <link rel="canonical" href="https://www.ph0en1x.space/categories/"/>
+  <link rel="canonical" href="https://ph0en1xgseek.github.io/categories/"/>
 
 
 
@@ -309,7 +309,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.ph0en1x.space/2019/04/27/optimizer_nesterov/">
+    <link itemprop="mainEntityOfPage" href="https://ph0en1xgseek.github.io/2019/04/27/optimizer_nesterov/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ph0en1x">
@@ -427,7 +427,7 @@
 <p>第二行的v是第一行更新的结果，为了统一v的表示，更新过程还可以写作：</p>
 <p><img src="https://raw.githubusercontent.com/Ph0en1xGSeek/githubpage_img/master/machine_learning/nestrov4.png" alt="nestrov4"></p>
 <p><strong>Python实现</strong></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Nestrov</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, lr=<span class="number">0.01</span>, momentum=<span class="number">0.9</span>)</span>:</span></span><br><span class="line">        self.lr = lr</span><br><span class="line">        self.momentum = momentum</span><br><span class="line">        self.v = <span class="keyword">None</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, params, grads)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.v <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            self.v = &#123;&#125;</span><br><span class="line">            <span class="keyword">for</span> key, val <span class="keyword">in</span> params.items():</span><br><span class="line">                self.v[key] = np.zeros_like(val)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> params.keys():</span><br><span class="line">            self.v[key] *= self.momentum * self.v[key] - self.lr * grads[key]</span><br><span class="line">            params[key] += self.momentum * self.v[key] - self.lr * grads[key]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Nestrov</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, lr=<span class="number">0.01</span>, momentum=<span class="number">0.9</span>)</span>:</span></span><br><span class="line">        self.lr = lr</span><br><span class="line">        self.momentum = momentum</span><br><span class="line">        self.v = <span class="keyword">None</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, params, grads)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.v <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            self.v = &#123;&#125;</span><br><span class="line">            <span class="keyword">for</span> key, val <span class="keyword">in</span> params.items():</span><br><span class="line">                self.v[key] = np.zeros_like(val)</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> params.keys():</span><br><span class="line">            self.v[key] = self.momentum * self.v[key] - self.lr * grads[key]</span><br><span class="line">            params[key] += self.momentum * self.v[key] - self.lr * grads[key]</span><br></pre></td></tr></table></figure>
 <p>但是根据我看到的各个框架的代码，它们好像都把动量延迟更新了一步，所以实现起来有点不一样（或者说是上下两个式子的顺序进行了颠倒），我也找不到好的解释，但是再MNIST数据集上最终的结果要好于原来的实现。</p>
 <p><strong>Python实现</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Nestrov</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, lr=<span class="number">0.01</span>, momentum=<span class="number">0.9</span>)</span>:</span></span><br><span class="line">        self.lr = lr</span><br><span class="line">        self.momentum = momentum</span><br><span class="line">        self.v = <span class="keyword">None</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">update</span><span class="params">(self, params, grads)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.v <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            self.v = &#123;&#125;</span><br><span class="line">            <span class="keyword">for</span> key, val <span class="keyword">in</span> params.items():</span><br><span class="line">                self.v[key] = np.zeros_like(val)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> key <span class="keyword">in</span> params.keys():</span><br><span class="line">            self.v[key] *= self.momentum</span><br><span class="line">            self.v[key] -= self.lr * grads[key]</span><br><span class="line">            params[key] += self.momentum * self.momentum * self.v[key]</span><br><span class="line">            params[key] -= (<span class="number">1</span> + self.momentum) * self.lr * grads[key]</span><br></pre></td></tr></table></figure>
@@ -506,8 +506,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/03/leetcode229/" rel="next" title="LeetCode 169 Majority Element">
-                <i class="fa fa-chevron-left"></i> LeetCode 169 Majority Element
+              <a href="/2019/04/03/leetcode137/" rel="next" title="LeetCode 137 Single Number II">
+                <i class="fa fa-chevron-left"></i> LeetCode 137 Single Number II
               </a>
             
           </div>
@@ -596,7 +596,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">131</span>
+                    <span class="site-state-item-count">134</span>
                     <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
@@ -705,7 +705,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-heartbeat"></i>
   </span>
